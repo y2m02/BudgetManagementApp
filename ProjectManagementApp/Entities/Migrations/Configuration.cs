@@ -2,7 +2,7 @@
 
 namespace ProjectManagementApp.Entities.Migrations
 {
-    internal sealed class Configuration : DbMigrationsConfiguration<Entities.Models.BaseContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Entities.Models.ProjectManagementAppContext>
     {
         public Configuration()
         {
@@ -10,7 +10,7 @@ namespace ProjectManagementApp.Entities.Migrations
             AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(Entities.Models.BaseContext context)
+        protected override void Seed(Entities.Models.ProjectManagementAppContext context)
         {
             //  This method will be called after migrating to the latest version.
 

@@ -4,12 +4,12 @@ using ProjectManagementApp.Entities.Migrations;
 
 namespace ProjectManagementApp.Entities.Models
 {
-    public class BaseContext : DbContext
+    public class ProjectManagementAppContext : DbContext
     {
-        public BaseContext() : base("name=BaseConnection")
+        public ProjectManagementAppContext() : base("name=ProjectManagementApp")
         {
             Database.SetInitializer(
-                new MigrateDatabaseToLatestVersion<BaseContext, Configuration>()
+                new MigrateDatabaseToLatestVersion<ProjectManagementAppContext, Configuration>()
             );
         }
 

@@ -12,7 +12,7 @@ namespace ProjectManagementApp.Repositories.Repositories
     {
         public string GetMessage()
         {
-            var context = new BaseContext();
+            var context = new ProjectManagementAppContext();
 
             var students = context.Students.ToList();
 
