@@ -55,6 +55,10 @@
     <Compile Include="Services\TestService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Entities\ProjectManagementApp.Entities.csproj">
       <Project>{17e3e8df-94e6-464d-9952-938e7efc4f1b}</Project>
       <Name>ProjectManagementApp.Entities</Name>
@@ -63,10 +67,6 @@
       <Project>{cdc746e5-ea0e-466e-93f9-15375ad82e18}</Project>
       <Name>ProjectManagementApp.Repositories</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

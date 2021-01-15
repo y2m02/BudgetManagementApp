@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Extensions.DependencyInjection;
 using ProjectManagementApp.Repositories.Repositories;
 using ProjectManagementApp.Services.Services;
 
@@ -39,7 +39,7 @@ namespace ProjectManagementApp.App.CompositionRoot
             services.Scan(scan =>
                 scan.FromAssemblies(
                     typeof(TestService).Assembly,
-                    typeof(TestRepository).Assembly
+                    typeof(BaseRepository).Assembly
                 )
                 .AddClasses(x => x.Where(
                     c => names.Any(
