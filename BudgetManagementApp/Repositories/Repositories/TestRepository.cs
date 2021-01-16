@@ -1,23 +1,20 @@
-﻿using System.Linq;
+﻿using System.Threading.Tasks;
 using BudgetManagementApp.Entities.Models;
 
 namespace BudgetManagementApp.Repositories.Repositories
 {
     public interface ITestRepository
     {
-        string GetMessage();
+        Task<string> GetMessage();
     }
 
     public class TestRepository : BaseRepository, ITestRepository
     {
-        private readonly BudgetManagementAppContext _context;
-
-        public TestRepository(BudgetManagementAppContext context)
+        public TestRepository(BudgetManagementAppContext context) : base(context)
         {
-            _context = context;
         }
 
-        public string GetMessage()
+        public async Task<string> GetMessage()
         {
             return "klk";
         }

@@ -1,10 +1,11 @@
-﻿using BudgetManagementApp.Repositories.Repositories;
+﻿using System.Threading.Tasks;
+using BudgetManagementApp.Repositories.Repositories;
 
 namespace BudgetManagementApp.Services.Services
 {
     public interface ITestService
     {
-        string GetMessage();
+        Task<string> GetMessage();
     }
     public class TestService : BaseService, ITestService
     {
@@ -15,9 +16,9 @@ namespace BudgetManagementApp.Services.Services
             _testRepository = testRepository;
         }
 
-        public string GetMessage()
+        public async Task<string> GetMessage()
         {
-            return _testRepository.GetMessage();
+            return await _testRepository.GetMessage();
         }
     }
 }
