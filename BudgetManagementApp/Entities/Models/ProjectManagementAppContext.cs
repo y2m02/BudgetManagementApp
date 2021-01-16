@@ -4,17 +4,14 @@ using BudgetManagementApp.Entities.Migrations;
 
 namespace BudgetManagementApp.Entities.Models
 {
-    public class ButgetManagementAppContext : DbContext
+    public class BudgetManagementAppContext : DbContext
     {
-        public ButgetManagementAppContext() : base("name=ButgetManagementApp")
+        public BudgetManagementAppContext() : base("name=BudgetManagementApp")
         {
             Database.SetInitializer(
-                new MigrateDatabaseToLatestVersion<ButgetManagementAppContext, Configuration>()
+                new MigrateDatabaseToLatestVersion<BudgetManagementAppContext, Configuration>()
             );
         }
-
-        public DbSet<Subject> Subjects { get; set; }
-        public DbSet<Student> Students { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

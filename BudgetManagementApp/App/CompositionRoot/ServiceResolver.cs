@@ -24,7 +24,7 @@ namespace BudgetManagementApp.CompositionRoot
         private static void RegisterForms(IServiceCollection services)
         {
             services
-                .AddSingleton<ButgetManagementAppContext>();
+                .AddSingleton<BudgetManagementAppContext>();
         }
 
         private static void RegisterServices(IServiceCollection services)

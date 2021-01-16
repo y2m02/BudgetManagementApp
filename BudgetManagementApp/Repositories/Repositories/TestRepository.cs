@@ -10,19 +10,15 @@ namespace BudgetManagementApp.Repositories.Repositories
 
     public class TestRepository : BaseRepository, ITestRepository
     {
-        private readonly ButgetManagementAppContext _context;
+        private readonly BudgetManagementAppContext _context;
 
-        public TestRepository(ButgetManagementAppContext context)
+        public TestRepository(BudgetManagementAppContext context)
         {
             _context = context;
         }
 
         public string GetMessage()
         {
-            var students = _context.Students.ToList();
-
-            var student = students.FirstOrDefault();
-
             return "klk";
         }
     }
