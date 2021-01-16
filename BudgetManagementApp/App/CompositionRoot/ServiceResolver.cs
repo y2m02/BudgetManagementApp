@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BudgetManagementApp.Entities.Models;
 using BudgetManagementApp.Repositories.Repositories;
 using BudgetManagementApp.Services.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BudgetManagementApp.App.CompositionRoot
+namespace BudgetManagementApp.CompositionRoot
 {
     public static class ServiceResolver
     {
@@ -16,15 +17,14 @@ namespace BudgetManagementApp.App.CompositionRoot
             RegisterForms(services);
 
             RegisterServices(services);
-            
+
             return services.BuildServiceProvider();
         }
 
         private static void RegisterForms(IServiceCollection services)
         {
             services
-                .AddSingleton<FrmMain>()
-                .AddSingleton<FrmTest>();
+                .AddSingleton<ButgetManagementAppContext>();
         }
 
         private static void RegisterServices(IServiceCollection services)
@@ -47,6 +47,9 @@ namespace BudgetManagementApp.App.CompositionRoot
                     )
                 )
                 .AsMatchingInterface()
+                .FromAssemblies(typeof(FrmMain).Assembly)
+                .AddClasses(x => x.Where(c => c.Name.StartsWith("Frm")))
+                .AsSelf()
             );
         }
     }

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
-using BudgetManagementApp.App.CompositionRoot;
+using BudgetManagementApp.CompositionRoot;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BudgetManagementApp.App
+namespace BudgetManagementApp
 {
     public static class Program
     {
