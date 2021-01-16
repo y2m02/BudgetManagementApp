@@ -52,7 +52,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountingMovement.cs" />
+    <Compile Include="Models\BalanceSheet.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Project.cs" />
     <Compile Include="Models\ProjectManagementAppContext.cs" />
+    <Compile Include="Models\SubType.cs" />
+    <Compile Include="Models\Type.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
