@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using BudgetManagementApp.Services.Services;
 
@@ -14,9 +15,10 @@ namespace BudgetManagementApp.Test
             this.testService = testService;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(testService.GetMessage());
+            var a = await testService.GetMessage();
+            MessageBox.Show(a);
         }
     }
 }

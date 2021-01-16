@@ -55,6 +55,7 @@
     <Compile Include="Models\AccountingMovement.cs" />
     <Compile Include="Models\BalanceSheet.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="IDeletable.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\ProjectManagementAppContext.cs" />
     <Compile Include="Models\SubType.cs" />
