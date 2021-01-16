@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using BudgetManagementApp.Services.Services;
 
-namespace BudgetManagementApp.App
+namespace BudgetManagementApp.Test
 {
     public partial class FrmTest : Form
     {

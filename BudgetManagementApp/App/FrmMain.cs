@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
+using BudgetManagementApp.Test;
 
-namespace BudgetManagementApp.App
+namespace BudgetManagementApp
 {
     public partial class FrmMain : Form
     {

@@ -8,13 +8,18 @@ namespace BudgetManagementApp.Repositories.Repositories
         string GetMessage();
     }
 
-    public class TestRepository : ITestRepository
+    public class TestRepository : BaseRepository, ITestRepository
     {
+        private readonly ButgetManagementAppContext _context;
+
+        public TestRepository(ButgetManagementAppContext context)
+        {
+            _context = context;
+        }
+
         public string GetMessage()
         {
-            var context = new ButgetManagementAppContext();
-
-            var students = context.Students.ToList();
+            var students = _context.Students.ToList();
 
             var student = students.FirstOrDefault();
 

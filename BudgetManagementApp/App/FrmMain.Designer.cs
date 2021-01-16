@@ -1,5 +1,5 @@
 ﻿
-namespace BudgetManagementApp.App
+namespace BudgetManagementApp
 {
     partial class FrmMain
     {

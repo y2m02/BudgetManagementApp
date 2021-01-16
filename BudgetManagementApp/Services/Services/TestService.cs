@@ -6,7 +6,7 @@ namespace BudgetManagementApp.Services.Services
     {
         string GetMessage();
     }
-    public class TestService : ITestService
+    public class TestService : BaseService, ITestService
     {
         private readonly ITestRepository _testRepository;
 

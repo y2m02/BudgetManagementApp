@@ -1,5 +1,5 @@
 ﻿
-namespace BudgetManagementApp.App
+namespace BudgetManagementApp.Test
 {
     partial class FrmTest
     {
