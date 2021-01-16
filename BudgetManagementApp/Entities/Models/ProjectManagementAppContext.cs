@@ -4,32 +4,29 @@ using BudgetManagementApp.Entities.Migrations;
 
 namespace BudgetManagementApp.Entities.Models
 {
-    public class ButgetManagementAppContext : DbContext
+    public class BudgetManagementAppContext : DbContext
     {
-        public ButgetManagementAppContext() : base("name=ButgetManagementApp")
+        public BudgetManagementAppContext() : base("name=BudgetManagementApp")
         {
             Database.SetInitializer(
-                new MigrateDatabaseToLatestVersion<ButgetManagementAppContext, Configuration>()
+                new MigrateDatabaseToLatestVersion<BudgetManagementAppContext, Configuration>()
             );
         }
 
-        public DbSet<Subject> Subjects { get; set; }
-        public DbSet<Student> Students { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Type> Types { get; set; }
+        public DbSet<SubType> SubTypes { get; set; }
+        public DbSet<Project> Projects { get; set; }
+        public DbSet<AccountingMovement> AccountingMovements { get; set; }
+        public DbSet<BalanceSheet> BalanceSheets { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
-            //modelBuilder.Entity<Payment>().Property(w => w.AmountPaid).HasPrecision(18, 2);
+            modelBuilder.Entity<Project>().Property(w => w.Construction).HasPrecision(18, 2);
+            modelBuilder.Entity<Project>().Property(w => w.Cost).HasPrecision(18, 2);
+            modelBuilder.Entity<AccountingMovement>().Property(w => w.Amount).HasPrecision(18, 2);
         }
-
-        //public class PatientMappings : EntityTypeConfiguration<Patient>
-        //{
-        //    public PatientMappings()
-        //    {
-        //        HasRequired(c => c.PatientHealth).WithRequiredPrincipal(e => e.Patient);
-        //        HasRequired(c => c.PlateRegistration).WithRequiredPrincipal(e => e.Patient);
-        //    }
-        //}
     }
 }

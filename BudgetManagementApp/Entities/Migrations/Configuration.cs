@@ -1,8 +1,9 @@
 ﻿using System.Data.Entity.Migrations;
+using BudgetManagementApp.Entities.Models;
 
 namespace BudgetManagementApp.Entities.Migrations
 {
-    internal sealed class Configuration : DbMigrationsConfiguration<Entities.Models.ButgetManagementAppContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<BudgetManagementAppContext>
     {
         public Configuration()
         {
@@ -10,7 +11,7 @@ namespace BudgetManagementApp.Entities.Migrations
             AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(Entities.Models.ButgetManagementAppContext context)
+        protected override void Seed(BudgetManagementAppContext context)
         {
             //  This method will be called after migrating to the latest version.
 
