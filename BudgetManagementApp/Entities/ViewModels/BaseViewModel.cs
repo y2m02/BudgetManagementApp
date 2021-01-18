@@ -1,12 +1,27 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using BudgetManagementApp.Entities.Enums;
 
 namespace BudgetManagementApp.Entities.ViewModels
 {
-    public interface IViewModel
+    public abstract class BaseViewModel
     {
+        public int Id { get; set; }
+        public ActionType Action => SetAction();
+
+        protected DateTime? DeletedOn { get; set; }
+
+        private ActionType SetAction()
+        {
+            return Id > 0
+                ? DeletedOn.HasValue
+                    ? ActionType.Delete
+                    : ActionType.Update
+                : ActionType.Create;
+        }
     }
 
-    public class Success<T> : IViewModel
+    public class Success<T> : BaseViewModel
     {
         public Success(T model)
         {
@@ -16,7 +31,7 @@ namespace BudgetManagementApp.Entities.ViewModels
         public T Model { get; }
     }
 
-    public class Error : IViewModel
+    public class Error : BaseViewModel
     {
         public Error(string errorMessage)
         {
@@ -27,7 +42,7 @@ namespace BudgetManagementApp.Entities.ViewModels
         public string ErrorMessage { get; }
     }
 
-    public class Validation : IViewModel
+    public class Validation : BaseViewModel
     {
         public Validation(IEnumerable<string> validationErrors)
         {

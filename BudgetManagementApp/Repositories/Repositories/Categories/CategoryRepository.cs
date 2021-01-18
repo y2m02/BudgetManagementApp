@@ -16,12 +16,13 @@ namespace BudgetManagementApp.Repositories.Repositories.Categories
         {
             return await Context.Categories
                 .Where(w => !w.DeletedOn.HasValue)
-                .ToListAsync();
+                .ToListAsync()
+                .ConfigureAwait(false);
         }
 
         public async Task Create(Category category)
         {
-            await base.Create(category);
+            await base.Create(category).ConfigureAwait(false);
         }
 
         public async Task Update(Category category)
@@ -33,14 +34,14 @@ namespace BudgetManagementApp.Repositories.Repositories.Categories
                 nameof(category.Description)
             });
 
-            await Save();
+            await Save().ConfigureAwait(false);
         }
 
         public async Task Delete(Category category)
         {
             Context.Categories.Attach(category);
 
-            await base.Delete(category);
+            await base.Delete(category).ConfigureAwait(false);
         }
     }
 }

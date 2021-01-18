@@ -25,7 +25,7 @@ namespace BudgetManagementApp.Repositories.Repositories
         {
             Context.Entry(entity).State = EntityState.Added;
 
-            await Save();
+            await Save().ConfigureAwait(false);
         }
 
         protected void AddPropertiesToModify<T>(T entity, List<string> properties)
@@ -43,7 +43,7 @@ namespace BudgetManagementApp.Repositories.Repositories
                 nameof(entity.DeletedOn)
             });
 
-            await Save();
+            await Save().ConfigureAwait(false);
         }
     }
 }
