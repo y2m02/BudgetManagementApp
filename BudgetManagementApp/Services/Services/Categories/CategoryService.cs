@@ -29,7 +29,8 @@ namespace BudgetManagementApp.Services.Services.Categories
                     Mapper.Map<IEnumerable<CategoryViewModel>>(
                         await categoryRepository
                             .GetAll()
-                            .ConfigureAwait(false))
+                            .ConfigureAwait(false)
+                    )
                 );
             });
         }
