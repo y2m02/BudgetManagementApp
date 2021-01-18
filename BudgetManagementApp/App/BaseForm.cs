@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using BudgetManagementApp.Properties;
+using System.Windows.Forms;
 
 namespace BudgetManagementApp
 {
@@ -8,7 +9,7 @@ namespace BudgetManagementApp
         {
             return MessageBox.Show(
                 message, 
-                "Información", 
+                StringResources.Information, 
                 MessageBoxButtons.OK, 
                 MessageBoxIcon.Information
             );
@@ -18,7 +19,7 @@ namespace BudgetManagementApp
         {
             return MessageBox.Show(
                 message, 
-                "Información", 
+                StringResources.Information, 
                 MessageBoxButtons.OK, 
                 MessageBoxIcon.Exclamation
             );
@@ -28,7 +29,7 @@ namespace BudgetManagementApp
         {
             return MessageBox.Show(
                 message, 
-                "Pregunta", 
+                StringResources.Question,
                 MessageBoxButtons.YesNo, 
                 MessageBoxIcon.Question
             );
@@ -38,7 +39,7 @@ namespace BudgetManagementApp
         {
             return MessageBox.Show(
                 message, 
-                "Atención", 
+                StringResources.Warning, 
                 MessageBoxButtons.OKCancel, 
                 MessageBoxIcon.Warning
             );
@@ -48,7 +49,7 @@ namespace BudgetManagementApp
         {
             return MessageBox.Show(
                 message, 
-                "Error", 
+                StringResources.Error, 
                 MessageBoxButtons.OK, 
                 MessageBoxIcon.Error
             );
