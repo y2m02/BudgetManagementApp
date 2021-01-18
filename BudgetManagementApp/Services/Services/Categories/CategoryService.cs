@@ -9,14 +9,6 @@ using System.Threading.Tasks;
 
 namespace BudgetManagementApp.Services.Services.Categories
 {
-    public interface ICategoryService
-    {
-        Task<BaseViewModel> GetAll();
-        Task<BaseViewModel> Create(CategoryViewModel category);
-        Task<BaseViewModel> Update(CategoryViewModel category);
-        Task<BaseViewModel> Delete(CategoryViewModel category);
-    }
-
     public class CategoryService : BaseService, ICategoryService
     {
         private readonly ICategoryRepository categoryRepository;
