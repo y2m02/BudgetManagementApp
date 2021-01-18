@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace BudgetManagementApp
 {
-    public abstract class BaseForm : Form
+    public class BaseForm : Form
     {
         protected DialogResult DisplayInformationMessage(string message)
         {
