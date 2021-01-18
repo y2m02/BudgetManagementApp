@@ -46,6 +46,8 @@ namespace BudgetManagementApp.Services.Services.Categories
 
         public async Task<BaseViewModel> Delete(CategoryViewModel category)
         {
+            category.SetDeletedOn();
+
             return await Upsert(category);
         }
 

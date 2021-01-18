@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using BudgetManagementApp.Entities.Models;
+using BudgetManagementApp.Mappings;
 using BudgetManagementApp.Repositories.Repositories;
 using BudgetManagementApp.Services.Services;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,17 +16,11 @@ namespace BudgetManagementApp.CompositionRoot
         {
             var services = new ServiceCollection();
 
-            RegisterForms(services);
+            services.AddSingleton<BudgetManagementAppContext>();
 
             RegisterServices(services);
 
             return services.BuildServiceProvider();
-        }
-
-        private static void RegisterForms(IServiceCollection services)
-        {
-            services
-                .AddSingleton<BudgetManagementAppContext>();
         }
 
         private static void RegisterServices(IServiceCollection services)
@@ -51,6 +47,12 @@ namespace BudgetManagementApp.CompositionRoot
                 .AddClasses(x => x.Where(c => c.Name.StartsWith("Frm")))
                 .AsSelf()
             );
+
+            var mappingConfig = new MapperConfiguration(
+                mc => { mc.AddProfile(new ProfileMapper()); }
+            );
+
+            services.AddSingleton(mappingConfig.CreateMapper());
         }
     }
 }

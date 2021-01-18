@@ -9,7 +9,7 @@ namespace BudgetManagementApp.Entities.ViewModels
         public int Id { get; set; }
         public ActionType Action => SetAction();
 
-        protected DateTime? DeletedOn { get; set; }
+        protected DateTime? DeletedOn { get; private set; }
 
         private ActionType SetAction()
         {
@@ -18,6 +18,11 @@ namespace BudgetManagementApp.Entities.ViewModels
                     ? ActionType.Delete
                     : ActionType.Update
                 : ActionType.Create;
+        }
+
+        public void SetDeletedOn()
+        {
+            DeletedOn = DateTime.Now;
         }
     }
 
