@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using AutoMapper;
 using BudgetManagementApp.Repositories.Repositories;
 
 namespace BudgetManagementApp.Services.Services
@@ -9,16 +10,16 @@ namespace BudgetManagementApp.Services.Services
     }
     public class TestService : BaseService, ITestService
     {
-        private readonly ITestRepository _testRepository;
+        private readonly ITestRepository testRepository;
 
-        public TestService(ITestRepository testRepository)
+        public TestService(ITestRepository testRepository, IMapper mapper) : base(mapper)
         {
-            _testRepository = testRepository;
+            this.testRepository = testRepository;
         }
 
         public async Task<string> GetMessage()
         {
-            return await _testRepository.GetMessage();
+            return await testRepository.GetMessage();
         }
     }
 }
