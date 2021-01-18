@@ -61,6 +61,7 @@
     <Compile Include="Models\SubType.cs" />
     <Compile Include="Models\Type.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\IViewModel.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
