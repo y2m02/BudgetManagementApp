@@ -1,19 +1,24 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
+using BudgetManagementApp.Entities.ViewModels;
+using BudgetManagementApp.Entities.ViewModels.Categories;
 using BudgetManagementApp.Properties;
-using BudgetManagementApp.Test;
+using BudgetManagementApp.Services.Services.Categories;
 
 namespace BudgetManagementApp
 {
     public partial class FrmMain : BaseForm
     {
-        private readonly FrmTest frmTest;
+        private readonly ICategoryService categoryService;
 
-        public FrmMain(FrmTest frmTest)
+        public FrmMain(ICategoryService categoryService)
         {
+            this.categoryService = categoryService;
             InitializeComponent();
-            this.frmTest = frmTest;
 
             StringResources.Culture = CultureInfo.CurrentCulture;
 
@@ -24,9 +29,13 @@ namespace BudgetManagementApp
         {
             Text = StringResources.BudgetManagement;
 
+            string[] controlsToSetLabels = {"Lbl", "Btn", "Tab"};
+
             LoopControlsToSetLabels(Controls);
 
             LoopControlsToSetLabels(TclBudgetManagement.Controls);
+
+            LoopControlsToSetLabels(TabCategories.Controls);
 
             void LoopControlsToSetLabels(IEnumerable controls)
             {
@@ -36,11 +45,24 @@ namespace BudgetManagementApp
 
                     var name = control.Name;
 
-                    control.Text = StringResources.ResourceManager.GetString(
-                        name.Substring(3, name.Length - 3),
-                        StringResources.Culture
-                    );
+                    if (controlsToSetLabels.Any(c => name.StartsWith(c)))
+                    {
+                        control.Text = StringResources.ResourceManager.GetString(
+                            name.Substring(3, name.Length - 3),
+                            StringResources.Culture
+                        );
+                    }
                 }
+            }
+        }
+
+        private async void FrmMain_Load(object sender, EventArgs e)
+        {
+            var c = await categoryService.GetAll().ConfigureAwait(false);
+
+            if (c is Success<IEnumerable<CategoryViewModel>> success)
+            {
+                DgvCategories.DataSource = success.Model;
             }
         }
     }

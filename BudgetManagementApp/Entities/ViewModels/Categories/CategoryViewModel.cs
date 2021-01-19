@@ -1,4 +1,6 @@
-﻿namespace BudgetManagementApp.Entities.ViewModels.Categories
+﻿using System.ComponentModel;
+
+namespace BudgetManagementApp.Entities.ViewModels.Categories
 {
     public class CategoryViewModel : BaseViewModel
     {
@@ -8,6 +10,7 @@
         /// </summary>
         public int CategoryId => Id;
 
+        [DisplayName("Descripción")]
         public string Description { get; set; }
     }
 }
