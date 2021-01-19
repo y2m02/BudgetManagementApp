@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections;
 using System.Globalization;
 using System.Windows.Forms;
 using BudgetManagementApp.Properties;
@@ -14,15 +14,34 @@ namespace BudgetManagementApp
         {
             InitializeComponent();
             this.frmTest = frmTest;
-        }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
             StringResources.Culture = CultureInfo.CurrentCulture;
 
-            DisplayInformationMessage("wawawa");
+            SetLabels();
+        }
 
-            //frmTest.ShowDialog();
+        private void SetLabels()
+        {
+            Text = StringResources.BudgetManagement;
+
+            LoopControlsToSetLabels(Controls);
+
+            LoopControlsToSetLabels(TclBudgetManagement.Controls);
+
+            void LoopControlsToSetLabels(IEnumerable controls)
+            {
+                foreach (var ctrl in controls)
+                {
+                    var control = (Control) ctrl;
+
+                    var name = control.Name;
+
+                    control.Text = StringResources.ResourceManager.GetString(
+                        name.Substring(3, name.Length - 3),
+                        StringResources.Culture
+                    );
+                }
+            }
         }
     }
 }
