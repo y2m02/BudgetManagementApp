@@ -68,6 +68,7 @@ namespace BudgetManagementApp
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.TxtName = new System.Windows.Forms.TextBox();
+            this.TxtCategoryFilter = new System.Windows.Forms.TextBox();
             this.TclBudgetManagement.SuspendLayout();
             this.TabCategories.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvCategories)).BeginInit();
@@ -178,6 +179,7 @@ namespace BudgetManagementApp
             // TabCategories
             // 
             this.TabCategories.BackColor = System.Drawing.SystemColors.Control;
+            this.TabCategories.Controls.Add(this.TxtCategoryFilter);
             this.TabCategories.Controls.Add(this.DgvCategories);
             this.TabCategories.Controls.Add(this.LblDescription);
             this.TabCategories.Controls.Add(this.TxtDescription);
@@ -550,6 +552,16 @@ namespace BudgetManagementApp
             this.TxtName.Size = new System.Drawing.Size(511, 27);
             this.TxtName.TabIndex = 17;
             // 
+            // TxtCategoryFilter
+            // 
+            this.TxtCategoryFilter.Location = new System.Drawing.Point(73, 108);
+            this.TxtCategoryFilter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtCategoryFilter.MaxLength = 99;
+            this.TxtCategoryFilter.Name = "TxtCategoryFilter";
+            this.TxtCategoryFilter.Size = new System.Drawing.Size(511, 27);
+            this.TxtCategoryFilter.TabIndex = 29;
+            this.TxtCategoryFilter.TextChanged += new System.EventHandler(this.TxtCategoryFilter_TextChanged);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
@@ -628,5 +640,6 @@ namespace BudgetManagementApp
         private System.Windows.Forms.Label LblDescription;
         private System.Windows.Forms.TextBox TxtDescription;
         private System.Windows.Forms.DataGridView DgvCategories;
+        private System.Windows.Forms.TextBox TxtCategoryFilter;
     }
 }

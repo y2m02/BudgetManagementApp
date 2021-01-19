@@ -24,6 +24,21 @@ namespace BudgetManagementApp.Entities.ViewModels
         {
             DeletedOn = DateTime.Now;
         }
+
+        public (IEnumerable<TModel> model, string error) DownGrade<TModel>()
+        {
+            switch (this)
+            {
+                case Success<IEnumerable<TModel>> success:
+                    return (success.Model, string.Empty);
+
+                case Error error:
+                    return (new List<TModel>(), error.ErrorMessage);
+
+                default:
+                    return (new List<TModel>(), string.Empty);
+            }
+        }
     }
 
     public class Success<T> : BaseViewModel

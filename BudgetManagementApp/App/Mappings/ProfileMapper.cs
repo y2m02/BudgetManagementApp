@@ -8,7 +8,9 @@ namespace BudgetManagementApp.Mappings
     {
         public ProfileMapper()
         {
-            CreateMap<Category, CategoryViewModel>();
+            CreateMap<Category, CategoryViewModel>()
+                .ForMember(destination => destination.Id,
+                    member => member.MapFrom(field => field.CategoryId));
             CreateMap<CategoryViewModel, Category>();
             //    .ForMember(destination => destination.Used,
             //        member => member.MapFrom(field => field.Assignments.Count > 0));

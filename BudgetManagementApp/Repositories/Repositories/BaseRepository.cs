@@ -14,7 +14,6 @@ namespace BudgetManagementApp.Repositories.Repositories
         }
 
         protected BudgetManagementAppContext Context { get; }
-        
 
         protected async Task Save()
         {
