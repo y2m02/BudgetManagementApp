@@ -31,9 +31,7 @@ namespace BudgetManagementApp
         {
             var (model, error) = (await categoryService.GetAll().ConfigureAwait(false)).DownGrade<CategoryViewModel>();
 
-            Categories = model.ToList();
-
-            PopulateGrid(DgvCategories, Categories, FormatCategories);
+            SetupCategories(model);
 
             if (error.HasValue())
             {
@@ -114,6 +112,23 @@ namespace BudgetManagementApp
                 DgvCategories.Columns["Action"].Visible = false;
             }
             catch { }
+        }
+
+        private void SetupCategories(IEnumerable<CategoryViewModel> model)
+        {
+            Categories = model.ToList();
+
+            PopulateGrid(DgvCategories, Categories, FormatCategories);
+
+            if (!DgvCategories.HasValue()) return;
+
+            DgvCategories.Rows[0].Selected = true;
+
+            LblCategoryId.Text = DgvCategories.SelectedRows[0].Cells[0].Value.ToString();
+            TxtCategoryDescription.Text = DgvCategories.SelectedRows[0].Cells[1].Value.ToString();
+
+            BtnModifyCategory.Enabled = true;
+            BtnDeleteCategory.Enabled = true;
         }
     }
 }
