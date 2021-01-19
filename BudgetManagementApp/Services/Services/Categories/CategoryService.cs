@@ -52,7 +52,7 @@ namespace BudgetManagementApp.Services.Services.Categories
             return await Upsert(category);
         }
 
-        private async Task<BaseViewModel> Upsert(CategoryViewModel category)
+        public async Task<BaseViewModel> Upsert(CategoryViewModel category)
         {
             return await HandleErrors(
                 async () =>
@@ -78,13 +78,7 @@ namespace BudgetManagementApp.Services.Services.Categories
                             break;
                     }
 
-                    return Success(
-                        Mapper.Map<IEnumerable<CategoryViewModel>>(
-                            await categoryRepository
-                                .GetAll()
-                                .ConfigureAwait(false)
-                        )
-                    );
+                    return Success(true);
                 }
             );
         }

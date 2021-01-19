@@ -13,5 +13,10 @@
         {
             return !IsEmpty(str);
         }
+
+        public static int ToInt(this string str)
+        {
+            return int.Parse(str);
+        }
     }
 }

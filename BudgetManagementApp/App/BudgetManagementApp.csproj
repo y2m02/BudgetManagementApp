@@ -114,6 +114,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CompositionRoot\ServiceResolver.cs" />
+    <Compile Include="Forms\FrmCategoryMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmCategoryMaintenance.Designer.cs">
+      <DependentUpon>FrmCategoryMaintenance.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +131,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmCategoryMaintenance.resx">
+      <DependentUpon>FrmCategoryMaintenance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>

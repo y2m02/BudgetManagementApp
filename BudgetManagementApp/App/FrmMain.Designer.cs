@@ -229,6 +229,7 @@ namespace BudgetManagementApp
             this.BtnNewCategory.TabIndex = 31;
             this.BtnNewCategory.Text = "Nuevo";
             this.BtnNewCategory.UseVisualStyleBackColor = true;
+            this.BtnNewCategory.Click += new System.EventHandler(this.BtnNewCategory_Click);
             // 
             // TxtCategoryFilter
             // 

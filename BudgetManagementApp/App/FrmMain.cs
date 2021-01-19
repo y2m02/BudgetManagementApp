@@ -8,16 +8,22 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
+using BudgetManagementApp.Forms;
 using BudgetManagementApp.Resources;
 
 namespace BudgetManagementApp
 {
     public partial class FrmMain : BaseForm
     {
+        private readonly FrmCategoryMaintenance categoryMaintenance;
         private readonly ICategoryService categoryService;
 
-        public FrmMain(ICategoryService categoryService)
+        public FrmMain(
+            FrmCategoryMaintenance categoryMaintenance,
+            ICategoryService categoryService
+        )
         {
+            this.categoryMaintenance = categoryMaintenance;
             this.categoryService = categoryService;
             InitializeComponent();
 
@@ -129,6 +135,17 @@ namespace BudgetManagementApp
 
             BtnModifyCategory.Enabled = true;
             BtnDeleteCategory.Enabled = true;
+        }
+
+        private async void BtnNewCategory_Click(object sender, EventArgs e)
+        {
+            var a = categoryMaintenance.ShowDialog();
+
+            if (a != DialogResult.OK) return;
+
+            var (model, error) = (await categoryService.GetAll().ConfigureAwait(false)).DownGrade<CategoryViewModel>();
+
+            SetupCategories(model);
         }
     }
 }

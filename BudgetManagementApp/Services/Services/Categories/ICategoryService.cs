@@ -9,6 +9,7 @@ namespace BudgetManagementApp.Services.Services.Categories
         Task<BaseViewModel> GetAll();
         Task<BaseViewModel> Create(CategoryViewModel category);
         Task<BaseViewModel> Update(CategoryViewModel category);
+        Task<BaseViewModel> Upsert(CategoryViewModel category);
         Task<BaseViewModel> Delete(CategoryViewModel category);
     }
 }
