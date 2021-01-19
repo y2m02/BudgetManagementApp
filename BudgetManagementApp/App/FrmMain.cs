@@ -1,5 +1,5 @@
 ﻿using BudgetManagementApp.Entities.ViewModels.Categories;
-using BudgetManagementApp.Properties;
+using BudgetManagementApp.Resources.Properties;
 using BudgetManagementApp.Services.Extensions;
 using BudgetManagementApp.Services.Services.Categories;
 using System;
@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
-using BudgetManagementApp.Entities.Properties;
+using BudgetManagementApp.Resources;
 
 namespace BudgetManagementApp
 {
@@ -83,9 +83,8 @@ namespace BudgetManagementApp
 
                     if (controlsToSetLabels.Any(c => name.StartsWith(c)))
                     {
-                        control.Text = StringResources.ResourceManager.GetString(
-                            name.Substring(3, name.Length - 3),
-                            StringResources.Culture
+                        control.Text = StringResourcesHandler.GetString(
+                            name.Substring(3, name.Length - 3)
                         );
                     }
                 }

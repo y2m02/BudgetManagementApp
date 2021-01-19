@@ -152,6 +152,10 @@
       <Project>{cdc746e5-ea0e-466e-93f9-15375ad82e18}</Project>
       <Name>BudgetManagementApp.Repositories</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Resources\BudgetManagementApp.Resources.csproj">
+      <Project>{eeeea753-5f2c-4ead-9e97-37eb2e9238f8}</Project>
+      <Name>BudgetManagementApp.Resources</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Services\BudgetManagementApp.Services.csproj">
       <Project>{981203f4-28e8-4722-a587-05785a1643f2}</Project>
       <Name>BudgetManagementApp.Services</Name>
