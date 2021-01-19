@@ -9,8 +9,8 @@ namespace BudgetManagementApp.Entities.ViewModels.Categories
         /// Please use Id instead.  
         /// </summary>
         public int CategoryId => Id;
-
-        [DisplayName("Descripción")]
+        
+        [DisplayName()]
         public string Description { get; set; }
     }
 }

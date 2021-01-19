@@ -1,5 +1,6 @@
 ﻿using BudgetManagementApp.Properties;
 using System.Windows.Forms;
+using BudgetManagementApp.Entities.Properties;
 
 namespace BudgetManagementApp
 {
