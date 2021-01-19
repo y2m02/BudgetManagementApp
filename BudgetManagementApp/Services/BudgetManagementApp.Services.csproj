@@ -58,7 +58,6 @@
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\Categories\CategoryService.cs" />
     <Compile Include="Services\Categories\ICategoryService.cs" />
-    <Compile Include="Services\TestService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

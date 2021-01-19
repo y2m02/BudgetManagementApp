@@ -34,7 +34,7 @@ namespace BudgetManagementApp.CompositionRoot
             // Install-Package Scrutor
             services.Scan(scan =>
                 scan.FromAssemblies(
-                    typeof(TestService).Assembly,
+                    typeof(BaseService).Assembly,
                     typeof(BaseRepository).Assembly
                 )
                 .AddClasses(x => x.Where(
