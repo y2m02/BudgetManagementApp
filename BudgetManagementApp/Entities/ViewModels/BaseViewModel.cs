@@ -12,6 +12,8 @@ namespace BudgetManagementApp.Entities.ViewModels
 
         public DateTime? DeletedOn { get; set; }
 
+        public bool InUse { get; set; }
+
         private ActionType SetAction()
         {
             return Id > 0

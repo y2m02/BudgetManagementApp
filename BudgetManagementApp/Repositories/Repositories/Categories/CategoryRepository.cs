@@ -14,6 +14,7 @@ namespace BudgetManagementApp.Repositories.Repositories.Categories
         public IEnumerable<Category> GetAll()
         {
             return Context.Categories
+                .Include(w => w.Types)
                 .Where(w => !w.DeletedOn.HasValue)
                 .OrderBy(w => w.Description)
                 .AsNoTracking();

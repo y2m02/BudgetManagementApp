@@ -144,6 +144,7 @@ namespace BudgetManagementApp
                 DgvCategories.Columns["Id"].Visible = false;
                 DgvCategories.Columns["Action"].Visible = false;
                 DgvCategories.Columns["DeletedOn"].Visible = false;
+                DgvCategories.Columns["InUse"].Visible = false;
             }
             catch
             {
@@ -162,7 +163,11 @@ namespace BudgetManagementApp
                 TxtCategoryId.Text = grid.GetSelectedRowValue<int>("CategoryId").ToString();
                 TxtCategoryDescription.Text = grid.GetSelectedRowValue<string>("Description");
 
-                SetControlsStatus(true, BtnModifyCategory, BtnDeleteCategory);
+                SetControlsStatus(
+                    !grid.GetSelectedRowValue<bool>("InUse"), 
+                    BtnModifyCategory, 
+                    BtnDeleteCategory
+                );
 
                 return;
             }
