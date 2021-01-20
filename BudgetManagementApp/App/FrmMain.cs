@@ -61,6 +61,11 @@ namespace BudgetManagementApp
             }
 
             PopulateGrid(DgvCategories, categories, FormatCategories);
+
+            bool CategoryFilter(CategoryViewModel category)
+            {
+                return category.Description.Contains(TxtCategoryFilter.Text);
+            }
         }
 
         private void BtnNewCategory_Click(object sender, EventArgs e)
@@ -119,7 +124,7 @@ namespace BudgetManagementApp
         }
 
         private static void DisableColumns(
-            DataGridView grid, 
+            DataGridView grid,
             IEnumerable<string> columnNames
         )
         {
@@ -161,10 +166,6 @@ namespace BudgetManagementApp
             }
         }
 
-        private bool CategoryFilter(CategoryViewModel category)
-        {
-            return category.Description.Contains(TxtCategoryFilter.Text);
-        }
 
         private void SetCategoryDetailsData(DataGridView grid)
         {
@@ -174,8 +175,8 @@ namespace BudgetManagementApp
                 TxtCategoryDescription.Text = grid.GetSelectedRowValue<string>("Description");
 
                 SetControlsStatus(
-                    !grid.GetSelectedRowValue<bool>("InUse"), 
-                    BtnModifyCategory, 
+                    !grid.GetSelectedRowValue<bool>("InUse"),
+                    BtnModifyCategory,
                     BtnDeleteCategory
                 );
 
