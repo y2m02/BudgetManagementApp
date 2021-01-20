@@ -73,20 +73,19 @@ namespace BudgetManagementApp
 
         private void BtnDeleteCategory_Click(object sender, EventArgs e)
         {
-            if (DisplayQuestionMessage(StringResources.DeleteQuestion) != DialogResult.Yes) return;
-            
-            var result = categoryService.Delete(new CategoryViewModel
-            {
-                Id = TxtCategoryId.Text.ToInt(),
-                DeletedOn = DateTime.Now
-            });
+            if (DisplayQuestionMessage(StringResources.DeleteQuestion) != DialogResult.Yes)
+                return;
+
+            var result = categoryService.Delete(
+                Categories.Single(w => w.CategoryId == TxtCategoryId.Text.ToInt())
+            );
 
             if (result.IsSuccess<bool>())
             {
                 DisplayInformationMessage(StringResources.RecordDeleted);
 
                 HandleCategories(categoryService.GetAll());
-                
+
                 TxtCategoryFilter.Clear();
 
                 return;
@@ -144,6 +143,7 @@ namespace BudgetManagementApp
                 DgvCategories.Columns["CategoryId"].Visible = false;
                 DgvCategories.Columns["Id"].Visible = false;
                 DgvCategories.Columns["Action"].Visible = false;
+                DgvCategories.Columns["DeletedOn"].Visible = false;
             }
             catch
             {
@@ -157,7 +157,7 @@ namespace BudgetManagementApp
 
         private void SetCategoryDetailsData(DataGridView grid)
         {
-            if (grid.SelectedRows.Count > 0)
+            if (grid.HasRowsSelected())
             {
                 TxtCategoryId.Text = grid.GetSelectedRowValue<int>("CategoryId").ToString();
                 TxtCategoryDescription.Text = grid.GetSelectedRowValue<string>("Description");
@@ -167,6 +167,7 @@ namespace BudgetManagementApp
                 return;
             }
 
+            TxtCategoryId.Text = grid.GetRowValue<int>(0, "CategoryId").ToString();
             TxtCategoryDescription.Text = grid.GetRowValue<string>(0, "Description");
 
             SetControlsStatus(false, BtnModifyCategory, BtnDeleteCategory);

@@ -22,28 +22,28 @@ namespace BudgetManagementApp.Services.Extensions
         }
 
         public static T GetRowValue<T>(
-            this DataGridView dgv, 
+            this DataGridView dgv,
             int rowIndex,
             int columnIndex
         )
         {
             if (dgv.HasValue())
             {
-                return (T) dgv.GetRow(rowIndex).Cells[columnIndex].Value;
+                return (T)dgv.GetRow(rowIndex).Cells[columnIndex].Value;
             }
 
             return default;
         }
 
         public static T GetRowValue<T>(
-            this DataGridView dgv, 
+            this DataGridView dgv,
             int rowIndex,
             string columnName
         )
         {
             if (dgv.HasValue())
             {
-                return (T) dgv.GetRow(rowIndex).Cells[columnName].Value;
+                return (T)dgv.GetRow(rowIndex).Cells[columnName].Value;
             }
 
             return default;
@@ -77,7 +77,7 @@ namespace BudgetManagementApp.Services.Extensions
         {
             if (dgv.HasValue())
             {
-                return (T) dgv.GetSelectedRow().Cells[columnIndex].Value;
+                return (T)dgv.GetSelectedRow().Cells[columnIndex].Value;
             }
 
             return default;
@@ -90,7 +90,7 @@ namespace BudgetManagementApp.Services.Extensions
         {
             if (dgv.HasValue())
             {
-                return (T) dgv.GetSelectedRow().Cells[columnName].Value;
+                return (T)dgv.GetSelectedRow().Cells[columnName].Value;
             }
 
             return default;
@@ -99,6 +99,11 @@ namespace BudgetManagementApp.Services.Extensions
         public static void SetSelectedRow(this DataGridView grid, int rowIndex)
         {
             grid.Rows[rowIndex].Selected = true;
+        }
+
+        public static bool HasRowsSelected(this DataGridView grid)
+        {
+            return grid.SelectedRows.Count > 0;
         }
     }
 }
