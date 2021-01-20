@@ -31,7 +31,8 @@ namespace BudgetManagementApp
             SetLabels();
         }
 
-        private List<CategoryViewModel> Categories { get; set; }
+        private List<CategoryViewModel> Categories 
+        { get; set; }
 
         protected sealed override void SetLabels()
         {
