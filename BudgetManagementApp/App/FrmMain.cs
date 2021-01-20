@@ -71,29 +71,18 @@ namespace BudgetManagementApp
 
         private void BtnNewCategory_Click(object sender, EventArgs e)
         {
-            var result = categoryMaintenance.ShowDialog();
+            categoryMaintenance.TxtCategoryId.Clear();
+            categoryMaintenance.TxtDescription.Clear();
 
-            if (result != DialogResult.OK) return;
-
-            var (model, error) = categoryService.GetAll().DownGrade<CategoryViewModel>();
-
-            if (error.HasValue())
-            {
-                DisplayErrorMessage(error);
-                return;
-            }
-
-            TxtCategoryFilter.Clear();
-
-            SetupCategories(model);
+            HandleCategoryMaintenance();
         }
 
         private void BtnModifyCategory_Click(object sender, EventArgs e)
         {
             categoryMaintenance.TxtCategoryId.Text = DgvCategories.GetSelectedRowValue<int>("CategoryId").ToString();
             categoryMaintenance.TxtDescription.Text = DgvCategories.GetSelectedRowValue<string>("Description");
-
-            BtnNewCategory_Click(sender, e);
+            
+            HandleCategoryMaintenance();
         }
 
         private void DgvCategories_SelectionChanged(object sender, EventArgs e)
@@ -160,6 +149,23 @@ namespace BudgetManagementApp
             TxtCategoryDescription.Text = grid.GetRowValue<string>(0, "Description");
 
             SetControlsStatus(false, BtnModifyCategory, BtnDeleteCategory);
+        }
+
+        private void HandleCategoryMaintenance()
+        {
+            if (categoryMaintenance.ShowDialog() != DialogResult.OK) return;
+
+            var (model, error) = categoryService.GetAll().DownGrade<CategoryViewModel>();
+
+            if (error.HasValue())
+            {
+                DisplayErrorMessage(error);
+                return;
+            }
+
+            TxtCategoryFilter.Clear();
+
+            SetupCategories(model);
         }
     }
 }

@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using BudgetManagementApp.Entities.ViewModels;
-using BudgetManagementApp.Entities.ViewModels.Categories;
+﻿using BudgetManagementApp.Entities.ViewModels.Categories;
 using BudgetManagementApp.Resources.Properties;
 using BudgetManagementApp.Services.Extensions;
 using BudgetManagementApp.Services.Services.Categories;
+using System;
+using System.Windows.Forms;
 
 namespace BudgetManagementApp.Forms
 {
@@ -50,12 +41,18 @@ namespace BudgetManagementApp.Forms
                 Description = TxtDescription.Text
             });
 
-            if (result is Success<bool>)
+            if (result.IsSuccess<bool>())
             {
                 DialogResult = DialogResult.OK;
 
                 Close();
+
+                return;
             }
+
+            DialogResult = DialogResult.None;
+
+            DisplayErrorMessage(result.AsFailure().ErrorMessage);
         }
     }
 }

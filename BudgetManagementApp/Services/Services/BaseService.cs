@@ -21,7 +21,7 @@ namespace BudgetManagementApp.Services.Services
             }
             catch (Exception ex)
             {
-                return new Error(ex.Message);
+                return new Failure(ex.Message);
             }
         }
 
@@ -36,7 +36,7 @@ namespace BudgetManagementApp.Services.Services
             }
             catch (Exception ex)
             {
-                return new Error(ex.Message);
+                return new Failure(ex.Message);
             }
         }
 

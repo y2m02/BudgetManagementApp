@@ -1,6 +1,6 @@
-﻿using System;
+﻿using BudgetManagementApp.Entities.Enums;
+using System;
 using System.Collections.Generic;
-using BudgetManagementApp.Entities.Enums;
 
 namespace BudgetManagementApp.Entities.ViewModels
 {
@@ -32,12 +32,32 @@ namespace BudgetManagementApp.Entities.ViewModels
                 case Success<IEnumerable<TModel>> success:
                     return (success.Model, string.Empty);
 
-                case Error error:
+                case Failure error:
                     return (new List<TModel>(), error.ErrorMessage);
 
                 default:
                     return (new List<TModel>(), string.Empty);
             }
+        }
+
+        public bool IsSuccess<TModel>()
+        {
+            return this is Success<TModel>;
+        }
+
+        public Success<TModel> AsSuccess<TModel>()
+        {
+            return this as Success<TModel>;
+        }
+
+        public bool Failed()
+        {
+            return this is Failure;
+        }
+
+        public Failure AsFailure()
+        {
+            return this as Failure;
         }
     }
 
@@ -51,9 +71,9 @@ namespace BudgetManagementApp.Entities.ViewModels
         public T Model { get; }
     }
 
-    public class Error : BaseViewModel
+    public class Failure : BaseViewModel
     {
-        public Error(string errorMessage)
+        public Failure(string errorMessage)
         {
             ErrorMessage = "Hubo un error durante el proceso. " +
                            $"Por favor, consulte a soporte: \n{errorMessage}";
