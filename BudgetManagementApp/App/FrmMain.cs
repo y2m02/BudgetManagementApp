@@ -1,15 +1,13 @@
-﻿using BudgetManagementApp.Entities.ViewModels.Categories;
-using BudgetManagementApp.Resources.Properties;
-using BudgetManagementApp.Services.Extensions;
-using BudgetManagementApp.Services.Services.Categories;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
+using BudgetManagementApp.Entities.ViewModels.Categories;
 using BudgetManagementApp.Forms;
-using BudgetManagementApp.Resources;
+using BudgetManagementApp.Resources.Properties;
+using BudgetManagementApp.Services.Extensions;
+using BudgetManagementApp.Services.Services.Categories;
 
 namespace BudgetManagementApp
 {
@@ -31,11 +29,23 @@ namespace BudgetManagementApp
 
             SetLabels();
         }
+
         private List<CategoryViewModel> Categories { get; set; }
 
-        private async void FrmMain_Load(object sender, EventArgs e)
+        protected sealed override void SetLabels()
         {
-            var (model, error) = (await categoryService.GetAll().ConfigureAwait(false)).DownGrade<CategoryViewModel>();
+            Text = StringResources.BudgetManagement;
+
+            LoopControlsToSetLabels(Controls);
+
+            LoopControlsToSetLabels(TclBudgetManagement.Controls);
+
+            LoopControlsToSetLabels(TabCategories.Controls);
+        }
+
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+            var (model, error) = categoryService.GetAll().DownGrade<CategoryViewModel>();
 
             SetupCategories(model);
 
@@ -49,50 +59,31 @@ namespace BudgetManagementApp
         {
             var text = TxtCategoryFilter.Text;
 
+            var categories = new List<CategoryViewModel>(Categories);
+
             if (text.HasValue())
             {
-                PopulateGrid(
-                    DgvCategories,
-                    Categories.Where(
-                        w => w.Description.Contains(text)
-                    ),
-                    FormatCategories
-                );
+                categories = categories.Where(w => w.Description.Contains(text)).ToList();
+            }
 
+            PopulateGrid(DgvCategories, categories, FormatCategories);
+        }
+
+        private void BtnNewCategory_Click(object sender, EventArgs e)
+        {
+            var a = categoryMaintenance.ShowDialog();
+
+            if (a != DialogResult.OK) return;
+
+            var (model, error) = categoryService.GetAll().DownGrade<CategoryViewModel>();
+
+            if (error.HasValue())
+            {
+                DisplayErrorMessage(error);
                 return;
             }
 
-            PopulateGrid(DgvCategories, Categories, FormatCategories);
-        }
-
-        private void SetLabels()
-        {
-            Text = StringResources.BudgetManagement;
-
-            string[] controlsToSetLabels = { "Lbl", "Btn", "Tab" };
-
-            LoopControlsToSetLabels(Controls);
-
-            LoopControlsToSetLabels(TclBudgetManagement.Controls);
-
-            LoopControlsToSetLabels(TabCategories.Controls);
-
-            void LoopControlsToSetLabels(IEnumerable controls)
-            {
-                foreach (var ctrl in controls)
-                {
-                    var control = (Control)ctrl;
-
-                    var name = control.Name;
-
-                    if (controlsToSetLabels.Any(c => name.StartsWith(c)))
-                    {
-                        control.Text = StringResourcesHandler.GetString(
-                            name.Substring(3, name.Length - 3)
-                        );
-                    }
-                }
-            }
+            SetupCategories(model);
         }
 
         private static void PopulateGrid<TDataModel>(
@@ -117,7 +108,9 @@ namespace BudgetManagementApp
                 DgvCategories.Columns["Id"].Visible = false;
                 DgvCategories.Columns["Action"].Visible = false;
             }
-            catch { }
+            catch
+            {
+            }
         }
 
         private void SetupCategories(IEnumerable<CategoryViewModel> model)
@@ -128,24 +121,31 @@ namespace BudgetManagementApp
 
             if (!DgvCategories.HasValue()) return;
 
-            DgvCategories.Rows[0].Selected = true;
+            DgvCategories.SetSelectedRow(0);
 
-            LblCategoryId.Text = DgvCategories.SelectedRows[0].Cells[0].Value.ToString();
-            TxtCategoryDescription.Text = DgvCategories.SelectedRows[0].Cells[1].Value.ToString();
+            TxtCategoryDescription.Text = DgvCategories.GetSelectedRowValue<string>("Description");
 
-            BtnModifyCategory.Enabled = true;
-            BtnDeleteCategory.Enabled = true;
         }
 
-        private async void BtnNewCategory_Click(object sender, EventArgs e)
+        private void SetDetailsData(DataGridView grid)
         {
-            var a = categoryMaintenance.ShowDialog();
+            if (grid.SelectedRows.Count > 0)
+            {
+                TxtCategoryDescription.Text = grid.GetSelectedRowValue<string>("Description");
+                
+                SetControlsStatus(true, BtnModifyCategory, BtnDeleteCategory);
 
-            if (a != DialogResult.OK) return;
+                return;
+            }
 
-            var (model, error) = (await categoryService.GetAll().ConfigureAwait(false)).DownGrade<CategoryViewModel>();
+            TxtCategoryDescription.Text =  grid.GetRowValue<string>(0, "Description");
 
-            SetupCategories(model);
+            SetControlsStatus(false, BtnModifyCategory, BtnDeleteCategory);
+        }
+
+        private void DgvCategories_SelectionChanged(object sender, EventArgs e)
+        {
+            SetDetailsData(DgvCategories);
         }
     }
 }

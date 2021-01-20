@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using AutoMapper;
 using BudgetManagementApp.Entities.ViewModels;
 
@@ -14,11 +13,11 @@ namespace BudgetManagementApp.Services.Services
             Mapper = mapper;
         }
 
-        protected async Task<BaseViewModel> HandleErrors(Func<Task<BaseViewModel>> executor)
+        protected static BaseViewModel HandleErrors(Func<BaseViewModel> executor)
         {
             try
             {
-                return await executor();
+                return executor();
             }
             catch (Exception ex)
             {
@@ -26,14 +25,14 @@ namespace BudgetManagementApp.Services.Services
             }
         }
 
-        protected async Task<BaseViewModel> HandleErrors<T>(
-            Func<T, Task<BaseViewModel>> executor,
+        protected BaseViewModel HandleErrors<T>(
+            Func<T, BaseViewModel> executor,
             T request
         )
         {
             try
             {
-                return await executor(request);
+                return executor(request);
             }
             catch (Exception ex)
             {
@@ -41,7 +40,7 @@ namespace BudgetManagementApp.Services.Services
             }
         }
 
-        protected BaseViewModel Success<T>(T model)
+        protected static BaseViewModel Success<T>(T model)
         {
             return new Success<T>(model);
         }

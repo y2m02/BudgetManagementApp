@@ -120,8 +120,23 @@
   <data name="BudgetManagement" xml:space="preserve">
     <value>Budget Management</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="Categories" xml:space="preserve">
     <value>Categories</value>
+  </data>
+  <data name="CategoryDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="CategoryFilter" xml:space="preserve">
+    <value>Search:</value>
+  </data>
+  <data name="CategoryMaintenance" xml:space="preserve">
+    <value>Categories Maintenance</value>
+  </data>
+  <data name="DeleteCategory" xml:space="preserve">
+    <value>Delete</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
@@ -132,11 +147,20 @@
   <data name="Information" xml:space="preserve">
     <value>Information</value>
   </data>
+  <data name="ModifyCategory" xml:space="preserve">
+    <value>Modify</value>
+  </data>
+  <data name="NewCategory" xml:space="preserve">
+    <value>New</value>
+  </data>
   <data name="Projects" xml:space="preserve">
     <value>Projects</value>
   </data>
   <data name="Question" xml:space="preserve">
     <value>Question</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
   </data>
   <data name="Subtypes" xml:space="preserve">
     <value>Sub-types</value>

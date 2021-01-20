@@ -43,8 +43,7 @@ namespace BudgetManagementApp
             this.BtnNewCategory = new System.Windows.Forms.Button();
             this.TxtCategoryFilter = new System.Windows.Forms.TextBox();
             this.DgvCategories = new System.Windows.Forms.DataGridView();
-            this.LblCategoryId = new System.Windows.Forms.Label();
-            this.LblDescription = new System.Windows.Forms.Label();
+            this.LblCategoryDescription = new System.Windows.Forms.Label();
             this.TxtCategoryDescription = new System.Windows.Forms.TextBox();
             this.TabTypes = new System.Windows.Forms.TabPage();
             this.LblPatientNameActivitiesPerformed = new System.Windows.Forms.Label();
@@ -73,6 +72,7 @@ namespace BudgetManagementApp
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.TxtName = new System.Windows.Forms.TextBox();
+            this.LblCategoryFilter = new System.Windows.Forms.Label();
             this.TclBudgetManagement.SuspendLayout();
             this.TabCategories.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvCategories)).BeginInit();
@@ -183,13 +183,13 @@ namespace BudgetManagementApp
             // TabCategories
             // 
             this.TabCategories.BackColor = System.Drawing.SystemColors.Control;
+            this.TabCategories.Controls.Add(this.LblCategoryFilter);
             this.TabCategories.Controls.Add(this.BtnDeleteCategory);
             this.TabCategories.Controls.Add(this.BtnModifyCategory);
             this.TabCategories.Controls.Add(this.BtnNewCategory);
             this.TabCategories.Controls.Add(this.TxtCategoryFilter);
             this.TabCategories.Controls.Add(this.DgvCategories);
-            this.TabCategories.Controls.Add(this.LblCategoryId);
-            this.TabCategories.Controls.Add(this.LblDescription);
+            this.TabCategories.Controls.Add(this.LblCategoryDescription);
             this.TabCategories.Controls.Add(this.TxtCategoryDescription);
             this.TabCategories.Location = new System.Drawing.Point(4, 28);
             this.TabCategories.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -201,7 +201,7 @@ namespace BudgetManagementApp
             // BtnDeleteCategory
             // 
             this.BtnDeleteCategory.Enabled = false;
-            this.BtnDeleteCategory.Location = new System.Drawing.Point(602, 22);
+            this.BtnDeleteCategory.Location = new System.Drawing.Point(569, 37);
             this.BtnDeleteCategory.Margin = new System.Windows.Forms.Padding(1);
             this.BtnDeleteCategory.Name = "BtnDeleteCategory";
             this.BtnDeleteCategory.Size = new System.Drawing.Size(116, 44);
@@ -212,7 +212,7 @@ namespace BudgetManagementApp
             // BtnModifyCategory
             // 
             this.BtnModifyCategory.Enabled = false;
-            this.BtnModifyCategory.Location = new System.Drawing.Point(484, 22);
+            this.BtnModifyCategory.Location = new System.Drawing.Point(451, 37);
             this.BtnModifyCategory.Margin = new System.Windows.Forms.Padding(1);
             this.BtnModifyCategory.Name = "BtnModifyCategory";
             this.BtnModifyCategory.Size = new System.Drawing.Size(116, 44);
@@ -222,7 +222,7 @@ namespace BudgetManagementApp
             // 
             // BtnNewCategory
             // 
-            this.BtnNewCategory.Location = new System.Drawing.Point(366, 22);
+            this.BtnNewCategory.Location = new System.Drawing.Point(333, 37);
             this.BtnNewCategory.Margin = new System.Windows.Forms.Padding(1);
             this.BtnNewCategory.Name = "BtnNewCategory";
             this.BtnNewCategory.Size = new System.Drawing.Size(116, 44);
@@ -233,11 +233,11 @@ namespace BudgetManagementApp
             // 
             // TxtCategoryFilter
             // 
-            this.TxtCategoryFilter.Location = new System.Drawing.Point(73, 108);
+            this.TxtCategoryFilter.Location = new System.Drawing.Point(483, 108);
             this.TxtCategoryFilter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TxtCategoryFilter.MaxLength = 99;
             this.TxtCategoryFilter.Name = "TxtCategoryFilter";
-            this.TxtCategoryFilter.Size = new System.Drawing.Size(511, 27);
+            this.TxtCategoryFilter.Size = new System.Drawing.Size(201, 27);
             this.TxtCategoryFilter.TabIndex = 29;
             this.TxtCategoryFilter.TextChanged += new System.EventHandler(this.TxtCategoryFilter_TextChanged);
             // 
@@ -259,29 +259,18 @@ namespace BudgetManagementApp
             this.DgvCategories.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvCategories.Size = new System.Drawing.Size(667, 356);
             this.DgvCategories.TabIndex = 28;
+            this.DgvCategories.SelectionChanged += new System.EventHandler(this.DgvCategories_SelectionChanged);
             // 
-            // LblCategoryId
+            // LblCategoryDescription
             // 
-            this.LblCategoryId.AutoSize = true;
-            this.LblCategoryId.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblCategoryId.Location = new System.Drawing.Point(186, 22);
-            this.LblCategoryId.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LblCategoryId.Name = "LblCategoryId";
-            this.LblCategoryId.Size = new System.Drawing.Size(27, 24);
-            this.LblCategoryId.TabIndex = 27;
-            this.LblCategoryId.Text = "Id";
-            this.LblCategoryId.Visible = false;
-            // 
-            // LblDescription
-            // 
-            this.LblDescription.AutoSize = true;
-            this.LblDescription.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblDescription.Location = new System.Drawing.Point(13, 22);
-            this.LblDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LblDescription.Name = "LblDescription";
-            this.LblDescription.Size = new System.Drawing.Size(122, 24);
-            this.LblDescription.TabIndex = 27;
-            this.LblDescription.Text = "Descripción";
+            this.LblCategoryDescription.AutoSize = true;
+            this.LblCategoryDescription.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblCategoryDescription.Location = new System.Drawing.Point(13, 22);
+            this.LblCategoryDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblCategoryDescription.Name = "LblCategoryDescription";
+            this.LblCategoryDescription.Size = new System.Drawing.Size(122, 24);
+            this.LblCategoryDescription.TabIndex = 27;
+            this.LblCategoryDescription.Text = "Descripción";
             // 
             // TxtCategoryDescription
             // 
@@ -616,6 +605,18 @@ namespace BudgetManagementApp
             this.TxtName.Size = new System.Drawing.Size(511, 27);
             this.TxtName.TabIndex = 17;
             // 
+            // LblCategoryFilter
+            // 
+            this.LblCategoryFilter.AutoSize = true;
+            this.LblCategoryFilter.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblCategoryFilter.Location = new System.Drawing.Point(398, 111);
+            this.LblCategoryFilter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblCategoryFilter.Name = "LblCategoryFilter";
+            this.LblCategoryFilter.Size = new System.Drawing.Size(77, 24);
+            this.LblCategoryFilter.TabIndex = 34;
+            this.LblCategoryFilter.Text = "Buscar";
+            this.LblCategoryFilter.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
@@ -691,13 +692,13 @@ namespace BudgetManagementApp
         private System.Windows.Forms.TabPage TabSubtypes;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label LblPatientNameInvoice;
-        private System.Windows.Forms.Label LblDescription;
+        private System.Windows.Forms.Label LblCategoryDescription;
         private System.Windows.Forms.TextBox TxtCategoryDescription;
         private System.Windows.Forms.DataGridView DgvCategories;
         private System.Windows.Forms.TextBox TxtCategoryFilter;
         private System.Windows.Forms.Button BtnDeleteCategory;
         private System.Windows.Forms.Button BtnModifyCategory;
         private System.Windows.Forms.Button BtnNewCategory;
-        private System.Windows.Forms.Label LblCategoryId;
+        private System.Windows.Forms.Label LblCategoryFilter;
     }
 }

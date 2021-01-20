@@ -21,60 +21,52 @@ namespace BudgetManagementApp.Services.Services.Categories
             this.categoryRepository = categoryRepository;
         }
 
-        public async Task<BaseViewModel> GetAll()
+        public BaseViewModel GetAll()
         {
-            return await HandleErrors(async () =>
+            return HandleErrors(() =>
             {
                 return Success(
                     Mapper.Map<IEnumerable<CategoryViewModel>>(
-                        await categoryRepository
-                            .GetAll()
-                            .ConfigureAwait(false)
+                        categoryRepository.GetAll()
                     )
                 );
             });
         }
 
-        public async Task<BaseViewModel> Create(CategoryViewModel category)
+        public BaseViewModel Create(CategoryViewModel category)
         {
-            return await Upsert(category);
+            return Upsert(category);
         }
 
-        public async Task<BaseViewModel> Update(CategoryViewModel category)
+        public BaseViewModel Update(CategoryViewModel category)
         {
-            return await Upsert(category);
+            return Upsert(category);
         }
 
-        public async Task<BaseViewModel> Delete(CategoryViewModel category)
+        public BaseViewModel Delete(CategoryViewModel category)
         {
             category.SetDeletedOn();
 
-            return await Upsert(category);
+            return Upsert(category);
         }
 
-        public async Task<BaseViewModel> Upsert(CategoryViewModel category)
+        public BaseViewModel Upsert(CategoryViewModel category)
         {
-            return await HandleErrors(
-                async () =>
+            return HandleErrors(
+                () =>
                 {
                     switch (category.Action)
                     {
                         case ActionType.Create:
-                            await categoryRepository
-                                .Create(Mapper.Map<Category>(category))
-                                .ConfigureAwait(false);
+                            categoryRepository.Create(Mapper.Map<Category>(category));
                             break;
 
                         case ActionType.Update:
-                            await categoryRepository
-                                .Update(Mapper.Map<Category>(category))
-                                .ConfigureAwait(false);
+                            categoryRepository.Update(Mapper.Map<Category>(category));
                             break;
 
                         case ActionType.Delete:
-                            await categoryRepository
-                                .Delete(Mapper.Map<Category>(category))
-                                .ConfigureAwait(false);
+                            categoryRepository.Delete(Mapper.Map<Category>(category));
                             break;
                     }
 

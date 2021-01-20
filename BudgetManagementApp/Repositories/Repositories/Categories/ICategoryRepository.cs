@@ -6,9 +6,9 @@ namespace BudgetManagementApp.Repositories.Repositories.Categories
 {
     public interface ICategoryRepository
     {
-        Task<IEnumerable<Category>> GetAll();
-        Task Create(Category category);
-        Task Update(Category category);
-        Task Delete(Category category);
+        IEnumerable<Category> GetAll();
+        void Create(Category category);
+        void Update(Category category);
+        void Delete(Category category);
     }
 }

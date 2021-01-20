@@ -33,10 +33,12 @@ namespace BudgetManagementApp.Forms
             this.BtnSave = new System.Windows.Forms.Button();
             this.TxtDescription = new System.Windows.Forms.TextBox();
             this.TxtCategoryId = new System.Windows.Forms.TextBox();
+            this.LblCategoryDescription = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // BtnCancel
             // 
+            this.BtnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.BtnCancel.Location = new System.Drawing.Point(263, 105);
             this.BtnCancel.Margin = new System.Windows.Forms.Padding(1);
             this.BtnCancel.Name = "BtnCancel";
@@ -77,11 +79,25 @@ namespace BudgetManagementApp.Forms
             this.TxtCategoryId.TabIndex = 36;
             this.TxtCategoryId.Visible = false;
             // 
+            // LblCategoryDescription
+            // 
+            this.LblCategoryDescription.AutoSize = true;
+            this.LblCategoryDescription.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblCategoryDescription.Location = new System.Drawing.Point(46, 9);
+            this.LblCategoryDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblCategoryDescription.Name = "LblCategoryDescription";
+            this.LblCategoryDescription.Size = new System.Drawing.Size(122, 24);
+            this.LblCategoryDescription.TabIndex = 37;
+            this.LblCategoryDescription.Text = "Descripción";
+            // 
             // FrmCategoryMaintenance
             // 
+            this.AcceptButton = this.BtnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.BtnCancel;
             this.ClientSize = new System.Drawing.Size(498, 208);
+            this.Controls.Add(this.LblCategoryDescription);
             this.Controls.Add(this.TxtCategoryId);
             this.Controls.Add(this.BtnCancel);
             this.Controls.Add(this.BtnSave);
@@ -101,5 +117,6 @@ namespace BudgetManagementApp.Forms
         private System.Windows.Forms.Button BtnSave;
         public System.Windows.Forms.TextBox TxtCategoryId;
         public System.Windows.Forms.TextBox TxtDescription;
+        private System.Windows.Forms.Label LblCategoryDescription;
     }
 }
