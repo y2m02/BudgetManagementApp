@@ -138,6 +138,9 @@
   <data name="DeleteCategory" xml:space="preserve">
     <value>Eliminar</value>
   </data>
+  <data name="DeleteQuestion" xml:space="preserve">
+    <value>¿Desea eliminar este registro?</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Descripción</value>
   </data>
@@ -158,6 +161,9 @@
   </data>
   <data name="Question" xml:space="preserve">
     <value>Pregunta</value>
+  </data>
+  <data name="RecordDeleted" xml:space="preserve">
+    <value>Registro eliminado exitosamente.</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Guardar</value>

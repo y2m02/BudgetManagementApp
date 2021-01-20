@@ -124,6 +124,15 @@ namespace BudgetManagementApp.Resources.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you want to delete this record?.
+        /// </summary>
+        public static string DeleteQuestion {
+            get {
+                return ResourceManager.GetString("DeleteQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string Description {
@@ -183,6 +192,15 @@ namespace BudgetManagementApp.Resources.Properties {
         public static string Question {
             get {
                 return ResourceManager.GetString("Question", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Record deleted successfully..
+        /// </summary>
+        public static string RecordDeleted {
+            get {
+                return ResourceManager.GetString("RecordDeleted", resourceCulture);
             }
         }
         

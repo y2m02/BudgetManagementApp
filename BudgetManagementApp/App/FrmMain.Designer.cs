@@ -38,6 +38,7 @@ namespace BudgetManagementApp
             this.TclBudgetManagement = new System.Windows.Forms.TabControl();
             this.TabProjects = new System.Windows.Forms.TabPage();
             this.TabCategories = new System.Windows.Forms.TabPage();
+            this.LblCategoryFilter = new System.Windows.Forms.Label();
             this.BtnDeleteCategory = new System.Windows.Forms.Button();
             this.BtnModifyCategory = new System.Windows.Forms.Button();
             this.BtnNewCategory = new System.Windows.Forms.Button();
@@ -72,7 +73,7 @@ namespace BudgetManagementApp
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.TxtName = new System.Windows.Forms.TextBox();
-            this.LblCategoryFilter = new System.Windows.Forms.Label();
+            this.TxtCategoryId = new System.Windows.Forms.TextBox();
             this.TclBudgetManagement.SuspendLayout();
             this.TabCategories.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvCategories)).BeginInit();
@@ -183,6 +184,7 @@ namespace BudgetManagementApp
             // TabCategories
             // 
             this.TabCategories.BackColor = System.Drawing.SystemColors.Control;
+            this.TabCategories.Controls.Add(this.TxtCategoryId);
             this.TabCategories.Controls.Add(this.LblCategoryFilter);
             this.TabCategories.Controls.Add(this.BtnDeleteCategory);
             this.TabCategories.Controls.Add(this.BtnModifyCategory);
@@ -198,6 +200,18 @@ namespace BudgetManagementApp
             this.TabCategories.TabIndex = 2;
             this.TabCategories.Text = "Categorías";
             // 
+            // LblCategoryFilter
+            // 
+            this.LblCategoryFilter.AutoSize = true;
+            this.LblCategoryFilter.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblCategoryFilter.Location = new System.Drawing.Point(398, 111);
+            this.LblCategoryFilter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblCategoryFilter.Name = "LblCategoryFilter";
+            this.LblCategoryFilter.Size = new System.Drawing.Size(77, 24);
+            this.LblCategoryFilter.TabIndex = 34;
+            this.LblCategoryFilter.Text = "Buscar";
+            this.LblCategoryFilter.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // BtnDeleteCategory
             // 
             this.BtnDeleteCategory.Enabled = false;
@@ -208,6 +222,7 @@ namespace BudgetManagementApp
             this.BtnDeleteCategory.TabIndex = 33;
             this.BtnDeleteCategory.Text = "Eliminar";
             this.BtnDeleteCategory.UseVisualStyleBackColor = true;
+            this.BtnDeleteCategory.Click += new System.EventHandler(this.BtnDeleteCategory_Click);
             // 
             // BtnModifyCategory
             // 
@@ -606,17 +621,16 @@ namespace BudgetManagementApp
             this.TxtName.Size = new System.Drawing.Size(511, 27);
             this.TxtName.TabIndex = 17;
             // 
-            // LblCategoryFilter
+            // TxtCategoryId
             // 
-            this.LblCategoryFilter.AutoSize = true;
-            this.LblCategoryFilter.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblCategoryFilter.Location = new System.Drawing.Point(398, 111);
-            this.LblCategoryFilter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LblCategoryFilter.Name = "LblCategoryFilter";
-            this.LblCategoryFilter.Size = new System.Drawing.Size(77, 24);
-            this.LblCategoryFilter.TabIndex = 34;
-            this.LblCategoryFilter.Text = "Buscar";
-            this.LblCategoryFilter.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.TxtCategoryId.Location = new System.Drawing.Point(278, 22);
+            this.TxtCategoryId.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.TxtCategoryId.MaxLength = 99;
+            this.TxtCategoryId.Name = "TxtCategoryId";
+            this.TxtCategoryId.ReadOnly = true;
+            this.TxtCategoryId.Size = new System.Drawing.Size(30, 27);
+            this.TxtCategoryId.TabIndex = 37;
+            this.TxtCategoryId.Visible = false;
             // 
             // FrmMain
             // 
@@ -701,5 +715,6 @@ namespace BudgetManagementApp
         private System.Windows.Forms.Button BtnModifyCategory;
         private System.Windows.Forms.Button BtnNewCategory;
         private System.Windows.Forms.Label LblCategoryFilter;
+        public System.Windows.Forms.TextBox TxtCategoryId;
     }
 }

@@ -7,9 +7,10 @@ namespace BudgetManagementApp.Entities.ViewModels
     public abstract class BaseViewModel
     {
         public int Id { get; set; }
+
         public ActionType Action => SetAction();
 
-        protected DateTime? DeletedOn { get; private set; }
+        public DateTime? DeletedOn { get; set; }
 
         private ActionType SetAction()
         {

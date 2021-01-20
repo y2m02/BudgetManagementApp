@@ -71,10 +71,34 @@ namespace BudgetManagementApp
             HandleCategoryMaintenance();
         }
 
+        private void BtnDeleteCategory_Click(object sender, EventArgs e)
+        {
+            if (DisplayQuestionMessage(StringResources.DeleteQuestion) != DialogResult.Yes) return;
+            
+            var result = categoryService.Delete(new CategoryViewModel
+            {
+                Id = TxtCategoryId.Text.ToInt(),
+                DeletedOn = DateTime.Now
+            });
+
+            if (result.IsSuccess<bool>())
+            {
+                DisplayInformationMessage(StringResources.RecordDeleted);
+
+                HandleCategories(categoryService.GetAll());
+                
+                TxtCategoryFilter.Clear();
+
+                return;
+            }
+
+            DisplayErrorMessage(result.AsFailure().ErrorMessage);
+        }
+
         private void BtnModifyCategory_Click(object sender, EventArgs e)
         {
-            categoryMaintenance.TxtCategoryId.Text = DgvCategories.GetSelectedRowValue<int>("CategoryId").ToString();
-            categoryMaintenance.TxtDescription.Text = DgvCategories.GetSelectedRowValue<string>("Description");
+            categoryMaintenance.TxtCategoryId.Text = TxtCategoryId.Text;
+            categoryMaintenance.TxtDescription.Text = TxtCategoryDescription.Text;
 
             HandleCategoryMaintenance();
         }
@@ -106,6 +130,7 @@ namespace BudgetManagementApp
 
             DgvCategories.SetSelectedRow(0);
 
+            TxtCategoryId.Text = DgvCategories.GetSelectedRowValue<int>("CategoryId").ToString();
             TxtCategoryDescription.Text = DgvCategories.GetSelectedRowValue<string>("Description");
         }
 
@@ -134,6 +159,7 @@ namespace BudgetManagementApp
         {
             if (grid.SelectedRows.Count > 0)
             {
+                TxtCategoryId.Text = grid.GetSelectedRowValue<int>("CategoryId").ToString();
                 TxtCategoryDescription.Text = grid.GetSelectedRowValue<string>("Description");
 
                 SetControlsStatus(true, BtnModifyCategory, BtnDeleteCategory);
