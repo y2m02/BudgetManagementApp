@@ -6,7 +6,7 @@ using BudgetManagementApp.Resources.Properties;
 
 namespace BudgetManagementApp
 {
-    public abstract class BaseForm : Form
+    public class BaseForm : Form
     {
         protected DialogResult DisplayInformationMessage(string message)
         {
@@ -60,11 +60,11 @@ namespace BudgetManagementApp
 
         protected void LoopControlsToSetLabels(IEnumerable controls)
         {
-            string[] controlsToSetLabels = {"Lbl", "Btn", "Tab"};
+            string[] controlsToSetLabels = { "Lbl", "Btn", "Tab" };
 
             foreach (var ctrl in controls)
             {
-                var control = (Control) ctrl;
+                var control = (Control)ctrl;
 
                 var name = control.Name;
 
@@ -85,6 +85,10 @@ namespace BudgetManagementApp
             }
         }
 
-        protected abstract void SetLabels();
+        // TODO: make this method abstract.
+        protected virtual void SetLabels()
+        {
+
+        }
     }
 }

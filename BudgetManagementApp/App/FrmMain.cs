@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
+using BudgetManagementApp.Entities.ViewModels;
 using BudgetManagementApp.Entities.ViewModels.Categories;
 using BudgetManagementApp.Forms;
 using BudgetManagementApp.Resources.Properties;
@@ -45,14 +46,7 @@ namespace BudgetManagementApp
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            var (model, error) = categoryService.GetAll().DownGrade<CategoryViewModel>();
-
-            SetupCategories(model);
-
-            if (error.HasValue())
-            {
-                DisplayErrorMessage(error);
-            }
+            HandleCategories(categoryService.GetAll());
         }
 
         private void TxtCategoryFilter_TextChanged(object sender, EventArgs e)
@@ -81,7 +75,7 @@ namespace BudgetManagementApp
         {
             categoryMaintenance.TxtCategoryId.Text = DgvCategories.GetSelectedRowValue<int>("CategoryId").ToString();
             categoryMaintenance.TxtDescription.Text = DgvCategories.GetSelectedRowValue<string>("Description");
-            
+
             HandleCategoryMaintenance();
         }
 
@@ -107,13 +101,14 @@ namespace BudgetManagementApp
 
             PopulateGrid(DgvCategories, Categories, FormatCategories);
 
-            if (!DgvCategories.HasValue()) return;
+            if (!DgvCategories.HasValue())
+                return;
 
             DgvCategories.SetSelectedRow(0);
 
             TxtCategoryDescription.Text = DgvCategories.GetSelectedRowValue<string>("Description");
         }
-        
+
         private void FormatCategories()
         {
             if (DgvCategories.IsEmpty())
@@ -151,21 +146,30 @@ namespace BudgetManagementApp
             SetControlsStatus(false, BtnModifyCategory, BtnDeleteCategory);
         }
 
+        private void HandleCategories(BaseViewModel result)
+        {
+            if (result.IsSuccess<IEnumerable<CategoryViewModel>>())
+            {
+                SetupCategories(
+                    result.GetSuccessModel<IEnumerable<CategoryViewModel>>()
+                );
+            }
+            else
+            {
+                DisplayErrorMessage(result.GetFailureError());
+            }
+        }
+
         private void HandleCategoryMaintenance()
         {
-            if (categoryMaintenance.ShowDialog() != DialogResult.OK) return;
-
-            var (model, error) = categoryService.GetAll().DownGrade<CategoryViewModel>();
-
-            if (error.HasValue())
-            {
-                DisplayErrorMessage(error);
+            if (categoryMaintenance.ShowDialog() != DialogResult.OK)
                 return;
-            }
+
+            var result = categoryService.GetAll();
+
+            HandleCategories(result);
 
             TxtCategoryFilter.Clear();
-
-            SetupCategories(model);
         }
     }
 }

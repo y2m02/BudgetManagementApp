@@ -50,6 +50,11 @@ namespace BudgetManagementApp.Entities.ViewModels
             return this as Success<TModel>;
         }
 
+        public TModel GetSuccessModel<TModel>()
+        {
+            return AsSuccess<TModel>().Model;
+        }
+
         public bool Failed()
         {
             return this is Failure;
@@ -58,6 +63,11 @@ namespace BudgetManagementApp.Entities.ViewModels
         public Failure AsFailure()
         {
             return this as Failure;
+        }
+
+        public string GetFailureError()
+        {
+            return AsFailure().ErrorMessage;
         }
     }
 
