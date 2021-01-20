@@ -118,6 +118,17 @@ namespace BudgetManagementApp
             formatGrid();
         }
 
+        private static void DisableColumns(
+            DataGridView grid, 
+            IEnumerable<string> columnNames
+        )
+        {
+            foreach (var columnName in columnNames)
+            {
+                grid.Columns[columnName].Visible = false;
+            }
+        }
+
         private void SetupCategories(IEnumerable<CategoryViewModel> model)
         {
             Categories = model.ToList();
@@ -140,11 +151,10 @@ namespace BudgetManagementApp
 
             try
             {
-                DgvCategories.Columns["CategoryId"].Visible = false;
-                DgvCategories.Columns["Id"].Visible = false;
-                DgvCategories.Columns["Action"].Visible = false;
-                DgvCategories.Columns["DeletedOn"].Visible = false;
-                DgvCategories.Columns["InUse"].Visible = false;
+                DisableColumns(DgvCategories, new[]
+                {
+                    "CategoryId", "Id", "Action", "DeletedOn", "InUse",
+                });
             }
             catch
             {
