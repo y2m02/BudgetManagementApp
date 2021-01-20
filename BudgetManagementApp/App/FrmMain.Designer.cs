@@ -219,6 +219,7 @@ namespace BudgetManagementApp
             this.BtnModifyCategory.TabIndex = 32;
             this.BtnModifyCategory.Text = "Modificar";
             this.BtnModifyCategory.UseVisualStyleBackColor = true;
+            this.BtnModifyCategory.Click += new System.EventHandler(this.BtnModifyCategory_Click);
             // 
             // BtnNewCategory
             // 

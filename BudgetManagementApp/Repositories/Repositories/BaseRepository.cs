@@ -42,6 +42,13 @@ namespace BudgetManagementApp.Repositories.Repositories
             });
 
             Save();
+            
+            Detach(entity);
+        }
+
+        protected void Detach<T>(T entity)
+        {
+            Context.Entry(entity).State = EntityState.Detached;
         }
     }
 }

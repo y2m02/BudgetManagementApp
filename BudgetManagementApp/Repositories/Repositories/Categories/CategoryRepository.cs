@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using BudgetManagementApp.Entities.Models;
 
@@ -14,7 +15,8 @@ namespace BudgetManagementApp.Repositories.Repositories.Categories
         {
             return Context.Categories
                 .Where(w => !w.DeletedOn.HasValue)
-                .OrderBy(w => w.Description);
+                .OrderBy(w => w.Description)
+                .AsNoTracking();
         }
 
         public void Create(Category category)
@@ -32,6 +34,8 @@ namespace BudgetManagementApp.Repositories.Repositories.Categories
             });
 
             Save();
+
+            Detach(category);
         }
 
         public void Delete(Category category)

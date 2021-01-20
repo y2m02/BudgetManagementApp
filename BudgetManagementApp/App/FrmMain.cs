@@ -63,7 +63,7 @@ namespace BudgetManagementApp
 
             if (text.HasValue())
             {
-                categories = categories.Where(w => w.Description.Contains(text)).ToList();
+                categories = categories.Where(CategoryFilter).ToList();
             }
 
             PopulateGrid(DgvCategories, categories, FormatCategories);
@@ -71,9 +71,9 @@ namespace BudgetManagementApp
 
         private void BtnNewCategory_Click(object sender, EventArgs e)
         {
-            var a = categoryMaintenance.ShowDialog();
+            var result = categoryMaintenance.ShowDialog();
 
-            if (a != DialogResult.OK) return;
+            if (result != DialogResult.OK) return;
 
             var (model, error) = categoryService.GetAll().DownGrade<CategoryViewModel>();
 
@@ -83,7 +83,22 @@ namespace BudgetManagementApp
                 return;
             }
 
+            TxtCategoryFilter.Clear();
+
             SetupCategories(model);
+        }
+
+        private void BtnModifyCategory_Click(object sender, EventArgs e)
+        {
+            categoryMaintenance.TxtCategoryId.Text = DgvCategories.GetSelectedRowValue<int>("CategoryId").ToString();
+            categoryMaintenance.TxtDescription.Text = DgvCategories.GetSelectedRowValue<string>("Description");
+
+            BtnNewCategory_Click(sender, e);
+        }
+
+        private void DgvCategories_SelectionChanged(object sender, EventArgs e)
+        {
+            SetCategoryDetailsData(DgvCategories);
         }
 
         private static void PopulateGrid<TDataModel>(
@@ -97,6 +112,19 @@ namespace BudgetManagementApp
             formatGrid();
         }
 
+        private void SetupCategories(IEnumerable<CategoryViewModel> model)
+        {
+            Categories = model.ToList();
+
+            PopulateGrid(DgvCategories, Categories, FormatCategories);
+
+            if (!DgvCategories.HasValue()) return;
+
+            DgvCategories.SetSelectedRow(0);
+
+            TxtCategoryDescription.Text = DgvCategories.GetSelectedRowValue<string>("Description");
+        }
+        
         private void FormatCategories()
         {
             if (DgvCategories.IsEmpty())
@@ -113,39 +141,25 @@ namespace BudgetManagementApp
             }
         }
 
-        private void SetupCategories(IEnumerable<CategoryViewModel> model)
+        private bool CategoryFilter(CategoryViewModel category)
         {
-            Categories = model.ToList();
-
-            PopulateGrid(DgvCategories, Categories, FormatCategories);
-
-            if (!DgvCategories.HasValue()) return;
-
-            DgvCategories.SetSelectedRow(0);
-
-            TxtCategoryDescription.Text = DgvCategories.GetSelectedRowValue<string>("Description");
-
+            return category.Description.Contains(TxtCategoryFilter.Text);
         }
 
-        private void SetDetailsData(DataGridView grid)
+        private void SetCategoryDetailsData(DataGridView grid)
         {
             if (grid.SelectedRows.Count > 0)
             {
                 TxtCategoryDescription.Text = grid.GetSelectedRowValue<string>("Description");
-                
+
                 SetControlsStatus(true, BtnModifyCategory, BtnDeleteCategory);
 
                 return;
             }
 
-            TxtCategoryDescription.Text =  grid.GetRowValue<string>(0, "Description");
+            TxtCategoryDescription.Text = grid.GetRowValue<string>(0, "Description");
 
             SetControlsStatus(false, BtnModifyCategory, BtnDeleteCategory);
-        }
-
-        private void DgvCategories_SelectionChanged(object sender, EventArgs e)
-        {
-            SetDetailsData(DgvCategories);
         }
     }
 }
