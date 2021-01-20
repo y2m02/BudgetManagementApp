@@ -1,26 +1,39 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
-using BudgetManagementApp.Properties;
-using BudgetManagementApp.Test;
+using BudgetManagementApp.Entities.ViewModels;
+using BudgetManagementApp.Entities.ViewModels.Categories;
+using BudgetManagementApp.Forms;
+using BudgetManagementApp.Resources.Properties;
+using BudgetManagementApp.Services.Extensions;
+using BudgetManagementApp.Services.Services.Categories;
 
 namespace BudgetManagementApp
 {
     public partial class FrmMain : BaseForm
     {
-        private readonly FrmTest frmTest;
+        private readonly FrmCategoryMaintenance categoryMaintenance;
+        private readonly ICategoryService categoryService;
 
-        public FrmMain(FrmTest frmTest)
+        public FrmMain(
+            FrmCategoryMaintenance categoryMaintenance,
+            ICategoryService categoryService
+        )
         {
+            this.categoryMaintenance = categoryMaintenance;
+            this.categoryService = categoryService;
             InitializeComponent();
-            this.frmTest = frmTest;
 
             StringResources.Culture = CultureInfo.CurrentCulture;
 
             SetLabels();
         }
 
-        private void SetLabels()
+        private List<CategoryViewModel> Categories { get; set; }
+
+        protected sealed override void SetLabels()
         {
             Text = StringResources.BudgetManagement;
 
@@ -28,20 +41,178 @@ namespace BudgetManagementApp
 
             LoopControlsToSetLabels(TclBudgetManagement.Controls);
 
-            void LoopControlsToSetLabels(IEnumerable controls)
+            LoopControlsToSetLabels(TabCategories.Controls);
+        }
+
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+            HandleCategories(categoryService.GetAll());
+        }
+
+        private void TxtCategoryFilter_TextChanged(object sender, EventArgs e)
+        {
+            var text = TxtCategoryFilter.Text;
+
+            var categories = new List<CategoryViewModel>(Categories);
+
+            if (text.HasValue())
             {
-                foreach (var ctrl in controls)
-                {
-                    var control = (Control) ctrl;
-
-                    var name = control.Name;
-
-                    control.Text = StringResources.ResourceManager.GetString(
-                        name.Substring(3, name.Length - 3),
-                        StringResources.Culture
-                    );
-                }
+                categories = categories.Where(CategoryFilter).ToList();
             }
+
+            PopulateGrid(DgvCategories, categories, FormatCategories);
+
+            bool CategoryFilter(CategoryViewModel category)
+            {
+                return category.Description.Contains(TxtCategoryFilter.Text);
+            }
+        }
+
+        private void BtnNewCategory_Click(object sender, EventArgs e)
+        {
+            categoryMaintenance.TxtCategoryId.Clear();
+            categoryMaintenance.TxtDescription.Clear();
+
+            HandleCategoryMaintenance();
+        }
+
+        private void BtnDeleteCategory_Click(object sender, EventArgs e)
+        {
+            if (DisplayQuestionMessage(StringResources.DeleteQuestion) != DialogResult.Yes)
+                return;
+
+            var result = categoryService.Delete(
+                Categories.Single(w => w.CategoryId == TxtCategoryId.Text.ToInt())
+            );
+
+            if (result.IsSuccess<bool>())
+            {
+                DisplayInformationMessage(StringResources.RecordDeleted);
+
+                HandleCategories(categoryService.GetAll());
+
+                TxtCategoryFilter.Clear();
+
+                return;
+            }
+
+            DisplayErrorMessage(result.AsFailure().ErrorMessage);
+        }
+
+        private void BtnModifyCategory_Click(object sender, EventArgs e)
+        {
+            categoryMaintenance.TxtCategoryId.Text = TxtCategoryId.Text;
+            categoryMaintenance.TxtDescription.Text = TxtCategoryDescription.Text;
+
+            HandleCategoryMaintenance();
+        }
+
+        private void DgvCategories_SelectionChanged(object sender, EventArgs e)
+        {
+            SetCategoryDetailsData(DgvCategories);
+        }
+
+        private static void PopulateGrid<TDataModel>(
+            DataGridView grid,
+            IEnumerable<TDataModel> list,
+            Action formatGrid
+        )
+        {
+            grid.DataSource = list.ToList();
+
+            formatGrid();
+        }
+
+        private static void DisableColumns(
+            DataGridView grid,
+            IEnumerable<string> columnNames
+        )
+        {
+            foreach (var columnName in columnNames)
+            {
+                grid.Columns[columnName].Visible = false;
+            }
+        }
+
+        private void SetupCategories(IEnumerable<CategoryViewModel> model)
+        {
+            Categories = model.ToList();
+
+            PopulateGrid(DgvCategories, Categories, FormatCategories);
+
+            if (!DgvCategories.HasValue())
+                return;
+
+            DgvCategories.SetSelectedRow(0);
+
+            TxtCategoryId.Text = DgvCategories.GetSelectedRowValue<int>("CategoryId").ToString();
+            TxtCategoryDescription.Text = DgvCategories.GetSelectedRowValue<string>("Description");
+        }
+
+        private void FormatCategories()
+        {
+            if (DgvCategories.IsEmpty())
+                return;
+
+            try
+            {
+                DisableColumns(DgvCategories, new[]
+                {
+                    "CategoryId", "Id", "Action", "DeletedOn", "InUse",
+                });
+            }
+            catch
+            {
+            }
+        }
+
+
+        private void SetCategoryDetailsData(DataGridView grid)
+        {
+            if (grid.HasRowsSelected())
+            {
+                TxtCategoryId.Text = grid.GetSelectedRowValue<int>("CategoryId").ToString();
+                TxtCategoryDescription.Text = grid.GetSelectedRowValue<string>("Description");
+
+                SetControlsStatus(
+                    !grid.GetSelectedRowValue<bool>("InUse"),
+                    BtnModifyCategory,
+                    BtnDeleteCategory
+                );
+
+                return;
+            }
+
+            TxtCategoryId.Text = grid.GetRowValue<int>(0, "CategoryId").ToString();
+            TxtCategoryDescription.Text = grid.GetRowValue<string>(0, "Description");
+
+            SetControlsStatus(false, BtnModifyCategory, BtnDeleteCategory);
+        }
+
+        private void HandleCategories(BaseViewModel result)
+        {
+            if (result.IsSuccess<IEnumerable<CategoryViewModel>>())
+            {
+                SetupCategories(
+                    result.GetSuccessModel<IEnumerable<CategoryViewModel>>()
+                );
+            }
+            else
+            {
+                DisplayErrorMessage(result.GetFailureError());
+            }
+        }
+
+        private void HandleCategoryMaintenance()
+        {
+            if (categoryMaintenance.ShowDialog() != DialogResult.OK)
+                return;
+
+            var result = categoryService.GetAll();
+
+            HandleCategories(result);
+
+            TxtCategoryFilter.Clear();
         }
     }
 }

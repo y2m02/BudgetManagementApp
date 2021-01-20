@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
-using System.Threading.Tasks;
 using BudgetManagementApp.Entities;
 using BudgetManagementApp.Entities.Models;
 
@@ -14,18 +13,17 @@ namespace BudgetManagementApp.Repositories.Repositories
         }
 
         protected BudgetManagementAppContext Context { get; }
-        
 
-        protected async Task Save()
+        protected void Save()
         {
-            await Context.SaveChangesAsync().ConfigureAwait(false);
+            Context.SaveChanges();
         }
 
-        protected async Task Create<T>(T entity)
+        protected void Create<T>(T entity)
         {
             Context.Entry(entity).State = EntityState.Added;
 
-            await Save().ConfigureAwait(false);
+            Save();
         }
 
         protected void AddPropertiesToModify<T>(T entity, List<string> properties)
@@ -36,14 +34,21 @@ namespace BudgetManagementApp.Repositories.Repositories
             });
         }
 
-        protected async Task Delete<T>(T entity) where T : IDeletable
+        protected void Delete<T>(T entity) where T : IDeletable
         {
             AddPropertiesToModify(entity, new List<string>
             {
-                nameof(entity.DeletedOn)
+                nameof(entity.DeletedOn),
             });
 
-            await Save().ConfigureAwait(false);
+            Save();
+            
+            Detach(entity);
+        }
+
+        protected void Detach<T>(T entity)
+        {
+            Context.Entry(entity).State = EntityState.Detached;
         }
     }
 }

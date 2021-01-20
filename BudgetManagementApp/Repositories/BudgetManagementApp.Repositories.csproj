@@ -55,7 +55,6 @@
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\Categories\CategoryRepository.cs" />
     <Compile Include="Repositories\Categories\ICategoryRepository.cs" />
-    <Compile Include="Repositories\TestRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

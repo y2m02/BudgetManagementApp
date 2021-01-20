@@ -114,6 +114,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CompositionRoot\ServiceResolver.cs" />
+    <Compile Include="Forms\FrmCategoryMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmCategoryMaintenance.Designer.cs">
+      <DependentUpon>FrmCategoryMaintenance.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,43 +127,17 @@
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Mappings\ProfileMapper.cs" />
-    <Compile Include="Properties\StringResources.Designer.cs">
-      <DependentUpon>StringResources.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Test\FrmTest.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Test\FrmTest.Designer.cs">
-      <DependentUpon>FrmTest.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmCategoryMaintenance.resx">
+      <DependentUpon>FrmCategoryMaintenance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\StringResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringResources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Test\FrmTest.resx">
-      <DependentUpon>FrmTest.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\StringResources.es.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringResources.es.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\StringResources.es.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>StringResources.es.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -180,6 +160,10 @@
     <ProjectReference Include="..\Repositories\BudgetManagementApp.Repositories.csproj">
       <Project>{cdc746e5-ea0e-466e-93f9-15375ad82e18}</Project>
       <Name>BudgetManagementApp.Repositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Resources\BudgetManagementApp.Resources.csproj">
+      <Project>{eeeea753-5f2c-4ead-9e97-37eb2e9238f8}</Project>
+      <Name>BudgetManagementApp.Resources</Name>
     </ProjectReference>
     <ProjectReference Include="..\Services\BudgetManagementApp.Services.csproj">
       <Project>{981203f4-28e8-4722-a587-05785a1643f2}</Project>

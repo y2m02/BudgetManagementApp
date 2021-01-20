@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BudgetManagementApp.Properties {
+namespace BudgetManagementApp.Resources.Properties {
     using System;
     
     
@@ -22,7 +22,7 @@ namespace BudgetManagementApp.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class StringResources {
+    public class StringResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,10 +36,10 @@ namespace BudgetManagementApp.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BudgetManagementApp.Properties.StringResources", typeof(StringResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BudgetManagementApp.Resources.Properties.StringResources", typeof(StringResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace BudgetManagementApp.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,25 +63,88 @@ namespace BudgetManagementApp.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Budget Management.
         /// </summary>
-        internal static string BudgetManagement {
+        public static string BudgetManagement {
             get {
                 return ResourceManager.GetString("BudgetManagement", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Categories.
         /// </summary>
-        internal static string Categories {
+        public static string Categories {
             get {
                 return ResourceManager.GetString("Categories", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string CategoryDescription {
+            get {
+                return ResourceManager.GetString("CategoryDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search:.
+        /// </summary>
+        public static string CategoryFilter {
+            get {
+                return ResourceManager.GetString("CategoryFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categories Maintenance.
+        /// </summary>
+        public static string CategoryMaintenance {
+            get {
+                return ResourceManager.GetString("CategoryMaintenance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string DeleteCategory {
+            get {
+                return ResourceManager.GetString("DeleteCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to delete this record?.
+        /// </summary>
+        public static string DeleteQuestion {
+            get {
+                return ResourceManager.GetString("DeleteQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
-        internal static string Error {
+        public static string Error {
             get {
                 return ResourceManager.GetString("Error", resourceCulture);
             }
@@ -90,16 +153,34 @@ namespace BudgetManagementApp.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Information.
         /// </summary>
-        internal static string Information {
+        public static string Information {
             get {
                 return ResourceManager.GetString("Information", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Modify.
+        /// </summary>
+        public static string ModifyCategory {
+            get {
+                return ResourceManager.GetString("ModifyCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New.
+        /// </summary>
+        public static string NewCategory {
+            get {
+                return ResourceManager.GetString("NewCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Projects.
         /// </summary>
-        internal static string Projects {
+        public static string Projects {
             get {
                 return ResourceManager.GetString("Projects", resourceCulture);
             }
@@ -108,16 +189,34 @@ namespace BudgetManagementApp.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Question.
         /// </summary>
-        internal static string Question {
+        public static string Question {
             get {
                 return ResourceManager.GetString("Question", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Record deleted successfully..
+        /// </summary>
+        public static string RecordDeleted {
+            get {
+                return ResourceManager.GetString("RecordDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sub-types.
         /// </summary>
-        internal static string Subtypes {
+        public static string Subtypes {
             get {
                 return ResourceManager.GetString("Subtypes", resourceCulture);
             }
@@ -126,7 +225,7 @@ namespace BudgetManagementApp.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Types.
         /// </summary>
-        internal static string Types {
+        public static string Types {
             get {
                 return ResourceManager.GetString("Types", resourceCulture);
             }
@@ -135,7 +234,7 @@ namespace BudgetManagementApp.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Warning.
         /// </summary>
-        internal static string Warning {
+        public static string Warning {
             get {
                 return ResourceManager.GetString("Warning", resourceCulture);
             }

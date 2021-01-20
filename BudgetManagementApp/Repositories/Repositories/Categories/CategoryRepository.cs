@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using BudgetManagementApp.Entities.Models;
 
 namespace BudgetManagementApp.Repositories.Repositories.Categories
@@ -12,36 +11,39 @@ namespace BudgetManagementApp.Repositories.Repositories.Categories
         {
         }
 
-        public async Task<IEnumerable<Category>> GetAll()
+        public IEnumerable<Category> GetAll()
         {
-            return await Context.Categories
+            return Context.Categories
+                .Include(w => w.Types)
                 .Where(w => !w.DeletedOn.HasValue)
-                .ToListAsync()
-                .ConfigureAwait(false);
+                .OrderBy(w => w.Description)
+                .AsNoTracking();
         }
 
-        public async Task Create(Category category)
+        public void Create(Category category)
         {
-            await base.Create(category).ConfigureAwait(false);
+            base.Create(category);
         }
 
-        public async Task Update(Category category)
+        public void Update(Category category)
         {
             Context.Categories.Attach(category);
 
             AddPropertiesToModify(category, new List<string>
             {
-                nameof(category.Description)
+                nameof(category.Description),
             });
 
-            await Save().ConfigureAwait(false);
+            Save();
+
+            Detach(category);
         }
 
-        public async Task Delete(Category category)
+        public void Delete(Category category)
         {
             Context.Categories.Attach(category);
 
-            await base.Delete(category).ConfigureAwait(false);
+            base.Delete(category);
         }
     }
 }

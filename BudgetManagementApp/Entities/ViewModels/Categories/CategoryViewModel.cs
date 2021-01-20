@@ -1,4 +1,8 @@
-﻿namespace BudgetManagementApp.Entities.ViewModels.Categories
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Data.Entity.Migrations.History;
+
+namespace BudgetManagementApp.Entities.ViewModels.Categories
 {
     public class CategoryViewModel : BaseViewModel
     {
@@ -7,7 +11,8 @@
         /// Please use Id instead.  
         /// </summary>
         public int CategoryId => Id;
-
+        
+        [DisplayName()]
         public string Description { get; set; }
     }
 }

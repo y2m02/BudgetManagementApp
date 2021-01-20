@@ -6,9 +6,10 @@ namespace BudgetManagementApp.Services.Services.Categories
 {
     public interface ICategoryService
     {
-        Task<BaseViewModel> GetAll();
-        Task<BaseViewModel> Create(CategoryViewModel category);
-        Task<BaseViewModel> Update(CategoryViewModel category);
-        Task<BaseViewModel> Delete(CategoryViewModel category);
+        BaseViewModel GetAll();
+        BaseViewModel Create(CategoryViewModel category);
+        BaseViewModel Update(CategoryViewModel category);
+        BaseViewModel Upsert(CategoryViewModel category);
+        BaseViewModel Delete(CategoryViewModel category);
     }
 }
