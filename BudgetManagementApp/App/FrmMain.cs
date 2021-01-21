@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
@@ -31,8 +32,7 @@ namespace BudgetManagementApp
             SetLabels();
         }
 
-        private List<CategoryViewModel> Categories 
-        { get; set; }
+        private List<CategoryViewModel> Categories { get; set; }
 
         protected sealed override void SetLabels()
         {
@@ -49,6 +49,77 @@ namespace BudgetManagementApp
         {
             HandleCategories(categoryService.GetAll());
         }
+
+        private void BtnBudgetManagement_Click(object sender, EventArgs e)
+        {
+            TclBudgetManagement.SelectedIndex = 0;
+            ChangeButtonSelectedStatus(BtnBudgetManagement);
+        }
+
+        private void BtnProjects_Click(object sender, EventArgs e)
+        {
+            TclBudgetManagement.SelectedIndex = 1;
+            ChangeButtonSelectedStatus(BtnProjects);
+        }
+
+        private void BtnCategories_Click(object sender, EventArgs e)
+        {
+            TclBudgetManagement.SelectedIndex = 2;
+            ChangeButtonSelectedStatus(BtnCategories);
+        }
+
+        private void BtnTypes_Click(object sender, EventArgs e)
+        {
+            TclBudgetManagement.SelectedIndex = 3;
+            ChangeButtonSelectedStatus(BtnTypes);
+        }
+
+        private void BtnSubtypes_Click(object sender, EventArgs e)
+        {
+            TclBudgetManagement.SelectedIndex = 4;
+            ChangeButtonSelectedStatus(BtnSubtypes);
+        }
+
+        private static void PopulateGrid<TDataModel>(
+            DataGridView grid,
+            IEnumerable<TDataModel> list,
+            Action formatGrid
+        )
+        {
+            grid.DataSource = list.ToList();
+
+            formatGrid();
+        }
+
+        private static void DisableColumns(
+            DataGridView grid,
+            IEnumerable<string> columnNames
+        )
+        {
+            foreach (var columnName in columnNames)
+            {
+                grid.Columns[columnName].Visible = false;
+            }
+        }
+
+        private void ChangeButtonSelectedStatus(Control button)
+        {
+            button.Font = button.Font = new Font(button.Font, FontStyle.Bold);
+            button.BackColor = SystemColors.ActiveCaption;
+
+            foreach (Control control in Controls)
+            {
+                if (!(control is Button) || control.Name == button.Name)
+                {
+                    continue;
+                }
+
+                control.Font = new Font(control.Font, FontStyle.Regular);
+                control.BackColor = SystemColors.ControlLight;
+            }
+        }
+
+        #region Categories
 
         private void TxtCategoryFilter_TextChanged(object sender, EventArgs e)
         {
@@ -113,28 +184,6 @@ namespace BudgetManagementApp
             SetCategoryDetailsData(DgvCategories);
         }
 
-        private static void PopulateGrid<TDataModel>(
-            DataGridView grid,
-            IEnumerable<TDataModel> list,
-            Action formatGrid
-        )
-        {
-            grid.DataSource = list.ToList();
-
-            formatGrid();
-        }
-
-        private static void DisableColumns(
-            DataGridView grid,
-            IEnumerable<string> columnNames
-        )
-        {
-            foreach (var columnName in columnNames)
-            {
-                grid.Columns[columnName].Visible = false;
-            }
-        }
-
         private void SetupCategories(IEnumerable<CategoryViewModel> model)
         {
             Categories = model.ToList();
@@ -166,7 +215,6 @@ namespace BudgetManagementApp
             {
             }
         }
-
 
         private void SetCategoryDetailsData(DataGridView grid)
         {
@@ -214,6 +262,34 @@ namespace BudgetManagementApp
             HandleCategories(result);
 
             TxtCategoryFilter.Clear();
+        }
+
+        #endregion
+
+        private void TclBudgetManagement_Click(object sender, EventArgs e)
+        {
+            switch (TclBudgetManagement.SelectedIndex)
+            {
+                case 0:
+                    ChangeButtonSelectedStatus(BtnBudgetManagement);
+                    break;
+
+                case 1:
+                    ChangeButtonSelectedStatus(BtnProjects);
+                    break;
+
+                case 2:
+                    ChangeButtonSelectedStatus(BtnCategories);
+                    break;
+
+                case 3:
+                    ChangeButtonSelectedStatus(BtnTypes);
+                    break;
+
+                case 4:
+                    ChangeButtonSelectedStatus(BtnSubtypes);
+                    break;
+            }
         }
     }
 }
