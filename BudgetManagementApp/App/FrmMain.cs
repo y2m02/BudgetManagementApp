@@ -86,7 +86,7 @@ namespace BudgetManagementApp
                 Categories.Single(w => w.CategoryId == TxtCategoryId.Text.ToInt())
             );
 
-            if (result.IsSuccess<bool>())
+            if (result.IsSuccess())
             {
                 DisplayInformationMessage(StringResources.RecordDeleted);
 
@@ -97,7 +97,7 @@ namespace BudgetManagementApp
                 return;
             }
 
-            DisplayErrorMessage(result.AsFailure().ErrorMessage);
+            DisplayErrorMessage(result.GetFailureError());
         }
 
         private void BtnModifyCategory_Click(object sender, EventArgs e)

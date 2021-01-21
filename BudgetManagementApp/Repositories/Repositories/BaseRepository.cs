@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
-using BudgetManagementApp.Entities;
+using BudgetManagementApp.Entities.Helpers;
 using BudgetManagementApp.Entities.Models;
 
 namespace BudgetManagementApp.Repositories.Repositories
@@ -42,7 +42,7 @@ namespace BudgetManagementApp.Repositories.Repositories
             });
 
             Save();
-            
+
             Detach(entity);
         }
 

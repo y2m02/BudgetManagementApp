@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BudgetManagementApp.Entities
+namespace BudgetManagementApp.Entities.Helpers
 {
     public interface IDeletable
     {

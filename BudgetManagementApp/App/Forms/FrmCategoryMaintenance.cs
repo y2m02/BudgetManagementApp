@@ -1,9 +1,9 @@
-﻿using BudgetManagementApp.Entities.ViewModels.Categories;
+﻿using System;
+using System.Windows.Forms;
+using BudgetManagementApp.Entities.ViewModels.Categories;
 using BudgetManagementApp.Resources.Properties;
 using BudgetManagementApp.Services.Extensions;
 using BudgetManagementApp.Services.Services.Categories;
-using System;
-using System.Windows.Forms;
 
 namespace BudgetManagementApp.Forms
 {
@@ -26,6 +26,7 @@ namespace BudgetManagementApp.Forms
 
             LoopControlsToSetLabels(Controls);
         }
+
         private void BtnCancel_Click(object sender, EventArgs e)
         {
             Close();
@@ -38,10 +39,19 @@ namespace BudgetManagementApp.Forms
                 Id = TxtCategoryId.Text.HasValue()
                     ? TxtCategoryId.Text.ToInt()
                     : 0,
-                Description = TxtDescription.Text
+                Description = TxtDescription.Text,
             });
 
-            if (result.IsSuccess<bool>())
+            if (result.HasValidations())
+            {
+                var message = result.GetValidations().Join("\n");
+
+                DisplayExclamationMessage(message);
+
+                return;
+            }
+
+            if (result.IsSuccess())
             {
                 DialogResult = DialogResult.OK;
 
@@ -52,7 +62,7 @@ namespace BudgetManagementApp.Forms
 
             DialogResult = DialogResult.None;
 
-            DisplayErrorMessage(result.AsFailure().ErrorMessage);
+            DisplayErrorMessage(result.GetFailureError());
         }
     }
 }

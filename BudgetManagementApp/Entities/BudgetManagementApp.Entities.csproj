@@ -56,7 +56,7 @@
     <Compile Include="Models\AccountingMovement.cs" />
     <Compile Include="Models\BalanceSheet.cs" />
     <Compile Include="Models\Category.cs" />
-    <Compile Include="IDeletable.cs" />
+    <Compile Include="Helpers\IDeletable.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\ProjectManagementAppContext.cs" />
     <Compile Include="Models\SubType.cs" />
@@ -64,11 +64,19 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Categories\CategoryViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="Helpers\IValidatable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Resources\BudgetManagementApp.Resources.csproj">
+      <Project>{eeeea753-5f2c-4ead-9e97-37eb2e9238f8}</Project>
+      <Name>BudgetManagementApp.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
