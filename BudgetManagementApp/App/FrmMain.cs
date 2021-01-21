@@ -39,7 +39,9 @@ namespace BudgetManagementApp
             Text = StringResources.BudgetManagement;
 
             LoopControlsToSetLabels(Controls);
+
             LoopControlsToSetLabels(TclBudgetManagement.Controls);
+
             LoopControlsToSetLabels(TabCategories.Controls);
         }
 
