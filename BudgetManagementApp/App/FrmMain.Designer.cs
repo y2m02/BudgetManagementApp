@@ -105,6 +105,7 @@ namespace BudgetManagementApp
             this.BtnSubtypes.TabIndex = 11;
             this.BtnSubtypes.Text = "Sub-partidas";
             this.BtnSubtypes.UseVisualStyleBackColor = false;
+            this.BtnSubtypes.Click += new System.EventHandler(this.BtnSubtypes_Click);
             // 
             // BtnTypes
             // 
@@ -117,6 +118,7 @@ namespace BudgetManagementApp
             this.BtnTypes.TabIndex = 10;
             this.BtnTypes.Text = "Partidas";
             this.BtnTypes.UseVisualStyleBackColor = false;
+            this.BtnTypes.Click += new System.EventHandler(this.BtnTypes_Click);
             // 
             // BtnCategories
             // 
@@ -129,6 +131,7 @@ namespace BudgetManagementApp
             this.BtnCategories.TabIndex = 9;
             this.BtnCategories.Text = "Categorías";
             this.BtnCategories.UseVisualStyleBackColor = false;
+            this.BtnCategories.Click += new System.EventHandler(this.BtnCategories_Click);
             // 
             // BtnProjects
             // 
@@ -141,6 +144,7 @@ namespace BudgetManagementApp
             this.BtnProjects.TabIndex = 8;
             this.BtnProjects.Text = "Proyectos";
             this.BtnProjects.UseVisualStyleBackColor = false;
+            this.BtnProjects.Click += new System.EventHandler(this.BtnProjects_Click);
             // 
             // BtnBudgetManagement
             // 
@@ -154,6 +158,7 @@ namespace BudgetManagementApp
             this.BtnBudgetManagement.TabIndex = 7;
             this.BtnBudgetManagement.Text = "Control de presupesto";
             this.BtnBudgetManagement.UseVisualStyleBackColor = false;
+            this.BtnBudgetManagement.Click += new System.EventHandler(this.BtnBudgetManagement_Click);
             // 
             // TclBudgetManagement
             // 
@@ -169,6 +174,7 @@ namespace BudgetManagementApp
             this.TclBudgetManagement.SelectedIndex = 0;
             this.TclBudgetManagement.Size = new System.Drawing.Size(1244, 904);
             this.TclBudgetManagement.TabIndex = 13;
+            this.TclBudgetManagement.Click += new System.EventHandler(this.TclBudgetManagement_Click);
             // 
             // TabProjects
             // 

@@ -50,6 +50,36 @@ namespace BudgetManagementApp
             HandleCategories(categoryService.GetAll());
         }
 
+        private void BtnBudgetManagement_Click(object sender, EventArgs e)
+        {
+            TclBudgetManagement.SelectedIndex = 0;
+            ChangeButtonSelectedStatus(BtnBudgetManagement);
+        }
+
+        private void BtnProjects_Click(object sender, EventArgs e)
+        {
+            TclBudgetManagement.SelectedIndex = 1;
+            ChangeButtonSelectedStatus(BtnProjects);
+        }
+
+        private void BtnCategories_Click(object sender, EventArgs e)
+        {
+            TclBudgetManagement.SelectedIndex = 2;
+            ChangeButtonSelectedStatus(BtnCategories);
+        }
+
+        private void BtnTypes_Click(object sender, EventArgs e)
+        {
+            TclBudgetManagement.SelectedIndex = 3;
+            ChangeButtonSelectedStatus(BtnTypes);
+        }
+
+        private void BtnSubtypes_Click(object sender, EventArgs e)
+        {
+            TclBudgetManagement.SelectedIndex = 4;
+            ChangeButtonSelectedStatus(BtnSubtypes);
+        }
+
         private static void PopulateGrid<TDataModel>(
             DataGridView grid,
             IEnumerable<TDataModel> list,
@@ -235,5 +265,31 @@ namespace BudgetManagementApp
         }
 
         #endregion
+
+        private void TclBudgetManagement_Click(object sender, EventArgs e)
+        {
+            switch (TclBudgetManagement.SelectedIndex)
+            {
+                case 0:
+                    ChangeButtonSelectedStatus(BtnBudgetManagement);
+                    break;
+
+                case 1:
+                    ChangeButtonSelectedStatus(BtnProjects);
+                    break;
+
+                case 2:
+                    ChangeButtonSelectedStatus(BtnCategories);
+                    break;
+
+                case 3:
+                    ChangeButtonSelectedStatus(BtnTypes);
+                    break;
+
+                case 4:
+                    ChangeButtonSelectedStatus(BtnSubtypes);
+                    break;
+            }
+        }
     }
 }
