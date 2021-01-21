@@ -38,6 +38,7 @@ namespace BudgetManagementApp
             this.TclBudgetManagement = new System.Windows.Forms.TabControl();
             this.TabProjects = new System.Windows.Forms.TabPage();
             this.TabCategories = new System.Windows.Forms.TabPage();
+            this.TxtCategoryId = new System.Windows.Forms.TextBox();
             this.LblCategoryFilter = new System.Windows.Forms.Label();
             this.BtnDeleteCategory = new System.Windows.Forms.Button();
             this.BtnModifyCategory = new System.Windows.Forms.Button();
@@ -73,7 +74,6 @@ namespace BudgetManagementApp
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.TxtName = new System.Windows.Forms.TextBox();
-            this.TxtCategoryId = new System.Windows.Forms.TextBox();
             this.TclBudgetManagement.SuspendLayout();
             this.TabCategories.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvCategories)).BeginInit();
@@ -157,11 +157,11 @@ namespace BudgetManagementApp
             // 
             // TclBudgetManagement
             // 
+            this.TclBudgetManagement.Controls.Add(this.TabBudgetManagement);
             this.TclBudgetManagement.Controls.Add(this.TabProjects);
             this.TclBudgetManagement.Controls.Add(this.TabCategories);
             this.TclBudgetManagement.Controls.Add(this.TabTypes);
             this.TclBudgetManagement.Controls.Add(this.TabSubtypes);
-            this.TclBudgetManagement.Controls.Add(this.TabBudgetManagement);
             this.TclBudgetManagement.Dock = System.Windows.Forms.DockStyle.Right;
             this.TclBudgetManagement.Location = new System.Drawing.Point(253, 0);
             this.TclBudgetManagement.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -199,6 +199,17 @@ namespace BudgetManagementApp
             this.TabCategories.Size = new System.Drawing.Size(1236, 872);
             this.TabCategories.TabIndex = 2;
             this.TabCategories.Text = "Categorías";
+            // 
+            // TxtCategoryId
+            // 
+            this.TxtCategoryId.Location = new System.Drawing.Point(278, 22);
+            this.TxtCategoryId.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.TxtCategoryId.MaxLength = 99;
+            this.TxtCategoryId.Name = "TxtCategoryId";
+            this.TxtCategoryId.ReadOnly = true;
+            this.TxtCategoryId.Size = new System.Drawing.Size(30, 27);
+            this.TxtCategoryId.TabIndex = 37;
+            this.TxtCategoryId.Visible = false;
             // 
             // LblCategoryFilter
             // 
@@ -423,7 +434,7 @@ namespace BudgetManagementApp
             this.TabBudgetManagement.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TabBudgetManagement.Size = new System.Drawing.Size(1236, 872);
             this.TabBudgetManagement.TabIndex = 0;
-            this.TabBudgetManagement.Text = "Gestión de presupuesto";
+            this.TabBudgetManagement.Text = "Control de presupuesto";
             // 
             // PnlInformation
             // 
@@ -620,17 +631,6 @@ namespace BudgetManagementApp
             this.TxtName.Name = "TxtName";
             this.TxtName.Size = new System.Drawing.Size(511, 27);
             this.TxtName.TabIndex = 17;
-            // 
-            // TxtCategoryId
-            // 
-            this.TxtCategoryId.Location = new System.Drawing.Point(278, 22);
-            this.TxtCategoryId.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.TxtCategoryId.MaxLength = 99;
-            this.TxtCategoryId.Name = "TxtCategoryId";
-            this.TxtCategoryId.ReadOnly = true;
-            this.TxtCategoryId.Size = new System.Drawing.Size(30, 27);
-            this.TxtCategoryId.TabIndex = 37;
-            this.TxtCategoryId.Visible = false;
             // 
             // FrmMain
             // 

@@ -32,8 +32,7 @@ namespace BudgetManagementApp
             SetLabels();
         }
 
-        private List<CategoryViewModel> Categories
-        { get; set; }
+        private List<CategoryViewModel> Categories { get; set; }
 
         protected sealed override void SetLabels()
         {
@@ -50,6 +49,47 @@ namespace BudgetManagementApp
         {
             HandleCategories(categoryService.GetAll());
         }
+
+        private static void PopulateGrid<TDataModel>(
+            DataGridView grid,
+            IEnumerable<TDataModel> list,
+            Action formatGrid
+        )
+        {
+            grid.DataSource = list.ToList();
+
+            formatGrid();
+        }
+
+        private static void DisableColumns(
+            DataGridView grid,
+            IEnumerable<string> columnNames
+        )
+        {
+            foreach (var columnName in columnNames)
+            {
+                grid.Columns[columnName].Visible = false;
+            }
+        }
+
+        private void ChangeButtonSelectedStatus(Control button)
+        {
+            button.Font = button.Font = new Font(button.Font, FontStyle.Bold);
+            button.BackColor = SystemColors.ActiveCaption;
+
+            foreach (Control control in Controls)
+            {
+                if (!(control is Button) || control.Name == button.Name)
+                {
+                    continue;
+                }
+
+                control.Font = new Font(control.Font, FontStyle.Regular);
+                control.BackColor = SystemColors.ControlLight;
+            }
+        }
+
+        #region Categories
 
         private void TxtCategoryFilter_TextChanged(object sender, EventArgs e)
         {
@@ -114,28 +154,6 @@ namespace BudgetManagementApp
             SetCategoryDetailsData(DgvCategories);
         }
 
-        private static void PopulateGrid<TDataModel>(
-            DataGridView grid,
-            IEnumerable<TDataModel> list,
-            Action formatGrid
-        )
-        {
-            grid.DataSource = list.ToList();
-
-            formatGrid();
-        }
-
-        private static void DisableColumns(
-            DataGridView grid,
-            IEnumerable<string> columnNames
-        )
-        {
-            foreach (var columnName in columnNames)
-            {
-                grid.Columns[columnName].Visible = false;
-            }
-        }
-
         private void SetupCategories(IEnumerable<CategoryViewModel> model)
         {
             Categories = model.ToList();
@@ -167,7 +185,6 @@ namespace BudgetManagementApp
             {
             }
         }
-
 
         private void SetCategoryDetailsData(DataGridView grid)
         {
@@ -217,21 +234,6 @@ namespace BudgetManagementApp
             TxtCategoryFilter.Clear();
         }
 
-        private void ChangeButtonSelectedStatus(Control button)
-        {
-            button.Font = button.Font = new Font(button.Font, FontStyle.Bold);
-            button.BackColor = SystemColors.ActiveCaption;
-
-            foreach (Control control in Controls)
-            {
-                if (!(control is Button) || control.Name == button.Name)
-                {
-                    continue;
-                }
-
-                control.Font = new Font(control.Font, FontStyle.Regular);
-                control.BackColor = SystemColors.ControlLight;
-            }
-        }
+        #endregion
     }
 }
