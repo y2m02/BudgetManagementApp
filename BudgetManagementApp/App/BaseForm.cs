@@ -62,10 +62,8 @@ namespace BudgetManagementApp
         {
             string[] controlsToSetLabels = { "Lbl", "Btn", "Tab" };
 
-            foreach (var ctrl in controls)
+            foreach (Control control in controls)
             {
-                var control = (Control)ctrl;
-
                 var name = control.Name;
 
                 if (controlsToSetLabels.Any(c => name.StartsWith(c)))

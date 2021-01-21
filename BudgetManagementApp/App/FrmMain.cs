@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
@@ -31,7 +32,7 @@ namespace BudgetManagementApp
             SetLabels();
         }
 
-        private List<CategoryViewModel> Categories 
+        private List<CategoryViewModel> Categories
         { get; set; }
 
         protected sealed override void SetLabels()
@@ -214,6 +215,23 @@ namespace BudgetManagementApp
             HandleCategories(result);
 
             TxtCategoryFilter.Clear();
+        }
+
+        private void ChangeButtonSelectedStatus(Control button)
+        {
+            button.Font = button.Font = new Font(button.Font, FontStyle.Bold);
+            button.BackColor = SystemColors.ActiveCaption;
+
+            foreach (Control control in Controls)
+            {
+                if (!(control is Button) || control.Name == button.Name)
+                {
+                    continue;
+                }
+
+                control.Font = new Font(control.Font, FontStyle.Regular);
+                control.BackColor = SystemColors.ControlLight;
+            }
         }
     }
 }
