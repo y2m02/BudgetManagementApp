@@ -151,6 +151,15 @@ namespace BudgetManagementApp.Resources.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The field {0} is required..
+        /// </summary>
+        public static string FieldRequired {
+            get {
+                return ResourceManager.GetString("FieldRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Information.
         /// </summary>
         public static string Information {
@@ -174,6 +183,15 @@ namespace BudgetManagementApp.Resources.Properties {
         public static string NewCategory {
             get {
                 return ResourceManager.GetString("NewCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There was an error while processing. Please contact suport: {0}.
+        /// </summary>
+        public static string ProccessingError {
+            get {
+                return ResourceManager.GetString("ProccessingError", resourceCulture);
             }
         }
         

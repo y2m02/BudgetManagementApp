@@ -1,11 +1,11 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using System.Linq;
+using AutoMapper;
 using BudgetManagementApp.Entities.Enums;
 using BudgetManagementApp.Entities.Models;
 using BudgetManagementApp.Entities.ViewModels;
 using BudgetManagementApp.Entities.ViewModels.Categories;
 using BudgetManagementApp.Repositories.Repositories.Categories;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace BudgetManagementApp.Services.Services.Categories
 {
@@ -55,6 +55,13 @@ namespace BudgetManagementApp.Services.Services.Categories
             return HandleErrors(
                 () =>
                 {
+                    var validations = category.Validate().ToList();
+
+                    if (validations.Any())
+                    {
+                        return new Validation(validations);
+                    }
+
                     switch (category.Action)
                     {
                         case ActionType.Create:

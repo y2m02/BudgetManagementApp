@@ -147,6 +147,9 @@
   <data name="Error" xml:space="preserve">
     <value>Error</value>
   </data>
+  <data name="FieldRequired" xml:space="preserve">
+    <value>El campo {0} es requerido.</value>
+  </data>
   <data name="Information" xml:space="preserve">
     <value>Información</value>
   </data>
@@ -155,6 +158,9 @@
   </data>
   <data name="NewCategory" xml:space="preserve">
     <value>Nueva</value>
+  </data>
+  <data name="ProccessingError" xml:space="preserve">
+    <value>Hubo un error durante el proceso. Por favor, contacte a soporte: {0}</value>
   </data>
   <data name="Projects" xml:space="preserve">
     <value>Proyectos</value>
