@@ -1,6 +1,7 @@
 ﻿using BudgetManagementApp.Entities.Helpers;
 using BudgetManagementApp.Resources.Properties;
 using System.Collections.Generic;
+using BudgetManagementApp.Resources;
 
 namespace BudgetManagementApp.Entities.ViewModels.Categories
 {
@@ -22,7 +23,7 @@ namespace BudgetManagementApp.Entities.ViewModels.Categories
 
                 yield return string.Format(
                     StringResources.FieldRequired,
-                    nameof(Description)
+                    StringResourcesHandler.GetString(nameof(Description))
                 );
             }
         }

@@ -2,6 +2,7 @@
 using BudgetManagementApp.Resources.Properties;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using BudgetManagementApp.Services.Extensions;
@@ -93,6 +94,13 @@ namespace BudgetManagementApp
             {
                 control.Enabled = enable;
             }
+        }
+
+        protected void SetAppLabels()
+        {
+            StringResources.Culture = CultureInfo.CurrentCulture;
+
+            SetLabels();
         }
 
         // TODO: make this method abstract.

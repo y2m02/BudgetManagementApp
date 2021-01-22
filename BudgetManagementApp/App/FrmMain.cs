@@ -112,9 +112,8 @@ namespace BudgetManagementApp
             }
 
             CultureInfo.CurrentCulture = new CultureInfo(language);
-            StringResources.Culture = CultureInfo.CurrentCulture;
 
-            SetLabels();
+            SetAppLabels();
         }
 
         private static void SetColumnNames(DataGridView grid, Dictionary<string, string> columnNames)
@@ -134,11 +133,9 @@ namespace BudgetManagementApp
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            StringResources.Culture = CultureInfo.CurrentCulture;
-
             HandleCategories(categoryService.GetAll());
 
-            SetLabels();
+            SetAppLabels();
         }
 
         private void BtnBudgetManagement_Click(object sender, EventArgs e)
