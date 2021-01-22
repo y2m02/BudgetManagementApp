@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
-using BudgetManagementApp.Entities.Helpers;
+﻿using BudgetManagementApp.Entities.Helpers;
 using BudgetManagementApp.Resources.Properties;
+using System.Collections.Generic;
 
 namespace BudgetManagementApp.Entities.ViewModels.Categories
 {
@@ -13,7 +12,8 @@ namespace BudgetManagementApp.Entities.ViewModels.Categories
         /// </summary>
         public int CategoryId => Id;
 
-        [DisplayName] public string Description { get; set; }
+        [DisplayNameFromResources(nameof(Description))]
+        public string Description { get; set; }
 
         public IEnumerable<string> Validate()
         {
