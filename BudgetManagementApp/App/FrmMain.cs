@@ -322,8 +322,8 @@ namespace BudgetManagementApp
                 return;
             }
 
-            TxtCategoryId.Text = grid.GetRowValue<int>(0, "CategoryId").ToString();
-            TxtCategoryDescription.Text = grid.GetRowValue<string>(0, "Description");
+            TxtCategoryId.Text = grid.FirstRow<int>("CategoryId").ToString();
+            TxtCategoryDescription.Text = grid.FirstRow<string>("Description");
 
             SetControlsStatus(false, BtnModifyCategory, BtnDeleteCategory);
         }
