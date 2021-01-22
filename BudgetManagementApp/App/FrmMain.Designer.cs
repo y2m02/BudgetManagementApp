@@ -97,7 +97,7 @@ namespace BudgetManagementApp
             // 
             this.BtnSubtypes.BackColor = System.Drawing.SystemColors.ControlLight;
             this.BtnSubtypes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BtnSubtypes.Location = new System.Drawing.Point(0, 324);
+            this.BtnSubtypes.Location = new System.Drawing.Point(0, 326);
             this.BtnSubtypes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BtnSubtypes.Name = "BtnSubtypes";
             this.BtnSubtypes.Size = new System.Drawing.Size(253, 74);
@@ -110,7 +110,7 @@ namespace BudgetManagementApp
             // 
             this.BtnTypes.BackColor = System.Drawing.SystemColors.ControlLight;
             this.BtnTypes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BtnTypes.Location = new System.Drawing.Point(0, 250);
+            this.BtnTypes.Location = new System.Drawing.Point(0, 252);
             this.BtnTypes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BtnTypes.Name = "BtnTypes";
             this.BtnTypes.Size = new System.Drawing.Size(253, 74);
@@ -123,7 +123,7 @@ namespace BudgetManagementApp
             // 
             this.BtnCategories.BackColor = System.Drawing.SystemColors.ControlLight;
             this.BtnCategories.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BtnCategories.Location = new System.Drawing.Point(0, 176);
+            this.BtnCategories.Location = new System.Drawing.Point(0, 178);
             this.BtnCategories.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BtnCategories.Name = "BtnCategories";
             this.BtnCategories.Size = new System.Drawing.Size(253, 74);
@@ -136,7 +136,7 @@ namespace BudgetManagementApp
             // 
             this.BtnProjects.BackColor = System.Drawing.SystemColors.ControlLight;
             this.BtnProjects.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BtnProjects.Location = new System.Drawing.Point(0, 102);
+            this.BtnProjects.Location = new System.Drawing.Point(0, 104);
             this.BtnProjects.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BtnProjects.Name = "BtnProjects";
             this.BtnProjects.Size = new System.Drawing.Size(253, 74);
@@ -150,7 +150,7 @@ namespace BudgetManagementApp
             this.BtnBudgetManagement.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.BtnBudgetManagement.Dock = System.Windows.Forms.DockStyle.Top;
             this.BtnBudgetManagement.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnBudgetManagement.Location = new System.Drawing.Point(0, 28);
+            this.BtnBudgetManagement.Location = new System.Drawing.Point(0, 30);
             this.BtnBudgetManagement.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BtnBudgetManagement.Name = "BtnBudgetManagement";
             this.BtnBudgetManagement.Size = new System.Drawing.Size(253, 74);
@@ -167,11 +167,11 @@ namespace BudgetManagementApp
             this.TclBudgetManagement.Controls.Add(this.TabTypes);
             this.TclBudgetManagement.Controls.Add(this.TabSubtypes);
             this.TclBudgetManagement.Dock = System.Windows.Forms.DockStyle.Right;
-            this.TclBudgetManagement.Location = new System.Drawing.Point(253, 28);
+            this.TclBudgetManagement.Location = new System.Drawing.Point(253, 30);
             this.TclBudgetManagement.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TclBudgetManagement.Name = "TclBudgetManagement";
             this.TclBudgetManagement.SelectedIndex = 0;
-            this.TclBudgetManagement.Size = new System.Drawing.Size(1244, 876);
+            this.TclBudgetManagement.Size = new System.Drawing.Size(1244, 874);
             this.TclBudgetManagement.TabIndex = 13;
             this.TclBudgetManagement.Click += new System.EventHandler(this.TclBudgetManagement_Click);
             // 
@@ -183,7 +183,7 @@ namespace BudgetManagementApp
             this.TabBudgetManagement.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TabBudgetManagement.Name = "TabBudgetManagement";
             this.TabBudgetManagement.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.TabBudgetManagement.Size = new System.Drawing.Size(1236, 844);
+            this.TabBudgetManagement.Size = new System.Drawing.Size(1236, 842);
             this.TabBudgetManagement.TabIndex = 0;
             this.TabBudgetManagement.Text = "Control de presupuesto";
             // 
@@ -645,7 +645,7 @@ namespace BudgetManagementApp
             this.MiLanguages});
             this.MsMainMenu.Location = new System.Drawing.Point(0, 0);
             this.MsMainMenu.Name = "MsMainMenu";
-            this.MsMainMenu.Size = new System.Drawing.Size(1497, 28);
+            this.MsMainMenu.Size = new System.Drawing.Size(1497, 30);
             this.MsMainMenu.TabIndex = 15;
             this.MsMainMenu.Text = "menuStrip1";
             // 
@@ -654,13 +654,13 @@ namespace BudgetManagementApp
             this.MiFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MiClose});
             this.MiFile.Name = "MiFile";
-            this.MiFile.Size = new System.Drawing.Size(73, 24);
+            this.MiFile.Size = new System.Drawing.Size(73, 26);
             this.MiFile.Text = "Archivo";
             // 
             // MiClose
             // 
             this.MiClose.Name = "MiClose";
-            this.MiClose.Size = new System.Drawing.Size(224, 26);
+            this.MiClose.Size = new System.Drawing.Size(121, 26);
             this.MiClose.Text = "Salir";
             this.MiClose.Click += new System.EventHandler(this.MiClose_Click);
             // 
@@ -670,7 +670,7 @@ namespace BudgetManagementApp
             this.MiSpanish,
             this.MiEnglish});
             this.MiLanguages.Name = "MiLanguages";
-            this.MiLanguages.Size = new System.Drawing.Size(76, 24);
+            this.MiLanguages.Size = new System.Drawing.Size(76, 26);
             this.MiLanguages.Text = "Idiomas";
             // 
             // MiSpanish

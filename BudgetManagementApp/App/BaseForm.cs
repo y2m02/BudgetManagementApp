@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using BudgetManagementApp.Resources;
+using BudgetManagementApp.Resources.Properties;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using BudgetManagementApp.Resources;
-using BudgetManagementApp.Resources.Properties;
+using BudgetManagementApp.Services.Extensions;
 
 namespace BudgetManagementApp
 {
@@ -63,24 +64,27 @@ namespace BudgetManagementApp
         {
             const int prefix = 3;
 
-            var controlsToSetLabels = new Dictionary<string, string>
+            var controlsToSetLabels = new []
             {
-                ["Labels"] = "Lbl",
-                ["Buttons"] = "Btn",
-                ["Tabs"] = "Tab",
+                typeof(Label),
+                typeof(Button),
+                typeof(TabPage),
             };
 
-            foreach (Control control in controls)
-            {
-                var name = control.Name;
-
-                if (controlsToSetLabels.Values.Any(ctrl => name.StartsWith(ctrl)))
+            controls.Cast<Control>()
+                .Where(
+                    control => controlsToSetLabels.Any(
+                        type => type == control.GetType()
+                    )
+                )
+                .Each(control =>
                 {
+                    var name = control.Name;
+
                     control.Text = StringResourcesHandler.GetString(
                         name.Substring(prefix, name.Length - prefix)
                     );
-                }
-            }
+                });
         }
 
         protected void SetControlsStatus(bool enable, params Control[] controls)
