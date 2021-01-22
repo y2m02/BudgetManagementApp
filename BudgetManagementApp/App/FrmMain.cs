@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Globalization;
-using System.Linq;
-using System.Windows.Forms;
-using BudgetManagementApp.Entities.ViewModels;
+﻿using BudgetManagementApp.Entities.ViewModels;
 using BudgetManagementApp.Entities.ViewModels.Categories;
 using BudgetManagementApp.Forms;
 using BudgetManagementApp.Resources;
 using BudgetManagementApp.Resources.Properties;
 using BudgetManagementApp.Services.Extensions;
 using BudgetManagementApp.Services.Services.Categories;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Globalization;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace BudgetManagementApp
 {
@@ -50,6 +50,11 @@ namespace BudgetManagementApp
                 }
             }
 
+            SetColumnNames(DgvCategories, new Dictionary<string, string>
+            {
+                ["Description"] = StringResourcesHandler.GetString("Description"),
+            });
+
             void SetMenuLabels(ToolStripMenuItem control)
             {
                 var name = control.Name;
@@ -61,13 +66,79 @@ namespace BudgetManagementApp
             }
         }
 
+        #region Private Methods
+
+        private static void PopulateGrid<TDataModel>(
+            DataGridView grid,
+            IEnumerable<TDataModel> list,
+            Action formatGrid
+        )
+        {
+            grid.DataSource = list.ToList();
+
+            formatGrid();
+        }
+
+        private static void DisableColumns(
+            DataGridView grid,
+            IEnumerable<string> columnNames
+        )
+        {
+            foreach (var columnName in columnNames)
+            {
+                grid.Columns[columnName].Visible = false;
+            }
+        }
+
+        private void ChangeButtonSelectedStatus(Control button)
+        {
+            button.Font = button.Font = new Font(button.Font, FontStyle.Bold);
+            button.BackColor = SystemColors.ActiveCaption;
+
+            foreach (var btn in Controls.OfType<Button>()
+                .Where(b => b.Name != button.Name)
+            )
+            {
+                btn.Font = new Font(btn.Font, FontStyle.Regular);
+                btn.BackColor = SystemColors.ControlLight;
+            }
+        }
+
+        private void ChangeLanguage(string language)
+        {
+            if (Equals(CultureInfo.CurrentCulture, CultureInfo.GetCultureInfo(language)))
+            {
+                return;
+            }
+
+            CultureInfo.CurrentCulture = new CultureInfo(language);
+            StringResources.Culture = CultureInfo.CurrentCulture;
+
+            SetLabels();
+        }
+
+        private static void SetColumnNames(DataGridView grid, Dictionary<string, string> columnNames)
+        {
+            if (!grid.HasDataSource())
+                return;
+
+            foreach (var columnName in columnNames)
+            {
+                grid.Columns[columnName.Key].HeaderText = columnName.Value;
+            }
+        }
+
+        #endregion
+
+        #region Control Methods
+
         private void FrmMain_Load(object sender, EventArgs e)
         {
             StringResources.Culture = CultureInfo.CurrentCulture;
 
-            SetLabels();
-
             HandleCategories(categoryService.GetAll());
+
+            SetLabels();
         }
 
         private void BtnBudgetManagement_Click(object sender, EventArgs e)
@@ -135,61 +206,12 @@ namespace BudgetManagementApp
         {
             ChangeLanguage("en-US");
         }
+
         private void MiClose_Click(object sender, EventArgs e)
         {
             Close();
         }
-
-        private static void PopulateGrid<TDataModel>(
-            DataGridView grid,
-            IEnumerable<TDataModel> list,
-            Action formatGrid
-        )
-        {
-            grid.DataSource = list.ToList();
-
-            formatGrid();
-        }
-
-        private static void DisableColumns(
-            DataGridView grid,
-            IEnumerable<string> columnNames
-        )
-        {
-            foreach (var columnName in columnNames)
-            {
-                grid.Columns[columnName].Visible = false;
-            }
-        }
-
-        private void ChangeButtonSelectedStatus(Control button)
-        {
-            button.Font = button.Font = new Font(button.Font, FontStyle.Bold);
-            button.BackColor = SystemColors.ActiveCaption;
-
-            foreach (Control control in Controls)
-            {
-                if (!(control is Button) || control.Name == button.Name)
-                {
-                    continue;
-                }
-
-                control.Font = new Font(control.Font, FontStyle.Regular);
-                control.BackColor = SystemColors.ControlLight;
-            }
-        }
-
-        private void ChangeLanguage(string language)
-        {
-            if (Equals(CultureInfo.CurrentCulture, CultureInfo.GetCultureInfo(language)))
-            {
-                return;
-            }
-
-            CultureInfo.CurrentCulture = new CultureInfo(language);
-
-            FrmMain_Load(null, EventArgs.Empty);
-        }
+        #endregion
 
         #region Categories
 
@@ -222,7 +244,7 @@ namespace BudgetManagementApp
 
         private void BtnDeleteCategory_Click(object sender, EventArgs e)
         {
-            if (DisplayQuestionMessage(StringResources.DeleteQuestion) != DialogResult.Yes)
+            if (!DisplayQuestionMessage(StringResources.DeleteQuestion).IsYesResponse())
                 return;
 
             var result = categoryService.Delete(
@@ -283,9 +305,7 @@ namespace BudgetManagementApp
                     "CategoryId", "Id", "Action", "DeletedOn", "InUse",
                 });
             }
-            catch
-            {
-            }
+            catch { }
         }
 
         private void SetCategoryDetailsData(DataGridView grid)
@@ -297,9 +317,10 @@ namespace BudgetManagementApp
 
                 SetControlsStatus(
                     !grid.GetSelectedRowValue<bool>("InUse"),
-                    BtnModifyCategory,
                     BtnDeleteCategory
                 );
+
+                SetControlsStatus(true, BtnModifyCategory);
 
                 return;
             }
@@ -307,7 +328,7 @@ namespace BudgetManagementApp
             TxtCategoryId.Text = grid.GetRowValue<int>(0, "CategoryId").ToString();
             TxtCategoryDescription.Text = grid.GetRowValue<string>(0, "Description");
 
-            SetControlsStatus(false, BtnModifyCategory, BtnDeleteCategory);
+            SetControlsStatus(false, BtnDeleteCategory);
         }
 
         private void HandleCategories(BaseViewModel result)
@@ -326,12 +347,10 @@ namespace BudgetManagementApp
 
         private void HandleCategoryMaintenance()
         {
-            if (categoryMaintenance.ShowDialog() != DialogResult.OK)
+            if (!categoryMaintenance.ShowDialog().IsOkResponse())
                 return;
 
-            var result = categoryService.GetAll();
-
-            HandleCategories(result);
+            HandleCategories(categoryService.GetAll());
 
             TxtCategoryFilter.Clear();
         }

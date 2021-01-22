@@ -12,7 +12,6 @@ namespace BudgetManagementApp.Entities.ViewModels.Categories
         /// </summary>
         public int CategoryId => Id;
 
-        [DisplayNameFromResources(nameof(Description))]
         public string Description { get; set; }
 
         public IEnumerable<string> Validate()
