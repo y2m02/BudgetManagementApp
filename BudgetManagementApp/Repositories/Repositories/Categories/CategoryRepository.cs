@@ -27,22 +27,11 @@ namespace BudgetManagementApp.Repositories.Repositories.Categories
 
         public void Update(Category category)
         {
-            Context.Categories.Attach(category);
-
-            AddPropertiesToModify(category, new List<string>
-            {
-                nameof(category.Description),
-            });
-
-            Save();
-
-            Detach(category);
+            base.Update(category);
         }
 
         public void Delete(Category category)
         {
-            Context.Categories.Attach(category);
-
             base.Delete(category);
         }
     }

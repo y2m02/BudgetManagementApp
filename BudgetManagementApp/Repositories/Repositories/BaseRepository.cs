@@ -23,9 +23,26 @@ namespace BudgetManagementApp.Repositories.Repositories
         {
             Context.Entry(entity).State = EntityState.Added;
 
-            Save();
+            SaveChangesAndDetach(entity);
+        }
 
-            Detach(entity);
+        public void Update<T>(T entity)
+        {
+            Context.Entry(entity).State = EntityState.Modified;
+
+            SaveChangesAndDetach(entity);
+        }
+
+        protected void Delete<T>(T entity) where T : IDeletable
+        {
+            Context.Entry(entity).State = EntityState.Modified;
+            
+            SaveChangesAndDetach(entity);
+        }
+
+        protected void Detach<T>(T entity)
+        {
+            Context.Entry(entity).State = EntityState.Detached;
         }
 
         protected void AddPropertiesToModify<T>(T entity, List<string> properties)
@@ -36,21 +53,11 @@ namespace BudgetManagementApp.Repositories.Repositories
             });
         }
 
-        protected void Delete<T>(T entity) where T : IDeletable
+        private void SaveChangesAndDetach<T>(T entity)
         {
-            AddPropertiesToModify(entity, new List<string>
-            {
-                nameof(entity.DeletedOn),
-            });
-
             Save();
 
             Detach(entity);
-        }
-
-        protected void Detach<T>(T entity)
-        {
-            Context.Entry(entity).State = EntityState.Detached;
         }
     }
 }

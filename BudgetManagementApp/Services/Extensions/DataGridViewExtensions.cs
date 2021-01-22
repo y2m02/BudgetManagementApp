@@ -110,5 +110,15 @@ namespace BudgetManagementApp.Services.Extensions
         {
             return grid.SelectedRows.Count > 0;
         }
+
+        public static DataGridViewRow FirstRow(this DataGridView grid)
+        {
+            return grid.GetRow(0);
+        }
+
+        public static T FirstRow<T>(this DataGridView grid, string columnName)
+        {
+            return grid.GetRowValue<T>(0, columnName);
+        }
     }
 }
