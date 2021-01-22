@@ -59,6 +59,11 @@ namespace BudgetManagementApp
                     name.Substring(prefix, name.Length - prefix)
                 );
             }
+
+            SetColumnNames(DgvCategories, new Dictionary<string, string>
+            {
+                ["Description"] = StringResourcesHandler.GetString("Description"),
+            });
         }
 
         #region Private Methods
@@ -110,9 +115,21 @@ namespace BudgetManagementApp
             }
 
             CultureInfo.CurrentCulture = new CultureInfo(language);
+            StringResources.Culture = CultureInfo.CurrentCulture;
 
-            FrmMain_Load(null, EventArgs.Empty);
+            SetLabels();
         }
+
+        private static void SetColumnNames(DataGridView grid, Dictionary<string, string> columnNames)
+        {
+            if (!grid.HasDataSource()) return;
+
+            foreach (var columnName in columnNames)
+            {
+                grid.Columns[columnName.Key].HeaderText = columnName.Value;
+            }
+        }
+
         #endregion
 
         #region Control Methods
@@ -121,9 +138,9 @@ namespace BudgetManagementApp
         {
             StringResources.Culture = CultureInfo.CurrentCulture;
 
-            SetLabels();
-
             HandleCategories(categoryService.GetAll());
+
+            SetLabels();
         }
 
         private void BtnBudgetManagement_Click(object sender, EventArgs e)
@@ -290,9 +307,7 @@ namespace BudgetManagementApp
                     "CategoryId", "Id", "Action", "DeletedOn", "InUse",
                 });
             }
-            catch
-            {
-            }
+            catch { }
         }
 
         private void SetCategoryDetailsData(DataGridView grid)
