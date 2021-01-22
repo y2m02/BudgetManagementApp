@@ -325,7 +325,7 @@ namespace BudgetManagementApp
             TxtCategoryId.Text = grid.GetRowValue<int>(0, "CategoryId").ToString();
             TxtCategoryDescription.Text = grid.GetRowValue<string>(0, "Description");
 
-            SetControlsStatus(false, BtnDeleteCategory);
+            SetControlsStatus(false, BtnModifyCategory, BtnDeleteCategory);
         }
 
         private void HandleCategories(BaseViewModel result)
