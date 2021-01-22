@@ -106,6 +106,7 @@ namespace BudgetManagementApp.Forms
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FrmCategoryMaintenance";
             this.Text = "FrmCategoryMaintenance";
+            this.Load += new System.EventHandler(this.FrmCategoryMaintenance_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

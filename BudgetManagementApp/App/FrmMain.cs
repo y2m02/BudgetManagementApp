@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using BudgetManagementApp.Entities.ViewModels;
 using BudgetManagementApp.Entities.ViewModels.Categories;
 using BudgetManagementApp.Forms;
+using BudgetManagementApp.Resources;
 using BudgetManagementApp.Resources.Properties;
 using BudgetManagementApp.Services.Extensions;
 using BudgetManagementApp.Services.Services.Categories;
@@ -25,11 +26,8 @@ namespace BudgetManagementApp
         {
             this.categoryMaintenance = categoryMaintenance;
             this.categoryService = categoryService;
+
             InitializeComponent();
-
-            StringResources.Culture = CultureInfo.CurrentCulture;
-
-            SetLabels();
         }
 
         private List<CategoryViewModel> Categories { get; set; }
@@ -39,14 +37,36 @@ namespace BudgetManagementApp
             Text = StringResources.BudgetManagement;
 
             LoopControlsToSetLabels(Controls);
-
             LoopControlsToSetLabels(TclBudgetManagement.Controls);
-
             LoopControlsToSetLabels(TabCategories.Controls);
+
+            foreach (ToolStripMenuItem menu in MsMainMenu.Items)
+            {
+                SetMenuLabels(menu);
+
+                foreach (ToolStripMenuItem item in menu.DropDownItems)
+                {
+                    SetMenuLabels(item);
+                }
+            }
+
+            void SetMenuLabels(ToolStripMenuItem control)
+            {
+                var name = control.Name;
+                const int prefix = 2;
+
+                control.Text = StringResourcesHandler.GetString(
+                    name.Substring(prefix, name.Length - prefix)
+                );
+            }
         }
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
+            StringResources.Culture = CultureInfo.CurrentCulture;
+
+            SetLabels();
+
             HandleCategories(categoryService.GetAll());
         }
 
@@ -78,6 +98,46 @@ namespace BudgetManagementApp
         {
             TclBudgetManagement.SelectedIndex = 4;
             ChangeButtonSelectedStatus(BtnSubtypes);
+        }
+
+        private void TclBudgetManagement_Click(object sender, EventArgs e)
+        {
+            switch (TclBudgetManagement.SelectedIndex)
+            {
+                case 0:
+                    ChangeButtonSelectedStatus(BtnBudgetManagement);
+                    break;
+
+                case 1:
+                    ChangeButtonSelectedStatus(BtnProjects);
+                    break;
+
+                case 2:
+                    ChangeButtonSelectedStatus(BtnCategories);
+                    break;
+
+                case 3:
+                    ChangeButtonSelectedStatus(BtnTypes);
+                    break;
+
+                case 4:
+                    ChangeButtonSelectedStatus(BtnSubtypes);
+                    break;
+            }
+        }
+
+        private void MiSpanish_Click(object sender, EventArgs e)
+        {
+            ChangeLanguage("es-ES");
+        }
+
+        private void MiEnglish_Click(object sender, EventArgs e)
+        {
+            ChangeLanguage("en-US");
+        }
+        private void MiClose_Click(object sender, EventArgs e)
+        {
+            Close();
         }
 
         private static void PopulateGrid<TDataModel>(
@@ -117,6 +177,18 @@ namespace BudgetManagementApp
                 control.Font = new Font(control.Font, FontStyle.Regular);
                 control.BackColor = SystemColors.ControlLight;
             }
+        }
+
+        private void ChangeLanguage(string language)
+        {
+            if (Equals(CultureInfo.CurrentCulture, CultureInfo.GetCultureInfo(language)))
+            {
+                return;
+            }
+
+            CultureInfo.CurrentCulture = new CultureInfo(language);
+
+            FrmMain_Load(null, EventArgs.Empty);
         }
 
         #region Categories
@@ -265,31 +337,5 @@ namespace BudgetManagementApp
         }
 
         #endregion
-
-        private void TclBudgetManagement_Click(object sender, EventArgs e)
-        {
-            switch (TclBudgetManagement.SelectedIndex)
-            {
-                case 0:
-                    ChangeButtonSelectedStatus(BtnBudgetManagement);
-                    break;
-
-                case 1:
-                    ChangeButtonSelectedStatus(BtnProjects);
-                    break;
-
-                case 2:
-                    ChangeButtonSelectedStatus(BtnCategories);
-                    break;
-
-                case 3:
-                    ChangeButtonSelectedStatus(BtnTypes);
-                    break;
-
-                case 4:
-                    ChangeButtonSelectedStatus(BtnSubtypes);
-                    break;
-            }
-        }
     }
 }

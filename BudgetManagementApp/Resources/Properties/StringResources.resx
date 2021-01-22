@@ -135,6 +135,9 @@
   <data name="CategoryMaintenance" xml:space="preserve">
     <value>Categories Maintenance</value>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
   <data name="DeleteCategory" xml:space="preserve">
     <value>Delete</value>
   </data>
@@ -144,14 +147,23 @@
   <data name="Description" xml:space="preserve">
     <value>Description</value>
   </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+  </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
   </data>
   <data name="FieldRequired" xml:space="preserve">
     <value>The field {0} is required.</value>
   </data>
+  <data name="File" xml:space="preserve">
+    <value>File</value>
+  </data>
   <data name="Information" xml:space="preserve">
     <value>Information</value>
+  </data>
+  <data name="Languages" xml:space="preserve">
+    <value>Languages</value>
   </data>
   <data name="ModifyCategory" xml:space="preserve">
     <value>Modify</value>
@@ -173,6 +185,9 @@
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
+  </data>
+  <data name="Spanish" xml:space="preserve">
+    <value>Spanish</value>
   </data>
   <data name="Subtypes" xml:space="preserve">
     <value>Sub-types</value>
