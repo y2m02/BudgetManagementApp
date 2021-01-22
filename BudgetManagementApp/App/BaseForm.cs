@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using BudgetManagementApp.Resources;
@@ -60,16 +61,23 @@ namespace BudgetManagementApp
 
         protected void LoopControlsToSetLabels(IEnumerable controls)
         {
-            string[] controlsToSetLabels = { "Lbl", "Btn", "Tab" };
+            const int prefix = 3;
+
+            var controlsToSetLabels = new Dictionary<string, string>
+            {
+                ["Labels"] = "Lbl",
+                ["Buttons"] = "Btn",
+                ["Tabs"] = "Tab",
+            };
 
             foreach (Control control in controls)
             {
                 var name = control.Name;
 
-                if (controlsToSetLabels.Any(c => name.StartsWith(c)))
+                if (controlsToSetLabels.Values.Any(ctrl => name.StartsWith(ctrl)))
                 {
                     control.Text = StringResourcesHandler.GetString(
-                        name.Substring(3, name.Length - 3)
+                        name.Substring(prefix, name.Length - prefix)
                     );
                 }
             }

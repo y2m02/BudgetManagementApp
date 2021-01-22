@@ -16,7 +16,10 @@ namespace BudgetManagementApp.Forms
             this.categoryService = categoryService;
 
             InitializeComponent();
+        }
 
+        private void FrmCategoryMaintenance_Load(object sender, EventArgs e)
+        {
             SetLabels();
         }
 
