@@ -24,6 +24,8 @@ namespace BudgetManagementApp.Repositories.Repositories
             Context.Entry(entity).State = EntityState.Added;
 
             Save();
+
+            Detach(entity);
         }
 
         protected void AddPropertiesToModify<T>(T entity, List<string> properties)

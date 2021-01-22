@@ -31,7 +31,7 @@ namespace BudgetManagementApp
         }
 
         private List<CategoryViewModel> Categories { get; set; }
-        
+
         protected sealed override void SetLabels()
         {
             Text = StringResources.BudgetManagement;
@@ -62,7 +62,7 @@ namespace BudgetManagementApp
         }
 
         #region Private Methods
-        
+
         private static void PopulateGrid<TDataModel>(
             DataGridView grid,
             IEnumerable<TDataModel> list,
@@ -229,7 +229,7 @@ namespace BudgetManagementApp
 
         private void BtnDeleteCategory_Click(object sender, EventArgs e)
         {
-            if (DisplayQuestionMessage(StringResources.DeleteQuestion) != DialogResult.Yes)
+            if (!DisplayQuestionMessage(StringResources.DeleteQuestion).IsYesResponse())
                 return;
 
             var result = categoryService.Delete(
@@ -304,9 +304,10 @@ namespace BudgetManagementApp
 
                 SetControlsStatus(
                     !grid.GetSelectedRowValue<bool>("InUse"),
-                    BtnModifyCategory,
                     BtnDeleteCategory
                 );
+
+                SetControlsStatus(true, BtnModifyCategory);
 
                 return;
             }
@@ -314,7 +315,7 @@ namespace BudgetManagementApp
             TxtCategoryId.Text = grid.GetRowValue<int>(0, "CategoryId").ToString();
             TxtCategoryDescription.Text = grid.GetRowValue<string>(0, "Description");
 
-            SetControlsStatus(false, BtnModifyCategory, BtnDeleteCategory);
+            SetControlsStatus(false, BtnDeleteCategory);
         }
 
         private void HandleCategories(BaseViewModel result)
@@ -333,12 +334,10 @@ namespace BudgetManagementApp
 
         private void HandleCategoryMaintenance()
         {
-            if (categoryMaintenance.ShowDialog() != DialogResult.OK)
+            if (!categoryMaintenance.ShowDialog().IsOkResponse())
                 return;
 
-            var result = categoryService.GetAll();
-
-            HandleCategories(result);
+            HandleCategories(categoryService.GetAll());
 
             TxtCategoryFilter.Clear();
         }
