@@ -50,6 +50,11 @@ namespace BudgetManagementApp
                 }
             }
 
+            SetColumnNames(DgvCategories, new Dictionary<string, string>
+            {
+                ["Description"] = StringResourcesHandler.GetString("Description"),
+            });
+
             void SetMenuLabels(ToolStripMenuItem control)
             {
                 var name = control.Name;
@@ -59,11 +64,6 @@ namespace BudgetManagementApp
                     name.Substring(prefix, name.Length - prefix)
                 );
             }
-
-            SetColumnNames(DgvCategories, new Dictionary<string, string>
-            {
-                ["Description"] = StringResourcesHandler.GetString("Description"),
-            });
         }
 
         #region Private Methods
@@ -95,15 +95,12 @@ namespace BudgetManagementApp
             button.Font = button.Font = new Font(button.Font, FontStyle.Bold);
             button.BackColor = SystemColors.ActiveCaption;
 
-            foreach (Control control in Controls)
+            foreach (var btn in Controls.OfType<Button>()
+                .Where(b => b.Name != button.Name)
+            )
             {
-                if (!(control is Button) || control.Name == button.Name)
-                {
-                    continue;
-                }
-
-                control.Font = new Font(control.Font, FontStyle.Regular);
-                control.BackColor = SystemColors.ControlLight;
+                btn.Font = new Font(btn.Font, FontStyle.Regular);
+                btn.BackColor = SystemColors.ControlLight;
             }
         }
 
@@ -122,7 +119,8 @@ namespace BudgetManagementApp
 
         private static void SetColumnNames(DataGridView grid, Dictionary<string, string> columnNames)
         {
-            if (!grid.HasDataSource()) return;
+            if (!grid.HasDataSource())
+                return;
 
             foreach (var columnName in columnNames)
             {
