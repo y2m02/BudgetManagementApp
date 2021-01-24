@@ -6,6 +6,7 @@ using BudgetManagementApp.Entities.Models;
 using BudgetManagementApp.Mappings;
 using BudgetManagementApp.Repositories.Repositories.Base;
 using BudgetManagementApp.Services.Services;
+using BudgetManagementApp.Services.Services.Categories;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BudgetManagementApp.CompositionRoot
@@ -34,7 +35,7 @@ namespace BudgetManagementApp.CompositionRoot
             // Install-Package Scrutor
             services.Scan(scan =>
                 scan.FromAssemblies(
-                        typeof(BaseService).Assembly,
+                        typeof(CategoryService).Assembly,
                         typeof(BaseRepository).Assembly
                     )
                     .AddClasses(x => x.Where(

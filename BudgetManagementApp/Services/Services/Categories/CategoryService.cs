@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
-using BudgetManagementApp.Entities.Enums;
+﻿using AutoMapper;
 using BudgetManagementApp.Entities.Models;
 using BudgetManagementApp.Entities.ViewModels;
 using BudgetManagementApp.Entities.ViewModels.Categories;
+using BudgetManagementApp.Repositories.Repositories.Base;
 using BudgetManagementApp.Repositories.Repositories.Categories;
 
 namespace BudgetManagementApp.Services.Services.Categories
 {
-    public class CategoryService : BaseService, ICategoryService
+    public class CategoryService :
+        BaseService<CategoryViewModel, Category>,
+        ICategoryService
     {
         private readonly ICategoryRepository categoryRepository;
 
@@ -21,65 +21,16 @@ namespace BudgetManagementApp.Services.Services.Categories
             this.categoryRepository = categoryRepository;
         }
 
-        public BaseViewModel GetAll()
+        protected override IBaseRepository<Category> Repository => categoryRepository;
+
+        public new BaseViewModel Upsert(CategoryViewModel entity)
         {
-            return HandleErrors(() =>
-            {
-                return Success(
-                    Mapper.Map<IEnumerable<CategoryViewModel>>(
-                        categoryRepository.GetAll()
-                    )
-                );
-            });
+            return base.Upsert(entity);
         }
 
-        public BaseViewModel Create(CategoryViewModel category)
+        public BaseViewModel Delete(CategoryViewModel entity)
         {
-            return Upsert(category);
-        }
-
-        public BaseViewModel Update(CategoryViewModel category)
-        {
-            return Upsert(category);
-        }
-
-        public BaseViewModel Delete(CategoryViewModel category)
-        {
-            category.SetDeletedOn();
-
-            return Upsert(category);
-        }
-
-        public BaseViewModel Upsert(CategoryViewModel category)
-        {
-            return HandleErrors(
-                () =>
-                {
-                    var validations = category.Validate().ToList();
-
-                    if (validations.Any())
-                    {
-                        return new Validation(validations);
-                    }
-
-                    switch (category.Action)
-                    {
-                        case ActionType.Create:
-                            categoryRepository.Create(Mapper.Map<Category>(category));
-                            break;
-
-                        case ActionType.Update:
-                            categoryRepository.Update(Mapper.Map<Category>(category));
-                            break;
-
-                        case ActionType.Delete:
-                            categoryRepository.Delete(Mapper.Map<Category>(category));
-                            break;
-                    }
-
-                    return Success(true);
-                }
-            );
+            return Remove(entity);
         }
     }
 }

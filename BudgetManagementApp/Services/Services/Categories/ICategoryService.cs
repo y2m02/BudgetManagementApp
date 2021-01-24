@@ -1,15 +1,8 @@
-﻿using BudgetManagementApp.Entities.ViewModels;
-using BudgetManagementApp.Entities.ViewModels.Categories;
-using System.Threading.Tasks;
+﻿using BudgetManagementApp.Entities.ViewModels.Categories;
 
 namespace BudgetManagementApp.Services.Services.Categories
 {
-    public interface ICategoryService
+    public interface ICategoryService : IBaseService<CategoryViewModel>
     {
-        BaseViewModel GetAll();
-        BaseViewModel Create(CategoryViewModel category);
-        BaseViewModel Update(CategoryViewModel category);
-        BaseViewModel Upsert(CategoryViewModel category);
-        BaseViewModel Delete(CategoryViewModel category);
     }
 }
