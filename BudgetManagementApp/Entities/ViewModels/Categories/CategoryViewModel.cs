@@ -1,11 +1,11 @@
-﻿using BudgetManagementApp.Entities.Helpers;
-using BudgetManagementApp.Resources.Properties;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using BudgetManagementApp.Entities.ViewModels.Base;
 using BudgetManagementApp.Resources;
+using BudgetManagementApp.Resources.Properties;
 
 namespace BudgetManagementApp.Entities.ViewModels.Categories
 {
-    public class CategoryViewModel : BaseViewModel, IValidatable
+    public class CategoryViewModel : BaseViewModel
     {
         /// <summary>
         ///     This property's going to be set automatically.
@@ -15,12 +15,11 @@ namespace BudgetManagementApp.Entities.ViewModels.Categories
 
         public string Description { get; set; }
 
-        public IEnumerable<string> Validate()
+        public override IEnumerable<string> Validate()
         {
             if (string.IsNullOrEmpty(Description) ||
                 string.IsNullOrWhiteSpace(Description))
             {
-
                 yield return string.Format(
                     StringResources.FieldRequired,
                     StringResourcesHandler.GetString(nameof(Description))

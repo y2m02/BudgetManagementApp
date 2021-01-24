@@ -3,21 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using BudgetManagementApp.Entities.Enums;
-using BudgetManagementApp.Entities.Helpers;
 using BudgetManagementApp.Entities.ViewModels;
+using BudgetManagementApp.Entities.ViewModels.Base;
 using BudgetManagementApp.Repositories.Repositories.Base;
 
 namespace BudgetManagementApp.Services.Services
 {
-    public interface IBaseService<in TViewModel>
+    public interface IBaseService
     {
-        BaseViewModel GetAll();
-        BaseViewModel Upsert(TViewModel entity);
-        BaseViewModel Delete(TViewModel entity);
+        BaseReturnViewModel GetAll();
+        BaseReturnViewModel Upsert(BaseViewModel entity);
+        BaseReturnViewModel Delete(BaseViewModel entity);
     }
 
-    public abstract class BaseService<TViewModel, TModel>
-        where TViewModel : BaseViewModel, IValidatable
+    public abstract class BaseService<TModel, TViewModel>
     {
         private readonly IMapper mapper;
 
@@ -28,7 +27,7 @@ namespace BudgetManagementApp.Services.Services
 
         protected abstract IBaseRepository<TModel> Repository { get; }
 
-        public BaseViewModel GetAll()
+        public BaseReturnViewModel GetAll()
         {
             return HandleErrors(() =>
             {
@@ -40,14 +39,14 @@ namespace BudgetManagementApp.Services.Services
             });
         }
 
-        protected BaseViewModel Remove(TViewModel entity)
+        public BaseReturnViewModel Delete(BaseViewModel entity)
         {
             entity.SetDeletedOn();
 
             return Upsert(entity);
         }
 
-        protected BaseViewModel Upsert(TViewModel entity)
+        public BaseReturnViewModel Upsert(BaseViewModel entity)
         {
             return HandleErrors(
                 () =>
@@ -79,7 +78,7 @@ namespace BudgetManagementApp.Services.Services
             );
         }
 
-        protected static BaseViewModel HandleErrors(Func<BaseViewModel> executor)
+        protected static BaseReturnViewModel HandleErrors(Func<BaseReturnViewModel> executor)
         {
             try
             {
@@ -91,8 +90,8 @@ namespace BudgetManagementApp.Services.Services
             }
         }
 
-        protected BaseViewModel HandleErrors<T>(
-            Func<T, BaseViewModel> executor,
+        protected BaseReturnViewModel HandleErrors<T>(
+            Func<T, BaseReturnViewModel> executor,
             T request
         )
         {
@@ -106,7 +105,7 @@ namespace BudgetManagementApp.Services.Services
             }
         }
 
-        protected static BaseViewModel Success<T>(T model)
+        protected static BaseReturnViewModel Success<T>(T model)
         {
             return new Success<T>(model);
         }
