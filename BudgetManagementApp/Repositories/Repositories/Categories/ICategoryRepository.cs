@@ -1,14 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using BudgetManagementApp.Entities.Models;
+﻿using BudgetManagementApp.Entities.Models;
+using BudgetManagementApp.Repositories.Repositories.Base;
 
 namespace BudgetManagementApp.Repositories.Repositories.Categories
 {
-    public interface ICategoryRepository
+    public interface ICategoryRepository : IBaseRepository<Category>
     {
-        IEnumerable<Category> GetAll();
-        void Create(Category category);
-        void Update(Category category);
-        void Delete(Category category);
     }
 }
