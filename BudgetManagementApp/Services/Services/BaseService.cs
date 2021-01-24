@@ -1,19 +1,84 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
+using BudgetManagementApp.Entities.Enums;
 using BudgetManagementApp.Entities.ViewModels;
+using BudgetManagementApp.Entities.ViewModels.Base;
+using BudgetManagementApp.Repositories.Repositories.Base;
 
 namespace BudgetManagementApp.Services.Services
 {
-    public abstract class BaseService
+    public interface IBaseService
     {
-        protected readonly IMapper Mapper;
+        BaseReturnViewModel GetAll();
+        BaseReturnViewModel Upsert(BaseViewModel entity);
+        BaseReturnViewModel Delete(BaseViewModel entity);
+    }
+
+    public abstract class BaseService<TModel, TViewModel>
+    {
+        private readonly IMapper mapper;
 
         protected BaseService(IMapper mapper)
         {
-            Mapper = mapper;
+            this.mapper = mapper;
         }
 
-        protected static BaseViewModel HandleErrors(Func<BaseViewModel> executor)
+        protected abstract IBaseRepository<TModel> Repository { get; }
+
+        public BaseReturnViewModel GetAll()
+        {
+            return HandleErrors(() =>
+            {
+                return Success(
+                    mapper.Map<IEnumerable<TViewModel>>(
+                        Repository.GetAll()
+                    )
+                );
+            });
+        }
+
+        public BaseReturnViewModel Delete(BaseViewModel entity)
+        {
+            entity.SetDeletedOn();
+
+            return Upsert(entity);
+        }
+
+        public BaseReturnViewModel Upsert(BaseViewModel entity)
+        {
+            return HandleErrors(
+                () =>
+                {
+                    var validations = entity.Validate().ToList();
+
+                    if (validations.Any())
+                    {
+                        return new Validation(validations);
+                    }
+
+                    switch (entity.Action)
+                    {
+                        case ActionType.Create:
+                            Repository.Create(mapper.Map<TModel>(entity));
+                            break;
+
+                        case ActionType.Update:
+                            Repository.Update(mapper.Map<TModel>(entity));
+                            break;
+
+                        case ActionType.Delete:
+                            Repository.Delete(mapper.Map<TModel>(entity));
+                            break;
+                    }
+
+                    return Success(true);
+                }
+            );
+        }
+
+        protected static BaseReturnViewModel HandleErrors(Func<BaseReturnViewModel> executor)
         {
             try
             {
@@ -25,8 +90,8 @@ namespace BudgetManagementApp.Services.Services
             }
         }
 
-        protected BaseViewModel HandleErrors<T>(
-            Func<T, BaseViewModel> executor,
+        protected BaseReturnViewModel HandleErrors<T>(
+            Func<T, BaseReturnViewModel> executor,
             T request
         )
         {
@@ -40,7 +105,7 @@ namespace BudgetManagementApp.Services.Services
             }
         }
 
-        protected static BaseViewModel Success<T>(T model)
+        protected static BaseReturnViewModel Success<T>(T model)
         {
             return new Success<T>(model);
         }

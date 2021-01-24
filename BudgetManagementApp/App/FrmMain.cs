@@ -11,6 +11,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
+using BudgetManagementApp.Entities.ViewModels.Base;
 
 namespace BudgetManagementApp
 {
@@ -328,7 +329,7 @@ namespace BudgetManagementApp
             SetControlsStatus(false, BtnModifyCategory, BtnDeleteCategory);
         }
 
-        private void HandleCategories(BaseViewModel result)
+        private void HandleCategories(BaseReturnViewModel result)
         {
             if (result.IsSuccess<IEnumerable<CategoryViewModel>>())
             {
