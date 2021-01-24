@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Linq;
 using BudgetManagementApp.Entities.Models;
+using BudgetManagementApp.Repositories.Repositories.Base;
 
 namespace BudgetManagementApp.Repositories.Repositories.Categories
 {
@@ -20,19 +21,19 @@ namespace BudgetManagementApp.Repositories.Repositories.Categories
                 .AsNoTracking();
         }
 
-        public void Create(Category category)
+        public void Create(Category entity)
         {
-            base.Create(category);
+            Add(entity);
         }
 
-        public void Update(Category category)
+        public void Update(Category entity)
         {
-            base.Update(category);
+            Modify(entity);
         }
 
-        public void Delete(Category category)
+        public void Delete(Category entity)
         {
-            base.Delete(category);
+            Remove(entity);
         }
     }
 }
