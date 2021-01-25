@@ -6,7 +6,9 @@ using BudgetManagementApp.Repositories.Repositories.Base;
 
 namespace BudgetManagementApp.Repositories.Repositories.Types
 {
-    public class TypeRepository : BaseRepository, ITypeRepository
+    public class TypeRepository :
+        BaseRepository<Type>,
+        ITypeRepository
     {
         public TypeRepository(
             BudgetManagementAppContext context

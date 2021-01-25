@@ -4,7 +4,7 @@ using BudgetManagementApp.Entities.Models;
 
 namespace BudgetManagementApp.Repositories.Repositories.Base
 {
-    public abstract class BaseRepository
+    public abstract class BaseRepository<TModel>
     {
         protected BaseRepository(BudgetManagementAppContext context)
         {
@@ -13,26 +13,26 @@ namespace BudgetManagementApp.Repositories.Repositories.Base
 
         protected BudgetManagementAppContext Context { get; }
 
-        protected void Add<TModel>(TModel entity)
+        protected void Add(TModel entity)
         {
             Context.Entry(entity).State = EntityState.Added;
 
             SaveChangesAndDetach(entity);
         }
 
-        protected void Modify<TModel>(TModel entity)
+        protected void Modify(TModel entity)
         {
             Context.Entry(entity).State = EntityState.Modified;
 
             SaveChangesAndDetach(entity);
         }
 
-        protected void Remove<TModel>(TModel entity)
+        protected void Remove(TModel entity)
         {
             Modify(entity);
         }
 
-        protected void AddPropertiesToModify<TModel>(TModel entity, List<string> properties)
+        protected void AddPropertiesToModify(TModel entity, List<string> properties)
         {
             properties.ForEach(propertyName =>
             {
@@ -40,7 +40,7 @@ namespace BudgetManagementApp.Repositories.Repositories.Base
             });
         }
 
-        private void SaveChangesAndDetach<TModel>(TModel entity)
+        private void SaveChangesAndDetach(TModel entity)
         {
             Context.SaveChanges();
 
