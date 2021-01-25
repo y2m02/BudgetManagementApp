@@ -4,8 +4,7 @@ using System.Linq;
 using AutoMapper;
 using BudgetManagementApp.Entities.Models;
 using BudgetManagementApp.Mappings;
-using BudgetManagementApp.Repositories.Repositories.Base;
-using BudgetManagementApp.Services.Services;
+using BudgetManagementApp.Repositories.Repositories.Categories;
 using BudgetManagementApp.Services.Services.Categories;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -36,7 +35,7 @@ namespace BudgetManagementApp.CompositionRoot
             services.Scan(scan =>
                 scan.FromAssemblies(
                         typeof(CategoryService).Assembly,
-                        typeof(BaseRepository).Assembly
+                        typeof(CategoryRepository).Assembly
                     )
                     .AddClasses(x => x.Where(
                             c => names.Any(

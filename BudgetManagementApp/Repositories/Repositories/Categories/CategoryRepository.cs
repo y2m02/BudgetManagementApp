@@ -6,7 +6,9 @@ using BudgetManagementApp.Repositories.Repositories.Base;
 
 namespace BudgetManagementApp.Repositories.Repositories.Categories
 {
-    public class CategoryRepository : BaseRepository, ICategoryRepository
+    public class CategoryRepository : 
+        BaseRepository<Category>, 
+        ICategoryRepository
     {
         public CategoryRepository(BudgetManagementAppContext context) : base(context)
         {
