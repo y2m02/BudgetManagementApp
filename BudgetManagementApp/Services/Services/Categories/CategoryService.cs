@@ -3,6 +3,7 @@ using BudgetManagementApp.Entities.Models;
 using BudgetManagementApp.Entities.ViewModels.Categories;
 using BudgetManagementApp.Repositories.Repositories.Base;
 using BudgetManagementApp.Repositories.Repositories.Categories;
+using BudgetManagementApp.Services.Services.Base;
 
 namespace BudgetManagementApp.Services.Services.Categories
 {

@@ -3,19 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using BudgetManagementApp.Entities.Enums;
-using BudgetManagementApp.Entities.ViewModels;
 using BudgetManagementApp.Entities.ViewModels.Base;
 using BudgetManagementApp.Repositories.Repositories.Base;
 
-namespace BudgetManagementApp.Services.Services
+namespace BudgetManagementApp.Services.Services.Base
 {
-    public interface IBaseService
-    {
-        BaseReturnViewModel GetAll();
-        BaseReturnViewModel Upsert(BaseViewModel entity);
-        BaseReturnViewModel Delete(BaseViewModel entity);
-    }
-
     public abstract class BaseService<TModel, TViewModel>
     {
         private readonly IMapper mapper;
