@@ -1,20 +1,18 @@
-﻿using BudgetManagementApp.Entities.ViewModels;
-using BudgetManagementApp.Entities.ViewModels.Categories;
-using BudgetManagementApp.Forms;
-using BudgetManagementApp.Resources;
-using BudgetManagementApp.Resources.Properties;
-using BudgetManagementApp.Services.Extensions;
-using BudgetManagementApp.Services.Services.Categories;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using BudgetManagementApp.Entities.ViewModels.Base;
+using BudgetManagementApp.Entities.ViewModels.Categories;
 using BudgetManagementApp.Forms.Categories;
+using BudgetManagementApp.Resources;
+using BudgetManagementApp.Resources.Properties;
+using BudgetManagementApp.Services.Extensions;
+using BudgetManagementApp.Services.Services.Categories;
 
-namespace BudgetManagementApp
+namespace BudgetManagementApp.Forms.Base
 {
     public partial class FrmMain : BaseForm
     {
