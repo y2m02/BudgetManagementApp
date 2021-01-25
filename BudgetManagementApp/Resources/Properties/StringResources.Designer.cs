@@ -151,6 +151,15 @@ namespace BudgetManagementApp.Resources.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string DeleteType {
+            get {
+                return ResourceManager.GetString("DeleteType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string Description {
@@ -223,11 +232,29 @@ namespace BudgetManagementApp.Resources.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Modify.
+        /// </summary>
+        public static string ModifyType {
+            get {
+                return ResourceManager.GetString("ModifyType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New.
         /// </summary>
         public static string NewCategory {
             get {
                 return ResourceManager.GetString("NewCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New.
+        /// </summary>
+        public static string NewType {
+            get {
+                return ResourceManager.GetString("NewType", resourceCulture);
             }
         }
         
@@ -291,6 +318,42 @@ namespace BudgetManagementApp.Resources.Properties {
         public static string Subtypes {
             get {
                 return ResourceManager.GetString("Subtypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Category.
+        /// </summary>
+        public static string TypeCategory {
+            get {
+                return ResourceManager.GetString("TypeCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string TypeDescription {
+            get {
+                return ResourceManager.GetString("TypeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search:.
+        /// </summary>
+        public static string TypeFilter {
+            get {
+                return ResourceManager.GetString("TypeFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Types Maintenance.
+        /// </summary>
+        public static string TypeMaintenance {
+            get {
+                return ResourceManager.GetString("TypeMaintenance", resourceCulture);
             }
         }
         

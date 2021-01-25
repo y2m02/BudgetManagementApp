@@ -663,6 +663,7 @@ namespace BudgetManagementApp.Forms.Base
             this.BtnDeleteType.TabIndex = 44;
             this.BtnDeleteType.Text = "Eliminar";
             this.BtnDeleteType.UseVisualStyleBackColor = true;
+            this.BtnDeleteType.Click += new System.EventHandler(this.BtnDeleteType_Click);
             // 
             // BtnModifyType
             // 
@@ -674,6 +675,7 @@ namespace BudgetManagementApp.Forms.Base
             this.BtnModifyType.TabIndex = 43;
             this.BtnModifyType.Text = "Modificar";
             this.BtnModifyType.UseVisualStyleBackColor = true;
+            this.BtnModifyType.Click += new System.EventHandler(this.BtnModifyType_Click);
             // 
             // BtnNewType
             // 
@@ -684,6 +686,7 @@ namespace BudgetManagementApp.Forms.Base
             this.BtnNewType.TabIndex = 42;
             this.BtnNewType.Text = "Nuevo";
             this.BtnNewType.UseVisualStyleBackColor = true;
+            this.BtnNewType.Click += new System.EventHandler(this.BtnNewType_Click);
             // 
             // TxtTypeFilter
             // 
@@ -693,6 +696,7 @@ namespace BudgetManagementApp.Forms.Base
             this.TxtTypeFilter.Name = "TxtTypeFilter";
             this.TxtTypeFilter.Size = new System.Drawing.Size(201, 27);
             this.TxtTypeFilter.TabIndex = 41;
+            this.TxtTypeFilter.TextChanged += new System.EventHandler(this.TxtTypeFilter_TextChanged);
             // 
             // DgvTypes
             // 
@@ -712,6 +716,7 @@ namespace BudgetManagementApp.Forms.Base
             this.DgvTypes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvTypes.Size = new System.Drawing.Size(667, 356);
             this.DgvTypes.TabIndex = 40;
+            this.DgvTypes.SelectionChanged += new System.EventHandler(this.DgvTypes_SelectionChanged);
             // 
             // LblTypeCategory
             // 

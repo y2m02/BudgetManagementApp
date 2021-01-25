@@ -46,6 +46,7 @@ namespace BudgetManagementApp.Forms.Base
             LoopControlsToSetLabels(Controls);
             LoopControlsToSetLabels(TclBudgetManagement.Controls);
             LoopControlsToSetLabels(TabCategories.Controls);
+            LoopControlsToSetLabels(TabTypes.Controls);
 
             foreach (ToolStripMenuItem menu in MsMainMenu.Items)
             {
@@ -60,6 +61,12 @@ namespace BudgetManagementApp.Forms.Base
             SetColumnNames(DgvCategories, new Dictionary<string, string>
             {
                 ["Description"] = StringResourcesHandler.GetString("Description"),
+            });
+
+            SetColumnNames(DgvTypes, new Dictionary<string, string>
+            {
+                ["Description"] = StringResourcesHandler.GetString("Description"),
+                ["CategoryDescription"] = StringResourcesHandler.GetString("Category"),
             });
 
             void SetMenuLabels(ToolStripMenuItem control)
@@ -141,6 +148,7 @@ namespace BudgetManagementApp.Forms.Base
         private void FrmMain_Load(object sender, EventArgs e)
         {
             HandleCategories(categoryService.GetAll());
+            HandleTypes(typeService.GetAll());
 
             SetAppLabels();
         }
@@ -288,7 +296,7 @@ namespace BudgetManagementApp.Forms.Base
 
             PopulateGrid(DgvCategories, Categories, FormatCategories);
 
-            if (!DgvCategories.HasValue())
+            if (!DgvCategories.IsEmpty())
                 return;
 
             DgvCategories.SetSelectedRow(0);
@@ -299,7 +307,7 @@ namespace BudgetManagementApp.Forms.Base
 
         private void FormatCategories()
         {
-            if (DgvCategories.IsEmpty())
+            if (!DgvCategories.HasDataSource())
                 return;
 
             try
@@ -363,25 +371,6 @@ namespace BudgetManagementApp.Forms.Base
 
         #region Types
 
-        //private void TxtCategoryFilter_TextChanged(object sender, EventArgs e)
-        //{
-        //    var text = TxtCategoryFilter.Text;
-
-        //    var categories = new List<CategoryViewModel>(Categories);
-
-        //    if (text.HasValue())
-        //    {
-        //        categories = categories.Where(CategoryFilter).ToList();
-        //    }
-
-        //    PopulateGrid(DgvCategories, categories, FormatCategories);
-
-        //    bool CategoryFilter(CategoryViewModel category)
-        //    {
-        //        return category.Description.Contains(TxtCategoryFilter.Text);
-        //    }
-        //}
-
         //private void BtnNewCategory_Click(object sender, EventArgs e)
         //{
         //    categoryMaintenance.TxtCategoryId.Clear();
@@ -421,10 +410,64 @@ namespace BudgetManagementApp.Forms.Base
         //    HandleCategoryMaintenance();
         //}
 
-        //private void DgvCategories_SelectionChanged(object sender, EventArgs e)
-        //{
-        //    SetCategoryDetailsData(DgvCategories);
-        //}
+        private void BtnNewType_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnModifyType_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnDeleteType_Click(object sender, EventArgs e)
+        {
+            if (!DisplayQuestionMessage(StringResources.DeleteQuestion).IsYesResponse())
+                return;
+
+            var result = typeService.Delete(
+                Types.Single(w => w.TypeId == TxtTypeId.Text.ToInt())
+            );
+
+            if (result.IsSuccess())
+            {
+                DisplayInformationMessage(StringResources.RecordDeleted);
+
+                HandleTypes(typeService.GetAll());
+
+                TxtTypeFilter.Clear();
+
+                return;
+            }
+
+            DisplayErrorMessage(result.GetFailureError());
+        }
+
+        private void TxtTypeFilter_TextChanged(object sender, EventArgs e)
+        {
+            var text = TxtTypeFilter.Text;
+
+            var types = new List<TypeViewModel>(Types);
+
+            if (text.HasValue())
+            {
+                types = types.Where(TypeFilter).ToList();
+            }
+
+            PopulateGrid(DgvTypes, types, FormatTypes);
+
+            bool TypeFilter(TypeViewModel type)
+            {
+                return 
+                    type.Description.Contains(text) ||
+                    type.CategoryDescription.Contains(text);
+            }
+        }
+        
+        private void DgvTypes_SelectionChanged(object sender, EventArgs e)
+        {
+            SetTypeDetailsData(DgvTypes);
+        }
 
         private void SetupTypes(IEnumerable<TypeViewModel> model)
         {
@@ -432,7 +475,7 @@ namespace BudgetManagementApp.Forms.Base
 
             PopulateGrid(DgvTypes, Types, FormatTypes);
 
-            if (!DgvTypes.HasValue())
+            if (DgvTypes.IsEmpty())
                 return;
 
             DgvTypes.SetSelectedRow(0);
@@ -445,7 +488,7 @@ namespace BudgetManagementApp.Forms.Base
 
         private void FormatTypes()
         {
-            if (DgvTypes.IsEmpty())
+            if (!DgvTypes.HasDataSource())
                 return;
 
             try
