@@ -1,5 +1,5 @@
 ﻿
-namespace BudgetManagementApp.Forms
+namespace BudgetManagementApp.Forms.Categories
 {
     partial class FrmCategoryMaintenance
     {

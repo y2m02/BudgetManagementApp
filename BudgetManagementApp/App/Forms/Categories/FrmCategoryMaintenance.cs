@@ -5,7 +5,7 @@ using BudgetManagementApp.Resources.Properties;
 using BudgetManagementApp.Services.Extensions;
 using BudgetManagementApp.Services.Services.Categories;
 
-namespace BudgetManagementApp.Forms
+namespace BudgetManagementApp.Forms.Categories
 {
     public partial class FrmCategoryMaintenance : BaseForm
     {

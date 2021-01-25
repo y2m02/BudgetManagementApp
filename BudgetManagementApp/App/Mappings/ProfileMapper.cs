@@ -2,6 +2,7 @@
 using AutoMapper;
 using BudgetManagementApp.Entities.Models;
 using BudgetManagementApp.Entities.ViewModels.Categories;
+using BudgetManagementApp.Entities.ViewModels.Types;
 
 namespace BudgetManagementApp.Mappings
 {
@@ -15,6 +16,15 @@ namespace BudgetManagementApp.Mappings
                 .ForMember(destination => destination.InUse,
                     member => member.MapFrom(field => field.Types.Any()));
             CreateMap<CategoryViewModel, Category>();
+         
+            CreateMap<Type, TypeViewModel>()
+                .ForMember(destination => destination.Id,
+                    member => member.MapFrom(field => field.TypeId))
+                .ForMember(destination => destination.CategoryDescription,
+                    member => member.MapFrom(field => field.Category.Description))
+                .ForMember(destination => destination.InUse,
+                    member => member.MapFrom(field => field.SubTypes.Any()));
+            CreateMap<TypeViewModel, Type>();
             //    .ForMember(destination => destination.Used,
             //        member => member.MapFrom(field => field.Assignments.Count > 0));
 

@@ -12,6 +12,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using BudgetManagementApp.Entities.ViewModels.Base;
+using BudgetManagementApp.Forms.Categories;
 
 namespace BudgetManagementApp
 {
