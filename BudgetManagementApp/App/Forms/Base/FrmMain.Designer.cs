@@ -80,10 +80,11 @@ namespace BudgetManagementApp.Forms.Base
             this.BtnNewType = new System.Windows.Forms.Button();
             this.TxtTypeFilter = new System.Windows.Forms.TextBox();
             this.DgvTypes = new System.Windows.Forms.DataGridView();
-            this.LblCategory = new System.Windows.Forms.Label();
-            this.TxtCategory = new System.Windows.Forms.TextBox();
+            this.LblTypeCategory = new System.Windows.Forms.Label();
+            this.TxtTypeCategory = new System.Windows.Forms.TextBox();
             this.LblTypeDescription = new System.Windows.Forms.Label();
             this.TxtTypeDescription = new System.Windows.Forms.TextBox();
+            this.TxtTypeCategoryId = new System.Windows.Forms.TextBox();
             this.TclBudgetManagement.SuspendLayout();
             this.TabBudgetManagement.SuspendLayout();
             this.PnlInformation.SuspendLayout();
@@ -529,6 +530,7 @@ namespace BudgetManagementApp.Forms.Base
             // TabTypes
             // 
             this.TabTypes.BackColor = System.Drawing.SystemColors.Control;
+            this.TabTypes.Controls.Add(this.TxtTypeCategoryId);
             this.TabTypes.Controls.Add(this.LblTypeDescription);
             this.TabTypes.Controls.Add(this.TxtTypeDescription);
             this.TabTypes.Controls.Add(this.TxtTypeId);
@@ -538,8 +540,8 @@ namespace BudgetManagementApp.Forms.Base
             this.TabTypes.Controls.Add(this.BtnNewType);
             this.TabTypes.Controls.Add(this.TxtTypeFilter);
             this.TabTypes.Controls.Add(this.DgvTypes);
-            this.TabTypes.Controls.Add(this.LblCategory);
-            this.TabTypes.Controls.Add(this.TxtCategory);
+            this.TabTypes.Controls.Add(this.LblTypeCategory);
+            this.TabTypes.Controls.Add(this.TxtTypeCategory);
             this.TabTypes.Location = new System.Drawing.Point(4, 28);
             this.TabTypes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TabTypes.Name = "TabTypes";
@@ -630,7 +632,7 @@ namespace BudgetManagementApp.Forms.Base
             // 
             // TxtTypeId
             // 
-            this.TxtTypeId.Location = new System.Drawing.Point(281, 22);
+            this.TxtTypeId.Location = new System.Drawing.Point(281, 97);
             this.TxtTypeId.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.TxtTypeId.MaxLength = 99;
             this.TxtTypeId.Name = "TxtTypeId";
@@ -643,7 +645,7 @@ namespace BudgetManagementApp.Forms.Base
             // 
             this.LblTypeFilter.AutoSize = true;
             this.LblTypeFilter.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblTypeFilter.Location = new System.Drawing.Point(401, 111);
+            this.LblTypeFilter.Location = new System.Drawing.Point(401, 133);
             this.LblTypeFilter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblTypeFilter.Name = "LblTypeFilter";
             this.LblTypeFilter.Size = new System.Drawing.Size(77, 24);
@@ -685,7 +687,7 @@ namespace BudgetManagementApp.Forms.Base
             // 
             // TxtTypeFilter
             // 
-            this.TxtTypeFilter.Location = new System.Drawing.Point(486, 108);
+            this.TxtTypeFilter.Location = new System.Drawing.Point(486, 130);
             this.TxtTypeFilter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TxtTypeFilter.MaxLength = 99;
             this.TxtTypeFilter.Name = "TxtTypeFilter";
@@ -711,26 +713,26 @@ namespace BudgetManagementApp.Forms.Base
             this.DgvTypes.Size = new System.Drawing.Size(667, 356);
             this.DgvTypes.TabIndex = 40;
             // 
-            // LblCategory
+            // LblTypeCategory
             // 
-            this.LblCategory.AutoSize = true;
-            this.LblCategory.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblCategory.Location = new System.Drawing.Point(16, 22);
-            this.LblCategory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LblCategory.Name = "LblCategory";
-            this.LblCategory.Size = new System.Drawing.Size(102, 24);
-            this.LblCategory.TabIndex = 39;
-            this.LblCategory.Text = "Categoría";
+            this.LblTypeCategory.AutoSize = true;
+            this.LblTypeCategory.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblTypeCategory.Location = new System.Drawing.Point(16, 22);
+            this.LblTypeCategory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblTypeCategory.Name = "LblTypeCategory";
+            this.LblTypeCategory.Size = new System.Drawing.Size(102, 24);
+            this.LblTypeCategory.TabIndex = 39;
+            this.LblTypeCategory.Text = "Categoría";
             // 
-            // TxtCategory
+            // TxtTypeCategory
             // 
-            this.TxtCategory.Location = new System.Drawing.Point(21, 54);
-            this.TxtCategory.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.TxtCategory.MaxLength = 99;
-            this.TxtCategory.Name = "TxtCategory";
-            this.TxtCategory.ReadOnly = true;
-            this.TxtCategory.Size = new System.Drawing.Size(290, 27);
-            this.TxtCategory.TabIndex = 38;
+            this.TxtTypeCategory.Location = new System.Drawing.Point(21, 54);
+            this.TxtTypeCategory.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtTypeCategory.MaxLength = 99;
+            this.TxtTypeCategory.Name = "TxtTypeCategory";
+            this.TxtTypeCategory.ReadOnly = true;
+            this.TxtTypeCategory.Size = new System.Drawing.Size(290, 27);
+            this.TxtTypeCategory.TabIndex = 38;
             // 
             // LblTypeDescription
             // 
@@ -752,6 +754,17 @@ namespace BudgetManagementApp.Forms.Base
             this.TxtTypeDescription.ReadOnly = true;
             this.TxtTypeDescription.Size = new System.Drawing.Size(290, 27);
             this.TxtTypeDescription.TabIndex = 47;
+            // 
+            // TxtTypeCategoryId
+            // 
+            this.TxtTypeCategoryId.Location = new System.Drawing.Point(281, 23);
+            this.TxtTypeCategoryId.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.TxtTypeCategoryId.MaxLength = 99;
+            this.TxtTypeCategoryId.Name = "TxtTypeCategoryId";
+            this.TxtTypeCategoryId.ReadOnly = true;
+            this.TxtTypeCategoryId.Size = new System.Drawing.Size(30, 27);
+            this.TxtTypeCategoryId.TabIndex = 49;
+            this.TxtTypeCategoryId.Visible = false;
             // 
             // FrmMain
             // 
@@ -847,7 +860,8 @@ namespace BudgetManagementApp.Forms.Base
         private System.Windows.Forms.Button BtnNewType;
         private System.Windows.Forms.TextBox TxtTypeFilter;
         private System.Windows.Forms.DataGridView DgvTypes;
-        private System.Windows.Forms.Label LblCategory;
-        private System.Windows.Forms.TextBox TxtCategory;
+        private System.Windows.Forms.Label LblTypeCategory;
+        private System.Windows.Forms.TextBox TxtTypeCategory;
+        public System.Windows.Forms.TextBox TxtTypeCategoryId;
     }
 }

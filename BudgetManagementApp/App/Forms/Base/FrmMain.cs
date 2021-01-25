@@ -6,11 +6,13 @@ using System.Linq;
 using System.Windows.Forms;
 using BudgetManagementApp.Entities.ViewModels.Base;
 using BudgetManagementApp.Entities.ViewModels.Categories;
+using BudgetManagementApp.Entities.ViewModels.Types;
 using BudgetManagementApp.Forms.Categories;
 using BudgetManagementApp.Resources;
 using BudgetManagementApp.Resources.Properties;
 using BudgetManagementApp.Services.Extensions;
 using BudgetManagementApp.Services.Services.Categories;
+using BudgetManagementApp.Services.Types;
 
 namespace BudgetManagementApp.Forms.Base
 {
@@ -18,19 +20,24 @@ namespace BudgetManagementApp.Forms.Base
     {
         private readonly FrmCategoryMaintenance categoryMaintenance;
         private readonly ICategoryService categoryService;
+        private readonly ITypeService typeService;
 
         public FrmMain(
             FrmCategoryMaintenance categoryMaintenance,
-            ICategoryService categoryService
+            ICategoryService categoryService,
+            ITypeService typeService
         )
         {
             this.categoryMaintenance = categoryMaintenance;
             this.categoryService = categoryService;
+            this.typeService = typeService;
 
             InitializeComponent();
         }
 
         private List<CategoryViewModel> Categories { get; set; }
+
+        private List<TypeViewModel> Types { get; set; }
 
         protected sealed override void SetLabels()
         {
@@ -350,6 +357,161 @@ namespace BudgetManagementApp.Forms.Base
             HandleCategories(categoryService.GetAll());
 
             TxtCategoryFilter.Clear();
+        }
+
+        #endregion
+
+        #region Types
+
+        //private void TxtCategoryFilter_TextChanged(object sender, EventArgs e)
+        //{
+        //    var text = TxtCategoryFilter.Text;
+
+        //    var categories = new List<CategoryViewModel>(Categories);
+
+        //    if (text.HasValue())
+        //    {
+        //        categories = categories.Where(CategoryFilter).ToList();
+        //    }
+
+        //    PopulateGrid(DgvCategories, categories, FormatCategories);
+
+        //    bool CategoryFilter(CategoryViewModel category)
+        //    {
+        //        return category.Description.Contains(TxtCategoryFilter.Text);
+        //    }
+        //}
+
+        //private void BtnNewCategory_Click(object sender, EventArgs e)
+        //{
+        //    categoryMaintenance.TxtCategoryId.Clear();
+        //    categoryMaintenance.TxtDescription.Clear();
+
+        //    HandleCategoryMaintenance();
+        //}
+
+        //private void BtnDeleteCategory_Click(object sender, EventArgs e)
+        //{
+        //    if (!DisplayQuestionMessage(StringResources.DeleteQuestion).IsYesResponse())
+        //        return;
+
+        //    var result = categoryService.Delete(
+        //        Categories.Single(w => w.CategoryId == TxtCategoryId.Text.ToInt())
+        //    );
+
+        //    if (result.IsSuccess())
+        //    {
+        //        DisplayInformationMessage(StringResources.RecordDeleted);
+
+        //        HandleCategories(categoryService.GetAll());
+
+        //        TxtCategoryFilter.Clear();
+
+        //        return;
+        //    }
+
+        //    DisplayErrorMessage(result.GetFailureError());
+        //}
+
+        //private void BtnModifyCategory_Click(object sender, EventArgs e)
+        //{
+        //    categoryMaintenance.TxtCategoryId.Text = TxtCategoryId.Text;
+        //    categoryMaintenance.TxtDescription.Text = TxtCategoryDescription.Text;
+
+        //    HandleCategoryMaintenance();
+        //}
+
+        //private void DgvCategories_SelectionChanged(object sender, EventArgs e)
+        //{
+        //    SetCategoryDetailsData(DgvCategories);
+        //}
+
+        private void SetupTypes(IEnumerable<TypeViewModel> model)
+        {
+            Types = model.ToList();
+
+            PopulateGrid(DgvTypes, Types, FormatTypes);
+
+            if (!DgvTypes.HasValue())
+                return;
+
+            DgvTypes.SetSelectedRow(0);
+
+            TxtTypeId.Text = DgvTypes.GetSelectedRowValue<int>("TypeId").ToString();
+            TxtTypeDescription.Text = DgvTypes.GetSelectedRowValue<string>("Description");
+            TxtTypeCategoryId.Text = DgvTypes.GetSelectedRowValue<int>("CategoryId").ToString();
+            TxtTypeCategory.Text = DgvTypes.GetSelectedRowValue<string>("CategoryDescription");
+        }
+
+        private void FormatTypes()
+        {
+            if (DgvTypes.IsEmpty())
+                return;
+
+            try
+            {
+                DisableColumns(DgvTypes, new[]
+                {
+                    "Id",
+                    "TypeId", 
+                    "CategoryId", 
+                    "Action",
+                    "DeletedOn",
+                    "InUse",
+                });
+            }
+            catch { }
+        }
+
+        private void SetTypeDetailsData(DataGridView grid)
+        {
+            if (grid.HasRowsSelected())
+            {
+                TxtTypeId.Text = grid.GetSelectedRowValue<int>("TypeId").ToString();
+                TxtTypeDescription.Text = grid.GetSelectedRowValue<string>("Description");
+                TxtTypeCategoryId.Text = grid.GetSelectedRowValue<int>("CategoryId").ToString();
+                TxtTypeCategory.Text = grid.GetSelectedRowValue<string>("CategoryDescription");
+
+                SetControlsStatus(
+                    !grid.GetSelectedRowValue<bool>("InUse"),
+                    BtnDeleteType
+                );
+
+                SetControlsStatus(true, BtnModifyType);
+
+                return;
+            }
+            
+            TxtTypeId.Text = grid.FirstRow<int>("TypeId").ToString();
+            TxtTypeDescription.Text = grid.FirstRow<string>("Description");
+            TxtTypeCategoryId.Text = grid.FirstRow<int>("CategoryId").ToString();
+            TxtTypeCategory.Text = grid.FirstRow<string>("CategoryDescription");
+
+            SetControlsStatus(false, BtnModifyType, BtnDeleteType);
+        }
+
+        private void HandleTypes(BaseReturnViewModel result)
+        {
+            if (result.IsSuccess<IEnumerable<TypeViewModel>>())
+            {
+                SetupTypes(
+                    result.GetSuccessModel<IEnumerable<TypeViewModel>>()
+                );
+            }
+            else
+            {
+                DisplayErrorMessage(result.GetFailureError());
+            }
+        }
+
+        private void HandleTypeMaintenance()
+        {
+            if (!categoryMaintenance.ShowDialog().IsOkResponse())
+                return;
+
+            HandleTypes(typeService.GetAll());
+
+            TxtTypeFilter.Clear();
         }
 
         #endregion
