@@ -1,4 +1,6 @@
-﻿namespace BudgetManagementApp.Services.Services.Categories
+﻿using BudgetManagementApp.Services.Services.Base;
+
+namespace BudgetManagementApp.Services.Services.Categories
 {
     public interface ICategoryService : IBaseService
     {
