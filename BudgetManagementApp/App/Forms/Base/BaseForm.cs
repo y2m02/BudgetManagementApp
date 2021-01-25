@@ -1,13 +1,12 @@
-﻿using BudgetManagementApp.Resources;
-using BudgetManagementApp.Resources.Properties;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
+using BudgetManagementApp.Resources;
+using BudgetManagementApp.Resources.Properties;
 using BudgetManagementApp.Services.Extensions;
 
-namespace BudgetManagementApp
+namespace BudgetManagementApp.Forms.Base
 {
     public class BaseForm : Form
     {

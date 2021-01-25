@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using BudgetManagementApp.Entities.Models;
+using BudgetManagementApp.Forms.Base;
 using BudgetManagementApp.Mappings;
 using BudgetManagementApp.Repositories.Repositories.Categories;
 using BudgetManagementApp.Services.Services.Categories;

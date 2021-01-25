@@ -1,5 +1,5 @@
 ﻿
-namespace BudgetManagementApp
+namespace BudgetManagementApp.Forms.Base
 {
     partial class FrmMain
     {
