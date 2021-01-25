@@ -15,6 +15,10 @@ namespace BudgetManagementApp.Entities.ViewModels.Types
 
         public string Description { get; set; }
 
+        public int CategoryId { get; set; }
+
+        public string CategoryDescription { get; set; }
+
         public override IEnumerable<string> Validate()
         {
             if (string.IsNullOrEmpty(Description) ||
@@ -23,6 +27,14 @@ namespace BudgetManagementApp.Entities.ViewModels.Types
                 yield return string.Format(
                     StringResources.FieldRequired,
                     StringResourcesHandler.GetString(nameof(Description))
+                );
+            }
+
+            if (CategoryId < 1)
+            {
+                yield return string.Format(
+                    StringResources.FieldRequired,
+                    StringResourcesHandler.GetString("Category")
                 );
             }
         }
