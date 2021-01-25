@@ -363,6 +363,7 @@ namespace BudgetManagementApp.Forms.Base
                 return;
 
             HandleCategories(categoryService.GetAll());
+            HandleTypes(typeService.GetAll());
 
             TxtCategoryFilter.Clear();
         }
