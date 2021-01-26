@@ -64,15 +64,9 @@ namespace BudgetManagementApp.Forms.Base
             this.LblCategoryDescription = new System.Windows.Forms.Label();
             this.TxtCategoryDescription = new System.Windows.Forms.TextBox();
             this.TabTypes = new System.Windows.Forms.TabPage();
-            this.TabSubtypes = new System.Windows.Forms.TabPage();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.LblPatientNameInvoice = new System.Windows.Forms.Label();
-            this.MsMainMenu = new System.Windows.Forms.MenuStrip();
-            this.MiFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.MiClose = new System.Windows.Forms.ToolStripMenuItem();
-            this.MiLanguages = new System.Windows.Forms.ToolStripMenuItem();
-            this.MiSpanish = new System.Windows.Forms.ToolStripMenuItem();
-            this.MiEnglish = new System.Windows.Forms.ToolStripMenuItem();
+            this.TxtTypeCategoryId = new System.Windows.Forms.TextBox();
+            this.LblTypeDescription = new System.Windows.Forms.Label();
+            this.TxtTypeDescription = new System.Windows.Forms.TextBox();
             this.TxtTypeId = new System.Windows.Forms.TextBox();
             this.LblTypeFilter = new System.Windows.Forms.Label();
             this.BtnDeleteType = new System.Windows.Forms.Button();
@@ -82,9 +76,28 @@ namespace BudgetManagementApp.Forms.Base
             this.DgvTypes = new System.Windows.Forms.DataGridView();
             this.LblTypeCategory = new System.Windows.Forms.Label();
             this.TxtTypeCategory = new System.Windows.Forms.TextBox();
-            this.LblTypeDescription = new System.Windows.Forms.Label();
-            this.TxtTypeDescription = new System.Windows.Forms.TextBox();
-            this.TxtTypeCategoryId = new System.Windows.Forms.TextBox();
+            this.TabSubtypes = new System.Windows.Forms.TabPage();
+            this.MsMainMenu = new System.Windows.Forms.MenuStrip();
+            this.MiFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.MiClose = new System.Windows.Forms.ToolStripMenuItem();
+            this.MiLanguages = new System.Windows.Forms.ToolStripMenuItem();
+            this.MiSpanish = new System.Windows.Forms.ToolStripMenuItem();
+            this.MiEnglish = new System.Windows.Forms.ToolStripMenuItem();
+            this.TxtSubTypeCategoryId = new System.Windows.Forms.TextBox();
+            this.LblSubTypeDescription = new System.Windows.Forms.Label();
+            this.TxtSubTypeDescription = new System.Windows.Forms.TextBox();
+            this.TxtSubTypeId = new System.Windows.Forms.TextBox();
+            this.LblSubTypeFilter = new System.Windows.Forms.Label();
+            this.BtnDeleteSubType = new System.Windows.Forms.Button();
+            this.BtnModifySubType = new System.Windows.Forms.Button();
+            this.BtnNewSubType = new System.Windows.Forms.Button();
+            this.TxtSubTypeFilter = new System.Windows.Forms.TextBox();
+            this.DgvSubTypes = new System.Windows.Forms.DataGridView();
+            this.LblSubTypeCategory = new System.Windows.Forms.Label();
+            this.TxtSubTypeCategory = new System.Windows.Forms.TextBox();
+            this.TxtSubTypeTypeId = new System.Windows.Forms.TextBox();
+            this.LblSubTypeTypeDescription = new System.Windows.Forms.Label();
+            this.TxtSubTypeTypeDescription = new System.Windows.Forms.TextBox();
             this.TclBudgetManagement.SuspendLayout();
             this.TabBudgetManagement.SuspendLayout();
             this.PnlInformation.SuspendLayout();
@@ -93,9 +106,10 @@ namespace BudgetManagementApp.Forms.Base
             this.TabCategories.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvCategories)).BeginInit();
             this.TabTypes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvTypes)).BeginInit();
             this.TabSubtypes.SuspendLayout();
             this.MsMainMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DgvTypes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvSubTypes)).BeginInit();
             this.SuspendLayout();
             // 
             // BtnSubtypes
@@ -395,7 +409,7 @@ namespace BudgetManagementApp.Forms.Base
             this.TabProjects.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TabProjects.Name = "TabProjects";
             this.TabProjects.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.TabProjects.Size = new System.Drawing.Size(1236, 842);
+            this.TabProjects.Size = new System.Drawing.Size(1236, 844);
             this.TabProjects.TabIndex = 1;
             this.TabProjects.Text = "Proyectos";
             // 
@@ -549,86 +563,37 @@ namespace BudgetManagementApp.Forms.Base
             this.TabTypes.TabIndex = 3;
             this.TabTypes.Text = "Partidas";
             // 
-            // TabSubtypes
+            // TxtTypeCategoryId
             // 
-            this.TabSubtypes.BackColor = System.Drawing.SystemColors.Control;
-            this.TabSubtypes.Controls.Add(this.panel1);
-            this.TabSubtypes.Controls.Add(this.LblPatientNameInvoice);
-            this.TabSubtypes.Location = new System.Drawing.Point(4, 28);
-            this.TabSubtypes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.TabSubtypes.Name = "TabSubtypes";
-            this.TabSubtypes.Size = new System.Drawing.Size(1236, 842);
-            this.TabSubtypes.TabIndex = 4;
-            this.TabSubtypes.Text = "Sub-partidas";
+            this.TxtTypeCategoryId.Location = new System.Drawing.Point(281, 23);
+            this.TxtTypeCategoryId.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.TxtTypeCategoryId.MaxLength = 99;
+            this.TxtTypeCategoryId.Name = "TxtTypeCategoryId";
+            this.TxtTypeCategoryId.ReadOnly = true;
+            this.TxtTypeCategoryId.Size = new System.Drawing.Size(30, 27);
+            this.TxtTypeCategoryId.TabIndex = 49;
+            this.TxtTypeCategoryId.Visible = false;
             // 
-            // panel1
+            // LblTypeDescription
             // 
-            this.panel1.Location = new System.Drawing.Point(12, 36);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1222, 734);
-            this.panel1.TabIndex = 35;
+            this.LblTypeDescription.AutoSize = true;
+            this.LblTypeDescription.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblTypeDescription.Location = new System.Drawing.Point(16, 96);
+            this.LblTypeDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblTypeDescription.Name = "LblTypeDescription";
+            this.LblTypeDescription.Size = new System.Drawing.Size(122, 24);
+            this.LblTypeDescription.TabIndex = 48;
+            this.LblTypeDescription.Text = "Descripción";
             // 
-            // LblPatientNameInvoice
+            // TxtTypeDescription
             // 
-            this.LblPatientNameInvoice.AutoSize = true;
-            this.LblPatientNameInvoice.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblPatientNameInvoice.Location = new System.Drawing.Point(8, 7);
-            this.LblPatientNameInvoice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LblPatientNameInvoice.Name = "LblPatientNameInvoice";
-            this.LblPatientNameInvoice.Size = new System.Drawing.Size(204, 24);
-            this.LblPatientNameInvoice.TabIndex = 34;
-            this.LblPatientNameInvoice.Text = "Nombre del paciente";
-            // 
-            // MsMainMenu
-            // 
-            this.MsMainMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.MsMainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MiFile,
-            this.MiLanguages});
-            this.MsMainMenu.Location = new System.Drawing.Point(0, 0);
-            this.MsMainMenu.Name = "MsMainMenu";
-            this.MsMainMenu.Size = new System.Drawing.Size(1497, 28);
-            this.MsMainMenu.TabIndex = 15;
-            this.MsMainMenu.Text = "menuStrip1";
-            // 
-            // MiFile
-            // 
-            this.MiFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MiClose});
-            this.MiFile.Name = "MiFile";
-            this.MiFile.Size = new System.Drawing.Size(73, 24);
-            this.MiFile.Text = "Archivo";
-            // 
-            // MiClose
-            // 
-            this.MiClose.Name = "MiClose";
-            this.MiClose.Size = new System.Drawing.Size(121, 26);
-            this.MiClose.Text = "Salir";
-            this.MiClose.Click += new System.EventHandler(this.MiClose_Click);
-            // 
-            // MiLanguages
-            // 
-            this.MiLanguages.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MiSpanish,
-            this.MiEnglish});
-            this.MiLanguages.Name = "MiLanguages";
-            this.MiLanguages.Size = new System.Drawing.Size(76, 24);
-            this.MiLanguages.Text = "Idiomas";
-            // 
-            // MiSpanish
-            // 
-            this.MiSpanish.Name = "MiSpanish";
-            this.MiSpanish.Size = new System.Drawing.Size(144, 26);
-            this.MiSpanish.Text = "Español";
-            this.MiSpanish.Click += new System.EventHandler(this.MiSpanish_Click);
-            // 
-            // MiEnglish
-            // 
-            this.MiEnglish.Name = "MiEnglish";
-            this.MiEnglish.Size = new System.Drawing.Size(144, 26);
-            this.MiEnglish.Text = "Inglés";
-            this.MiEnglish.Click += new System.EventHandler(this.MiEnglish_Click);
+            this.TxtTypeDescription.Location = new System.Drawing.Point(21, 128);
+            this.TxtTypeDescription.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtTypeDescription.MaxLength = 99;
+            this.TxtTypeDescription.Name = "TxtTypeDescription";
+            this.TxtTypeDescription.ReadOnly = true;
+            this.TxtTypeDescription.Size = new System.Drawing.Size(290, 27);
+            this.TxtTypeDescription.TabIndex = 47;
             // 
             // TxtTypeId
             // 
@@ -739,37 +704,248 @@ namespace BudgetManagementApp.Forms.Base
             this.TxtTypeCategory.Size = new System.Drawing.Size(290, 27);
             this.TxtTypeCategory.TabIndex = 38;
             // 
-            // LblTypeDescription
+            // TabSubtypes
             // 
-            this.LblTypeDescription.AutoSize = true;
-            this.LblTypeDescription.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblTypeDescription.Location = new System.Drawing.Point(16, 96);
-            this.LblTypeDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LblTypeDescription.Name = "LblTypeDescription";
-            this.LblTypeDescription.Size = new System.Drawing.Size(122, 24);
-            this.LblTypeDescription.TabIndex = 48;
-            this.LblTypeDescription.Text = "Descripción";
+            this.TabSubtypes.BackColor = System.Drawing.SystemColors.Control;
+            this.TabSubtypes.Controls.Add(this.TxtSubTypeTypeId);
+            this.TabSubtypes.Controls.Add(this.LblSubTypeTypeDescription);
+            this.TabSubtypes.Controls.Add(this.TxtSubTypeTypeDescription);
+            this.TabSubtypes.Controls.Add(this.TxtSubTypeCategoryId);
+            this.TabSubtypes.Controls.Add(this.LblSubTypeDescription);
+            this.TabSubtypes.Controls.Add(this.TxtSubTypeDescription);
+            this.TabSubtypes.Controls.Add(this.TxtSubTypeId);
+            this.TabSubtypes.Controls.Add(this.LblSubTypeFilter);
+            this.TabSubtypes.Controls.Add(this.BtnDeleteSubType);
+            this.TabSubtypes.Controls.Add(this.BtnModifySubType);
+            this.TabSubtypes.Controls.Add(this.BtnNewSubType);
+            this.TabSubtypes.Controls.Add(this.TxtSubTypeFilter);
+            this.TabSubtypes.Controls.Add(this.DgvSubTypes);
+            this.TabSubtypes.Controls.Add(this.LblSubTypeCategory);
+            this.TabSubtypes.Controls.Add(this.TxtSubTypeCategory);
+            this.TabSubtypes.Location = new System.Drawing.Point(4, 28);
+            this.TabSubtypes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.TabSubtypes.Name = "TabSubtypes";
+            this.TabSubtypes.Size = new System.Drawing.Size(1236, 844);
+            this.TabSubtypes.TabIndex = 4;
+            this.TabSubtypes.Text = "Sub-partidas";
             // 
-            // TxtTypeDescription
+            // MsMainMenu
             // 
-            this.TxtTypeDescription.Location = new System.Drawing.Point(21, 128);
-            this.TxtTypeDescription.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.TxtTypeDescription.MaxLength = 99;
-            this.TxtTypeDescription.Name = "TxtTypeDescription";
-            this.TxtTypeDescription.ReadOnly = true;
-            this.TxtTypeDescription.Size = new System.Drawing.Size(290, 27);
-            this.TxtTypeDescription.TabIndex = 47;
+            this.MsMainMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.MsMainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MiFile,
+            this.MiLanguages});
+            this.MsMainMenu.Location = new System.Drawing.Point(0, 0);
+            this.MsMainMenu.Name = "MsMainMenu";
+            this.MsMainMenu.Size = new System.Drawing.Size(1497, 28);
+            this.MsMainMenu.TabIndex = 15;
+            this.MsMainMenu.Text = "menuStrip1";
             // 
-            // TxtTypeCategoryId
+            // MiFile
             // 
-            this.TxtTypeCategoryId.Location = new System.Drawing.Point(281, 23);
-            this.TxtTypeCategoryId.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.TxtTypeCategoryId.MaxLength = 99;
-            this.TxtTypeCategoryId.Name = "TxtTypeCategoryId";
-            this.TxtTypeCategoryId.ReadOnly = true;
-            this.TxtTypeCategoryId.Size = new System.Drawing.Size(30, 27);
-            this.TxtTypeCategoryId.TabIndex = 49;
-            this.TxtTypeCategoryId.Visible = false;
+            this.MiFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MiClose});
+            this.MiFile.Name = "MiFile";
+            this.MiFile.Size = new System.Drawing.Size(73, 24);
+            this.MiFile.Text = "Archivo";
+            // 
+            // MiClose
+            // 
+            this.MiClose.Name = "MiClose";
+            this.MiClose.Size = new System.Drawing.Size(121, 26);
+            this.MiClose.Text = "Salir";
+            this.MiClose.Click += new System.EventHandler(this.MiClose_Click);
+            // 
+            // MiLanguages
+            // 
+            this.MiLanguages.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MiSpanish,
+            this.MiEnglish});
+            this.MiLanguages.Name = "MiLanguages";
+            this.MiLanguages.Size = new System.Drawing.Size(76, 24);
+            this.MiLanguages.Text = "Idiomas";
+            // 
+            // MiSpanish
+            // 
+            this.MiSpanish.Name = "MiSpanish";
+            this.MiSpanish.Size = new System.Drawing.Size(144, 26);
+            this.MiSpanish.Text = "Español";
+            this.MiSpanish.Click += new System.EventHandler(this.MiSpanish_Click);
+            // 
+            // MiEnglish
+            // 
+            this.MiEnglish.Name = "MiEnglish";
+            this.MiEnglish.Size = new System.Drawing.Size(144, 26);
+            this.MiEnglish.Text = "Inglés";
+            this.MiEnglish.Click += new System.EventHandler(this.MiEnglish_Click);
+            // 
+            // TxtSubTypeCategoryId
+            // 
+            this.TxtSubTypeCategoryId.Location = new System.Drawing.Point(286, 23);
+            this.TxtSubTypeCategoryId.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.TxtSubTypeCategoryId.MaxLength = 99;
+            this.TxtSubTypeCategoryId.Name = "TxtSubTypeCategoryId";
+            this.TxtSubTypeCategoryId.ReadOnly = true;
+            this.TxtSubTypeCategoryId.Size = new System.Drawing.Size(30, 27);
+            this.TxtSubTypeCategoryId.TabIndex = 61;
+            this.TxtSubTypeCategoryId.Visible = false;
+            // 
+            // LblSubTypeDescription
+            // 
+            this.LblSubTypeDescription.AutoSize = true;
+            this.LblSubTypeDescription.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblSubTypeDescription.Location = new System.Drawing.Point(21, 170);
+            this.LblSubTypeDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSubTypeDescription.Name = "LblSubTypeDescription";
+            this.LblSubTypeDescription.Size = new System.Drawing.Size(122, 24);
+            this.LblSubTypeDescription.TabIndex = 60;
+            this.LblSubTypeDescription.Text = "Descripción";
+            // 
+            // TxtSubTypeDescription
+            // 
+            this.TxtSubTypeDescription.Location = new System.Drawing.Point(26, 202);
+            this.TxtSubTypeDescription.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtSubTypeDescription.MaxLength = 99;
+            this.TxtSubTypeDescription.Name = "TxtSubTypeDescription";
+            this.TxtSubTypeDescription.ReadOnly = true;
+            this.TxtSubTypeDescription.Size = new System.Drawing.Size(290, 27);
+            this.TxtSubTypeDescription.TabIndex = 59;
+            // 
+            // TxtSubTypeId
+            // 
+            this.TxtSubTypeId.Location = new System.Drawing.Point(286, 171);
+            this.TxtSubTypeId.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.TxtSubTypeId.MaxLength = 99;
+            this.TxtSubTypeId.Name = "TxtSubTypeId";
+            this.TxtSubTypeId.ReadOnly = true;
+            this.TxtSubTypeId.Size = new System.Drawing.Size(30, 27);
+            this.TxtSubTypeId.TabIndex = 58;
+            this.TxtSubTypeId.Visible = false;
+            // 
+            // LblSubTypeFilter
+            // 
+            this.LblSubTypeFilter.AutoSize = true;
+            this.LblSubTypeFilter.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblSubTypeFilter.Location = new System.Drawing.Point(406, 207);
+            this.LblSubTypeFilter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSubTypeFilter.Name = "LblSubTypeFilter";
+            this.LblSubTypeFilter.Size = new System.Drawing.Size(77, 24);
+            this.LblSubTypeFilter.TabIndex = 57;
+            this.LblSubTypeFilter.Text = "Buscar";
+            this.LblSubTypeFilter.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // BtnDeleteSubType
+            // 
+            this.BtnDeleteSubType.Enabled = false;
+            this.BtnDeleteSubType.Location = new System.Drawing.Point(577, 37);
+            this.BtnDeleteSubType.Margin = new System.Windows.Forms.Padding(1);
+            this.BtnDeleteSubType.Name = "BtnDeleteSubType";
+            this.BtnDeleteSubType.Size = new System.Drawing.Size(116, 44);
+            this.BtnDeleteSubType.TabIndex = 56;
+            this.BtnDeleteSubType.Text = "Eliminar";
+            this.BtnDeleteSubType.UseVisualStyleBackColor = true;
+            // 
+            // BtnModifySubType
+            // 
+            this.BtnModifySubType.Enabled = false;
+            this.BtnModifySubType.Location = new System.Drawing.Point(459, 37);
+            this.BtnModifySubType.Margin = new System.Windows.Forms.Padding(1);
+            this.BtnModifySubType.Name = "BtnModifySubType";
+            this.BtnModifySubType.Size = new System.Drawing.Size(116, 44);
+            this.BtnModifySubType.TabIndex = 55;
+            this.BtnModifySubType.Text = "Modificar";
+            this.BtnModifySubType.UseVisualStyleBackColor = true;
+            // 
+            // BtnNewSubType
+            // 
+            this.BtnNewSubType.Location = new System.Drawing.Point(341, 37);
+            this.BtnNewSubType.Margin = new System.Windows.Forms.Padding(1);
+            this.BtnNewSubType.Name = "BtnNewSubType";
+            this.BtnNewSubType.Size = new System.Drawing.Size(116, 44);
+            this.BtnNewSubType.TabIndex = 54;
+            this.BtnNewSubType.Text = "Nuevo";
+            this.BtnNewSubType.UseVisualStyleBackColor = true;
+            // 
+            // TxtSubTypeFilter
+            // 
+            this.TxtSubTypeFilter.Location = new System.Drawing.Point(491, 204);
+            this.TxtSubTypeFilter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtSubTypeFilter.MaxLength = 99;
+            this.TxtSubTypeFilter.Name = "TxtSubTypeFilter";
+            this.TxtSubTypeFilter.Size = new System.Drawing.Size(201, 27);
+            this.TxtSubTypeFilter.TabIndex = 53;
+            // 
+            // DgvSubTypes
+            // 
+            this.DgvSubTypes.AllowUserToAddRows = false;
+            this.DgvSubTypes.AllowUserToDeleteRows = false;
+            this.DgvSubTypes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DgvSubTypes.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.DgvSubTypes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvSubTypes.Location = new System.Drawing.Point(26, 253);
+            this.DgvSubTypes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.DgvSubTypes.MultiSelect = false;
+            this.DgvSubTypes.Name = "DgvSubTypes";
+            this.DgvSubTypes.ReadOnly = true;
+            this.DgvSubTypes.RowHeadersVisible = false;
+            this.DgvSubTypes.RowHeadersWidth = 51;
+            this.DgvSubTypes.RowTemplate.Height = 24;
+            this.DgvSubTypes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DgvSubTypes.Size = new System.Drawing.Size(667, 356);
+            this.DgvSubTypes.TabIndex = 52;
+            // 
+            // LblSubTypeCategory
+            // 
+            this.LblSubTypeCategory.AutoSize = true;
+            this.LblSubTypeCategory.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblSubTypeCategory.Location = new System.Drawing.Point(21, 22);
+            this.LblSubTypeCategory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSubTypeCategory.Name = "LblSubTypeCategory";
+            this.LblSubTypeCategory.Size = new System.Drawing.Size(102, 24);
+            this.LblSubTypeCategory.TabIndex = 51;
+            this.LblSubTypeCategory.Text = "Categoría";
+            // 
+            // TxtSubTypeCategory
+            // 
+            this.TxtSubTypeCategory.Location = new System.Drawing.Point(26, 54);
+            this.TxtSubTypeCategory.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtSubTypeCategory.MaxLength = 99;
+            this.TxtSubTypeCategory.Name = "TxtSubTypeCategory";
+            this.TxtSubTypeCategory.ReadOnly = true;
+            this.TxtSubTypeCategory.Size = new System.Drawing.Size(290, 27);
+            this.TxtSubTypeCategory.TabIndex = 50;
+            // 
+            // TxtSubTypeTypeId
+            // 
+            this.TxtSubTypeTypeId.Location = new System.Drawing.Point(286, 97);
+            this.TxtSubTypeTypeId.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.TxtSubTypeTypeId.MaxLength = 99;
+            this.TxtSubTypeTypeId.Name = "TxtSubTypeTypeId";
+            this.TxtSubTypeTypeId.ReadOnly = true;
+            this.TxtSubTypeTypeId.Size = new System.Drawing.Size(30, 27);
+            this.TxtSubTypeTypeId.TabIndex = 64;
+            this.TxtSubTypeTypeId.Visible = false;
+            // 
+            // LblSubTypeTypeDescription
+            // 
+            this.LblSubTypeTypeDescription.AutoSize = true;
+            this.LblSubTypeTypeDescription.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblSubTypeTypeDescription.Location = new System.Drawing.Point(21, 96);
+            this.LblSubTypeTypeDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSubTypeTypeDescription.Name = "LblSubTypeTypeDescription";
+            this.LblSubTypeTypeDescription.Size = new System.Drawing.Size(77, 24);
+            this.LblSubTypeTypeDescription.TabIndex = 63;
+            this.LblSubTypeTypeDescription.Text = "Partida";
+            // 
+            // TxtSubTypeTypeDescription
+            // 
+            this.TxtSubTypeTypeDescription.Location = new System.Drawing.Point(26, 128);
+            this.TxtSubTypeTypeDescription.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtSubTypeTypeDescription.MaxLength = 99;
+            this.TxtSubTypeTypeDescription.Name = "TxtSubTypeTypeDescription";
+            this.TxtSubTypeTypeDescription.ReadOnly = true;
+            this.TxtSubTypeTypeDescription.Size = new System.Drawing.Size(290, 27);
+            this.TxtSubTypeTypeDescription.TabIndex = 62;
             // 
             // FrmMain
             // 
@@ -801,11 +977,12 @@ namespace BudgetManagementApp.Forms.Base
             ((System.ComponentModel.ISupportInitialize)(this.DgvCategories)).EndInit();
             this.TabTypes.ResumeLayout(false);
             this.TabTypes.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvTypes)).EndInit();
             this.TabSubtypes.ResumeLayout(false);
             this.TabSubtypes.PerformLayout();
             this.MsMainMenu.ResumeLayout(false);
             this.MsMainMenu.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DgvTypes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvSubTypes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -839,8 +1016,6 @@ namespace BudgetManagementApp.Forms.Base
         private System.Windows.Forms.TabPage TabCategories;
         private System.Windows.Forms.TabPage TabTypes;
         private System.Windows.Forms.TabPage TabSubtypes;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label LblPatientNameInvoice;
         private System.Windows.Forms.Label LblCategoryDescription;
         private System.Windows.Forms.TextBox TxtCategoryDescription;
         private System.Windows.Forms.DataGridView DgvCategories;
@@ -868,5 +1043,20 @@ namespace BudgetManagementApp.Forms.Base
         private System.Windows.Forms.Label LblTypeCategory;
         private System.Windows.Forms.TextBox TxtTypeCategory;
         public System.Windows.Forms.TextBox TxtTypeCategoryId;
+        public System.Windows.Forms.TextBox TxtSubTypeTypeId;
+        private System.Windows.Forms.Label LblSubTypeTypeDescription;
+        private System.Windows.Forms.TextBox TxtSubTypeTypeDescription;
+        public System.Windows.Forms.TextBox TxtSubTypeCategoryId;
+        private System.Windows.Forms.Label LblSubTypeDescription;
+        private System.Windows.Forms.TextBox TxtSubTypeDescription;
+        public System.Windows.Forms.TextBox TxtSubTypeId;
+        private System.Windows.Forms.Label LblSubTypeFilter;
+        private System.Windows.Forms.Button BtnDeleteSubType;
+        private System.Windows.Forms.Button BtnModifySubType;
+        private System.Windows.Forms.Button BtnNewSubType;
+        private System.Windows.Forms.TextBox TxtSubTypeFilter;
+        private System.Windows.Forms.DataGridView DgvSubTypes;
+        private System.Windows.Forms.Label LblSubTypeCategory;
+        private System.Windows.Forms.TextBox TxtSubTypeCategory;
     }
 }

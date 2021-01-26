@@ -147,6 +147,9 @@
   <data name="DeleteQuestion" xml:space="preserve">
     <value>¿Desea eliminar este registro?</value>
   </data>
+  <data name="DeleteSubType" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
   <data name="DeleteType" xml:space="preserve">
     <value>Eliminar</value>
   </data>
@@ -174,10 +177,16 @@
   <data name="ModifyCategory" xml:space="preserve">
     <value>Modificar</value>
   </data>
+  <data name="ModifySubType" xml:space="preserve">
+    <value>Modificar</value>
+  </data>
   <data name="ModifyType" xml:space="preserve">
     <value>Modificar</value>
   </data>
   <data name="NewCategory" xml:space="preserve">
+    <value>Nueva</value>
+  </data>
+  <data name="NewSubType" xml:space="preserve">
     <value>Nueva</value>
   </data>
   <data name="NewType" xml:space="preserve">
@@ -201,8 +210,26 @@
   <data name="Spanish" xml:space="preserve">
     <value>Español</value>
   </data>
+  <data name="SubType" xml:space="preserve">
+    <value>Sub-partida</value>
+  </data>
+  <data name="SubTypeCategory" xml:space="preserve">
+    <value>Categoría</value>
+  </data>
+  <data name="SubTypeDescription" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="SubTypeFilter" xml:space="preserve">
+    <value>Buscar:</value>
+  </data>
+  <data name="SubTypeMaintenance" xml:space="preserve">
+    <value>Mantenimiento de sub-partidas</value>
+  </data>
   <data name="Subtypes" xml:space="preserve">
     <value>Sub-partidas</value>
+  </data>
+  <data name="SubTypeTypeDescription" xml:space="preserve">
+    <value>Partida</value>
   </data>
   <data name="TypeCategory" xml:space="preserve">
     <value>Categoría</value>

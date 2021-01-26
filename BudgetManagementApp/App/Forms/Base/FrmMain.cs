@@ -53,6 +53,7 @@ namespace BudgetManagementApp.Forms.Base
             LoopControlsToSetLabels(TclBudgetManagement.Controls);
             LoopControlsToSetLabels(TabCategories.Controls);
             LoopControlsToSetLabels(TabTypes.Controls);
+            LoopControlsToSetLabels(TabSubtypes.Controls);
 
             foreach (ToolStripMenuItem menu in MsMainMenu.Items)
             {
