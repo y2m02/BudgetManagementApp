@@ -21,6 +21,7 @@ namespace BudgetManagementApp.Repositories.Repositories.SubTypes
             return Context.SubTypes
                 .Include(w => w.AccountingMovements)
                 .Include(w => w.Type)
+                .Include(w => w.Type.Category)
                 .Where(w => !w.DeletedOn.HasValue)
                 .OrderBy(w => w.Description)
                 .AsNoTracking();

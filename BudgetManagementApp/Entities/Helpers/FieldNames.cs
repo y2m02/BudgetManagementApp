@@ -12,6 +12,10 @@
         public static string Type => "Type";
         public static string TypeDescription => "TypeDescription";
 
+        // SubTypes
+        public static string SubTypeId => "SubTypeId";
+        public static string SubType => "SubType";
+
         // Others
         public static string Id => "Id";
         public static string Description => "Description";

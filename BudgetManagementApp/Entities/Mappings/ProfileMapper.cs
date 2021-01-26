@@ -39,6 +39,7 @@ namespace BudgetManagementApp.Entities.Mappings
                 .ForMember(destination => destination.InUse,
                     member => member.MapFrom(field => field.AccountingMovements.Any(x => !x.DeletedOn.HasValue)));
             CreateMap<SubTypeViewModel, SubType>();
+
             //    .ForMember(destination => destination.Used,
             //        member => member.MapFrom(field => field.Assignments.Count > 0));
 
