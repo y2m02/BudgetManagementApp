@@ -70,6 +70,7 @@ namespace BudgetManagementApp.Forms.Types
             this.BtnCancel.TabIndex = 40;
             this.BtnCancel.Text = "Cancelar";
             this.BtnCancel.UseVisualStyleBackColor = true;
+            this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
             // BtnSave
             // 
@@ -80,6 +81,7 @@ namespace BudgetManagementApp.Forms.Types
             this.BtnSave.TabIndex = 39;
             this.BtnSave.Text = "Guardar";
             this.BtnSave.UseVisualStyleBackColor = true;
+            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // TxtDescription
             // 
@@ -127,6 +129,7 @@ namespace BudgetManagementApp.Forms.Types
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FrmTypeMaintenance";
             this.Text = "FrmTypeMaintenance";
+            this.Load += new System.EventHandler(this.FrmTypeMaintenance_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -139,7 +142,7 @@ namespace BudgetManagementApp.Forms.Types
         private System.Windows.Forms.Button BtnCancel;
         private System.Windows.Forms.Button BtnSave;
         public System.Windows.Forms.TextBox TxtDescription;
-        private System.Windows.Forms.ComboBox CbxCategory;
         private System.Windows.Forms.Label LblCategory;
+        public System.Windows.Forms.ComboBox CbxCategory;
     }
 }

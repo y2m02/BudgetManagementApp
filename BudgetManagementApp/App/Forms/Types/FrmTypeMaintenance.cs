@@ -7,14 +7,43 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BudgetManagementApp.Forms.Base;
+using BudgetManagementApp.Resources.Properties;
+using BudgetManagementApp.Services.Types;
 
 namespace BudgetManagementApp.Forms.Types
 {
-    public partial class FrmTypeMaintenance : Form
+    public partial class FrmTypeMaintenance : BaseForm
     {
-        public FrmTypeMaintenance()
+        private readonly ITypeService typeService;
+
+        public FrmTypeMaintenance(ITypeService typeService)
         {
+            this.typeService = typeService;
+
             InitializeComponent();
+        }
+
+        private void BtnCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FrmTypeMaintenance_Load(object sender, EventArgs e)
+        {
+            SetLabels();
+        }
+
+        protected sealed override void SetLabels()
+        {
+            Text = StringResources.TypeMaintenance;
+
+            LoopControlsToSetLabels(Controls);
         }
     }
 }
