@@ -54,6 +54,7 @@
     <Compile Include="Enums\ActionType.cs" />
     <Compile Include="Enums\MaintenanceType.cs" />
     <Compile Include="Helpers\DisplayNameFromResources.cs" />
+    <Compile Include="Helpers\FieldNames.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountingMovement.cs" />
     <Compile Include="Models\BalanceSheet.cs" />
