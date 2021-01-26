@@ -253,10 +253,7 @@ namespace BudgetManagementApp.Forms.Base
 
         private void BtnNewCategory_Click(object sender, EventArgs e)
         {
-            categoryMaintenance.TxtCategoryId.Clear();
-            categoryMaintenance.TxtDescription.Clear();
-
-            HandleCategoryMaintenance();
+            HandleCategoryMaintenance(MaintenanceType.CreateNew);
         }
 
         private void BtnDeleteCategory_Click(object sender, EventArgs e)
@@ -284,10 +281,7 @@ namespace BudgetManagementApp.Forms.Base
 
         private void BtnModifyCategory_Click(object sender, EventArgs e)
         {
-            categoryMaintenance.TxtCategoryId.Text = TxtCategoryId.Text;
-            categoryMaintenance.TxtDescription.Text = TxtCategoryDescription.Text;
-
-            HandleCategoryMaintenance();
+            HandleCategoryMaintenance(MaintenanceType.Modify);
         }
 
         private void DgvCategories_SelectionChanged(object sender, EventArgs e)
@@ -362,8 +356,10 @@ namespace BudgetManagementApp.Forms.Base
             }
         }
 
-        private void HandleCategoryMaintenance()
+        private void HandleCategoryMaintenance(MaintenanceType type)
         {
+            InitializeCategoryMaintenanceControls(type);
+
             if (!categoryMaintenance.ShowDialog().IsOkResponse())
                 return;
 
@@ -374,28 +370,32 @@ namespace BudgetManagementApp.Forms.Base
             HandleTypes(typeService.GetAll());
         }
 
+        private void InitializeCategoryMaintenanceControls(MaintenanceType type)
+        {
+            switch (type)
+            {
+                case MaintenanceType.CreateNew:
+                    categoryMaintenance.TxtCategoryId.Clear();
+                    categoryMaintenance.TxtDescription.Clear();
+                    break;
+
+                case MaintenanceType.Modify:
+                    categoryMaintenance.TxtCategoryId.Text = TxtCategoryId.Text;
+                    categoryMaintenance.TxtDescription.Text = TxtCategoryDescription.Text;
+                    break;
+            }
+        }
         #endregion
 
         #region Types
 
         private void BtnNewType_Click(object sender, EventArgs e)
         {
-
             HandleTypeMaintenance(MaintenanceType.CreateNew);
         }
 
         private void BtnModifyType_Click(object sender, EventArgs e)
         {
-
-            var cbxCategory = typeMaintenance.CbxCategory;
-
-            cbxCategory.SetData(Categories, "CategoryId", "Description");
-
-            if (cbxCategory.HasValue())
-            {
-                
-            }
-
             HandleTypeMaintenance(MaintenanceType.Modify);
         }
 
