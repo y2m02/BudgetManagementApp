@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
+using BudgetManagementApp.Entities.Enums;
 using BudgetManagementApp.Entities.ViewModels.Base;
 using BudgetManagementApp.Entities.ViewModels.Categories;
 using BudgetManagementApp.Entities.ViewModels.Types;
@@ -379,25 +380,12 @@ namespace BudgetManagementApp.Forms.Base
 
         private void BtnNewType_Click(object sender, EventArgs e)
         {
-            typeMaintenance.TxtTypeId.Clear();
-            typeMaintenance.TxtDescription.Clear();
 
-            var cbxCategory = typeMaintenance.CbxCategory;
-
-            cbxCategory.SetData(Categories, "CategoryId", "Description");
-
-            if (cbxCategory.HasValue())
-            {
-                cbxCategory.SelectedIndex = 0;
-            }
-
-            HandleTypeMaintenance();
+            HandleTypeMaintenance(MaintenanceType.CreateNew);
         }
 
         private void BtnModifyType_Click(object sender, EventArgs e)
         {
-            typeMaintenance.TxtTypeId.Text = TxtTypeId.Text;
-            typeMaintenance.TxtDescription.Text = TxtTypeDescription.Text;
 
             var cbxCategory = typeMaintenance.CbxCategory;
 
@@ -405,10 +393,10 @@ namespace BudgetManagementApp.Forms.Base
 
             if (cbxCategory.HasValue())
             {
-                cbxCategory.Text = TxtTypeCategory.Text;
+                
             }
 
-            HandleTypeMaintenance();
+            HandleTypeMaintenance(MaintenanceType.Modify);
         }
 
         private void BtnDeleteType_Click(object sender, EventArgs e)
@@ -540,8 +528,10 @@ namespace BudgetManagementApp.Forms.Base
             }
         }
 
-        private void HandleTypeMaintenance()
+        private void HandleTypeMaintenance(MaintenanceType type)
         {
+            InitializeTypeMaintenanceControls(type);
+
             if (!typeMaintenance.ShowDialog().IsOkResponse())
                 return;
 
@@ -550,6 +540,33 @@ namespace BudgetManagementApp.Forms.Base
             TxtTypeFilter.Clear();
 
             HandleCategories(categoryService.GetAll());
+        }
+
+        private void InitializeTypeMaintenanceControls(MaintenanceType type)
+        {
+            var cbxCategory = typeMaintenance.CbxCategory;
+
+            cbxCategory.SetData(Categories, "CategoryId", "Description");
+
+            switch (type)
+            {
+                case MaintenanceType.CreateNew:
+                    typeMaintenance.TxtTypeId.Clear();
+                    typeMaintenance.TxtDescription.Clear();
+
+                    if (cbxCategory.HasValue())
+                    {
+                        cbxCategory.SelectedIndex = 0;
+                    }
+
+                    break;
+
+                case MaintenanceType.Modify:
+                    typeMaintenance.TxtTypeId.Text = TxtTypeId.Text;
+                    typeMaintenance.TxtDescription.Text = TxtTypeDescription.Text;
+                    cbxCategory.Text = TxtTypeCategory.Text;
+                    break;
+            }
         }
 
         #endregion
