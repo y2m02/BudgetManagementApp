@@ -1,10 +1,12 @@
 ﻿using System.Collections;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using BudgetManagementApp.Resources;
 using BudgetManagementApp.Resources.Properties;
+using BudgetManagementApp.Services.Extensions;
 
-namespace BudgetManagementApp
+namespace BudgetManagementApp.Forms.Base
 {
     public class BaseForm : Form
     {
@@ -60,19 +62,29 @@ namespace BudgetManagementApp
 
         protected void LoopControlsToSetLabels(IEnumerable controls)
         {
-            string[] controlsToSetLabels = { "Lbl", "Btn", "Tab" };
+            const int prefix = 3;
 
-            foreach (Control control in controls)
+            var controlsToSetLabels = new []
             {
-                var name = control.Name;
+                typeof(Label),
+                typeof(Button),
+                typeof(TabPage),
+            };
 
-                if (controlsToSetLabels.Any(c => name.StartsWith(c)))
+            controls.Cast<Control>()
+                .Where(
+                    control => controlsToSetLabels.Any(
+                        type => type == control.GetType()
+                    )
+                )
+                .Each(control =>
                 {
+                    var name = control.Name;
+
                     control.Text = StringResourcesHandler.GetString(
-                        name.Substring(3, name.Length - 3)
+                        name.Substring(prefix, name.Length - prefix)
                     );
-                }
-            }
+                });
         }
 
         protected void SetControlsStatus(bool enable, params Control[] controls)
@@ -81,6 +93,13 @@ namespace BudgetManagementApp
             {
                 control.Enabled = enable;
             }
+        }
+
+        protected void SetAppLabels()
+        {
+            StringResources.Culture = CultureInfo.CurrentCulture;
+
+            SetLabels();
         }
 
         // TODO: make this method abstract.

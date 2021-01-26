@@ -126,6 +126,9 @@
   <data name="Categories" xml:space="preserve">
     <value>Categorías</value>
   </data>
+  <data name="Category" xml:space="preserve">
+    <value>Categoría</value>
+  </data>
   <data name="CategoryDescription" xml:space="preserve">
     <value>Descripción</value>
   </data>
@@ -135,14 +138,23 @@
   <data name="CategoryMaintenance" xml:space="preserve">
     <value>Mantenimiento de categorías</value>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>Salir</value>
+  </data>
   <data name="DeleteCategory" xml:space="preserve">
     <value>Eliminar</value>
   </data>
   <data name="DeleteQuestion" xml:space="preserve">
     <value>¿Desea eliminar este registro?</value>
   </data>
+  <data name="DeleteType" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Descripción</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>Inglés</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
@@ -150,13 +162,25 @@
   <data name="FieldRequired" xml:space="preserve">
     <value>El campo {0} es requerido.</value>
   </data>
+  <data name="File" xml:space="preserve">
+    <value>Archivo</value>
+  </data>
   <data name="Information" xml:space="preserve">
     <value>Información</value>
+  </data>
+  <data name="Languages" xml:space="preserve">
+    <value>Idiomas</value>
   </data>
   <data name="ModifyCategory" xml:space="preserve">
     <value>Modificar</value>
   </data>
+  <data name="ModifyType" xml:space="preserve">
+    <value>Modificar</value>
+  </data>
   <data name="NewCategory" xml:space="preserve">
+    <value>Nueva</value>
+  </data>
+  <data name="NewType" xml:space="preserve">
     <value>Nueva</value>
   </data>
   <data name="ProccessingError" xml:space="preserve">
@@ -174,8 +198,23 @@
   <data name="Save" xml:space="preserve">
     <value>Guardar</value>
   </data>
+  <data name="Spanish" xml:space="preserve">
+    <value>Español</value>
+  </data>
   <data name="Subtypes" xml:space="preserve">
     <value>Sub-partidas</value>
+  </data>
+  <data name="TypeCategory" xml:space="preserve">
+    <value>Categoría</value>
+  </data>
+  <data name="TypeDescription" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="TypeFilter" xml:space="preserve">
+    <value>Buscar:</value>
+  </data>
+  <data name="TypeMaintenance" xml:space="preserve">
+    <value>Mantenimiento de partidas</value>
   </data>
   <data name="Types" xml:space="preserve">
     <value>Partidas </value>

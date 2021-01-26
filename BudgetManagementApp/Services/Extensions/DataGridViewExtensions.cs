@@ -4,21 +4,26 @@ namespace BudgetManagementApp.Services.Extensions
 {
     public static class DataGridViewExtensions
     {
-        public static bool IsEmpty(this DataGridView dgv)
+        public static bool HasDataSource(this DataGridView grid)
+        {
+            return grid.DataSource != null;
+        }
+
+        public static bool IsEmpty(this DataGridView grid)
         {
             return
-                dgv.DataSource == null ||
-                dgv.RowCount == 0;
+                grid.DataSource == null ||
+                grid.RowCount == 0;
         }
 
-        public static bool HasValue(this DataGridView dgv)
+        public static bool HasValue(this DataGridView grid)
         {
-            return !IsEmpty(dgv);
+            return !IsEmpty(grid);
         }
 
-        public static DataGridViewRow GetRow(this DataGridView dgv, int rowIndex)
+        public static DataGridViewRow GetRow(this DataGridView grid, int rowIndex)
         {
-            return dgv.Rows[rowIndex];
+            return grid.Rows[rowIndex];
         }
 
         public static T GetRowValue<T>(
@@ -49,48 +54,48 @@ namespace BudgetManagementApp.Services.Extensions
             return default;
         }
 
-        public static DataGridViewRow GetSelectedRow(this DataGridView dgv)
+        public static DataGridViewRow GetSelectedRow(this DataGridView grid)
         {
-            return dgv.SelectedRows[0];
+            return grid.SelectedRows[0];
         }
 
         public static DataGridViewCell GetSelectedRowCell(
-            this DataGridView dgv,
+            this DataGridView grid,
             int columnIndex
         )
         {
-            return dgv.GetSelectedRow().Cells[columnIndex];
+            return grid.GetSelectedRow().Cells[columnIndex];
         }
 
         public static DataGridViewCell GetSelectedRowCell(
-            this DataGridView dgv,
+            this DataGridView grid,
             string columnName
         )
         {
-            return dgv.GetSelectedRow().Cells[columnName];
+            return grid.GetSelectedRow().Cells[columnName];
         }
 
         public static T GetSelectedRowValue<T>(
-            this DataGridView dgv,
+            this DataGridView grid,
             int columnIndex
         )
         {
-            if (dgv.HasValue())
+            if (grid.HasValue())
             {
-                return (T)dgv.GetSelectedRow().Cells[columnIndex].Value;
+                return (T)grid.GetSelectedRow().Cells[columnIndex].Value;
             }
 
             return default;
         }
 
         public static T GetSelectedRowValue<T>(
-            this DataGridView dgv,
+            this DataGridView grid,
             string columnName
         )
         {
-            if (dgv.HasValue())
+            if (grid.HasValue())
             {
-                return (T)dgv.GetSelectedRow().Cells[columnName].Value;
+                return (T)grid.GetSelectedRow().Cells[columnName].Value;
             }
 
             return default;
@@ -104,6 +109,16 @@ namespace BudgetManagementApp.Services.Extensions
         public static bool HasRowsSelected(this DataGridView grid)
         {
             return grid.SelectedRows.Count > 0;
+        }
+
+        public static DataGridViewRow FirstRow(this DataGridView grid)
+        {
+            return grid.GetRow(0);
+        }
+
+        public static T FirstRow<T>(this DataGridView grid, string columnName)
+        {
+            return grid.GetRowValue<T>(0, columnName);
         }
     }
 }

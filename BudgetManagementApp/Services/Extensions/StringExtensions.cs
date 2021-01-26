@@ -18,5 +18,12 @@
         {
             return int.Parse(str);
         }
+
+        public static int ToIntOrDefault(this string str)
+        {
+            return int.TryParse(str, out var number) 
+                ? number 
+                : 0;
+        }
     }
 }

@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using BudgetManagementApp.Entities.Helpers;
 
 namespace BudgetManagementApp.Entities.Models
 {
-    public class Category : IDeletable
+    public class Category
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -4,17 +4,21 @@ using BudgetManagementApp.Entities.ViewModels.Base;
 using BudgetManagementApp.Resources;
 using BudgetManagementApp.Resources.Properties;
 
-namespace BudgetManagementApp.Entities.ViewModels.Categories
+namespace BudgetManagementApp.Entities.ViewModels.Types
 {
-    public class CategoryViewModel : BaseViewModel
+    public class TypeViewModel : BaseViewModel
     {
         /// <summary>
         ///     This property's going to be set automatically.
         ///     Please use Id instead.
         /// </summary>
-        public int CategoryId => Id;
+        public int TypeId => Id;
 
         public string Description { get; set; }
+
+        public int CategoryId { get; set; }
+
+        public string CategoryDescription { get; set; }
 
         public override IEnumerable<string> Validate()
         {
@@ -24,6 +28,14 @@ namespace BudgetManagementApp.Entities.ViewModels.Categories
                 yield return string.Format(
                     StringResources.FieldRequired,
                     StringResourcesHandler.GetString(FieldNames.Description)
+                );
+            }
+
+            if (CategoryId < 1)
+            {
+                yield return string.Format(
+                    StringResources.FieldRequired,
+                    StringResourcesHandler.GetString(FieldNames.Category)
                 );
             }
         }

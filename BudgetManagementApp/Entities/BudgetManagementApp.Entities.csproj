@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -52,19 +55,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\ActionType.cs" />
+    <Compile Include="Enums\MaintenanceType.cs" />
+    <Compile Include="Helpers\DisplayNameFromResources.cs" />
+    <Compile Include="Helpers\FieldNames.cs" />
+    <Compile Include="Mappings\ProfileMapper.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountingMovement.cs" />
     <Compile Include="Models\BalanceSheet.cs" />
     <Compile Include="Models\Category.cs" />
-    <Compile Include="Helpers\IDeletable.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\ProjectManagementAppContext.cs" />
     <Compile Include="Models\SubType.cs" />
     <Compile Include="Models\Type.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Base\BaseReturnViewModel.cs" />
     <Compile Include="ViewModels\Categories\CategoryViewModel.cs" />
-    <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="Helpers\IValidatable.cs" />
+    <Compile Include="ViewModels\Base\BaseViewModel.cs" />
+    <Compile Include="ViewModels\Base\Failure.cs" />
+    <Compile Include="ViewModels\Base\Success.cs" />
+    <Compile Include="ViewModels\Base\Validation.cs" />
+    <Compile Include="ViewModels\Types\TypeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

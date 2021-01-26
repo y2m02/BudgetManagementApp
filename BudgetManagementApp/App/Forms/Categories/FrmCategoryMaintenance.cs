@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
 using BudgetManagementApp.Entities.ViewModels.Categories;
+using BudgetManagementApp.Forms.Base;
 using BudgetManagementApp.Resources.Properties;
 using BudgetManagementApp.Services.Extensions;
 using BudgetManagementApp.Services.Services.Categories;
 
-namespace BudgetManagementApp.Forms
+namespace BudgetManagementApp.Forms.Categories
 {
     public partial class FrmCategoryMaintenance : BaseForm
     {
@@ -16,7 +17,10 @@ namespace BudgetManagementApp.Forms
             this.categoryService = categoryService;
 
             InitializeComponent();
+        }
 
+        private void FrmCategoryMaintenance_Load(object sender, EventArgs e)
+        {
             SetLabels();
         }
 
@@ -36,9 +40,7 @@ namespace BudgetManagementApp.Forms
         {
             var result = categoryService.Upsert(new CategoryViewModel
             {
-                Id = TxtCategoryId.Text.HasValue()
-                    ? TxtCategoryId.Text.ToInt()
-                    : 0,
+                Id = TxtCategoryId.Text.ToIntOrDefault(),
                 Description = TxtDescription.Text,
             });
 
