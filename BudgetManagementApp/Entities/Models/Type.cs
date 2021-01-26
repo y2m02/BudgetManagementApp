@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BudgetManagementApp.Entities.Models
 {
-    public class Type : IDeletable
+    public class Type
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

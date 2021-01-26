@@ -110,33 +110,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseForm.cs">
+    <Compile Include="Forms\Base\BaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CompositionRoot\ServiceResolver.cs" />
-    <Compile Include="Forms\FrmCategoryMaintenance.cs">
+    <Compile Include="Forms\Categories\FrmCategoryMaintenance.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FrmCategoryMaintenance.Designer.cs">
+    <Compile Include="Forms\Categories\FrmCategoryMaintenance.Designer.cs">
       <DependentUpon>FrmCategoryMaintenance.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmMain.cs">
+    <Compile Include="Forms\Base\FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmMain.Designer.cs">
+    <Compile Include="Forms\Base\FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mappings\ProfileMapper.cs" />
+    <Compile Include="Forms\Types\FrmTypeMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Types\FrmTypeMaintenance.Designer.cs">
+      <DependentUpon>FrmTypeMaintenance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="BaseForm.resx">
+    <EmbeddedResource Include="Forms\Base\BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FrmCategoryMaintenance.resx">
+    <EmbeddedResource Include="Forms\Categories\FrmCategoryMaintenance.resx">
       <DependentUpon>FrmCategoryMaintenance.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmMain.resx">
+    <EmbeddedResource Include="Forms\Base\FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Types\FrmTypeMaintenance.resx">
+      <DependentUpon>FrmTypeMaintenance.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

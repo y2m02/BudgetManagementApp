@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using BudgetManagementApp.CompositionRoot;
+using BudgetManagementApp.Forms.Base;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BudgetManagementApp

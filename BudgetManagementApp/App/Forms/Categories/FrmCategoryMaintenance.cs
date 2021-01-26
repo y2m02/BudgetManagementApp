@@ -1,11 +1,12 @@
-﻿using BudgetManagementApp.Entities.ViewModels.Categories;
+﻿using System;
+using System.Windows.Forms;
+using BudgetManagementApp.Entities.ViewModels.Categories;
+using BudgetManagementApp.Forms.Base;
 using BudgetManagementApp.Resources.Properties;
 using BudgetManagementApp.Services.Extensions;
 using BudgetManagementApp.Services.Services.Categories;
-using System;
-using System.Windows.Forms;
 
-namespace BudgetManagementApp.Forms
+namespace BudgetManagementApp.Forms.Categories
 {
     public partial class FrmCategoryMaintenance : BaseForm
     {
@@ -16,7 +17,10 @@ namespace BudgetManagementApp.Forms
             this.categoryService = categoryService;
 
             InitializeComponent();
+        }
 
+        private void FrmCategoryMaintenance_Load(object sender, EventArgs e)
+        {
             SetLabels();
         }
 
@@ -26,6 +30,7 @@ namespace BudgetManagementApp.Forms
 
             LoopControlsToSetLabels(Controls);
         }
+
         private void BtnCancel_Click(object sender, EventArgs e)
         {
             Close();
@@ -35,13 +40,20 @@ namespace BudgetManagementApp.Forms
         {
             var result = categoryService.Upsert(new CategoryViewModel
             {
-                Id = TxtCategoryId.Text.HasValue()
-                    ? TxtCategoryId.Text.ToInt()
-                    : 0,
-                Description = TxtDescription.Text
+                Id = TxtCategoryId.Text.ToIntOrDefault(),
+                Description = TxtDescription.Text,
             });
 
-            if (result.IsSuccess<bool>())
+            if (result.HasValidations())
+            {
+                var message = result.GetValidations().Join("\n");
+
+                DisplayExclamationMessage(message);
+
+                return;
+            }
+
+            if (result.IsSuccess())
             {
                 DialogResult = DialogResult.OK;
 
@@ -52,7 +64,7 @@ namespace BudgetManagementApp.Forms
 
             DialogResult = DialogResult.None;
 
-            DisplayErrorMessage(result.AsFailure().ErrorMessage);
+            DisplayErrorMessage(result.GetFailureError());
         }
     }
 }

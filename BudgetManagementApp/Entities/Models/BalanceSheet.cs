@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BudgetManagementApp.Entities.Models
 {
-    public class BalanceSheet : IDeletable
+    public class BalanceSheet
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

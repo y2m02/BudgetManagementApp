@@ -55,12 +55,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\ComboBoxExtensions.cs" />
     <Compile Include="Extensions\DataGridViewExtensions.cs" />
+    <Compile Include="Extensions\DialogResultExtensions.cs" />
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\BaseService.cs" />
+    <Compile Include="Services\Base\BaseService.cs" />
     <Compile Include="Services\Categories\CategoryService.cs" />
     <Compile Include="Services\Categories\ICategoryService.cs" />
+    <Compile Include="Services\Base\IBaseService.cs" />
+    <Compile Include="Types\TypeService.cs" />
+    <Compile Include="Types\ITypeService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

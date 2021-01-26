@@ -2,10 +2,13 @@
 using System.Data.Entity;
 using System.Linq;
 using BudgetManagementApp.Entities.Models;
+using BudgetManagementApp.Repositories.Repositories.Base;
 
 namespace BudgetManagementApp.Repositories.Repositories.Categories
 {
-    public class CategoryRepository : BaseRepository, ICategoryRepository
+    public class CategoryRepository : 
+        BaseRepository<Category>, 
+        ICategoryRepository
     {
         public CategoryRepository(BudgetManagementAppContext context) : base(context)
         {
@@ -20,30 +23,19 @@ namespace BudgetManagementApp.Repositories.Repositories.Categories
                 .AsNoTracking();
         }
 
-        public void Create(Category category)
+        public void Create(Category entity)
         {
-            base.Create(category);
+            Add(entity);
         }
 
-        public void Update(Category category)
+        public void Update(Category entity)
         {
-            Context.Categories.Attach(category);
-
-            AddPropertiesToModify(category, new List<string>
-            {
-                nameof(category.Description),
-            });
-
-            Save();
-
-            Detach(category);
+            Modify(entity);
         }
 
-        public void Delete(Category category)
+        public void Delete(Category entity)
         {
-            Context.Categories.Attach(category);
-
-            base.Delete(category);
+            Remove(entity);
         }
     }
 }

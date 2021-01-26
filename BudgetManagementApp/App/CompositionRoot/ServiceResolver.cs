@@ -1,12 +1,13 @@
-﻿using System;
+﻿using AutoMapper;
+using BudgetManagementApp.Entities.Mappings;
+using BudgetManagementApp.Entities.Models;
+using BudgetManagementApp.Forms.Base;
+using BudgetManagementApp.Repositories.Repositories.Categories;
+using BudgetManagementApp.Services.Services.Categories;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using AutoMapper;
-using BudgetManagementApp.Entities.Models;
-using BudgetManagementApp.Mappings;
-using BudgetManagementApp.Repositories.Repositories;
-using BudgetManagementApp.Services.Services;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace BudgetManagementApp.CompositionRoot
 {
@@ -34,18 +35,18 @@ namespace BudgetManagementApp.CompositionRoot
             // Install-Package Scrutor
             services.Scan(scan =>
                 scan.FromAssemblies(
-                    typeof(BaseService).Assembly,
-                    typeof(BaseRepository).Assembly
-                )
-                .AddClasses(x => x.Where(
-                    c => names.Any(
-                        name => c.Name.EndsWith(name))
+                        typeof(CategoryService).Assembly,
+                        typeof(CategoryRepository).Assembly
                     )
-                )
-                .AsMatchingInterface()
-                .FromAssemblies(typeof(FrmMain).Assembly)
-                .AddClasses(x => x.Where(c => c.Name.StartsWith("Frm")))
-                .AsSelf()
+                    .AddClasses(x => x.Where(
+                            c => names.Any(
+                                name => c.Name.EndsWith(name))
+                        )
+                    )
+                    .AsMatchingInterface()
+                    .FromAssemblies(typeof(FrmMain).Assembly)
+                    .AddClasses(x => x.Where(c => c.Name.StartsWith("Frm")))
+                    .AsSelf()
             );
 
             var mappingConfig = new MapperConfiguration(
