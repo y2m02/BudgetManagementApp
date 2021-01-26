@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using BudgetManagementApp.Entities.Enums;
+using BudgetManagementApp.Entities.Helpers;
 using BudgetManagementApp.Entities.ViewModels.Base;
 using BudgetManagementApp.Entities.ViewModels.Categories;
 using BudgetManagementApp.Entities.ViewModels.Types;
@@ -65,13 +66,13 @@ namespace BudgetManagementApp.Forms.Base
 
             SetColumnNames(DgvCategories, new Dictionary<string, string>
             {
-                ["Description"] = StringResourcesHandler.GetString("Description"),
+                [FieldNames.Description] = StringResourcesHandler.GetString(FieldNames.Description),
             });
 
             SetColumnNames(DgvTypes, new Dictionary<string, string>
             {
-                ["Description"] = StringResourcesHandler.GetString("Description"),
-                ["CategoryDescription"] = StringResourcesHandler.GetString("Category"),
+                [FieldNames.Description] = StringResourcesHandler.GetString(FieldNames.Description),
+                [FieldNames.CategoryDescription] = StringResourcesHandler.GetString(FieldNames.Category),
             });
 
             void SetMenuLabels(ToolStripMenuItem control)
@@ -100,9 +101,21 @@ namespace BudgetManagementApp.Forms.Base
 
         private static void DisableColumns(
             DataGridView grid,
-            IEnumerable<string> columnNames
+            List<string> columnNames,
+            bool includeCommonFields = true
         )
         {
+            if (includeCommonFields)
+            {
+                columnNames.AddRange(new []
+                { 
+                    FieldNames.Id, 
+                    FieldNames.Action, 
+                    FieldNames.DeletedOn, 
+                    FieldNames.InUse,
+                });
+            }
+
             foreach (var columnName in columnNames)
             {
                 grid.Columns[columnName].Visible = false;
@@ -300,8 +313,8 @@ namespace BudgetManagementApp.Forms.Base
 
             DgvCategories.SetSelectedRow(0);
 
-            TxtCategoryId.Text = DgvCategories.GetSelectedRowValue<int>("CategoryId").ToString();
-            TxtCategoryDescription.Text = DgvCategories.GetSelectedRowValue<string>("Description");
+            TxtCategoryId.Text = DgvCategories.GetSelectedRowValue<int>(FieldNames.CategoryId).ToString();
+            TxtCategoryDescription.Text = DgvCategories.GetSelectedRowValue<string>(FieldNames.Description);
         }
 
         private void FormatCategories()
@@ -311,9 +324,9 @@ namespace BudgetManagementApp.Forms.Base
 
             try
             {
-                DisableColumns(DgvCategories, new[]
+                DisableColumns(DgvCategories, new List<string>
                 {
-                    "CategoryId", "Id", "Action", "DeletedOn", "InUse",
+                    FieldNames.CategoryId,
                 });
             }
             catch { }
@@ -323,11 +336,11 @@ namespace BudgetManagementApp.Forms.Base
         {
             if (grid.HasRowsSelected())
             {
-                TxtCategoryId.Text = grid.GetSelectedRowValue<int>("CategoryId").ToString();
-                TxtCategoryDescription.Text = grid.GetSelectedRowValue<string>("Description");
+                TxtCategoryId.Text = grid.GetSelectedRowValue<int>(FieldNames.CategoryId).ToString();
+                TxtCategoryDescription.Text = grid.GetSelectedRowValue<string>(FieldNames.Description);
 
                 SetControlsStatus(
-                    !grid.GetSelectedRowValue<bool>("InUse"),
+                    !grid.GetSelectedRowValue<bool>(FieldNames.InUse),
                     BtnDeleteCategory
                 );
 
@@ -336,8 +349,8 @@ namespace BudgetManagementApp.Forms.Base
                 return;
             }
 
-            TxtCategoryId.Text = grid.FirstRow<int>("CategoryId").ToString();
-            TxtCategoryDescription.Text = grid.FirstRow<string>("Description");
+            TxtCategoryId.Text = grid.FirstRow<int>(FieldNames.CategoryId).ToString();
+            TxtCategoryDescription.Text = grid.FirstRow<string>(FieldNames.Description);
 
             SetControlsStatus(false, BtnModifyCategory, BtnDeleteCategory);
         }
@@ -474,14 +487,10 @@ namespace BudgetManagementApp.Forms.Base
 
             try
             {
-                DisableColumns(DgvTypes, new[]
+                DisableColumns(DgvTypes, new List<string>
                 {
-                    "Id",
-                    "TypeId",
-                    "CategoryId",
-                    "Action",
-                    "DeletedOn",
-                    "InUse",
+                    FieldNames.TypeId,
+                    FieldNames.CategoryId,
                 });
             }
             catch { }
@@ -491,13 +500,13 @@ namespace BudgetManagementApp.Forms.Base
         {
             if (grid.HasRowsSelected())
             {
-                TxtTypeId.Text = grid.GetSelectedRowValue<int>("TypeId").ToString();
-                TxtTypeDescription.Text = grid.GetSelectedRowValue<string>("Description");
-                TxtTypeCategoryId.Text = grid.GetSelectedRowValue<int>("CategoryId").ToString();
-                TxtTypeCategory.Text = grid.GetSelectedRowValue<string>("CategoryDescription");
+                TxtTypeId.Text = grid.GetSelectedRowValue<int>(FieldNames.TypeId).ToString();
+                TxtTypeDescription.Text = grid.GetSelectedRowValue<string>(FieldNames.Description);
+                TxtTypeCategoryId.Text = grid.GetSelectedRowValue<int>(FieldNames.CategoryId).ToString();
+                TxtTypeCategory.Text = grid.GetSelectedRowValue<string>(FieldNames.CategoryDescription);
 
                 SetControlsStatus(
-                    !grid.GetSelectedRowValue<bool>("InUse"),
+                    !grid.GetSelectedRowValue<bool>(FieldNames.InUse),
                     BtnDeleteType
                 );
 
@@ -506,10 +515,10 @@ namespace BudgetManagementApp.Forms.Base
                 return;
             }
 
-            TxtTypeId.Text = grid.FirstRow<int>("TypeId").ToString();
-            TxtTypeDescription.Text = grid.FirstRow<string>("Description");
-            TxtTypeCategoryId.Text = grid.FirstRow<int>("CategoryId").ToString();
-            TxtTypeCategory.Text = grid.FirstRow<string>("CategoryDescription");
+            TxtTypeId.Text = grid.FirstRow<int>(FieldNames.TypeId).ToString();
+            TxtTypeDescription.Text = grid.FirstRow<string>(FieldNames.Description);
+            TxtTypeCategoryId.Text = grid.FirstRow<int>(FieldNames.CategoryId).ToString();
+            TxtTypeCategory.Text = grid.FirstRow<string>(FieldNames.CategoryDescription);
 
             SetControlsStatus(false, BtnModifyType, BtnDeleteType);
         }
@@ -546,7 +555,11 @@ namespace BudgetManagementApp.Forms.Base
         {
             var cbxCategory = typeMaintenance.CbxCategory;
 
-            cbxCategory.SetData(Categories, "CategoryId", "Description");
+            cbxCategory.SetData(
+                Categories, 
+                FieldNames.CategoryId, 
+                FieldNames.Description
+            );
 
             switch (type)
             {

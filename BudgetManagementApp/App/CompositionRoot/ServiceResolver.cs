@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
+﻿using AutoMapper;
+using BudgetManagementApp.Entities.Mappings;
 using BudgetManagementApp.Entities.Models;
 using BudgetManagementApp.Forms.Base;
-using BudgetManagementApp.Mappings;
 using BudgetManagementApp.Repositories.Repositories.Categories;
 using BudgetManagementApp.Services.Services.Categories;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BudgetManagementApp.CompositionRoot
 {
