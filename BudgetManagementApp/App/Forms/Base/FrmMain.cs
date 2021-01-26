@@ -83,6 +83,13 @@ namespace BudgetManagementApp.Forms.Base
                 [FieldNames.CategoryDescription] = StringResourcesHandler.GetString(FieldNames.Category),
             });
 
+            SetColumnNames(DgvSubTypes, new Dictionary<string, string>
+            {
+                [FieldNames.Description] = StringResourcesHandler.GetString(FieldNames.Description),
+                [FieldNames.TypeDescription] = StringResourcesHandler.GetString(FieldNames.Type),
+                [FieldNames.CategoryDescription] = StringResourcesHandler.GetString(FieldNames.Category),
+            });
+
             void SetMenuLabels(ToolStripMenuItem control)
             {
                 var name = control.Name;
@@ -167,6 +174,20 @@ namespace BudgetManagementApp.Forms.Base
             }
         }
 
+        private void Handle<T>(
+            BaseReturnViewModel result, 
+            Action<IEnumerable<T>> executor
+        )
+        {
+            if (result.IsSuccess<IEnumerable<T>>())
+            {
+                executor(result.GetSuccessModel<IEnumerable<T>>());
+            }
+            else
+            {
+                DisplayErrorMessage(result.GetFailureError());
+            }
+        }
         #endregion
 
         #region Control Methods
@@ -175,6 +196,13 @@ namespace BudgetManagementApp.Forms.Base
         {
             HandleCategories(categoryService.GetAll());
             HandleTypes(typeService.GetAll());
+
+            Handle<SubTypeViewModel>(
+                subTypeService.GetAll(), 
+                SetupSubTypes
+            );
+
+            //HandleSubTypes(subTypeService.GetAll());
 
             SetAppLabels();
         }
@@ -606,17 +634,57 @@ namespace BudgetManagementApp.Forms.Base
 
         private void BtnDeleteSubType_Click(object sender, EventArgs e)
         {
+            if (!DisplayQuestionMessage(StringResources.DeleteQuestion).IsYesResponse())
+                return;
 
+            var result = subTypeService.Delete(
+                SubTypes.Single(w => w.SubTypeId == TxtSubTypeId.Text.ToInt())
+            );
+
+            if (result.IsSuccess())
+            {
+                DisplayInformationMessage(StringResources.RecordDeleted);
+
+                Handle<SubTypeViewModel>(
+                    subTypeService.GetAll(), 
+                    SetupSubTypes
+                );
+
+                TxtSubTypeFilter.Clear();
+
+                HandleTypes(typeService.GetAll());
+
+                return;
+            }
+
+            DisplayErrorMessage(result.GetFailureError());
         }
 
         private void TxtSubTypeFilter_TextChanged(object sender, EventArgs e)
         {
+            var text = TxtSubTypeFilter.Text;
 
+            var subTypes = new List<SubTypeViewModel>(SubTypes);
+
+            if (text.HasValue())
+            {
+                subTypes = subTypes.Where(SubTypeFilter).ToList();
+            }
+
+            PopulateGrid(DgvSubTypes, subTypes, FormatSubTypes);
+
+            bool SubTypeFilter(SubTypeViewModel type)
+            {
+                return
+                    type.Description.Contains(text) ||
+                    type.TypeDescription.Contains(text) ||
+                    type.CategoryDescription.Contains(text);
+            }
         }
         
         private void DgvSubTypes_SelectionChanged(object sender, EventArgs e)
         {
-
+            SetSubTypeDetailsData(DgvSubTypes);
         }
 
         private void FillSubTypeFields(DataGridViewRow row)
@@ -652,9 +720,9 @@ namespace BudgetManagementApp.Forms.Base
             {
                 DisableColumns(DgvSubTypes, new List<string>
                 {
-                    FieldNames.TypeId,
-                    FieldNames.CategoryId,
                     FieldNames.SubTypeId,
+                    FieldNames.CategoryId,
+                    FieldNames.TypeId,
                 });
             }
             catch { }
@@ -681,20 +749,6 @@ namespace BudgetManagementApp.Forms.Base
             SetControlsStatus(false, BtnModifySubType, BtnDeleteSubType);
         }
 
-        private void HandleSubTypes(BaseReturnViewModel result)
-        {
-            if (result.IsSuccess<IEnumerable<SubTypeViewModel>>())
-            {
-                SetupSubTypes(
-                    result.GetSuccessModel<IEnumerable<SubTypeViewModel>>()
-                );
-            }
-            else
-            {
-                DisplayErrorMessage(result.GetFailureError());
-            }
-        }
-
         private void HandleSubTypeMaintenance(MaintenanceType type)
         {
             InitializeSubTypeMaintenanceControls(type);
@@ -702,7 +756,10 @@ namespace BudgetManagementApp.Forms.Base
             //if (!typeMaintenance.ShowDialog().IsOkResponse()) // change
             //    return;
 
-            HandleSubTypes(subTypeService.GetAll());
+            Handle<SubTypeViewModel>(
+                subTypeService.GetAll(), 
+                SetupSubTypes
+            );
             
             TxtSubTypeFilter.Clear();
 

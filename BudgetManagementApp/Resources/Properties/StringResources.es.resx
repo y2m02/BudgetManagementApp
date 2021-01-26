@@ -231,6 +231,9 @@
   <data name="SubTypeTypeDescription" xml:space="preserve">
     <value>Partida</value>
   </data>
+  <data name="Type" xml:space="preserve">
+    <value>Partida</value>
+  </data>
   <data name="TypeCategory" xml:space="preserve">
     <value>Categoría</value>
   </data>

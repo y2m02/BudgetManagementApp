@@ -403,6 +403,15 @@ namespace BudgetManagementApp.Resources.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        public static string Type {
+            get {
+                return ResourceManager.GetString("Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Category.
         /// </summary>
         public static string TypeCategory {
