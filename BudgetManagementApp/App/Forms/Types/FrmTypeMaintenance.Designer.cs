@@ -94,10 +94,14 @@ namespace BudgetManagementApp.Forms.Types
             // 
             // CbxCategory
             // 
+            this.CbxCategory.BackColor = System.Drawing.SystemColors.Window;
+            this.CbxCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CbxCategory.FormattingEnabled = true;
+            this.CbxCategory.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.CbxCategory.Location = new System.Drawing.Point(18, 55);
             this.CbxCategory.Name = "CbxCategory";
             this.CbxCategory.Size = new System.Drawing.Size(426, 27);
+            this.CbxCategory.Sorted = true;
             this.CbxCategory.TabIndex = 43;
             // 
             // LblCategory

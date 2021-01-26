@@ -8,6 +8,7 @@ using BudgetManagementApp.Entities.ViewModels.Base;
 using BudgetManagementApp.Entities.ViewModels.Categories;
 using BudgetManagementApp.Entities.ViewModels.Types;
 using BudgetManagementApp.Forms.Categories;
+using BudgetManagementApp.Forms.Types;
 using BudgetManagementApp.Resources;
 using BudgetManagementApp.Resources.Properties;
 using BudgetManagementApp.Services.Extensions;
@@ -19,16 +20,19 @@ namespace BudgetManagementApp.Forms.Base
     public partial class FrmMain : BaseForm
     {
         private readonly FrmCategoryMaintenance categoryMaintenance;
+        private readonly FrmTypeMaintenance typeMaintenance;
         private readonly ICategoryService categoryService;
         private readonly ITypeService typeService;
 
         public FrmMain(
             FrmCategoryMaintenance categoryMaintenance,
+            FrmTypeMaintenance typeMaintenance,
             ICategoryService categoryService,
             ITypeService typeService
         )
         {
             this.categoryMaintenance = categoryMaintenance;
+            this.typeMaintenance = typeMaintenance;
             this.categoryService = categoryService;
             this.typeService = typeService;
 
@@ -372,53 +376,38 @@ namespace BudgetManagementApp.Forms.Base
 
         #region Types
 
-        //private void BtnNewCategory_Click(object sender, EventArgs e)
-        //{
-        //    categoryMaintenance.TxtCategoryId.Clear();
-        //    categoryMaintenance.TxtDescription.Clear();
-
-        //    HandleCategoryMaintenance();
-        //}
-
-        //private void BtnDeleteCategory_Click(object sender, EventArgs e)
-        //{
-        //    if (!DisplayQuestionMessage(StringResources.DeleteQuestion).IsYesResponse())
-        //        return;
-
-        //    var result = categoryService.Delete(
-        //        Categories.Single(w => w.CategoryId == TxtCategoryId.Text.ToInt())
-        //    );
-
-        //    if (result.IsSuccess())
-        //    {
-        //        DisplayInformationMessage(StringResources.RecordDeleted);
-
-        //        HandleCategories(categoryService.GetAll());
-
-        //        TxtCategoryFilter.Clear();
-
-        //        return;
-        //    }
-
-        //    DisplayErrorMessage(result.GetFailureError());
-        //}
-
-        //private void BtnModifyCategory_Click(object sender, EventArgs e)
-        //{
-        //    categoryMaintenance.TxtCategoryId.Text = TxtCategoryId.Text;
-        //    categoryMaintenance.TxtDescription.Text = TxtCategoryDescription.Text;
-
-        //    HandleCategoryMaintenance();
-        //}
-
         private void BtnNewType_Click(object sender, EventArgs e)
         {
+            typeMaintenance.TxtTypeId.Clear();
+            typeMaintenance.TxtDescription.Clear();
 
+            var cbxCategory = typeMaintenance.CbxCategory;
+
+            cbxCategory.SetData(Categories, "CategoryId", "Description");
+
+            if (cbxCategory.HasValue())
+            {
+                cbxCategory.SelectedIndex = 0;
+            }
+
+            HandleTypeMaintenance();
         }
 
         private void BtnModifyType_Click(object sender, EventArgs e)
         {
+            typeMaintenance.TxtTypeId.Text = TxtTypeId.Text;
+            typeMaintenance.TxtDescription.Text = TxtTypeDescription.Text;
 
+            var cbxCategory = typeMaintenance.CbxCategory;
+
+            cbxCategory.SetData(Categories, "CategoryId", "Description");
+
+            if (cbxCategory.HasValue())
+            {
+                cbxCategory.Text = TxtTypeCategory.Text;
+            }
+
+            HandleTypeMaintenance();
         }
 
         private void BtnDeleteType_Click(object sender, EventArgs e)
@@ -459,12 +448,12 @@ namespace BudgetManagementApp.Forms.Base
 
             bool TypeFilter(TypeViewModel type)
             {
-                return 
+                return
                     type.Description.Contains(text) ||
                     type.CategoryDescription.Contains(text);
             }
         }
-        
+
         private void DgvTypes_SelectionChanged(object sender, EventArgs e)
         {
             SetTypeDetailsData(DgvTypes);
@@ -497,8 +486,8 @@ namespace BudgetManagementApp.Forms.Base
                 DisableColumns(DgvTypes, new[]
                 {
                     "Id",
-                    "TypeId", 
-                    "CategoryId", 
+                    "TypeId",
+                    "CategoryId",
                     "Action",
                     "DeletedOn",
                     "InUse",
@@ -525,7 +514,7 @@ namespace BudgetManagementApp.Forms.Base
 
                 return;
             }
-            
+
             TxtTypeId.Text = grid.FirstRow<int>("TypeId").ToString();
             TxtTypeDescription.Text = grid.FirstRow<string>("Description");
             TxtTypeCategoryId.Text = grid.FirstRow<int>("CategoryId").ToString();
@@ -550,7 +539,7 @@ namespace BudgetManagementApp.Forms.Base
 
         private void HandleTypeMaintenance()
         {
-            if (!categoryMaintenance.ShowDialog().IsOkResponse())
+            if (!typeMaintenance.ShowDialog().IsOkResponse())
                 return;
 
             HandleTypes(typeService.GetAll());
