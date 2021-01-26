@@ -11,7 +11,7 @@ using BudgetManagementApp.Entities.ViewModels.Types;
 using BudgetManagementApp.Forms.Base;
 using BudgetManagementApp.Resources.Properties;
 using BudgetManagementApp.Services.Extensions;
-using BudgetManagementApp.Services.Types;
+using BudgetManagementApp.Services.Services.Types;
 
 namespace BudgetManagementApp.Forms.Types
 {

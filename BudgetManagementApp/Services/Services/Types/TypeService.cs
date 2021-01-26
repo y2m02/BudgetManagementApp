@@ -5,7 +5,7 @@ using BudgetManagementApp.Repositories.Repositories.Base;
 using BudgetManagementApp.Repositories.Repositories.Types;
 using BudgetManagementApp.Services.Services.Base;
 
-namespace BudgetManagementApp.Services.Types
+namespace BudgetManagementApp.Services.Services.Types
 {
     public class TypeService :
         BaseService<Type, TypeViewModel>,

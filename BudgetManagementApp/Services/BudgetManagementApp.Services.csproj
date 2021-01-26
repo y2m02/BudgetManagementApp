@@ -65,8 +65,10 @@
     <Compile Include="Services\Categories\CategoryService.cs" />
     <Compile Include="Services\Categories\ICategoryService.cs" />
     <Compile Include="Services\Base\IBaseService.cs" />
-    <Compile Include="Types\TypeService.cs" />
-    <Compile Include="Types\ITypeService.cs" />
+    <Compile Include="Services\SubTypes\ISubTypeService.cs" />
+    <Compile Include="Services\SubTypes\SubTypeService.cs" />
+    <Compile Include="Services\Types\TypeService.cs" />
+    <Compile Include="Services\Types\ITypeService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

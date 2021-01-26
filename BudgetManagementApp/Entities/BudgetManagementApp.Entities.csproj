@@ -74,6 +74,7 @@
     <Compile Include="ViewModels\Base\Failure.cs" />
     <Compile Include="ViewModels\Base\Success.cs" />
     <Compile Include="ViewModels\Base\Validation.cs" />
+    <Compile Include="ViewModels\SubTypes\SubTypeViewModel.cs" />
     <Compile Include="ViewModels\Types\TypeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

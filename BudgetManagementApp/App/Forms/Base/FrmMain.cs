@@ -15,7 +15,7 @@ using BudgetManagementApp.Resources;
 using BudgetManagementApp.Resources.Properties;
 using BudgetManagementApp.Services.Extensions;
 using BudgetManagementApp.Services.Services.Categories;
-using BudgetManagementApp.Services.Types;
+using BudgetManagementApp.Services.Services.Types;
 
 namespace BudgetManagementApp.Forms.Base
 {
