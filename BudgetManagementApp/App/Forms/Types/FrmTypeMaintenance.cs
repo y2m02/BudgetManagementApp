@@ -1,34 +1,29 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using BudgetManagementApp.Entities.ViewModels.Categories;
+using BudgetManagementApp.Entities.ViewModels.Types;
 using BudgetManagementApp.Forms.Base;
 using BudgetManagementApp.Resources.Properties;
 using BudgetManagementApp.Services.Extensions;
-using BudgetManagementApp.Services.Services.Categories;
+using BudgetManagementApp.Services.Types;
 
-namespace BudgetManagementApp.Forms.Categories
+namespace BudgetManagementApp.Forms.Types
 {
-    public partial class FrmCategoryMaintenance : BaseForm
+    public partial class FrmTypeMaintenance : BaseForm
     {
-        private readonly ICategoryService categoryService;
+        private readonly ITypeService typeService;
 
-        public FrmCategoryMaintenance(ICategoryService categoryService)
+        public FrmTypeMaintenance(ITypeService typeService)
         {
-            this.categoryService = categoryService;
+            this.typeService = typeService;
 
             InitializeComponent();
-        }
-
-        private void FrmCategoryMaintenance_Load(object sender, EventArgs e)
-        {
-            SetLabels();
-        }
-
-        protected sealed override void SetLabels()
-        {
-            Text = StringResources.CategoryMaintenance;
-
-            LoopControlsToSetLabels(Controls);
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)
@@ -38,10 +33,11 @@ namespace BudgetManagementApp.Forms.Categories
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            var result = categoryService.Upsert(new CategoryViewModel
+            var result = typeService.Upsert(new TypeViewModel
             {
-                Id = TxtCategoryId.Text.ToIntOrDefault(),
+                Id = TxtTypeId.Text.ToIntOrDefault(),
                 Description = TxtDescription.Text,
+                CategoryId =  CbxCategory.SafeSelectedValue<int>()
             });
 
             if (result.HasValidations())
@@ -65,6 +61,18 @@ namespace BudgetManagementApp.Forms.Categories
             DialogResult = DialogResult.None;
 
             DisplayErrorMessage(result.GetFailureError());
+        }
+
+        private void FrmTypeMaintenance_Load(object sender, EventArgs e)
+        {
+            SetLabels();
+        }
+
+        protected sealed override void SetLabels()
+        {
+            Text = StringResources.TypeMaintenance;
+
+            LoopControlsToSetLabels(Controls);
         }
     }
 }

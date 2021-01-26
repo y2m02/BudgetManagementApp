@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\ActionType.cs" />
+    <Compile Include="Enums\MaintenanceType.cs" />
     <Compile Include="Helpers\DisplayNameFromResources.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountingMovement.cs" />
