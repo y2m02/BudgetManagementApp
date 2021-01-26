@@ -844,6 +844,7 @@ namespace BudgetManagementApp.Forms.Base
             this.BtnDeleteSubType.TabIndex = 56;
             this.BtnDeleteSubType.Text = "Eliminar";
             this.BtnDeleteSubType.UseVisualStyleBackColor = true;
+            this.BtnDeleteSubType.Click += new System.EventHandler(this.BtnDeleteSubType_Click);
             // 
             // BtnModifySubType
             // 
@@ -855,6 +856,7 @@ namespace BudgetManagementApp.Forms.Base
             this.BtnModifySubType.TabIndex = 55;
             this.BtnModifySubType.Text = "Modificar";
             this.BtnModifySubType.UseVisualStyleBackColor = true;
+            this.BtnModifySubType.Click += new System.EventHandler(this.BtnModifySubType_Click);
             // 
             // BtnNewSubType
             // 
@@ -865,6 +867,7 @@ namespace BudgetManagementApp.Forms.Base
             this.BtnNewSubType.TabIndex = 54;
             this.BtnNewSubType.Text = "Nuevo";
             this.BtnNewSubType.UseVisualStyleBackColor = true;
+            this.BtnNewSubType.Click += new System.EventHandler(this.BtnNewSubType_Click);
             // 
             // TxtSubTypeFilter
             // 
@@ -874,6 +877,7 @@ namespace BudgetManagementApp.Forms.Base
             this.TxtSubTypeFilter.Name = "TxtSubTypeFilter";
             this.TxtSubTypeFilter.Size = new System.Drawing.Size(201, 27);
             this.TxtSubTypeFilter.TabIndex = 53;
+            this.TxtSubTypeFilter.TextChanged += new System.EventHandler(this.TxtSubTypeFilter_TextChanged);
             // 
             // DgvSubTypes
             // 
@@ -893,6 +897,7 @@ namespace BudgetManagementApp.Forms.Base
             this.DgvSubTypes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvSubTypes.Size = new System.Drawing.Size(667, 356);
             this.DgvSubTypes.TabIndex = 52;
+            this.DgvSubTypes.SelectionChanged += new System.EventHandler(this.DgvSubTypes_SelectionChanged);
             // 
             // LblSubTypeCategory
             // 
