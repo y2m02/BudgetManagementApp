@@ -126,6 +126,12 @@
     <Compile Include="Forms\Base\FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Types\FrmTypeMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Types\FrmTypeMaintenance.Designer.cs">
+      <DependentUpon>FrmTypeMaintenance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mappings\ProfileMapper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -137,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Base\FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Types\FrmTypeMaintenance.resx">
+      <DependentUpon>FrmTypeMaintenance.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
