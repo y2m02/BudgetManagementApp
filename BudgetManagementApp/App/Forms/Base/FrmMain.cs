@@ -11,6 +11,7 @@ using BudgetManagementApp.Entities.ViewModels.Categories;
 using BudgetManagementApp.Entities.ViewModels.SubTypes;
 using BudgetManagementApp.Entities.ViewModels.Types;
 using BudgetManagementApp.Forms.Categories;
+using BudgetManagementApp.Forms.SubTypes;
 using BudgetManagementApp.Forms.Types;
 using BudgetManagementApp.Resources;
 using BudgetManagementApp.Resources.Properties;
@@ -25,6 +26,7 @@ namespace BudgetManagementApp.Forms.Base
     {
         private readonly FrmCategoryMaintenance categoryMaintenance;
         private readonly FrmTypeMaintenance typeMaintenance;
+        private readonly FrmSubTypeMaintenance subTypeMaintenance;
         private readonly ICategoryService categoryService;
         private readonly ITypeService typeService;
         private readonly ISubTypeService subTypeService;
@@ -32,6 +34,7 @@ namespace BudgetManagementApp.Forms.Base
         public FrmMain(
             FrmCategoryMaintenance categoryMaintenance,
             FrmTypeMaintenance typeMaintenance,
+            FrmSubTypeMaintenance subTypeMaintenance,
             ICategoryService categoryService,
             ITypeService typeService,
             ISubTypeService subTypeService
@@ -39,6 +42,7 @@ namespace BudgetManagementApp.Forms.Base
         {
             this.categoryMaintenance = categoryMaintenance;
             this.typeMaintenance = typeMaintenance;
+            this.subTypeMaintenance = subTypeMaintenance;
             this.categoryService = categoryService;
             this.typeService = typeService;
             this.subTypeService = subTypeService;
@@ -585,6 +589,11 @@ namespace BudgetManagementApp.Forms.Base
             TxtTypeFilter.Clear();
 
             HandleCategories(categoryService.GetAll());
+
+            Handle<SubTypeViewModel>(
+                subTypeService.GetAll(), 
+                SetupSubTypes
+            );
         }
 
         private void InitializeTypeMaintenanceControls(MaintenanceType type)
@@ -624,12 +633,12 @@ namespace BudgetManagementApp.Forms.Base
         
         private void BtnNewSubType_Click(object sender, EventArgs e)
         {
-
+            HandleSubTypeMaintenance(MaintenanceType.CreateNew);
         }
 
         private void BtnModifySubType_Click(object sender, EventArgs e)
         {
-
+            HandleSubTypeMaintenance(MaintenanceType.Modify);
         }
 
         private void BtnDeleteSubType_Click(object sender, EventArgs e)
@@ -753,8 +762,8 @@ namespace BudgetManagementApp.Forms.Base
         {
             InitializeSubTypeMaintenanceControls(type);
 
-            //if (!typeMaintenance.ShowDialog().IsOkResponse()) // change
-            //    return;
+            if (!subTypeMaintenance.ShowDialog().IsOkResponse())
+                return;
 
             Handle<SubTypeViewModel>(
                 subTypeService.GetAll(), 
@@ -768,33 +777,48 @@ namespace BudgetManagementApp.Forms.Base
 
         private void InitializeSubTypeMaintenanceControls(MaintenanceType type)
         {
-            //var cbxCategory = typeMaintenance.CbxCategory;
+            subTypeMaintenance.Types = Types;
 
-            //cbxCategory.SetData(
-            //    Categories, 
-            //    FieldNames.CategoryId, 
-            //    FieldNames.Description
-            //);
+            var cbxType = subTypeMaintenance.CbxType;
 
-            //switch (type)
-            //{
-            //    case MaintenanceType.CreateNew:
-            //        typeMaintenance.TxtTypeId.Clear();
-            //        typeMaintenance.TxtDescription.Clear();
+            cbxType.SetData(
+                Types,
+                FieldNames.TypeId,
+                FieldNames.Description
+            );
 
-            //        if (cbxCategory.HasValue())
-            //        {
-            //            cbxCategory.SelectedIndex = 0;
-            //        }
+            var cbxCategory = subTypeMaintenance.CbxCategory;
 
-            //        break;
+            cbxCategory.SetData(
+                Categories,
+                FieldNames.CategoryId,
+                FieldNames.Description
+            );
 
-            //    case MaintenanceType.Modify:
-            //        typeMaintenance.TxtTypeId.Text = TxtTypeId.Text;
-            //        typeMaintenance.TxtDescription.Text = TxtTypeDescription.Text;
-            //        cbxCategory.Text = TxtTypeCategory.Text;
-            //        break;
-            //}
+            switch (type)
+            {
+                case MaintenanceType.CreateNew:
+                    subTypeMaintenance.TxtSubTypeId.Clear();
+                    subTypeMaintenance.TxtDescription.Clear();
+
+                    if (cbxCategory.HasValue())
+                    {
+                        cbxCategory.SelectedIndex = 0;
+                    }
+
+                    if (cbxType.HasValue())
+                    {
+                        cbxType.SelectedIndex = 0;
+                    }
+                    break;
+
+                case MaintenanceType.Modify:
+                    subTypeMaintenance.TxtSubTypeId.Text = TxtSubTypeId.Text;
+                    subTypeMaintenance.TxtDescription.Text = TxtSubTypeDescription.Text;
+                    cbxCategory.Text = TxtSubTypeCategory.Text;
+                    cbxCategory.Text = TxtSubTypeTypeDescription.Text;
+                    break;
+            }
         }
 
         #endregion
