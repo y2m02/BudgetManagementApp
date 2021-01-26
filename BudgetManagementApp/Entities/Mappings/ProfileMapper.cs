@@ -4,7 +4,7 @@ using BudgetManagementApp.Entities.Models;
 using BudgetManagementApp.Entities.ViewModels.Categories;
 using BudgetManagementApp.Entities.ViewModels.Types;
 
-namespace BudgetManagementApp.Mappings
+namespace BudgetManagementApp.Entities.Mappings
 {
     public class ProfileMapper : Profile
     {

@@ -132,7 +132,6 @@
     <Compile Include="Forms\Types\FrmTypeMaintenance.Designer.cs">
       <DependentUpon>FrmTypeMaintenance.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mappings\ProfileMapper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\Base\BaseForm.resx">
