@@ -33,5 +33,12 @@ namespace BudgetManagementApp.Services.Extensions
             cbx.ValueMember = valueMember;
             cbx.DisplayMember = displayMember;
         }
+
+        public static T SafeSelectedValue<T>(this ComboBox cbx)
+        {
+            return cbx.HasValue() 
+                ? (T)cbx.SelectedValue 
+                : default;
+        }
     }
 }

@@ -367,9 +367,10 @@ namespace BudgetManagementApp.Forms.Base
                 return;
 
             HandleCategories(categoryService.GetAll());
-            HandleTypes(typeService.GetAll());
 
             TxtCategoryFilter.Clear();
+
+            HandleTypes(typeService.GetAll());
         }
 
         #endregion
@@ -426,6 +427,8 @@ namespace BudgetManagementApp.Forms.Base
                 HandleTypes(typeService.GetAll());
 
                 TxtTypeFilter.Clear();
+
+                HandleCategories(categoryService.GetAll());
 
                 return;
             }
@@ -543,8 +546,10 @@ namespace BudgetManagementApp.Forms.Base
                 return;
 
             HandleTypes(typeService.GetAll());
-
+            
             TxtTypeFilter.Clear();
+
+            HandleCategories(categoryService.GetAll());
         }
 
         #endregion

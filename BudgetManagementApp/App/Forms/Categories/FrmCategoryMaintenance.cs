@@ -40,9 +40,7 @@ namespace BudgetManagementApp.Forms.Categories
         {
             var result = categoryService.Upsert(new CategoryViewModel
             {
-                Id = TxtCategoryId.Text.HasValue()
-                    ? TxtCategoryId.Text.ToInt()
-                    : 0,
+                Id = TxtCategoryId.Text.ToIntOrDefault(),
                 Description = TxtDescription.Text,
             });
 
