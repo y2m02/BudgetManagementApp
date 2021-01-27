@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Globalization;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Windows.Forms;
-using BudgetManagementApp.Entities.Enums;
+﻿using BudgetManagementApp.Entities.Enums;
 using BudgetManagementApp.Entities.Helpers;
 using BudgetManagementApp.Entities.ViewModels.Base;
 using BudgetManagementApp.Entities.ViewModels.Categories;
@@ -20,6 +13,12 @@ using BudgetManagementApp.Services.Extensions;
 using BudgetManagementApp.Services.Services.Categories;
 using BudgetManagementApp.Services.Services.SubTypes;
 using BudgetManagementApp.Services.Services.Types;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Globalization;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace BudgetManagementApp.Forms.Base
 {
@@ -211,6 +210,35 @@ namespace BudgetManagementApp.Forms.Base
 
             PopulateGrid(grid, data, formatGrid);
         }
+
+        private void SetDetailsData(
+            DataGridView grid,
+            Button btnModify,
+            Button btnDelete,
+            Action<DataGridViewRow> fillFields
+        )
+        {
+            if (grid.HasRowsSelected())
+            {
+                fillFields(grid.GetSelectedRow());
+
+                SetControlsStatus(
+                    !grid.GetSelectedRowValue<bool>(FieldNames.InUse),
+                    btnDelete
+                );
+
+                SetControlsStatus(true, btnModify);
+
+                return;
+            }
+
+            if (grid.HasValue())
+            {
+                fillFields(grid.FirstRow());
+            }
+
+            SetControlsStatus(false, btnModify, btnDelete);
+        }
         #endregion
 
         #region Control Methods
@@ -360,7 +388,12 @@ namespace BudgetManagementApp.Forms.Base
 
         private void DgvCategories_SelectionChanged(object sender, EventArgs e)
         {
-            SetCategoryDetailsData(DgvCategories);
+            SetDetailsData(
+                DgvCategories, 
+                BtnModifyCategory, 
+                BtnDeleteCategory,
+                FillCategoryFields
+            );
         }
 
         private void FillCategoryFields(DataGridViewRow row)
@@ -389,31 +422,6 @@ namespace BudgetManagementApp.Forms.Base
                 });
             }
             catch { }
-        }
-
-        private void SetCategoryDetailsData(DataGridView grid)
-        {
-            if (grid.HasRowsSelected())
-            {
-                FillCategoryFields(grid.GetSelectedRow());
-
-
-                SetControlsStatus(
-                    !grid.GetSelectedRowValue<bool>(FieldNames.InUse),
-                    BtnDeleteCategory
-                );
-
-                SetControlsStatus(true, BtnModifyCategory);
-
-                return;
-            }
-
-            if (grid.HasValue())
-            {
-                FillCategoryFields(grid.FirstRow());
-            }
-
-            SetControlsStatus(false, BtnModifyCategory, BtnDeleteCategory);
         }
 
         private void HandleCategoryMaintenance(MaintenanceType type)
@@ -512,7 +520,12 @@ namespace BudgetManagementApp.Forms.Base
 
         private void DgvTypes_SelectionChanged(object sender, EventArgs e)
         {
-            SetTypeDetailsData(DgvTypes);
+            SetDetailsData(
+                DgvTypes, 
+                BtnModifyType, 
+                BtnDeleteType,
+                FillTypeFields
+            );
         }
 
         private void FillTypeFields(DataGridViewRow row)
@@ -544,30 +557,6 @@ namespace BudgetManagementApp.Forms.Base
                 });
             }
             catch { }
-        }
-
-        private void SetTypeDetailsData(DataGridView grid)
-        {
-            if (grid.HasRowsSelected())
-            {
-                FillTypeFields(grid.GetSelectedRow());
-
-                SetControlsStatus(
-                    !grid.GetSelectedRowValue<bool>(FieldNames.InUse),
-                    BtnDeleteType
-                );
-
-                SetControlsStatus(true, BtnModifyType);
-
-                return;
-            }
-
-            if (grid.HasValue())
-            {
-                FillTypeFields(grid.FirstRow());
-            }
-
-            SetControlsStatus(false, BtnModifyType, BtnDeleteType);
         }
 
         private void HandleTypeMaintenance(MaintenanceType type)
@@ -688,7 +677,12 @@ namespace BudgetManagementApp.Forms.Base
 
         private void DgvSubTypes_SelectionChanged(object sender, EventArgs e)
         {
-            SetSubTypeDetailsData(DgvSubTypes);
+            SetDetailsData(
+                DgvSubTypes, 
+                BtnModifySubType, 
+                BtnDeleteSubType,
+                FillSubTypeFields
+            );
         }
 
         private void FillSubTypeFields(DataGridViewRow row)
@@ -723,30 +717,6 @@ namespace BudgetManagementApp.Forms.Base
                 });
             }
             catch { }
-        }
-
-        private void SetSubTypeDetailsData(DataGridView grid)
-        {
-            if (grid.HasRowsSelected())
-            {
-                FillSubTypeFields(grid.GetSelectedRow());
-
-                SetControlsStatus(
-                    !grid.GetSelectedRowValue<bool>(FieldNames.InUse),
-                    BtnDeleteSubType
-                );
-
-                SetControlsStatus(true, BtnModifySubType);
-
-                return;
-            }
-
-            if (grid.HasValue())
-            {
-                FillSubTypeFields(grid.FirstRow());
-            }
-
-            SetControlsStatus(false, BtnModifySubType, BtnDeleteSubType);
         }
 
         private void HandleSubTypeMaintenance(MaintenanceType type)
