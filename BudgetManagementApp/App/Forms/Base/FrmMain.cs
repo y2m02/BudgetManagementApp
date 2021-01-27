@@ -10,6 +10,7 @@ using BudgetManagementApp.Forms.Types;
 using BudgetManagementApp.Resources;
 using BudgetManagementApp.Resources.Properties;
 using BudgetManagementApp.Services.Extensions;
+using BudgetManagementApp.Services.Services.Base;
 using BudgetManagementApp.Services.Services.Categories;
 using BudgetManagementApp.Services.Services.SubTypes;
 using BudgetManagementApp.Services.Services.Types;
@@ -249,6 +250,32 @@ namespace BudgetManagementApp.Forms.Base
             catch { }
         }
 
+        private void Delete(
+            IBaseService service,
+            BaseViewModel model,
+            TextBox filter,
+            Action executeWhenSuccess
+        )
+        {
+            if (!DisplayQuestionMessage(StringResources.DeleteQuestion).IsYesResponse())
+                return;
+
+            var result = service.Delete(model);
+
+            if (result.IsSuccess())
+            {
+                DisplayInformationMessage(StringResources.RecordDeleted);
+
+                filter.Clear();
+
+                executeWhenSuccess();
+
+                return;
+            }
+
+            DisplayErrorMessage(result.GetFailureError());
+        }
+
         #endregion
 
         #region Control Methods
@@ -366,28 +393,18 @@ namespace BudgetManagementApp.Forms.Base
 
         private void BtnDeleteCategory_Click(object sender, EventArgs e)
         {
-            if (!DisplayQuestionMessage(StringResources.DeleteQuestion).IsYesResponse())
-                return;
-
-            var result = categoryService.Delete(
-                Categories.Single(w => w.CategoryId == TxtCategoryId.Text.ToInt())
+            Delete(
+                categoryService,
+                Categories.Single(w => w.CategoryId == TxtCategoryId.Text.ToInt()),
+                TxtCategoryFilter,
+                () =>
+                {
+                    HandleEntity<CategoryViewModel>(
+                        categoryService.GetAll(),
+                        SetupCategories
+                    );
+                }
             );
-
-            if (result.IsSuccess())
-            {
-                DisplayInformationMessage(StringResources.RecordDeleted);
-
-                HandleEntity<CategoryViewModel>(
-                    categoryService.GetAll(),
-                    SetupCategories
-                );
-
-                TxtCategoryFilter.Clear();
-
-                return;
-            }
-
-            DisplayErrorMessage(result.GetFailureError());
         }
 
         private void BtnModifyCategory_Click(object sender, EventArgs e)
@@ -474,33 +491,23 @@ namespace BudgetManagementApp.Forms.Base
 
         private void BtnDeleteType_Click(object sender, EventArgs e)
         {
-            if (!DisplayQuestionMessage(StringResources.DeleteQuestion).IsYesResponse())
-                return;
+            Delete(
+                typeService,
+                Types.Single(w => w.TypeId == TxtTypeId.Text.ToInt()),
+                TxtTypeFilter,
+                () =>
+                {
+                    HandleEntity<TypeViewModel>(
+                        typeService.GetAll(),
+                        SetupTypes
+                    );
 
-            var result = typeService.Delete(
-                Types.Single(w => w.TypeId == TxtTypeId.Text.ToInt())
+                    HandleEntity<CategoryViewModel>(
+                        categoryService.GetAll(),
+                        SetupCategories
+                    );
+                }
             );
-
-            if (result.IsSuccess())
-            {
-                DisplayInformationMessage(StringResources.RecordDeleted);
-
-                HandleEntity<TypeViewModel>(
-                    typeService.GetAll(),
-                    SetupTypes
-                );
-
-                TxtTypeFilter.Clear();
-
-                HandleEntity<CategoryViewModel>(
-                    categoryService.GetAll(),
-                    SetupCategories
-                );
-
-                return;
-            }
-
-            DisplayErrorMessage(result.GetFailureError());
         }
 
         private void TxtTypeFilter_TextChanged(object sender, EventArgs e)
@@ -510,14 +517,14 @@ namespace BudgetManagementApp.Forms.Base
             PopulateGrid(
                 DgvTypes,
                 GetFilteredData(
-                    text, 
-                    Types, 
+                    text,
+                    Types,
                     t => t.Description.Contains(text) ||
                          t.CategoryDescription.Contains(text)
                 ),
                 FormatGrid,
-                new List<string> 
-                { 
+                new List<string>
+                {
                     FieldNames.TypeId,
                     FieldNames.CategoryId,
                 }
@@ -547,8 +554,8 @@ namespace BudgetManagementApp.Forms.Base
             Types = model.ToList();
 
             PopulateGrid(
-                DgvTypes, 
-                Types, 
+                DgvTypes,
+                Types,
                 FormatGrid,
                 new List<string>
                 {
@@ -630,33 +637,23 @@ namespace BudgetManagementApp.Forms.Base
 
         private void BtnDeleteSubType_Click(object sender, EventArgs e)
         {
-            if (!DisplayQuestionMessage(StringResources.DeleteQuestion).IsYesResponse())
-                return;
+            Delete(
+                subTypeService,
+                SubTypes.Single(w => w.SubTypeId == TxtSubTypeId.Text.ToInt()),
+                TxtSubTypeFilter,
+                () =>
+                {
+                    HandleEntity<SubTypeViewModel>(
+                        subTypeService.GetAll(),
+                        SetupSubTypes
+                    );
 
-            var result = subTypeService.Delete(
-                SubTypes.Single(w => w.SubTypeId == TxtSubTypeId.Text.ToInt())
+                    HandleEntity<TypeViewModel>(
+                        typeService.GetAll(),
+                        SetupTypes
+                    );
+                }
             );
-
-            if (result.IsSuccess())
-            {
-                DisplayInformationMessage(StringResources.RecordDeleted);
-
-                HandleEntity<SubTypeViewModel>(
-                    subTypeService.GetAll(),
-                    SetupSubTypes
-                );
-
-                TxtSubTypeFilter.Clear();
-
-                HandleEntity<TypeViewModel>(
-                    typeService.GetAll(),
-                    SetupTypes
-                );
-
-                return;
-            }
-
-            DisplayErrorMessage(result.GetFailureError());
         }
 
         private void TxtSubTypeFilter_TextChanged(object sender, EventArgs e)
@@ -666,15 +663,15 @@ namespace BudgetManagementApp.Forms.Base
             PopulateGrid(
                 DgvSubTypes,
                 GetFilteredData(
-                    text, 
-                    SubTypes, 
+                    text,
+                    SubTypes,
                     s => s.Description.Contains(text) ||
                          s.TypeDescription.Contains(text) ||
                          s.CategoryDescription.Contains(text)
                 ),
                 FormatGrid,
-                new List<string> 
-                { 
+                new List<string>
+                {
                     FieldNames.SubTypeId,
                     FieldNames.CategoryId,
                     FieldNames.TypeId,
@@ -707,8 +704,8 @@ namespace BudgetManagementApp.Forms.Base
             SubTypes = model.ToList();
 
             PopulateGrid(
-                DgvSubTypes, 
-                SubTypes, 
+                DgvSubTypes,
+                SubTypes,
                 FormatGrid,
                 new List<string>
                 {
