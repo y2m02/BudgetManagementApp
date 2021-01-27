@@ -109,13 +109,14 @@ namespace BudgetManagementApp.Forms.Base
 
         private static void PopulateGrid<TDataModel>(
             DataGridView grid,
-            IEnumerable<TDataModel> list,
-            Action formatGrid
+            IEnumerable<TDataModel> data,
+            Action<DataGridView, List<string>> formatGrid,
+            List<string> columnNames
         )
         {
-            grid.DataSource = list.ToList();
+            grid.DataSource = data.ToList();
 
-            formatGrid();
+            formatGrid(grid, columnNames);
         }
 
         private static void DisableColumns(
@@ -178,10 +179,7 @@ namespace BudgetManagementApp.Forms.Base
             }
         }
 
-        private void HandleEntity<T>(
-            BaseReturnViewModel result,
-            Action<IEnumerable<T>> executor
-        )
+        private void HandleEntity<T>(BaseReturnViewModel result, Action<IEnumerable<T>> executor)
         {
             if (result.IsSuccess<IEnumerable<T>>())
             {
@@ -193,22 +191,18 @@ namespace BudgetManagementApp.Forms.Base
             }
         }
 
-        private static void FilterGrid<T>(
+        private static IEnumerable<T> GetFilteredData<T>(
             string textToSearch,
-            DataGridView grid,
             IEnumerable<T> model,
-            Func<T, bool> filter,
-            Action formatGrid
-        ) where T : BaseViewModel
+            Func<T, bool> filter
+        )
+            where T : BaseViewModel
         {
             var data = new List<T>(model);
 
-            if (textToSearch.HasValue())
-            {
-                data = data.PrettyWhere(filter);
-            }
-
-            PopulateGrid(grid, data, formatGrid);
+            return textToSearch.HasValue()
+                ? data.PrettyWhere(filter)
+                : data;
         }
 
         private void SetDetailsData(
@@ -239,6 +233,22 @@ namespace BudgetManagementApp.Forms.Base
 
             SetControlsStatus(false, btnModify, btnDelete);
         }
+
+        private static void FormatGrid(
+            DataGridView grid,
+            List<string> columnNames
+        )
+        {
+            if (!grid.HasDataSource())
+                return;
+
+            try
+            {
+                DisableColumns(grid, columnNames);
+            }
+            catch { }
+        }
+
         #endregion
 
         #region Control Methods
@@ -341,12 +351,11 @@ namespace BudgetManagementApp.Forms.Base
         {
             var text = TxtCategoryFilter.Text;
 
-            FilterGrid(
-                text,
+            PopulateGrid(
                 DgvCategories,
-                Categories,
-                c => c.Description.Contains(text),
-                FormatCategories
+                GetFilteredData(text, Categories, c => c.Description.Contains(text)),
+                FormatGrid,
+                new List<string> { FieldNames.CategoryId }
             );
         }
 
@@ -389,8 +398,8 @@ namespace BudgetManagementApp.Forms.Base
         private void DgvCategories_SelectionChanged(object sender, EventArgs e)
         {
             SetDetailsData(
-                DgvCategories, 
-                BtnModifyCategory, 
+                DgvCategories,
+                BtnModifyCategory,
                 BtnDeleteCategory,
                 FillCategoryFields
             );
@@ -406,22 +415,12 @@ namespace BudgetManagementApp.Forms.Base
         {
             Categories = model.ToList();
 
-            PopulateGrid(DgvCategories, Categories, FormatCategories);
-        }
-
-        private void FormatCategories()
-        {
-            if (!DgvCategories.HasDataSource())
-                return;
-
-            try
-            {
-                DisableColumns(DgvCategories, new List<string>
-                {
-                    FieldNames.CategoryId,
-                });
-            }
-            catch { }
+            PopulateGrid(
+                DgvCategories,
+                Categories,
+                FormatGrid,
+                new List<string> { FieldNames.CategoryId }
+            );
         }
 
         private void HandleCategoryMaintenance(MaintenanceType type)
@@ -508,21 +507,28 @@ namespace BudgetManagementApp.Forms.Base
         {
             var text = TxtTypeFilter.Text;
 
-            FilterGrid(
-                text,
+            PopulateGrid(
                 DgvTypes,
-                Types,
-                t => t.Description.Contains(text) ||
-                     t.CategoryDescription.Contains(text),
-                FormatTypes
+                GetFilteredData(
+                    text, 
+                    Types, 
+                    t => t.Description.Contains(text) ||
+                         t.CategoryDescription.Contains(text)
+                ),
+                FormatGrid,
+                new List<string> 
+                { 
+                    FieldNames.TypeId,
+                    FieldNames.CategoryId,
+                }
             );
         }
 
         private void DgvTypes_SelectionChanged(object sender, EventArgs e)
         {
             SetDetailsData(
-                DgvTypes, 
-                BtnModifyType, 
+                DgvTypes,
+                BtnModifyType,
                 BtnDeleteType,
                 FillTypeFields
             );
@@ -540,23 +546,16 @@ namespace BudgetManagementApp.Forms.Base
         {
             Types = model.ToList();
 
-            PopulateGrid(DgvTypes, Types, FormatTypes);
-        }
-
-        private void FormatTypes()
-        {
-            if (!DgvTypes.HasDataSource())
-                return;
-
-            try
-            {
-                DisableColumns(DgvTypes, new List<string>
+            PopulateGrid(
+                DgvTypes, 
+                Types, 
+                FormatGrid,
+                new List<string>
                 {
                     FieldNames.TypeId,
                     FieldNames.CategoryId,
-                });
-            }
-            catch { }
+                }
+            );
         }
 
         private void HandleTypeMaintenance(MaintenanceType type)
@@ -664,22 +663,30 @@ namespace BudgetManagementApp.Forms.Base
         {
             var text = TxtSubTypeFilter.Text;
 
-            FilterGrid(
-                text,
+            PopulateGrid(
                 DgvSubTypes,
-                SubTypes,
-                s => s.Description.Contains(text) ||
-                     s.TypeDescription.Contains(text) ||
-                     s.CategoryDescription.Contains(text),
-                FormatSubTypes
+                GetFilteredData(
+                    text, 
+                    SubTypes, 
+                    s => s.Description.Contains(text) ||
+                         s.TypeDescription.Contains(text) ||
+                         s.CategoryDescription.Contains(text)
+                ),
+                FormatGrid,
+                new List<string> 
+                { 
+                    FieldNames.SubTypeId,
+                    FieldNames.CategoryId,
+                    FieldNames.TypeId,
+                }
             );
         }
 
         private void DgvSubTypes_SelectionChanged(object sender, EventArgs e)
         {
             SetDetailsData(
-                DgvSubTypes, 
-                BtnModifySubType, 
+                DgvSubTypes,
+                BtnModifySubType,
                 BtnDeleteSubType,
                 FillSubTypeFields
             );
@@ -699,24 +706,17 @@ namespace BudgetManagementApp.Forms.Base
         {
             SubTypes = model.ToList();
 
-            PopulateGrid(DgvSubTypes, SubTypes, FormatSubTypes);
-        }
-
-        private void FormatSubTypes()
-        {
-            if (!DgvSubTypes.HasDataSource())
-                return;
-
-            try
-            {
-                DisableColumns(DgvSubTypes, new List<string>
+            PopulateGrid(
+                DgvSubTypes, 
+                SubTypes, 
+                FormatGrid,
+                new List<string>
                 {
                     FieldNames.SubTypeId,
-                    FieldNames.CategoryId,
                     FieldNames.TypeId,
-                });
-            }
-            catch { }
+                    FieldNames.CategoryId,
+                }
+            );
         }
 
         private void HandleSubTypeMaintenance(MaintenanceType type)
