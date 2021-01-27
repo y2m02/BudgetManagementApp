@@ -816,7 +816,7 @@ namespace BudgetManagementApp.Forms.Base
                     subTypeMaintenance.TxtSubTypeId.Text = TxtSubTypeId.Text;
                     subTypeMaintenance.TxtDescription.Text = TxtSubTypeDescription.Text;
                     cbxCategory.Text = TxtSubTypeCategory.Text;
-                    cbxCategory.Text = TxtSubTypeTypeDescription.Text;
+                    cbxType.Text = TxtSubTypeTypeDescription.Text;
                     break;
             }
         }

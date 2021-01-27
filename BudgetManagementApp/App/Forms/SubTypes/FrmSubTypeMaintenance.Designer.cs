@@ -89,7 +89,7 @@ namespace BudgetManagementApp.Forms.SubTypes
             // BtnCancel
             // 
             this.BtnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.BtnCancel.Location = new System.Drawing.Point(218, 307);
+            this.BtnCancel.Location = new System.Drawing.Point(227, 307);
             this.BtnCancel.Margin = new System.Windows.Forms.Padding(1);
             this.BtnCancel.Name = "BtnCancel";
             this.BtnCancel.Size = new System.Drawing.Size(146, 62);
@@ -100,7 +100,7 @@ namespace BudgetManagementApp.Forms.SubTypes
             // 
             // BtnSave
             // 
-            this.BtnSave.Location = new System.Drawing.Point(69, 307);
+            this.BtnSave.Location = new System.Drawing.Point(78, 307);
             this.BtnSave.Margin = new System.Windows.Forms.Padding(1);
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(146, 62);

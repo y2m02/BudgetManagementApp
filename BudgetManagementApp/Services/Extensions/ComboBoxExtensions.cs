@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Windows.Forms;
 
 namespace BudgetManagementApp.Services.Extensions
@@ -9,6 +8,11 @@ namespace BudgetManagementApp.Services.Extensions
         public static bool HasDataSource(this ComboBox cbx)
         {
             return cbx.DataSource != null;
+        }
+
+        public static void ClearDataSource(this ComboBox cbx)
+        {
+            cbx.DataSource = null;
         }
 
         public static bool IsEmpty(this ComboBox cbx)

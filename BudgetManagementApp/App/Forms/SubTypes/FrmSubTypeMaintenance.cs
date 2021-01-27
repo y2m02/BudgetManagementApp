@@ -1,16 +1,14 @@
-﻿using BudgetManagementApp.Forms.Base;
-using BudgetManagementApp.Resources.Properties;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
-using BudgetManagementApp.Entities.Helpers;
-using BudgetManagementApp.Entities.ViewModels.Base;
+﻿using BudgetManagementApp.Entities.Helpers;
 using BudgetManagementApp.Entities.ViewModels.Categories;
 using BudgetManagementApp.Entities.ViewModels.SubTypes;
 using BudgetManagementApp.Entities.ViewModels.Types;
+using BudgetManagementApp.Forms.Base;
+using BudgetManagementApp.Resources.Properties;
 using BudgetManagementApp.Services.Extensions;
 using BudgetManagementApp.Services.Services.SubTypes;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace BudgetManagementApp.Forms.SubTypes
 {
@@ -32,12 +30,21 @@ namespace BudgetManagementApp.Forms.SubTypes
             {
                 Id = TxtSubTypeId.Text.ToIntOrDefault(),
                 Description = TxtDescription.Text,
-                TypeId = CbxType.SafeSelectedValue<int>()
+                TypeId = CbxType.SafeSelectedValue<int>(),
+                CategoryId = CbxCategory.SafeSelectedValue<int>()
             });
+
+            if (!DialogResult.IsOkResponse()) return;
+
+            CbxType.ClearDataSource();
+            CbxCategory.ClearDataSource();
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)
         {
+            CbxType.ClearDataSource();
+            CbxCategory.ClearDataSource();
+
             Close();
         }
 
@@ -53,50 +60,20 @@ namespace BudgetManagementApp.Forms.SubTypes
             LoopControlsToSetLabels(Controls);
         }
 
-        protected void Upsert(
-            Func<BaseViewModel, BaseReturnViewModel> executor,
-            BaseViewModel model
-        )
-        {
-            var result = executor(model);
-
-            if (result.HasValidations())
-            {
-                var message = result.GetValidations().Join("\n");
-
-                DisplayExclamationMessage(message);
-
-                return;
-            }
-
-            if (result.IsSuccess())
-            {
-                DialogResult = DialogResult.OK;
-
-                Close();
-
-                return;
-            }
-
-            DialogResult = DialogResult.None;
-
-            DisplayErrorMessage(result.GetFailureError());
-        }
-
         private void CbxCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             var categoryId = CbxCategory.SafeSelectedValue<int>();
 
-           if (categoryId == 0)
-           {
-               categoryId = CbxCategory.SafeSelectedValue<CategoryViewModel>().CategoryId;
-           }
-           
-           CbxType.SetData(
-               Types.PrettyWhere(w => w.CategoryId == categoryId),
-               FieldNames.TypeId,
-               FieldNames.Description
-           );
+            if (CbxCategory.HasDataSource() && categoryId == 0)
+            {
+                categoryId = CbxCategory.SafeSelectedValue<CategoryViewModel>().CategoryId;
+            }
+
+            CbxType.SetData(
+                Types.PrettyWhere(w => w.CategoryId == categoryId),
+                FieldNames.TypeId,
+                FieldNames.Description
+            );
         }
     }
 }

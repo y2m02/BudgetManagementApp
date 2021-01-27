@@ -29,7 +29,7 @@ namespace BudgetManagementApp.Entities.Mappings
 
             CreateMap<SubType, SubTypeViewModel>()
                 .ForMember(destination => destination.Id,
-                    member => member.MapFrom(field => field.TypeId))
+                    member => member.MapFrom(field => field.SubTypeId))
                 .ForMember(destination => destination.TypeDescription,
                     member => member.MapFrom(field => field.Type.Description))
                 .ForMember(destination => destination.CategoryId,
