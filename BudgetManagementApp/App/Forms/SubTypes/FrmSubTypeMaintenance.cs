@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using BudgetManagementApp.Entities.Helpers;
 using BudgetManagementApp.Entities.ViewModels.Base;
+using BudgetManagementApp.Entities.ViewModels.Categories;
 using BudgetManagementApp.Entities.ViewModels.SubTypes;
 using BudgetManagementApp.Entities.ViewModels.Types;
 using BudgetManagementApp.Services.Extensions;
@@ -83,18 +85,18 @@ namespace BudgetManagementApp.Forms.SubTypes
 
         private void CbxCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // why this is failing
-            //var a = CbxCategory.SelectedValue;
+            var categoryId = CbxCategory.SafeSelectedValue<int>();
 
-            //fixed()
-
-            //CbxType.SetData(
-            //    Types.Where(
-            //        w => w.CategoryId == a
-            //    ).ToList(),
-            //    "TypeId",
-            //    "Description"
-            //);
+           if (categoryId == 0)
+           {
+               categoryId = CbxCategory.SafeSelectedValue<CategoryViewModel>().CategoryId;
+           }
+           
+           CbxType.SetData(
+               Types.PrettyWhere(w => w.CategoryId == categoryId),
+               FieldNames.TypeId,
+               FieldNames.Description
+           );
         }
     }
 }
