@@ -293,7 +293,7 @@ namespace BudgetManagementApp.Forms.Base
 
             if (text.HasValue())
             {
-                categories = categories.Where(CategoryFilter).ToList();
+                categories = categories.PrettyWhere(CategoryFilter);
             }
 
             PopulateGrid(DgvCategories, categories, FormatCategories);
@@ -485,7 +485,7 @@ namespace BudgetManagementApp.Forms.Base
 
             if (text.HasValue())
             {
-                types = types.Where(TypeFilter).ToList();
+                types = types.PrettyWhere(TypeFilter);
             }
 
             PopulateGrid(DgvTypes, types, FormatTypes);
@@ -677,7 +677,7 @@ namespace BudgetManagementApp.Forms.Base
 
             if (text.HasValue())
             {
-                subTypes = subTypes.Where(SubTypeFilter).ToList();
+                subTypes = subTypes.PrettyWhere(SubTypeFilter);
             }
 
             PopulateGrid(DgvSubTypes, subTypes, FormatSubTypes);
