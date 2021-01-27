@@ -198,15 +198,20 @@ namespace BudgetManagementApp.Forms.Base
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            HandleCategories(categoryService.GetAll());
-            HandleTypes(typeService.GetAll());
+            Handle<CategoryViewModel>(
+                categoryService.GetAll(), 
+                SetupCategories
+            );
+
+            Handle<TypeViewModel>(
+                typeService.GetAll(), 
+                SetupTypes
+            );
 
             Handle<SubTypeViewModel>(
                 subTypeService.GetAll(), 
                 SetupSubTypes
             );
-
-            //HandleSubTypes(subTypeService.GetAll());
 
             SetAppLabels();
         }
@@ -322,7 +327,10 @@ namespace BudgetManagementApp.Forms.Base
             {
                 DisplayInformationMessage(StringResources.RecordDeleted);
 
-                HandleCategories(categoryService.GetAll());
+                Handle<CategoryViewModel>(
+                    categoryService.GetAll(), 
+                    SetupCategories
+                );
 
                 TxtCategoryFilter.Clear();
 
@@ -395,20 +403,6 @@ namespace BudgetManagementApp.Forms.Base
             SetControlsStatus(false, BtnModifyCategory, BtnDeleteCategory);
         }
 
-        private void HandleCategories(BaseReturnViewModel result)
-        {
-            if (result.IsSuccess<IEnumerable<CategoryViewModel>>())
-            {
-                SetupCategories(
-                    result.GetSuccessModel<IEnumerable<CategoryViewModel>>()
-                );
-            }
-            else
-            {
-                DisplayErrorMessage(result.GetFailureError());
-            }
-        }
-
         private void HandleCategoryMaintenance(MaintenanceType type)
         {
             InitializeCategoryMaintenanceControls(type);
@@ -416,11 +410,17 @@ namespace BudgetManagementApp.Forms.Base
             if (!categoryMaintenance.ShowDialog().IsOkResponse())
                 return;
 
-            HandleCategories(categoryService.GetAll());
+            Handle<CategoryViewModel>(
+                categoryService.GetAll(), 
+                SetupCategories
+            );
 
             TxtCategoryFilter.Clear();
 
-            HandleTypes(typeService.GetAll());
+            Handle<TypeViewModel>(
+                typeService.GetAll(), 
+                SetupTypes
+            );
         }
 
         private void InitializeCategoryMaintenanceControls(MaintenanceType type)
@@ -465,11 +465,17 @@ namespace BudgetManagementApp.Forms.Base
             {
                 DisplayInformationMessage(StringResources.RecordDeleted);
 
-                HandleTypes(typeService.GetAll());
+                Handle<TypeViewModel>(
+                    typeService.GetAll(), 
+                    SetupTypes
+                );
 
                 TxtTypeFilter.Clear();
 
-                HandleCategories(categoryService.GetAll());
+                Handle<CategoryViewModel>(
+                    categoryService.GetAll(), 
+                    SetupCategories
+                );
 
                 return;
             }
@@ -563,20 +569,6 @@ namespace BudgetManagementApp.Forms.Base
             SetControlsStatus(false, BtnModifyType, BtnDeleteType);
         }
 
-        private void HandleTypes(BaseReturnViewModel result)
-        {
-            if (result.IsSuccess<IEnumerable<TypeViewModel>>())
-            {
-                SetupTypes(
-                    result.GetSuccessModel<IEnumerable<TypeViewModel>>()
-                );
-            }
-            else
-            {
-                DisplayErrorMessage(result.GetFailureError());
-            }
-        }
-
         private void HandleTypeMaintenance(MaintenanceType type)
         {
             InitializeTypeMaintenanceControls(type);
@@ -584,11 +576,17 @@ namespace BudgetManagementApp.Forms.Base
             if (!typeMaintenance.ShowDialog().IsOkResponse())
                 return;
 
-            HandleTypes(typeService.GetAll());
+            Handle<TypeViewModel>(
+                typeService.GetAll(), 
+                SetupTypes
+            );
             
             TxtTypeFilter.Clear();
 
-            HandleCategories(categoryService.GetAll());
+            Handle<CategoryViewModel>(
+                categoryService.GetAll(), 
+                SetupCategories
+            );
 
             Handle<SubTypeViewModel>(
                 subTypeService.GetAll(), 
@@ -661,7 +659,10 @@ namespace BudgetManagementApp.Forms.Base
 
                 TxtSubTypeFilter.Clear();
 
-                HandleTypes(typeService.GetAll());
+                Handle<TypeViewModel>(
+                    typeService.GetAll(), 
+                    SetupTypes
+                );
 
                 return;
             }
@@ -772,7 +773,10 @@ namespace BudgetManagementApp.Forms.Base
             
             TxtSubTypeFilter.Clear();
 
-            HandleTypes(typeService.GetAll());
+            Handle<TypeViewModel>(
+                typeService.GetAll(), 
+                SetupTypes
+            );
         }
 
         private void InitializeSubTypeMaintenanceControls(MaintenanceType type)
