@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using BudgetManagementApp.Entities.ViewModels.Types;
+﻿using BudgetManagementApp.Entities.ViewModels.Types;
 using BudgetManagementApp.Forms.Base;
 using BudgetManagementApp.Resources.Properties;
 using BudgetManagementApp.Services.Extensions;
 using BudgetManagementApp.Services.Services.Types;
+using System;
+using System.Linq;
+using System.Windows.Forms;
+using BudgetManagementApp.Entities.ViewModels.Base;
 
 namespace BudgetManagementApp.Forms.Types
 {

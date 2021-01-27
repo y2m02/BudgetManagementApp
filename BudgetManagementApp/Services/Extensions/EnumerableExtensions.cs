@@ -24,9 +24,9 @@ namespace BudgetManagementApp.Services.Extensions
             return list.Select(selector).ToList();
         }
 
-        //public static List<T> Where<T>(this IEnumerable<T> list, Func<T, bool> filter)
-        //{
-        //    return list.Where(filter).ToList();
-        //}
+        public static List<T> PrettyWhere<T>(this IEnumerable<T> list, Func<T, bool> filter)
+        {
+            return list.Where(filter).ToList();
+        }
     }
 }

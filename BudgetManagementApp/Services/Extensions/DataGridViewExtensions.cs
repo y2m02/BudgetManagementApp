@@ -120,5 +120,15 @@ namespace BudgetManagementApp.Services.Extensions
         {
             return grid.GetRowValue<T>(0, columnName);
         }
+
+        public static T Value<T>(this DataGridViewRow row, int rowIndex)
+        {
+            return (T)row.Cells[rowIndex].Value;
+        }
+
+        public static T Value<T>(this DataGridViewRow row, string columnName)
+        {
+            return (T)row.Cells[columnName].Value;
+        }
     }
 }
