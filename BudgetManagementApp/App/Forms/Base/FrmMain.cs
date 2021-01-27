@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using BudgetManagementApp.Entities.Enums;
 using BudgetManagementApp.Entities.Helpers;
@@ -126,11 +127,11 @@ namespace BudgetManagementApp.Forms.Base
         {
             if (includeCommonFields)
             {
-                columnNames.AddRange(new []
-                { 
-                    FieldNames.Id, 
-                    FieldNames.Action, 
-                    FieldNames.DeletedOn, 
+                columnNames.AddRange(new[]
+                {
+                    FieldNames.Id,
+                    FieldNames.Action,
+                    FieldNames.DeletedOn,
                     FieldNames.InUse,
                 });
             }
@@ -178,8 +179,8 @@ namespace BudgetManagementApp.Forms.Base
             }
         }
 
-        private void Handle<T>(
-            BaseReturnViewModel result, 
+        private void HandleEntity<T>(
+            BaseReturnViewModel result,
             Action<IEnumerable<T>> executor
         )
         {
@@ -192,24 +193,42 @@ namespace BudgetManagementApp.Forms.Base
                 DisplayErrorMessage(result.GetFailureError());
             }
         }
+
+        private static void FilterGrid<T>(
+            string textToSearch,
+            DataGridView grid,
+            IEnumerable<T> model,
+            Func<T, bool> filter,
+            Action formatGrid
+        ) where T : BaseViewModel
+        {
+            var data = new List<T>(model);
+
+            if (textToSearch.HasValue())
+            {
+                data = data.PrettyWhere(filter);
+            }
+
+            PopulateGrid(grid, data, formatGrid);
+        }
         #endregion
 
         #region Control Methods
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            Handle<CategoryViewModel>(
-                categoryService.GetAll(), 
+            HandleEntity<CategoryViewModel>(
+                categoryService.GetAll(),
                 SetupCategories
             );
 
-            Handle<TypeViewModel>(
-                typeService.GetAll(), 
+            HandleEntity<TypeViewModel>(
+                typeService.GetAll(),
                 SetupTypes
             );
 
-            Handle<SubTypeViewModel>(
-                subTypeService.GetAll(), 
+            HandleEntity<SubTypeViewModel>(
+                subTypeService.GetAll(),
                 SetupSubTypes
             );
 
@@ -294,19 +313,13 @@ namespace BudgetManagementApp.Forms.Base
         {
             var text = TxtCategoryFilter.Text;
 
-            var categories = new List<CategoryViewModel>(Categories);
-
-            if (text.HasValue())
-            {
-                categories = categories.PrettyWhere(CategoryFilter);
-            }
-
-            PopulateGrid(DgvCategories, categories, FormatCategories);
-
-            bool CategoryFilter(CategoryViewModel category)
-            {
-                return category.Description.Contains(TxtCategoryFilter.Text);
-            }
+            FilterGrid(
+                text,
+                DgvCategories,
+                Categories,
+                c => c.Description.Contains(text),
+                FormatCategories
+            );
         }
 
         private void BtnNewCategory_Click(object sender, EventArgs e)
@@ -327,8 +340,8 @@ namespace BudgetManagementApp.Forms.Base
             {
                 DisplayInformationMessage(StringResources.RecordDeleted);
 
-                Handle<CategoryViewModel>(
-                    categoryService.GetAll(), 
+                HandleEntity<CategoryViewModel>(
+                    categoryService.GetAll(),
                     SetupCategories
                 );
 
@@ -410,15 +423,15 @@ namespace BudgetManagementApp.Forms.Base
             if (!categoryMaintenance.ShowDialog().IsOkResponse())
                 return;
 
-            Handle<CategoryViewModel>(
-                categoryService.GetAll(), 
+            HandleEntity<CategoryViewModel>(
+                categoryService.GetAll(),
                 SetupCategories
             );
 
             TxtCategoryFilter.Clear();
 
-            Handle<TypeViewModel>(
-                typeService.GetAll(), 
+            HandleEntity<TypeViewModel>(
+                typeService.GetAll(),
                 SetupTypes
             );
         }
@@ -465,15 +478,15 @@ namespace BudgetManagementApp.Forms.Base
             {
                 DisplayInformationMessage(StringResources.RecordDeleted);
 
-                Handle<TypeViewModel>(
-                    typeService.GetAll(), 
+                HandleEntity<TypeViewModel>(
+                    typeService.GetAll(),
                     SetupTypes
                 );
 
                 TxtTypeFilter.Clear();
 
-                Handle<CategoryViewModel>(
-                    categoryService.GetAll(), 
+                HandleEntity<CategoryViewModel>(
+                    categoryService.GetAll(),
                     SetupCategories
                 );
 
@@ -487,21 +500,14 @@ namespace BudgetManagementApp.Forms.Base
         {
             var text = TxtTypeFilter.Text;
 
-            var types = new List<TypeViewModel>(Types);
-
-            if (text.HasValue())
-            {
-                types = types.PrettyWhere(TypeFilter);
-            }
-
-            PopulateGrid(DgvTypes, types, FormatTypes);
-
-            bool TypeFilter(TypeViewModel type)
-            {
-                return
-                    type.Description.Contains(text) ||
-                    type.CategoryDescription.Contains(text);
-            }
+            FilterGrid(
+                text,
+                DgvTypes,
+                Types,
+                t => t.Description.Contains(text) ||
+                     t.CategoryDescription.Contains(text),
+                FormatTypes
+            );
         }
 
         private void DgvTypes_SelectionChanged(object sender, EventArgs e)
@@ -571,20 +577,20 @@ namespace BudgetManagementApp.Forms.Base
             if (!typeMaintenance.ShowDialog().IsOkResponse())
                 return;
 
-            Handle<TypeViewModel>(
-                typeService.GetAll(), 
+            HandleEntity<TypeViewModel>(
+                typeService.GetAll(),
                 SetupTypes
             );
-            
+
             TxtTypeFilter.Clear();
 
-            Handle<CategoryViewModel>(
-                categoryService.GetAll(), 
+            HandleEntity<CategoryViewModel>(
+                categoryService.GetAll(),
                 SetupCategories
             );
 
-            Handle<SubTypeViewModel>(
-                subTypeService.GetAll(), 
+            HandleEntity<SubTypeViewModel>(
+                subTypeService.GetAll(),
                 SetupSubTypes
             );
         }
@@ -594,8 +600,8 @@ namespace BudgetManagementApp.Forms.Base
             var cbxCategory = typeMaintenance.CbxCategory;
 
             cbxCategory.SetData(
-                Categories, 
-                FieldNames.CategoryId, 
+                Categories,
+                FieldNames.CategoryId,
                 FieldNames.Description
             );
 
@@ -623,7 +629,7 @@ namespace BudgetManagementApp.Forms.Base
         #endregion
 
         #region SubTypes
-        
+
         private void BtnNewSubType_Click(object sender, EventArgs e)
         {
             HandleSubTypeMaintenance(MaintenanceType.CreateNew);
@@ -647,15 +653,15 @@ namespace BudgetManagementApp.Forms.Base
             {
                 DisplayInformationMessage(StringResources.RecordDeleted);
 
-                Handle<SubTypeViewModel>(
-                    subTypeService.GetAll(), 
+                HandleEntity<SubTypeViewModel>(
+                    subTypeService.GetAll(),
                     SetupSubTypes
                 );
 
                 TxtSubTypeFilter.Clear();
 
-                Handle<TypeViewModel>(
-                    typeService.GetAll(), 
+                HandleEntity<TypeViewModel>(
+                    typeService.GetAll(),
                     SetupTypes
                 );
 
@@ -669,24 +675,17 @@ namespace BudgetManagementApp.Forms.Base
         {
             var text = TxtSubTypeFilter.Text;
 
-            var subTypes = new List<SubTypeViewModel>(SubTypes);
-
-            if (text.HasValue())
-            {
-                subTypes = subTypes.PrettyWhere(SubTypeFilter);
-            }
-
-            PopulateGrid(DgvSubTypes, subTypes, FormatSubTypes);
-
-            bool SubTypeFilter(SubTypeViewModel type)
-            {
-                return
-                    type.Description.Contains(text) ||
-                    type.TypeDescription.Contains(text) ||
-                    type.CategoryDescription.Contains(text);
-            }
+            FilterGrid(
+                text,
+                DgvSubTypes,
+                SubTypes,
+                s => s.Description.Contains(text) ||
+                     s.TypeDescription.Contains(text) ||
+                     s.CategoryDescription.Contains(text),
+                FormatSubTypes
+            );
         }
-        
+
         private void DgvSubTypes_SelectionChanged(object sender, EventArgs e)
         {
             SetSubTypeDetailsData(DgvSubTypes);
@@ -757,15 +756,15 @@ namespace BudgetManagementApp.Forms.Base
             if (!subTypeMaintenance.ShowDialog().IsOkResponse())
                 return;
 
-            Handle<SubTypeViewModel>(
-                subTypeService.GetAll(), 
+            HandleEntity<SubTypeViewModel>(
+                subTypeService.GetAll(),
                 SetupSubTypes
             );
-            
+
             TxtSubTypeFilter.Clear();
 
-            Handle<TypeViewModel>(
-                typeService.GetAll(), 
+            HandleEntity<TypeViewModel>(
+                typeService.GetAll(),
                 SetupTypes
             );
         }
