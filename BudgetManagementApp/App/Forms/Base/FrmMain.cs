@@ -350,19 +350,17 @@ namespace BudgetManagementApp.Forms.Base
             SetCategoryDetailsData(DgvCategories);
         }
 
+        private void FillCategoryFields(DataGridViewRow row)
+        {
+            TxtCategoryId.Text = row.Value<int>(FieldNames.CategoryId).ToString();
+            TxtCategoryDescription.Text = row.Value<string>(FieldNames.Description);
+        }
+
         private void SetupCategories(IEnumerable<CategoryViewModel> model)
         {
             Categories = model.ToList();
 
             PopulateGrid(DgvCategories, Categories, FormatCategories);
-
-            if (!DgvCategories.IsEmpty())
-                return;
-
-            DgvCategories.SetSelectedRow(0);
-
-            TxtCategoryId.Text = DgvCategories.GetSelectedRowValue<int>(FieldNames.CategoryId).ToString();
-            TxtCategoryDescription.Text = DgvCategories.GetSelectedRowValue<string>(FieldNames.Description);
         }
 
         private void FormatCategories()
@@ -384,8 +382,8 @@ namespace BudgetManagementApp.Forms.Base
         {
             if (grid.HasRowsSelected())
             {
-                TxtCategoryId.Text = grid.GetSelectedRowValue<int>(FieldNames.CategoryId).ToString();
-                TxtCategoryDescription.Text = grid.GetSelectedRowValue<string>(FieldNames.Description);
+                FillCategoryFields(grid.GetSelectedRow());
+
 
                 SetControlsStatus(
                     !grid.GetSelectedRowValue<bool>(FieldNames.InUse),
@@ -397,8 +395,10 @@ namespace BudgetManagementApp.Forms.Base
                 return;
             }
 
-            TxtCategoryId.Text = grid.FirstRow<int>(FieldNames.CategoryId).ToString();
-            TxtCategoryDescription.Text = grid.FirstRow<string>(FieldNames.Description);
+            if (grid.HasValue())
+            {
+                FillCategoryFields(grid.FirstRow());
+            }
 
             SetControlsStatus(false, BtnModifyCategory, BtnDeleteCategory);
         }
@@ -509,21 +509,19 @@ namespace BudgetManagementApp.Forms.Base
             SetTypeDetailsData(DgvTypes);
         }
 
+        private void FillTypeFields(DataGridViewRow row)
+        {
+            TxtTypeId.Text = row.Value<int>(FieldNames.TypeId).ToString();
+            TxtTypeDescription.Text = row.Value<string>(FieldNames.Description);
+            TxtTypeCategoryId.Text = row.Value<int>(FieldNames.CategoryId).ToString();
+            TxtTypeCategory.Text = row.Value<string>(FieldNames.CategoryDescription);
+        }
+
         private void SetupTypes(IEnumerable<TypeViewModel> model)
         {
             Types = model.ToList();
 
             PopulateGrid(DgvTypes, Types, FormatTypes);
-
-            if (DgvTypes.IsEmpty())
-                return;
-
-            DgvTypes.SetSelectedRow(0);
-
-            TxtTypeId.Text = DgvTypes.GetSelectedRowValue<int>("TypeId").ToString();
-            TxtTypeDescription.Text = DgvTypes.GetSelectedRowValue<string>("Description");
-            TxtTypeCategoryId.Text = DgvTypes.GetSelectedRowValue<int>("CategoryId").ToString();
-            TxtTypeCategory.Text = DgvTypes.GetSelectedRowValue<string>("CategoryDescription");
         }
 
         private void FormatTypes()
@@ -546,10 +544,7 @@ namespace BudgetManagementApp.Forms.Base
         {
             if (grid.HasRowsSelected())
             {
-                TxtTypeId.Text = grid.GetSelectedRowValue<int>(FieldNames.TypeId).ToString();
-                TxtTypeDescription.Text = grid.GetSelectedRowValue<string>(FieldNames.Description);
-                TxtTypeCategoryId.Text = grid.GetSelectedRowValue<int>(FieldNames.CategoryId).ToString();
-                TxtTypeCategory.Text = grid.GetSelectedRowValue<string>(FieldNames.CategoryDescription);
+                FillTypeFields(grid.GetSelectedRow());
 
                 SetControlsStatus(
                     !grid.GetSelectedRowValue<bool>(FieldNames.InUse),
@@ -561,10 +556,10 @@ namespace BudgetManagementApp.Forms.Base
                 return;
             }
 
-            TxtTypeId.Text = grid.FirstRow<int>(FieldNames.TypeId).ToString();
-            TxtTypeDescription.Text = grid.FirstRow<string>(FieldNames.Description);
-            TxtTypeCategoryId.Text = grid.FirstRow<int>(FieldNames.CategoryId).ToString();
-            TxtTypeCategory.Text = grid.FirstRow<string>(FieldNames.CategoryDescription);
+            if (grid.HasValue())
+            {
+                FillTypeFields(grid.FirstRow());
+            }
 
             SetControlsStatus(false, BtnModifyType, BtnDeleteType);
         }
@@ -712,13 +707,6 @@ namespace BudgetManagementApp.Forms.Base
             SubTypes = model.ToList();
 
             PopulateGrid(DgvSubTypes, SubTypes, FormatSubTypes);
-
-            if (DgvSubTypes.IsEmpty())
-                return;
-
-            DgvSubTypes.SetSelectedRow(0);
-
-            FillSubTypeFields(DgvSubTypes.GetSelectedRow());
         }
 
         private void FormatSubTypes()
@@ -754,7 +742,10 @@ namespace BudgetManagementApp.Forms.Base
                 return;
             }
 
-            FillSubTypeFields(grid.FirstRow());
+            if (grid.HasValue())
+            {
+                FillSubTypeFields(grid.FirstRow());
+            }
 
             SetControlsStatus(false, BtnModifySubType, BtnDeleteSubType);
         }
