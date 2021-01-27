@@ -388,6 +388,8 @@ namespace BudgetManagementApp.Forms.Base
 
         private void BtnNewCategory_Click(object sender, EventArgs e)
         {
+            //HandleMaintenance(categoryMaintenance);
+
             HandleCategoryMaintenance(MaintenanceType.CreateNew);
         }
 
@@ -440,6 +442,24 @@ namespace BudgetManagementApp.Forms.Base
             );
         }
 
+        public void HandleMaintenance(
+            Form frmMaintenance,
+            TextBox filter,
+            MaintenanceType type,
+            Action<MaintenanceType> initializeControls,
+            Action executeWhenSuccess
+        )
+        {
+            initializeControls(type);
+
+            if (!categoryMaintenance.ShowDialog().IsOkResponse())
+                return;
+
+            filter.Clear();
+
+            executeWhenSuccess();
+        }
+
         private void HandleCategoryMaintenance(MaintenanceType type)
         {
             InitializeCategoryMaintenanceControls(type);
@@ -447,12 +467,12 @@ namespace BudgetManagementApp.Forms.Base
             if (!categoryMaintenance.ShowDialog().IsOkResponse())
                 return;
 
+            TxtCategoryFilter.Clear();
+
             HandleEntity<CategoryViewModel>(
                 categoryService.GetAll(),
                 SetupCategories
             );
-
-            TxtCategoryFilter.Clear();
 
             HandleEntity<TypeViewModel>(
                 typeService.GetAll(),
