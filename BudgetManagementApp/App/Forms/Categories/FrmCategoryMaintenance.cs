@@ -38,33 +38,11 @@ namespace BudgetManagementApp.Forms.Categories
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            var result = categoryService.Upsert(new CategoryViewModel
+            Upsert(categoryService.Upsert, new CategoryViewModel
             {
                 Id = TxtCategoryId.Text.ToIntOrDefault(),
                 Description = TxtDescription.Text,
             });
-
-            if (result.HasValidations())
-            {
-                var message = result.GetValidations().Join("\n");
-
-                DisplayExclamationMessage(message);
-
-                return;
-            }
-
-            if (result.IsSuccess())
-            {
-                DialogResult = DialogResult.OK;
-
-                Close();
-
-                return;
-            }
-
-            DialogResult = DialogResult.None;
-
-            DisplayErrorMessage(result.GetFailureError());
         }
     }
 }
