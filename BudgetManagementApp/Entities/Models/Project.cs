@@ -25,6 +25,6 @@ namespace BudgetManagementApp.Entities.Models
 
         public DateTime? DeletedOn { get; set; }
 
-        public virtual ICollection<BalanceSheet> BalanceSheets { get; set; }
+        public virtual ICollection<AccountingMovement> AccountingMovements { get; set; }
     }
 }
