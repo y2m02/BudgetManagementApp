@@ -28,34 +28,12 @@ namespace BudgetManagementApp.Forms.Types
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            var result = typeService.Upsert(new TypeViewModel
+            Upsert(typeService.Upsert, new TypeViewModel
             {
                 Id = TxtTypeId.Text.ToIntOrDefault(),
                 Description = TxtDescription.Text,
                 CategoryId =  CbxCategory.SafeSelectedValue<int>()
             });
-
-            if (result.HasValidations())
-            {
-                var message = result.GetValidations().Join("\n");
-
-                DisplayExclamationMessage(message);
-
-                return;
-            }
-
-            if (result.IsSuccess())
-            {
-                DialogResult = DialogResult.OK;
-
-                Close();
-
-                return;
-            }
-
-            DialogResult = DialogResult.None;
-
-            DisplayErrorMessage(result.GetFailureError());
         }
 
         private void FrmTypeMaintenance_Load(object sender, EventArgs e)
