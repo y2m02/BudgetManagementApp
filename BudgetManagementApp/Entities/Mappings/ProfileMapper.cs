@@ -2,6 +2,7 @@
 using AutoMapper;
 using BudgetManagementApp.Entities.Models;
 using BudgetManagementApp.Entities.ViewModels.Categories;
+using BudgetManagementApp.Entities.ViewModels.Projects;
 using BudgetManagementApp.Entities.ViewModels.SubTypes;
 using BudgetManagementApp.Entities.ViewModels.Types;
 
@@ -40,8 +41,12 @@ namespace BudgetManagementApp.Entities.Mappings
                     member => member.MapFrom(field => field.AccountingMovements.Any(x => !x.DeletedOn.HasValue)));
             CreateMap<SubTypeViewModel, SubType>();
 
-            //    .ForMember(destination => destination.Used,
-            //        member => member.MapFrom(field => field.Assignments.Count > 0));
+            CreateMap<Project, ProjectViewModel>()
+                .ForMember(destination => destination.Id,
+                    member => member.MapFrom(field => field.ProjectId))
+                .ForMember(destination => destination.InUse,
+                    member => member.MapFrom(field => field.AccountingMovements.Any(x => !x.DeletedOn.HasValue)));
+            CreateMap<ProjectViewModel, Project>();
 
             //CreateMap<Assignment, ItemTypeResponse>()
             //    .ForMember(destination => destination.ItemId,

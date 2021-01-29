@@ -61,6 +61,15 @@ namespace BudgetManagementApp.Resources.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add {0}.
+        /// </summary>
+        public static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Budget Management.
         /// </summary>
         public static string BudgetManagement {
@@ -133,11 +142,38 @@ namespace BudgetManagementApp.Resources.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Construction.
+        /// </summary>
+        public static string Construction {
+            get {
+                return ResourceManager.GetString("Construction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cost.
+        /// </summary>
+        public static string Cost {
+            get {
+                return ResourceManager.GetString("Cost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string DeleteCategory {
             get {
                 return ResourceManager.GetString("DeleteCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string DeleteProject {
+            get {
+                return ResourceManager.GetString("DeleteProject", resourceCulture);
             }
         }
         
@@ -174,6 +210,15 @@ namespace BudgetManagementApp.Resources.Properties {
         public static string Description {
             get {
                 return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End date.
+        /// </summary>
+        public static string EndDate {
+            get {
+                return ResourceManager.GetString("EndDate", resourceCulture);
             }
         }
         
@@ -232,11 +277,29 @@ namespace BudgetManagementApp.Resources.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Modify {0}.
+        /// </summary>
+        public static string Modify {
+            get {
+                return ResourceManager.GetString("Modify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Modify.
         /// </summary>
         public static string ModifyCategory {
             get {
                 return ResourceManager.GetString("ModifyCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modify.
+        /// </summary>
+        public static string ModifyProject {
+            get {
+                return ResourceManager.GetString("ModifyProject", resourceCulture);
             }
         }
         
@@ -259,11 +322,29 @@ namespace BudgetManagementApp.Resources.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New.
         /// </summary>
         public static string NewCategory {
             get {
                 return ResourceManager.GetString("NewCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New.
+        /// </summary>
+        public static string NewProject {
+            get {
+                return ResourceManager.GetString("NewProject", resourceCulture);
             }
         }
         
@@ -291,6 +372,24 @@ namespace BudgetManagementApp.Resources.Properties {
         public static string ProccessingError {
             get {
                 return ResourceManager.GetString("ProccessingError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search:.
+        /// </summary>
+        public static string ProjectFilter {
+            get {
+                return ResourceManager.GetString("ProjectFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project Maintenance.
+        /// </summary>
+        public static string ProjectMaintenance {
+            get {
+                return ResourceManager.GetString("ProjectMaintenance", resourceCulture);
             }
         }
         
@@ -336,6 +435,15 @@ namespace BudgetManagementApp.Resources.Properties {
         public static string Spanish {
             get {
                 return ResourceManager.GetString("Spanish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start date.
+        /// </summary>
+        public static string StartDate {
+            get {
+                return ResourceManager.GetString("StartDate", resourceCulture);
             }
         }
         
