@@ -24,6 +24,7 @@ namespace BudgetManagementApp.Entities.Models
         [Required]
         public bool IsAnIncome { get; set; }
 
+        [StringLength(500)]
         public string Comment { get; set; }
 
         public DateTime? DeletedOn { get; set; }
@@ -31,8 +32,11 @@ namespace BudgetManagementApp.Entities.Models
         [ForeignKey(nameof(SubType))]
         public int SubTypeId { get; set; }
 
+        [ForeignKey(nameof(Project))]
+        public int? ProjectId { get; set; }
+
         public virtual SubType SubType { get; set; }
 
-        public virtual ICollection<BalanceSheet> BalanceSheets { get; set; }
+        public virtual Project Project { get; set; }
     }
 }
