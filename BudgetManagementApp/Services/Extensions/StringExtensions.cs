@@ -30,5 +30,17 @@
         {
             return string.Format(str, values);
         }
+
+        public static decimal ToDecimal(this string str)
+        {
+            return decimal.Parse(str);
+        }
+
+        public static decimal ToDecimalOrDefault(this string str)
+        {
+            return decimal.TryParse(str, out var number) 
+                ? number 
+                : 0.00m;
+        }
     }
 }

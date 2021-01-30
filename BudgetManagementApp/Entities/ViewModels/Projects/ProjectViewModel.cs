@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using BudgetManagementApp.Entities.Helpers;
 using BudgetManagementApp.Entities.ViewModels.Base;
 using BudgetManagementApp.Resources;
@@ -36,17 +37,27 @@ namespace BudgetManagementApp.Entities.ViewModels.Projects
                 );
             }
 
-            if (StartDate.HasValue && 
-                EndDate.HasValue &&
-                EndDate.Value.Date > StartDate.Value.Date
-            )
-            {
-                yield return string.Format(
-                    StringResources.DateGreaterThanValidation,
-                    StringResourcesHandler.GetString(FieldNames.StartDate),
-                    StringResourcesHandler.GetString(FieldNames.EndDate)
-                );
-            }
+
+            //if (!string.IsNullOrWhiteSpace(StartDate) && 
+            //    !string.IsNullOrWhiteSpace(StartDate) &&
+            //    !string.IsNullOrWhiteSpace(EndDate) && 
+            //    !string.IsNullOrWhiteSpace(EndDate)
+            //)
+            //{
+            //    var culture = new CultureInfo("en-US");
+
+            //    var startDate = Convert.ToDateTime(StartDate, culture);
+            //    var endDate = Convert.ToDateTime(EndDate, culture);
+
+            //    if (endDate < startDate)
+            //    {
+            //        yield return string.Format(
+            //            StringResources.DateGreaterThanValidation,
+            //            StringResourcesHandler.GetString(FieldNames.StartDate),
+            //            StringResourcesHandler.GetString(FieldNames.EndDate)
+            //        );
+            //    }
+            //}
         }
     }
 }

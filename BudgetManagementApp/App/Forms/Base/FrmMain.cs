@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using BudgetManagementApp.Entities.Enums;
 using BudgetManagementApp.Entities.Helpers;
@@ -12,6 +13,7 @@ using BudgetManagementApp.Entities.ViewModels.Projects;
 using BudgetManagementApp.Entities.ViewModels.SubTypes;
 using BudgetManagementApp.Entities.ViewModels.Types;
 using BudgetManagementApp.Forms.Categories;
+using BudgetManagementApp.Forms.Projects;
 using BudgetManagementApp.Forms.SubTypes;
 using BudgetManagementApp.Forms.Types;
 using BudgetManagementApp.Resources;
@@ -31,6 +33,7 @@ namespace BudgetManagementApp.Forms.Base
         private readonly ICategoryService categoryService;
         private readonly IProjectService projectService;
         private readonly FrmSubTypeMaintenance subTypeMaintenance;
+        private readonly FrmProjectMaintenance projectMaintenance;
         private readonly ISubTypeService subTypeService;
         private readonly FrmTypeMaintenance typeMaintenance;
         private readonly ITypeService typeService;
@@ -39,6 +42,7 @@ namespace BudgetManagementApp.Forms.Base
             FrmCategoryMaintenance categoryMaintenance,
             FrmTypeMaintenance typeMaintenance,
             FrmSubTypeMaintenance subTypeMaintenance,
+            FrmProjectMaintenance projectMaintenance,
             ICategoryService categoryService,
             ITypeService typeService,
             ISubTypeService subTypeService,
@@ -48,6 +52,7 @@ namespace BudgetManagementApp.Forms.Base
             this.categoryMaintenance = categoryMaintenance;
             this.typeMaintenance = typeMaintenance;
             this.subTypeMaintenance = subTypeMaintenance;
+            this.projectMaintenance = projectMaintenance;
             this.categoryService = categoryService;
             this.typeService = typeService;
             this.subTypeService = subTypeService;
@@ -182,6 +187,7 @@ namespace BudgetManagementApp.Forms.Base
             }
 
             CultureInfo.CurrentCulture = new CultureInfo(language);
+            CultureInfo.CurrentUICulture = CultureInfo.CurrentCulture;
 
             SetAppLabels();
         }
@@ -412,7 +418,7 @@ namespace BudgetManagementApp.Forms.Base
                 DgvCategories,
                 GetFilteredData(text, Categories, c => c.Description.Contains(text)),
                 FormatGrid,
-                new List<string> {FieldNames.CategoryId}
+                new List<string> { FieldNames.CategoryId }
             );
         }
 
@@ -466,7 +472,7 @@ namespace BudgetManagementApp.Forms.Base
                 DgvCategories,
                 Categories,
                 FormatGrid,
-                new List<string> {FieldNames.CategoryId}
+                new List<string> { FieldNames.CategoryId }
             );
         }
 
@@ -858,7 +864,7 @@ namespace BudgetManagementApp.Forms.Base
                 DgvProjects,
                 GetFilteredData(text, Projects, c => c.Name.Contains(text)),
                 FormatGrid,
-                new List<string> {FieldNames.ProjectId}
+                new List<string> { FieldNames.ProjectId }
             );
         }
 
@@ -876,8 +882,8 @@ namespace BudgetManagementApp.Forms.Base
         {
             TxtProjectId.Text = row.Value<int>(FieldNames.ProjectId).ToString();
             TxtProjectName.Text = row.Value<string>(FieldNames.Name);
-            TxtStartDate.Text = row.Value<string>(FieldNames.StartDate);
-            TxtEndDate.Text = row.Value<string>(FieldNames.EndDate);
+            TxtStartDate.Text = row.Value<DateTime>(FieldNames.StartDate).ToString(StringResources.DateFormat);
+            TxtEndDate.Text = row.Value<DateTime>(FieldNames.EndDate).ToString(StringResources.DateFormat);
             TxtConstruction.Text = row.Value<decimal>(FieldNames.Construction).ToStringWithDecimals();
             TxtCost.Text = row.Value<decimal>(FieldNames.Cost).ToStringWithDecimals();
         }
@@ -890,7 +896,7 @@ namespace BudgetManagementApp.Forms.Base
                 DgvProjects,
                 Projects,
                 FormatGrid,
-                new List<string> {FieldNames.ProjectId}
+                new List<string> { FieldNames.ProjectId }
             );
         }
 
@@ -898,8 +904,8 @@ namespace BudgetManagementApp.Forms.Base
         {
             InitializeProjectMaintenanceControls(type);
 
-            //if (!categoryMaintenance.ShowDialog().IsOkResponse())
-            //    return;
+            if (!projectMaintenance.ShowDialog().IsOkResponse())
+                return;
 
             TxtProjectFilter.Clear();
 
@@ -914,9 +920,13 @@ namespace BudgetManagementApp.Forms.Base
             switch (type)
             {
                 case MaintenanceType.CreateNew:
-                    //categoryMaintenance.Text = StringResources.Add.Format(StringResources.Category);
-                    //categoryMaintenance.TxtCategoryId.Clear();
-                    //categoryMaintenance.TxtDescription.Clear();
+                    projectMaintenance.Text = StringResources.Add.Format(StringResources.Projects);
+                    projectMaintenance.TxtProjectId.Clear();
+                    projectMaintenance.TxtProjectName.Clear();
+                    projectMaintenance.DtpStartDate.Value = DateTime.Now;
+                    projectMaintenance.DtpEndDate.Value = DateTime.Now;
+                    projectMaintenance.TxtContruction.Clear();
+                    projectMaintenance.TxtCost.Clear();
                     break;
 
                 case MaintenanceType.Modify:

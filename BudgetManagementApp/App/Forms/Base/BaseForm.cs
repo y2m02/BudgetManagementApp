@@ -15,7 +15,6 @@ namespace BudgetManagementApp.Forms.Base
         // TODO: make this method abstract.
         protected virtual void SetLabels()
         {
-
         }
 
         protected DialogResult DisplayInformationMessage(string message)
@@ -72,7 +71,7 @@ namespace BudgetManagementApp.Forms.Base
         {
             const int prefix = 3;
 
-            var controlsToSetLabels = new []
+            var controlsToSetLabels = new[]
             {
                 typeof(Label),
                 typeof(Button),
@@ -110,7 +109,6 @@ namespace BudgetManagementApp.Forms.Base
             SetLabels();
         }
 
-        
 
         protected void Upsert(
             Func<BaseViewModel, BaseReturnViewModel> executor,

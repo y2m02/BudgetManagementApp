@@ -126,6 +126,12 @@
     <Compile Include="Forms\Base\FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Projects\FrmProjectMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Projects\FrmProjectMaintenance.Designer.cs">
+      <DependentUpon>FrmProjectMaintenance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SubTypes\FrmSubTypeMaintenance.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,6 +154,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Base\FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Projects\FrmProjectMaintenance.resx">
+      <DependentUpon>FrmProjectMaintenance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SubTypes\FrmSubTypeMaintenance.resx">
       <DependentUpon>FrmSubTypeMaintenance.cs</DependentUpon>

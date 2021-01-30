@@ -1,10 +1,13 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using AutoMapper;
 using BudgetManagementApp.Entities.Models;
 using BudgetManagementApp.Entities.ViewModels.Categories;
 using BudgetManagementApp.Entities.ViewModels.Projects;
 using BudgetManagementApp.Entities.ViewModels.SubTypes;
 using BudgetManagementApp.Entities.ViewModels.Types;
+using BudgetManagementApp.Resources.Properties;
+using Type = BudgetManagementApp.Entities.Models.Type;
 
 namespace BudgetManagementApp.Entities.Mappings
 {
@@ -44,9 +47,17 @@ namespace BudgetManagementApp.Entities.Mappings
             CreateMap<Project, ProjectViewModel>()
                 .ForMember(destination => destination.Id,
                     member => member.MapFrom(field => field.ProjectId))
+                //.ForMember(destination => destination.StartDate,
+                //    member => member.MapFrom(field => field.StartDate.Value.ToString(StringResources.DateFormat)))
+                //.ForMember(destination => destination.EndDate,
+                //    member => member.MapFrom(field => field.EndDate.Value.ToString(StringResources.DateFormat)))
                 .ForMember(destination => destination.InUse,
                     member => member.MapFrom(field => field.AccountingMovements.Any(x => !x.DeletedOn.HasValue)));
             CreateMap<ProjectViewModel, Project>();
+            //.ForMember(destination => destination.StartDate,
+            //    member => member.MapFrom(field => Convert.ToDateTime(field.StartDate)))
+            //.ForMember(destination => destination.EndDate,
+            //    member => member.MapFrom(field => Convert.ToDateTime(field.EndDate)));
 
             //CreateMap<Assignment, ItemTypeResponse>()
             //    .ForMember(destination => destination.ItemId,
