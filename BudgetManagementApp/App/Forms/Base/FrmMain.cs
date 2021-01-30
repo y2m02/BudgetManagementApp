@@ -930,9 +930,13 @@ namespace BudgetManagementApp.Forms.Base
                     break;
 
                 case MaintenanceType.Modify:
-                    //categoryMaintenance.Text = StringResources.Modify.Format(StringResources.Category);
-                    //categoryMaintenance.TxtCategoryId.Text = TxtCategoryId.Text;
-                    //categoryMaintenance.TxtDescription.Text = TxtCategoryDescription.Text;
+                    projectMaintenance.Text = StringResources.Add.Format(StringResources.Projects);
+                    projectMaintenance.TxtProjectId.SetText(TxtProjectId.Text);
+                    projectMaintenance.TxtProjectName.SetText(TxtProjectName.Text);
+                    projectMaintenance.DtpStartDate.Value = Convert.ToDateTime(TxtStartDate.Text);
+                    projectMaintenance.DtpEndDate.Value = Convert.ToDateTime(TxtEndDate.Text, CultureInfo.CurrentCulture);
+                    projectMaintenance.TxtContruction.SetText(TxtConstruction.Text);
+                    projectMaintenance.TxtCost.SetText(TxtCost.Text);
                     break;
             }
         }

@@ -27,5 +27,10 @@ namespace BudgetManagementApp.Services.Extensions
 
             return control;
         }
+
+        public static void SetText(this Control control, string text)
+        {
+            control.Text = text;
+        }
     }
 }

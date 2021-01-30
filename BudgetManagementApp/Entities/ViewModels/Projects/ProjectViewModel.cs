@@ -37,27 +37,17 @@ namespace BudgetManagementApp.Entities.ViewModels.Projects
                 );
             }
 
-
-            //if (!string.IsNullOrWhiteSpace(StartDate) && 
-            //    !string.IsNullOrWhiteSpace(StartDate) &&
-            //    !string.IsNullOrWhiteSpace(EndDate) && 
-            //    !string.IsNullOrWhiteSpace(EndDate)
-            //)
-            //{
-            //    var culture = new CultureInfo("en-US");
-
-            //    var startDate = Convert.ToDateTime(StartDate, culture);
-            //    var endDate = Convert.ToDateTime(EndDate, culture);
-
-            //    if (endDate < startDate)
-            //    {
-            //        yield return string.Format(
-            //            StringResources.DateGreaterThanValidation,
-            //            StringResourcesHandler.GetString(FieldNames.StartDate),
-            //            StringResourcesHandler.GetString(FieldNames.EndDate)
-            //        );
-            //    }
-            //}
+            if (StartDate.HasValue && 
+                EndDate.HasValue && 
+                StartDate.Value.Date > EndDate.Value.Date
+            )
+            {
+                yield return string.Format(
+                    StringResources.DateGreaterThanValidation,
+                    StringResourcesHandler.GetString(FieldNames.StartDate),
+                    StringResourcesHandler.GetString(FieldNames.EndDate)
+                );
+            }
         }
     }
 }
