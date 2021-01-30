@@ -13,6 +13,8 @@ namespace BudgetManagementApp.Entities.ViewModels.Projects
         ///     This property's going to be set automatically.
         ///     Please use Id instead.
         /// </summary>
+        public int ProjectId => Id;
+
         public string Name { get; set; }
 
         public DateTime? StartDate { get; set; }
