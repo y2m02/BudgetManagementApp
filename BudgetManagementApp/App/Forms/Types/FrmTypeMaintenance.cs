@@ -1,12 +1,8 @@
-﻿using BudgetManagementApp.Entities.ViewModels.Types;
+﻿using System;
+using BudgetManagementApp.Entities.ViewModels.Types;
 using BudgetManagementApp.Forms.Base;
-using BudgetManagementApp.Resources.Properties;
 using BudgetManagementApp.Services.Extensions;
 using BudgetManagementApp.Services.Services.Types;
-using System;
-using System.Linq;
-using System.Windows.Forms;
-using BudgetManagementApp.Entities.ViewModels.Base;
 
 namespace BudgetManagementApp.Forms.Types
 {
@@ -32,7 +28,7 @@ namespace BudgetManagementApp.Forms.Types
             {
                 Id = TxtTypeId.Text.ToIntOrDefault(),
                 Description = TxtDescription.Text,
-                CategoryId =  CbxCategory.SafeSelectedValue<int>()
+                CategoryId = CbxCategory.SafeSelectedValue<int>()
             });
         }
 
@@ -43,8 +39,6 @@ namespace BudgetManagementApp.Forms.Types
 
         protected sealed override void SetLabels()
         {
-            Text = StringResources.TypeMaintenance;
-
             LoopControlsToSetLabels(Controls);
         }
     }

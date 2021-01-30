@@ -485,11 +485,13 @@ namespace BudgetManagementApp.Forms.Base
             switch (type)
             {
                 case MaintenanceType.CreateNew:
+                    categoryMaintenance.Text = StringResources.Add.Format(StringResources.Category);
                     categoryMaintenance.TxtCategoryId.Clear();
                     categoryMaintenance.TxtDescription.Clear();
                     break;
 
                 case MaintenanceType.Modify:
+                    categoryMaintenance.Text = StringResources.Modify.Format(StringResources.Category);
                     categoryMaintenance.TxtCategoryId.Text = TxtCategoryId.Text;
                     categoryMaintenance.TxtDescription.Text = TxtCategoryDescription.Text;
                     break;
@@ -623,6 +625,7 @@ namespace BudgetManagementApp.Forms.Base
             switch (type)
             {
                 case MaintenanceType.CreateNew:
+                    typeMaintenance.Text = StringResources.Add.Format(StringResources.Type);
                     typeMaintenance.TxtTypeId.Clear();
                     typeMaintenance.TxtDescription.Clear();
 
@@ -634,6 +637,7 @@ namespace BudgetManagementApp.Forms.Base
                     break;
 
                 case MaintenanceType.Modify:
+                    typeMaintenance.Text = StringResources.Modify.Format(StringResources.Type);
                     typeMaintenance.TxtTypeId.Text = TxtTypeId.Text;
                     typeMaintenance.TxtDescription.Text = TxtTypeDescription.Text;
                     cbxCategory.Text = TxtTypeCategory.Text;
@@ -779,6 +783,7 @@ namespace BudgetManagementApp.Forms.Base
             switch (type)
             {
                 case MaintenanceType.CreateNew:
+                    subTypeMaintenance.Text = StringResources.Add.Format(StringResources.SubType);
                     subTypeMaintenance.TxtSubTypeId.Clear();
                     subTypeMaintenance.TxtDescription.Clear();
 
@@ -794,6 +799,7 @@ namespace BudgetManagementApp.Forms.Base
                     break;
 
                 case MaintenanceType.Modify:
+                    subTypeMaintenance.Text = StringResources.Modify.Format(StringResources.SubType);
                     subTypeMaintenance.TxtSubTypeId.Text = TxtSubTypeId.Text;
                     subTypeMaintenance.TxtDescription.Text = TxtSubTypeDescription.Text;
                     cbxCategory.Text = TxtSubTypeCategory.Text;

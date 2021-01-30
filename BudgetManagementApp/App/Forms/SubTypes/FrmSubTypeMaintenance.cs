@@ -1,14 +1,12 @@
-﻿using BudgetManagementApp.Entities.Helpers;
+﻿using System;
+using System.Collections.Generic;
+using BudgetManagementApp.Entities.Helpers;
 using BudgetManagementApp.Entities.ViewModels.Categories;
 using BudgetManagementApp.Entities.ViewModels.SubTypes;
 using BudgetManagementApp.Entities.ViewModels.Types;
 using BudgetManagementApp.Forms.Base;
-using BudgetManagementApp.Resources.Properties;
 using BudgetManagementApp.Services.Extensions;
 using BudgetManagementApp.Services.Services.SubTypes;
-using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace BudgetManagementApp.Forms.SubTypes
 {
@@ -55,8 +53,6 @@ namespace BudgetManagementApp.Forms.SubTypes
 
         protected sealed override void SetLabels()
         {
-            Text = StringResources.SubTypeMaintenance;
-
             LoopControlsToSetLabels(Controls);
         }
 
