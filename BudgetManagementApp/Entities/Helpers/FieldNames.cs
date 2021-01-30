@@ -16,6 +16,15 @@
         public static string SubTypeId => "SubTypeId";
         public static string SubType => "SubType";
 
+        // Projects
+        public static string ProjectId => "ProjectId";
+        public static string Project => "Project";
+        public static string Name => "Name";
+        public static string StartDate => "StartDate";
+        public static string EndDate => "EndDate";
+        public static string Construction => "Construction";
+        public static string Cost => "Cost";
+
         // Others
         public static string Id => "Id";
         public static string Description => "Description";

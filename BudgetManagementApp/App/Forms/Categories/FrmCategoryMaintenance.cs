@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Windows.Forms;
 using BudgetManagementApp.Entities.ViewModels.Categories;
 using BudgetManagementApp.Forms.Base;
-using BudgetManagementApp.Resources.Properties;
 using BudgetManagementApp.Services.Extensions;
 using BudgetManagementApp.Services.Services.Categories;
 
@@ -26,8 +24,6 @@ namespace BudgetManagementApp.Forms.Categories
 
         protected sealed override void SetLabels()
         {
-            Text = StringResources.CategoryMaintenance;
-
             LoopControlsToSetLabels(Controls);
         }
 

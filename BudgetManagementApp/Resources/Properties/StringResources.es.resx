@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Agregar {0}</value>
+  </data>
   <data name="BudgetManagement" xml:space="preserve">
     <value>Control de presupuesto</value>
   </data>
@@ -141,7 +144,16 @@
   <data name="Close" xml:space="preserve">
     <value>Salir</value>
   </data>
+  <data name="Construction" xml:space="preserve">
+    <value>Construcción</value>
+  </data>
+  <data name="Cost" xml:space="preserve">
+    <value>Costo</value>
+  </data>
   <data name="DeleteCategory" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="DeleteProject" xml:space="preserve">
     <value>Eliminar</value>
   </data>
   <data name="DeleteQuestion" xml:space="preserve">
@@ -155,6 +167,9 @@
   </data>
   <data name="Description" xml:space="preserve">
     <value>Descripción</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>Fecha de finalización</value>
   </data>
   <data name="English" xml:space="preserve">
     <value>Inglés</value>
@@ -174,7 +189,13 @@
   <data name="Languages" xml:space="preserve">
     <value>Idiomas</value>
   </data>
+  <data name="Modify" xml:space="preserve">
+    <value>Modificar {0}</value>
+  </data>
   <data name="ModifyCategory" xml:space="preserve">
+    <value>Modificar</value>
+  </data>
+  <data name="ModifyProject" xml:space="preserve">
     <value>Modificar</value>
   </data>
   <data name="ModifySubType" xml:space="preserve">
@@ -183,8 +204,14 @@
   <data name="ModifyType" xml:space="preserve">
     <value>Modificar</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
   <data name="NewCategory" xml:space="preserve">
     <value>Nueva</value>
+  </data>
+  <data name="NewProject" xml:space="preserve">
+    <value>Nuevo</value>
   </data>
   <data name="NewSubType" xml:space="preserve">
     <value>Nueva</value>
@@ -194,6 +221,12 @@
   </data>
   <data name="ProccessingError" xml:space="preserve">
     <value>Hubo un error durante el proceso. Por favor, contacte a soporte: {0}</value>
+  </data>
+  <data name="ProjectFilter" xml:space="preserve">
+    <value>Buscar:</value>
+  </data>
+  <data name="ProjectMaintenance" xml:space="preserve">
+    <value>Mantenimiento de proyectos</value>
   </data>
   <data name="Projects" xml:space="preserve">
     <value>Proyectos</value>
@@ -209,6 +242,9 @@
   </data>
   <data name="Spanish" xml:space="preserve">
     <value>Español</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Fecha de inicio</value>
   </data>
   <data name="SubType" xml:space="preserve">
     <value>Sub-partida</value>

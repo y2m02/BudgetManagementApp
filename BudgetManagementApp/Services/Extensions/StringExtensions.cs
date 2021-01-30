@@ -25,5 +25,10 @@
                 ? number 
                 : 0;
         }
+
+        public static string Format(this string str, params object[] values)
+        {
+            return string.Format(str, values);
+        }
     }
 }
