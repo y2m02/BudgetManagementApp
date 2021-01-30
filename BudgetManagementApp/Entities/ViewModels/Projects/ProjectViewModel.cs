@@ -35,6 +35,18 @@ namespace BudgetManagementApp.Entities.ViewModels.Projects
                     StringResourcesHandler.GetString(FieldNames.Name)
                 );
             }
+
+            if (StartDate.HasValue && 
+                EndDate.HasValue &&
+                EndDate.Value.Date > StartDate.Value.Date
+            )
+            {
+                yield return string.Format(
+                    StringResources.DateGreaterThanValidation,
+                    StringResourcesHandler.GetString(FieldNames.StartDate),
+                    StringResourcesHandler.GetString(FieldNames.EndDate)
+                );
+            }
         }
     }
 }

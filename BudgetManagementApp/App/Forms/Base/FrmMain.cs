@@ -66,6 +66,7 @@ namespace BudgetManagementApp.Forms.Base
             LoopControlsToSetLabels(TabCategories.Controls);
             LoopControlsToSetLabels(TabTypes.Controls);
             LoopControlsToSetLabels(TabSubtypes.Controls);
+            LoopControlsToSetLabels(TabProjects.Controls);
 
             foreach (ToolStripMenuItem menu in MsMainMenu.Items)
             {
@@ -303,7 +304,7 @@ namespace BudgetManagementApp.Forms.Base
         private void BtnBudgetManagement_Click(object sender, EventArgs e)
         {
             TclBudgetManagement.SelectedIndex = 0;
-            ChangeButtonSelectedStatus(BtnBudgetManagement);
+            ChangeButtonSelectedStatus(BtnBudgetManagements);
         }
 
         private void BtnProjects_Click(object sender, EventArgs e)
@@ -335,7 +336,7 @@ namespace BudgetManagementApp.Forms.Base
             switch (TclBudgetManagement.SelectedIndex)
             {
                 case 0:
-                    ChangeButtonSelectedStatus(BtnBudgetManagement);
+                    ChangeButtonSelectedStatus(BtnBudgetManagements);
                     break;
 
                 case 1:
@@ -806,6 +807,35 @@ namespace BudgetManagementApp.Forms.Base
                     cbxType.Text = TxtSubTypeTypeDescription.Text;
                     break;
             }
+        }
+
+        #endregion
+
+        #region Projects
+
+        private void BtnNewProject_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnModifyProject_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnDeleteProject_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtProjectFilter_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DgvProjects_SelectionChanged(object sender, EventArgs e)
+        {
+
         }
 
         #endregion

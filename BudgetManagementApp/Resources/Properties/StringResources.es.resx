@@ -150,6 +150,9 @@
   <data name="Cost" xml:space="preserve">
     <value>Costo</value>
   </data>
+  <data name="DateGreaterThanValidation" xml:space="preserve">
+    <value>La {0} no puede ser mayor a la {1}.</value>
+  </data>
   <data name="DeleteCategory" xml:space="preserve">
     <value>Eliminar</value>
   </data>
@@ -227,6 +230,9 @@
   </data>
   <data name="ProjectMaintenance" xml:space="preserve">
     <value>Mantenimiento de proyectos</value>
+  </data>
+  <data name="ProjectName" xml:space="preserve">
+    <value>Nombre</value>
   </data>
   <data name="Projects" xml:space="preserve">
     <value>Proyectos</value>

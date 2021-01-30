@@ -33,7 +33,7 @@ namespace BudgetManagementApp.Forms.Base
             this.BtnTypes = new System.Windows.Forms.Button();
             this.BtnCategories = new System.Windows.Forms.Button();
             this.BtnProjects = new System.Windows.Forms.Button();
-            this.BtnBudgetManagement = new System.Windows.Forms.Button();
+            this.BtnBudgetManagements = new System.Windows.Forms.Button();
             this.TclBudgetManagement = new System.Windows.Forms.TabControl();
             this.TabBudgetManagement = new System.Windows.Forms.TabPage();
             this.PnlInformation = new System.Windows.Forms.Panel();
@@ -53,6 +53,23 @@ namespace BudgetManagementApp.Forms.Base
             this.label1 = new System.Windows.Forms.Label();
             this.TxtName = new System.Windows.Forms.TextBox();
             this.TabProjects = new System.Windows.Forms.TabPage();
+            this.LblCost = new System.Windows.Forms.Label();
+            this.TxtCost = new System.Windows.Forms.TextBox();
+            this.LblConstruction = new System.Windows.Forms.Label();
+            this.TxtConstruction = new System.Windows.Forms.TextBox();
+            this.LblEndDate = new System.Windows.Forms.Label();
+            this.TxtEndDate = new System.Windows.Forms.TextBox();
+            this.LblStartDate = new System.Windows.Forms.Label();
+            this.TxtStartDate = new System.Windows.Forms.TextBox();
+            this.TxtProjectId = new System.Windows.Forms.TextBox();
+            this.LblProjectFilter = new System.Windows.Forms.Label();
+            this.BtnDeleteProject = new System.Windows.Forms.Button();
+            this.BtnModifyProject = new System.Windows.Forms.Button();
+            this.BtnNewProject = new System.Windows.Forms.Button();
+            this.TxtProjectFilter = new System.Windows.Forms.TextBox();
+            this.DgvProjects = new System.Windows.Forms.DataGridView();
+            this.LblProjectName = new System.Windows.Forms.Label();
+            this.TxtProjectName = new System.Windows.Forms.TextBox();
             this.TabCategories = new System.Windows.Forms.TabPage();
             this.TxtCategoryId = new System.Windows.Forms.TextBox();
             this.LblCategoryFilter = new System.Windows.Forms.Label();
@@ -77,12 +94,9 @@ namespace BudgetManagementApp.Forms.Base
             this.LblTypeCategory = new System.Windows.Forms.Label();
             this.TxtTypeCategory = new System.Windows.Forms.TextBox();
             this.TabSubtypes = new System.Windows.Forms.TabPage();
-            this.MsMainMenu = new System.Windows.Forms.MenuStrip();
-            this.MiFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.MiClose = new System.Windows.Forms.ToolStripMenuItem();
-            this.MiLanguages = new System.Windows.Forms.ToolStripMenuItem();
-            this.MiSpanish = new System.Windows.Forms.ToolStripMenuItem();
-            this.MiEnglish = new System.Windows.Forms.ToolStripMenuItem();
+            this.TxtSubTypeTypeId = new System.Windows.Forms.TextBox();
+            this.LblSubTypeTypeDescription = new System.Windows.Forms.Label();
+            this.TxtSubTypeTypeDescription = new System.Windows.Forms.TextBox();
             this.TxtSubTypeCategoryId = new System.Windows.Forms.TextBox();
             this.LblSubTypeDescription = new System.Windows.Forms.Label();
             this.TxtSubTypeDescription = new System.Windows.Forms.TextBox();
@@ -95,21 +109,27 @@ namespace BudgetManagementApp.Forms.Base
             this.DgvSubTypes = new System.Windows.Forms.DataGridView();
             this.LblSubTypeCategory = new System.Windows.Forms.Label();
             this.TxtSubTypeCategory = new System.Windows.Forms.TextBox();
-            this.TxtSubTypeTypeId = new System.Windows.Forms.TextBox();
-            this.LblSubTypeTypeDescription = new System.Windows.Forms.Label();
-            this.TxtSubTypeTypeDescription = new System.Windows.Forms.TextBox();
+            this.MsMainMenu = new System.Windows.Forms.MenuStrip();
+            this.MiFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.MiClose = new System.Windows.Forms.ToolStripMenuItem();
+            this.MiLanguages = new System.Windows.Forms.ToolStripMenuItem();
+            this.MiSpanish = new System.Windows.Forms.ToolStripMenuItem();
+            this.MiEnglish = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnBudgetManagement = new System.Windows.Forms.Button();
             this.TclBudgetManagement.SuspendLayout();
             this.TabBudgetManagement.SuspendLayout();
             this.PnlInformation.SuspendLayout();
             this.PnlGender.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudAge)).BeginInit();
+            this.TabProjects.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvProjects)).BeginInit();
             this.TabCategories.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvCategories)).BeginInit();
             this.TabTypes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvTypes)).BeginInit();
             this.TabSubtypes.SuspendLayout();
-            this.MsMainMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvSubTypes)).BeginInit();
+            this.MsMainMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // BtnSubtypes
@@ -164,19 +184,19 @@ namespace BudgetManagementApp.Forms.Base
             this.BtnProjects.UseVisualStyleBackColor = false;
             this.BtnProjects.Click += new System.EventHandler(this.BtnProjects_Click);
             // 
-            // BtnBudgetManagement
+            // BtnBudgetManagements
             // 
-            this.BtnBudgetManagement.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.BtnBudgetManagement.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BtnBudgetManagement.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnBudgetManagement.Location = new System.Drawing.Point(0, 28);
-            this.BtnBudgetManagement.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.BtnBudgetManagement.Name = "BtnBudgetManagement";
-            this.BtnBudgetManagement.Size = new System.Drawing.Size(253, 74);
-            this.BtnBudgetManagement.TabIndex = 7;
-            this.BtnBudgetManagement.Text = "Control de presupesto";
-            this.BtnBudgetManagement.UseVisualStyleBackColor = false;
-            this.BtnBudgetManagement.Click += new System.EventHandler(this.BtnBudgetManagement_Click);
+            this.BtnBudgetManagements.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BtnBudgetManagements.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BtnBudgetManagements.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnBudgetManagements.Location = new System.Drawing.Point(0, 28);
+            this.BtnBudgetManagements.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.BtnBudgetManagements.Name = "BtnBudgetManagements";
+            this.BtnBudgetManagements.Size = new System.Drawing.Size(253, 74);
+            this.BtnBudgetManagements.TabIndex = 7;
+            this.BtnBudgetManagements.Text = "Control de presupesto";
+            this.BtnBudgetManagements.UseVisualStyleBackColor = false;
+            this.BtnBudgetManagements.Click += new System.EventHandler(this.BtnBudgetManagement_Click);
             // 
             // TclBudgetManagement
             // 
@@ -405,6 +425,24 @@ namespace BudgetManagementApp.Forms.Base
             // TabProjects
             // 
             this.TabProjects.BackColor = System.Drawing.SystemColors.Control;
+            this.TabProjects.Controls.Add(this.BtnBudgetManagement);
+            this.TabProjects.Controls.Add(this.LblCost);
+            this.TabProjects.Controls.Add(this.TxtCost);
+            this.TabProjects.Controls.Add(this.LblConstruction);
+            this.TabProjects.Controls.Add(this.TxtConstruction);
+            this.TabProjects.Controls.Add(this.LblEndDate);
+            this.TabProjects.Controls.Add(this.TxtEndDate);
+            this.TabProjects.Controls.Add(this.LblStartDate);
+            this.TabProjects.Controls.Add(this.TxtStartDate);
+            this.TabProjects.Controls.Add(this.TxtProjectId);
+            this.TabProjects.Controls.Add(this.LblProjectFilter);
+            this.TabProjects.Controls.Add(this.BtnDeleteProject);
+            this.TabProjects.Controls.Add(this.BtnModifyProject);
+            this.TabProjects.Controls.Add(this.BtnNewProject);
+            this.TabProjects.Controls.Add(this.TxtProjectFilter);
+            this.TabProjects.Controls.Add(this.DgvProjects);
+            this.TabProjects.Controls.Add(this.LblProjectName);
+            this.TabProjects.Controls.Add(this.TxtProjectName);
             this.TabProjects.Location = new System.Drawing.Point(4, 28);
             this.TabProjects.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TabProjects.Name = "TabProjects";
@@ -412,6 +450,199 @@ namespace BudgetManagementApp.Forms.Base
             this.TabProjects.Size = new System.Drawing.Size(1236, 844);
             this.TabProjects.TabIndex = 1;
             this.TabProjects.Text = "Proyectos";
+            // 
+            // LblCost
+            // 
+            this.LblCost.AutoSize = true;
+            this.LblCost.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblCost.Location = new System.Drawing.Point(383, 264);
+            this.LblCost.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblCost.Name = "LblCost";
+            this.LblCost.Size = new System.Drawing.Size(66, 24);
+            this.LblCost.TabIndex = 54;
+            this.LblCost.Text = "Costo";
+            // 
+            // TxtCost
+            // 
+            this.TxtCost.Location = new System.Drawing.Point(387, 296);
+            this.TxtCost.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtCost.MaxLength = 99;
+            this.TxtCost.Name = "TxtCost";
+            this.TxtCost.ReadOnly = true;
+            this.TxtCost.Size = new System.Drawing.Size(290, 27);
+            this.TxtCost.TabIndex = 53;
+            // 
+            // LblConstruction
+            // 
+            this.LblConstruction.AutoSize = true;
+            this.LblConstruction.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblConstruction.Location = new System.Drawing.Point(9, 264);
+            this.LblConstruction.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblConstruction.Name = "LblConstruction";
+            this.LblConstruction.Size = new System.Drawing.Size(137, 24);
+            this.LblConstruction.TabIndex = 52;
+            this.LblConstruction.Text = "Construcción";
+            // 
+            // TxtConstruction
+            // 
+            this.TxtConstruction.Location = new System.Drawing.Point(13, 296);
+            this.TxtConstruction.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtConstruction.MaxLength = 99;
+            this.TxtConstruction.Name = "TxtConstruction";
+            this.TxtConstruction.ReadOnly = true;
+            this.TxtConstruction.Size = new System.Drawing.Size(290, 27);
+            this.TxtConstruction.TabIndex = 51;
+            // 
+            // LblEndDate
+            // 
+            this.LblEndDate.AutoSize = true;
+            this.LblEndDate.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblEndDate.Location = new System.Drawing.Point(383, 190);
+            this.LblEndDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblEndDate.Name = "LblEndDate";
+            this.LblEndDate.Size = new System.Drawing.Size(208, 24);
+            this.LblEndDate.TabIndex = 50;
+            this.LblEndDate.Text = "Fecha de finalización";
+            // 
+            // TxtEndDate
+            // 
+            this.TxtEndDate.Location = new System.Drawing.Point(387, 222);
+            this.TxtEndDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtEndDate.MaxLength = 99;
+            this.TxtEndDate.Name = "TxtEndDate";
+            this.TxtEndDate.ReadOnly = true;
+            this.TxtEndDate.Size = new System.Drawing.Size(290, 27);
+            this.TxtEndDate.TabIndex = 49;
+            // 
+            // LblStartDate
+            // 
+            this.LblStartDate.AutoSize = true;
+            this.LblStartDate.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblStartDate.Location = new System.Drawing.Point(8, 190);
+            this.LblStartDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblStartDate.Name = "LblStartDate";
+            this.LblStartDate.Size = new System.Drawing.Size(152, 24);
+            this.LblStartDate.TabIndex = 48;
+            this.LblStartDate.Text = "Fecha de inicio";
+            // 
+            // TxtStartDate
+            // 
+            this.TxtStartDate.Location = new System.Drawing.Point(13, 222);
+            this.TxtStartDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtStartDate.MaxLength = 99;
+            this.TxtStartDate.Name = "TxtStartDate";
+            this.TxtStartDate.ReadOnly = true;
+            this.TxtStartDate.Size = new System.Drawing.Size(290, 27);
+            this.TxtStartDate.TabIndex = 47;
+            // 
+            // TxtProjectId
+            // 
+            this.TxtProjectId.Location = new System.Drawing.Point(648, 113);
+            this.TxtProjectId.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.TxtProjectId.MaxLength = 99;
+            this.TxtProjectId.Name = "TxtProjectId";
+            this.TxtProjectId.ReadOnly = true;
+            this.TxtProjectId.Size = new System.Drawing.Size(30, 27);
+            this.TxtProjectId.TabIndex = 46;
+            this.TxtProjectId.Visible = false;
+            // 
+            // LblProjectFilter
+            // 
+            this.LblProjectFilter.AutoSize = true;
+            this.LblProjectFilter.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblProjectFilter.Location = new System.Drawing.Point(390, 25);
+            this.LblProjectFilter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblProjectFilter.Name = "LblProjectFilter";
+            this.LblProjectFilter.Size = new System.Drawing.Size(77, 24);
+            this.LblProjectFilter.TabIndex = 45;
+            this.LblProjectFilter.Text = "Buscar";
+            this.LblProjectFilter.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // BtnDeleteProject
+            // 
+            this.BtnDeleteProject.Enabled = false;
+            this.BtnDeleteProject.Location = new System.Drawing.Point(247, 64);
+            this.BtnDeleteProject.Margin = new System.Windows.Forms.Padding(1);
+            this.BtnDeleteProject.Name = "BtnDeleteProject";
+            this.BtnDeleteProject.Size = new System.Drawing.Size(116, 44);
+            this.BtnDeleteProject.TabIndex = 44;
+            this.BtnDeleteProject.Text = "Eliminar";
+            this.BtnDeleteProject.UseVisualStyleBackColor = true;
+            this.BtnDeleteProject.Click += new System.EventHandler(this.BtnDeleteProject_Click);
+            // 
+            // BtnModifyProject
+            // 
+            this.BtnModifyProject.Enabled = false;
+            this.BtnModifyProject.Location = new System.Drawing.Point(129, 64);
+            this.BtnModifyProject.Margin = new System.Windows.Forms.Padding(1);
+            this.BtnModifyProject.Name = "BtnModifyProject";
+            this.BtnModifyProject.Size = new System.Drawing.Size(116, 44);
+            this.BtnModifyProject.TabIndex = 43;
+            this.BtnModifyProject.Text = "Modificar";
+            this.BtnModifyProject.UseVisualStyleBackColor = true;
+            this.BtnModifyProject.Click += new System.EventHandler(this.BtnModifyProject_Click);
+            // 
+            // BtnNewProject
+            // 
+            this.BtnNewProject.Location = new System.Drawing.Point(11, 64);
+            this.BtnNewProject.Margin = new System.Windows.Forms.Padding(1);
+            this.BtnNewProject.Name = "BtnNewProject";
+            this.BtnNewProject.Size = new System.Drawing.Size(116, 44);
+            this.BtnNewProject.TabIndex = 42;
+            this.BtnNewProject.Text = "Nuevo";
+            this.BtnNewProject.UseVisualStyleBackColor = true;
+            this.BtnNewProject.Click += new System.EventHandler(this.BtnNewProject_Click);
+            // 
+            // TxtProjectFilter
+            // 
+            this.TxtProjectFilter.Location = new System.Drawing.Point(475, 22);
+            this.TxtProjectFilter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtProjectFilter.MaxLength = 99;
+            this.TxtProjectFilter.Name = "TxtProjectFilter";
+            this.TxtProjectFilter.Size = new System.Drawing.Size(201, 27);
+            this.TxtProjectFilter.TabIndex = 41;
+            this.TxtProjectFilter.TextChanged += new System.EventHandler(this.TxtProjectFilter_TextChanged);
+            // 
+            // DgvProjects
+            // 
+            this.DgvProjects.AllowUserToAddRows = false;
+            this.DgvProjects.AllowUserToDeleteRows = false;
+            this.DgvProjects.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DgvProjects.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.DgvProjects.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvProjects.Location = new System.Drawing.Point(11, 336);
+            this.DgvProjects.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.DgvProjects.MultiSelect = false;
+            this.DgvProjects.Name = "DgvProjects";
+            this.DgvProjects.ReadOnly = true;
+            this.DgvProjects.RowHeadersVisible = false;
+            this.DgvProjects.RowHeadersWidth = 51;
+            this.DgvProjects.RowTemplate.Height = 24;
+            this.DgvProjects.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DgvProjects.Size = new System.Drawing.Size(667, 356);
+            this.DgvProjects.TabIndex = 40;
+            this.DgvProjects.SelectionChanged += new System.EventHandler(this.DgvProjects_SelectionChanged);
+            // 
+            // LblProjectName
+            // 
+            this.LblProjectName.AutoSize = true;
+            this.LblProjectName.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblProjectName.Location = new System.Drawing.Point(7, 116);
+            this.LblProjectName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblProjectName.Name = "LblProjectName";
+            this.LblProjectName.Size = new System.Drawing.Size(63, 24);
+            this.LblProjectName.TabIndex = 39;
+            this.LblProjectName.Text = "Name";
+            // 
+            // TxtProjectName
+            // 
+            this.TxtProjectName.Location = new System.Drawing.Point(12, 148);
+            this.TxtProjectName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtProjectName.MaxLength = 99;
+            this.TxtProjectName.Name = "TxtProjectName";
+            this.TxtProjectName.ReadOnly = true;
+            this.TxtProjectName.Size = new System.Drawing.Size(666, 27);
+            this.TxtProjectName.TabIndex = 38;
             // 
             // TabCategories
             // 
@@ -729,55 +960,37 @@ namespace BudgetManagementApp.Forms.Base
             this.TabSubtypes.TabIndex = 4;
             this.TabSubtypes.Text = "Sub-partidas";
             // 
-            // MsMainMenu
+            // TxtSubTypeTypeId
             // 
-            this.MsMainMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.MsMainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MiFile,
-            this.MiLanguages});
-            this.MsMainMenu.Location = new System.Drawing.Point(0, 0);
-            this.MsMainMenu.Name = "MsMainMenu";
-            this.MsMainMenu.Size = new System.Drawing.Size(1497, 28);
-            this.MsMainMenu.TabIndex = 15;
-            this.MsMainMenu.Text = "menuStrip1";
+            this.TxtSubTypeTypeId.Location = new System.Drawing.Point(286, 97);
+            this.TxtSubTypeTypeId.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.TxtSubTypeTypeId.MaxLength = 99;
+            this.TxtSubTypeTypeId.Name = "TxtSubTypeTypeId";
+            this.TxtSubTypeTypeId.ReadOnly = true;
+            this.TxtSubTypeTypeId.Size = new System.Drawing.Size(30, 27);
+            this.TxtSubTypeTypeId.TabIndex = 64;
+            this.TxtSubTypeTypeId.Visible = false;
             // 
-            // MiFile
+            // LblSubTypeTypeDescription
             // 
-            this.MiFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MiClose});
-            this.MiFile.Name = "MiFile";
-            this.MiFile.Size = new System.Drawing.Size(73, 24);
-            this.MiFile.Text = "Archivo";
+            this.LblSubTypeTypeDescription.AutoSize = true;
+            this.LblSubTypeTypeDescription.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblSubTypeTypeDescription.Location = new System.Drawing.Point(21, 96);
+            this.LblSubTypeTypeDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSubTypeTypeDescription.Name = "LblSubTypeTypeDescription";
+            this.LblSubTypeTypeDescription.Size = new System.Drawing.Size(77, 24);
+            this.LblSubTypeTypeDescription.TabIndex = 63;
+            this.LblSubTypeTypeDescription.Text = "Partida";
             // 
-            // MiClose
+            // TxtSubTypeTypeDescription
             // 
-            this.MiClose.Name = "MiClose";
-            this.MiClose.Size = new System.Drawing.Size(121, 26);
-            this.MiClose.Text = "Salir";
-            this.MiClose.Click += new System.EventHandler(this.MiClose_Click);
-            // 
-            // MiLanguages
-            // 
-            this.MiLanguages.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MiSpanish,
-            this.MiEnglish});
-            this.MiLanguages.Name = "MiLanguages";
-            this.MiLanguages.Size = new System.Drawing.Size(76, 24);
-            this.MiLanguages.Text = "Idiomas";
-            // 
-            // MiSpanish
-            // 
-            this.MiSpanish.Name = "MiSpanish";
-            this.MiSpanish.Size = new System.Drawing.Size(144, 26);
-            this.MiSpanish.Text = "Español";
-            this.MiSpanish.Click += new System.EventHandler(this.MiSpanish_Click);
-            // 
-            // MiEnglish
-            // 
-            this.MiEnglish.Name = "MiEnglish";
-            this.MiEnglish.Size = new System.Drawing.Size(144, 26);
-            this.MiEnglish.Text = "Inglés";
-            this.MiEnglish.Click += new System.EventHandler(this.MiEnglish_Click);
+            this.TxtSubTypeTypeDescription.Location = new System.Drawing.Point(26, 128);
+            this.TxtSubTypeTypeDescription.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtSubTypeTypeDescription.MaxLength = 99;
+            this.TxtSubTypeTypeDescription.Name = "TxtSubTypeTypeDescription";
+            this.TxtSubTypeTypeDescription.ReadOnly = true;
+            this.TxtSubTypeTypeDescription.Size = new System.Drawing.Size(290, 27);
+            this.TxtSubTypeTypeDescription.TabIndex = 62;
             // 
             // TxtSubTypeCategoryId
             // 
@@ -920,37 +1133,66 @@ namespace BudgetManagementApp.Forms.Base
             this.TxtSubTypeCategory.Size = new System.Drawing.Size(290, 27);
             this.TxtSubTypeCategory.TabIndex = 50;
             // 
-            // TxtSubTypeTypeId
+            // MsMainMenu
             // 
-            this.TxtSubTypeTypeId.Location = new System.Drawing.Point(286, 97);
-            this.TxtSubTypeTypeId.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.TxtSubTypeTypeId.MaxLength = 99;
-            this.TxtSubTypeTypeId.Name = "TxtSubTypeTypeId";
-            this.TxtSubTypeTypeId.ReadOnly = true;
-            this.TxtSubTypeTypeId.Size = new System.Drawing.Size(30, 27);
-            this.TxtSubTypeTypeId.TabIndex = 64;
-            this.TxtSubTypeTypeId.Visible = false;
+            this.MsMainMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.MsMainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MiFile,
+            this.MiLanguages});
+            this.MsMainMenu.Location = new System.Drawing.Point(0, 0);
+            this.MsMainMenu.Name = "MsMainMenu";
+            this.MsMainMenu.Size = new System.Drawing.Size(1497, 28);
+            this.MsMainMenu.TabIndex = 15;
+            this.MsMainMenu.Text = "menuStrip1";
             // 
-            // LblSubTypeTypeDescription
+            // MiFile
             // 
-            this.LblSubTypeTypeDescription.AutoSize = true;
-            this.LblSubTypeTypeDescription.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblSubTypeTypeDescription.Location = new System.Drawing.Point(21, 96);
-            this.LblSubTypeTypeDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LblSubTypeTypeDescription.Name = "LblSubTypeTypeDescription";
-            this.LblSubTypeTypeDescription.Size = new System.Drawing.Size(77, 24);
-            this.LblSubTypeTypeDescription.TabIndex = 63;
-            this.LblSubTypeTypeDescription.Text = "Partida";
+            this.MiFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MiClose});
+            this.MiFile.Name = "MiFile";
+            this.MiFile.Size = new System.Drawing.Size(73, 24);
+            this.MiFile.Text = "Archivo";
             // 
-            // TxtSubTypeTypeDescription
+            // MiClose
             // 
-            this.TxtSubTypeTypeDescription.Location = new System.Drawing.Point(26, 128);
-            this.TxtSubTypeTypeDescription.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.TxtSubTypeTypeDescription.MaxLength = 99;
-            this.TxtSubTypeTypeDescription.Name = "TxtSubTypeTypeDescription";
-            this.TxtSubTypeTypeDescription.ReadOnly = true;
-            this.TxtSubTypeTypeDescription.Size = new System.Drawing.Size(290, 27);
-            this.TxtSubTypeTypeDescription.TabIndex = 62;
+            this.MiClose.Name = "MiClose";
+            this.MiClose.Size = new System.Drawing.Size(121, 26);
+            this.MiClose.Text = "Salir";
+            this.MiClose.Click += new System.EventHandler(this.MiClose_Click);
+            // 
+            // MiLanguages
+            // 
+            this.MiLanguages.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MiSpanish,
+            this.MiEnglish});
+            this.MiLanguages.Name = "MiLanguages";
+            this.MiLanguages.Size = new System.Drawing.Size(76, 24);
+            this.MiLanguages.Text = "Idiomas";
+            // 
+            // MiSpanish
+            // 
+            this.MiSpanish.Name = "MiSpanish";
+            this.MiSpanish.Size = new System.Drawing.Size(144, 26);
+            this.MiSpanish.Text = "Español";
+            this.MiSpanish.Click += new System.EventHandler(this.MiSpanish_Click);
+            // 
+            // MiEnglish
+            // 
+            this.MiEnglish.Name = "MiEnglish";
+            this.MiEnglish.Size = new System.Drawing.Size(144, 26);
+            this.MiEnglish.Text = "Inglés";
+            this.MiEnglish.Click += new System.EventHandler(this.MiEnglish_Click);
+            // 
+            // BtnBudgetManagement
+            // 
+            this.BtnBudgetManagement.Enabled = false;
+            this.BtnBudgetManagement.Location = new System.Drawing.Point(365, 64);
+            this.BtnBudgetManagement.Margin = new System.Windows.Forms.Padding(1);
+            this.BtnBudgetManagement.Name = "BtnBudgetManagement";
+            this.BtnBudgetManagement.Size = new System.Drawing.Size(189, 44);
+            this.BtnBudgetManagement.TabIndex = 55;
+            this.BtnBudgetManagement.Text = "Manejar presupuesto";
+            this.BtnBudgetManagement.UseVisualStyleBackColor = true;
             // 
             // FrmMain
             // 
@@ -961,7 +1203,7 @@ namespace BudgetManagementApp.Forms.Base
             this.Controls.Add(this.BtnTypes);
             this.Controls.Add(this.BtnCategories);
             this.Controls.Add(this.BtnProjects);
-            this.Controls.Add(this.BtnBudgetManagement);
+            this.Controls.Add(this.BtnBudgetManagements);
             this.Controls.Add(this.TclBudgetManagement);
             this.Controls.Add(this.MsMainMenu);
             this.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -977,6 +1219,9 @@ namespace BudgetManagementApp.Forms.Base
             this.PnlGender.ResumeLayout(false);
             this.PnlGender.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudAge)).EndInit();
+            this.TabProjects.ResumeLayout(false);
+            this.TabProjects.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvProjects)).EndInit();
             this.TabCategories.ResumeLayout(false);
             this.TabCategories.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvCategories)).EndInit();
@@ -985,9 +1230,9 @@ namespace BudgetManagementApp.Forms.Base
             ((System.ComponentModel.ISupportInitialize)(this.DgvTypes)).EndInit();
             this.TabSubtypes.ResumeLayout(false);
             this.TabSubtypes.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvSubTypes)).EndInit();
             this.MsMainMenu.ResumeLayout(false);
             this.MsMainMenu.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DgvSubTypes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -998,7 +1243,7 @@ namespace BudgetManagementApp.Forms.Base
         private System.Windows.Forms.Button BtnTypes;
         private System.Windows.Forms.Button BtnCategories;
         private System.Windows.Forms.Button BtnProjects;
-        private System.Windows.Forms.Button BtnBudgetManagement;
+        private System.Windows.Forms.Button BtnBudgetManagements;
         private System.Windows.Forms.TabControl TclBudgetManagement;
         private System.Windows.Forms.TabPage TabBudgetManagement;
         private System.Windows.Forms.Panel PnlInformation;
@@ -1063,5 +1308,23 @@ namespace BudgetManagementApp.Forms.Base
         private System.Windows.Forms.DataGridView DgvSubTypes;
         private System.Windows.Forms.Label LblSubTypeCategory;
         private System.Windows.Forms.TextBox TxtSubTypeCategory;
+        public System.Windows.Forms.TextBox TxtProjectId;
+        private System.Windows.Forms.Label LblProjectFilter;
+        private System.Windows.Forms.Button BtnDeleteProject;
+        private System.Windows.Forms.Button BtnModifyProject;
+        private System.Windows.Forms.Button BtnNewProject;
+        private System.Windows.Forms.TextBox TxtProjectFilter;
+        private System.Windows.Forms.DataGridView DgvProjects;
+        private System.Windows.Forms.Label LblProjectName;
+        private System.Windows.Forms.TextBox TxtProjectName;
+        private System.Windows.Forms.Label LblCost;
+        private System.Windows.Forms.TextBox TxtCost;
+        private System.Windows.Forms.Label LblConstruction;
+        private System.Windows.Forms.TextBox TxtConstruction;
+        private System.Windows.Forms.Label LblEndDate;
+        private System.Windows.Forms.TextBox TxtEndDate;
+        private System.Windows.Forms.Label LblStartDate;
+        private System.Windows.Forms.TextBox TxtStartDate;
+        private System.Windows.Forms.Button BtnBudgetManagement;
     }
 }
