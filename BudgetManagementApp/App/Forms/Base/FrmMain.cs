@@ -117,7 +117,7 @@ namespace BudgetManagementApp.Forms.Base
                 [FieldNames.Cost] = StringResourcesHandler.GetString(FieldNames.Cost),
             });
 
-            void SetMenuLabels(ToolStripMenuItem control)
+            static void SetMenuLabels(ToolStripMenuItem control)
             {
                 var name = control.Name;
                 const int prefix = 2;
@@ -393,12 +393,12 @@ namespace BudgetManagementApp.Forms.Base
 
         private void MiSpanish_Click(object sender, EventArgs e)
         {
-            ChangeLanguage("es-ES");
+            ChangeLanguage(CultureData.SpanishCultureName);
         }
 
         private void MiEnglish_Click(object sender, EventArgs e)
         {
-            ChangeLanguage("en-US");
+            ChangeLanguage(CultureData.EnglishCultureName);
         }
 
         private void MiClose_Click(object sender, EventArgs e)
@@ -882,8 +882,8 @@ namespace BudgetManagementApp.Forms.Base
         {
             TxtProjectId.Text = row.Value<int>(FieldNames.ProjectId).ToString();
             TxtProjectName.Text = row.Value<string>(FieldNames.Name);
-            TxtStartDate.Text = row.Value<DateTime>(FieldNames.StartDate).ToString(StringResources.DateFormat);
-            TxtEndDate.Text = row.Value<DateTime>(FieldNames.EndDate).ToString(StringResources.DateFormat);
+            TxtStartDate.Text = row.Value<DateTime>(FieldNames.StartDate).ToShortDateString();
+            TxtEndDate.Text = row.Value<DateTime>(FieldNames.EndDate).ToShortDateString();
             TxtConstruction.Text = row.Value<decimal>(FieldNames.Construction).ToStringWithDecimals();
             TxtCost.Text = row.Value<decimal>(FieldNames.Cost).ToStringWithDecimals();
         }
@@ -930,13 +930,15 @@ namespace BudgetManagementApp.Forms.Base
                     break;
 
                 case MaintenanceType.Modify:
-                    projectMaintenance.Text = StringResources.Add.Format(StringResources.Projects);
+                    var project = Projects.Single(w => w.Id == TxtProjectId.Text.ToInt());
+
+                    projectMaintenance.Text = StringResources.Modify.Format(StringResources.Projects);
                     projectMaintenance.TxtProjectId.SetText(TxtProjectId.Text);
-                    projectMaintenance.TxtProjectName.SetText(TxtProjectName.Text);
-                    projectMaintenance.DtpStartDate.Value = Convert.ToDateTime(TxtStartDate.Text);
-                    projectMaintenance.DtpEndDate.Value = Convert.ToDateTime(TxtEndDate.Text, CultureInfo.CurrentCulture);
-                    projectMaintenance.TxtContruction.SetText(TxtConstruction.Text);
-                    projectMaintenance.TxtCost.SetText(TxtCost.Text);
+                    projectMaintenance.TxtProjectName.SetText(project.Name);
+                    projectMaintenance.DtpStartDate.Value = project.StartDate.GetValueOrDefault();
+                    projectMaintenance.DtpEndDate.Value = project.EndDate.GetValueOrDefault();
+                    projectMaintenance.TxtContruction.SetText(project.Construction.GetValueOrDefault().ToString(CultureData.GetEnglishCulture()));
+                    projectMaintenance.TxtCost.SetText(project.Cost.GetValueOrDefault().ToString(CultureData.GetEnglishCulture()));
                     break;
             }
         }
