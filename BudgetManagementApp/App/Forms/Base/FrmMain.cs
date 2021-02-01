@@ -876,6 +876,8 @@ namespace BudgetManagementApp.Forms.Base
                 BtnDeleteProject,
                 FillProjectFields
             );
+
+            SetControlsStatus(DgvProjects.HasRowsSelected(), BtnBudgetManagement);
         }
 
         private void FillProjectFields(DataGridViewRow row)
