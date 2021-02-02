@@ -1,8 +1,8 @@
 ﻿using System;
+using BudgetManagementApp.Entities.Extensions;
 using BudgetManagementApp.Entities.ViewModels.Projects;
 using BudgetManagementApp.Forms.Base;
 using BudgetManagementApp.Resources.Properties;
-using BudgetManagementApp.Services.Extensions;
 using BudgetManagementApp.Services.Services.Projects;
 
 namespace BudgetManagementApp.Forms.Projects

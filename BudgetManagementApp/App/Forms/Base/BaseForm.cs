@@ -3,10 +3,10 @@ using System.Collections;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
+using BudgetManagementApp.Entities.Extensions;
 using BudgetManagementApp.Entities.ViewModels.Base;
 using BudgetManagementApp.Resources;
 using BudgetManagementApp.Resources.Properties;
-using BudgetManagementApp.Services.Extensions;
 
 namespace BudgetManagementApp.Forms.Base
 {

@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using BudgetManagementApp.Entities.Helpers;
 
-namespace BudgetManagementApp.Services.Extensions
+namespace BudgetManagementApp.Entities.Extensions
 {
     public static class StringExtensions
     {
