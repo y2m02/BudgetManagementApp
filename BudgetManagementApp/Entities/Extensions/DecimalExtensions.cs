@@ -1,6 +1,6 @@
 ﻿using BudgetManagementApp.Entities.Helpers;
 
-namespace BudgetManagementApp.Services.Extensions
+namespace BudgetManagementApp.Entities.Extensions
 {
     public static class DecimalExtensions
     {

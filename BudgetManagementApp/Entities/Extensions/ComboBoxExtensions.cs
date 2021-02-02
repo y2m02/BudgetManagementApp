@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Windows.Forms;
 
-namespace BudgetManagementApp.Services.Extensions
+namespace BudgetManagementApp.Entities.Extensions
 {
     public static class ComboBoxExtensions
     {
@@ -19,7 +19,7 @@ namespace BudgetManagementApp.Services.Extensions
         {
             return
                 cbx.DataSource == null ||
-                ((IList)cbx.DataSource).Count == 0;
+                ((IList) cbx.DataSource).Count == 0;
         }
 
         public static bool HasValue(this ComboBox cbx)
@@ -47,7 +47,7 @@ namespace BudgetManagementApp.Services.Extensions
             {
                 try
                 {
-                    value = (T)cbx.SelectedValue;
+                    value = (T) cbx.SelectedValue;
                 }
                 catch { }
             }

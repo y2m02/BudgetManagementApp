@@ -3,6 +3,7 @@ using BudgetManagementApp.Entities.ViewModels.Base;
 using BudgetManagementApp.Resources;
 using BudgetManagementApp.Resources.Properties;
 using System.Collections.Generic;
+using BudgetManagementApp.Entities.Extensions;
 
 namespace BudgetManagementApp.Entities.ViewModels.SubTypes
 {
@@ -26,8 +27,7 @@ namespace BudgetManagementApp.Entities.ViewModels.SubTypes
 
         public override IEnumerable<string> Validate()
         {
-            if (string.IsNullOrEmpty(Description) ||
-                string.IsNullOrWhiteSpace(Description))
+            if (Description.IsEmpty())
             {
                 yield return string.Format(
                     StringResources.FieldRequired,

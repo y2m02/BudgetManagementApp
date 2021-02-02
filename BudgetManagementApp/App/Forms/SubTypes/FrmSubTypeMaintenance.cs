@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using BudgetManagementApp.Entities.Extensions;
 using BudgetManagementApp.Entities.Helpers;
 using BudgetManagementApp.Entities.ViewModels.Categories;
 using BudgetManagementApp.Entities.ViewModels.SubTypes;
 using BudgetManagementApp.Entities.ViewModels.Types;
 using BudgetManagementApp.Forms.Base;
-using BudgetManagementApp.Services.Extensions;
 using BudgetManagementApp.Services.Services.SubTypes;
 
 namespace BudgetManagementApp.Forms.SubTypes

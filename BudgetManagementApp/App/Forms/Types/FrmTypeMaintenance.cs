@@ -1,7 +1,7 @@
 ﻿using System;
+using BudgetManagementApp.Entities.Extensions;
 using BudgetManagementApp.Entities.ViewModels.Types;
 using BudgetManagementApp.Forms.Base;
-using BudgetManagementApp.Services.Extensions;
 using BudgetManagementApp.Services.Services.Types;
 
 namespace BudgetManagementApp.Forms.Types

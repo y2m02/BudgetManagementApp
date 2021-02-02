@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BudgetManagementApp.Services.Extensions
+namespace BudgetManagementApp.Entities.Extensions
 {
     public static class EnumerableExtensions
     {
@@ -16,6 +16,16 @@ namespace BudgetManagementApp.Services.Extensions
             foreach (var item in enumerable)
             {
                 executor(item);
+            }
+        }
+
+        public static void Each<T>(this IEnumerable<T> enumerable, Action<T, int> executor)
+        {
+            var index = 0;
+
+            foreach (var item in enumerable)
+            {
+                executor(item, index++);
             }
         }
 
