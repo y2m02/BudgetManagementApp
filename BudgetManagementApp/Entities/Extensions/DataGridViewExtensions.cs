@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace BudgetManagementApp.Services.Extensions
+namespace BudgetManagementApp.Entities.Extensions
 {
     public static class DataGridViewExtensions
     {
@@ -119,6 +119,28 @@ namespace BudgetManagementApp.Services.Extensions
         public static T FirstRow<T>(this DataGridView grid, string columnName)
         {
             return grid.GetRowValue<T>(0, columnName);
+        }
+
+        public static T Value<T>(this DataGridViewRow row, int rowIndex)
+        {
+            return (T)row.Cells[rowIndex].Value;
+        }
+
+        public static T Value<T>(this DataGridViewRow row, string columnName)
+        {
+            return (T)row.Cells[columnName].Value;
+        }
+
+        public static void FormatColumn(
+            this DataGridView grid, 
+            string format, 
+            params string[] columns
+        )
+        {
+            foreach (var columnName in columns)
+            {
+                grid.Columns[columnName].DefaultCellStyle.Format = format;
+            }
         }
     }
 }

@@ -18,7 +18,6 @@ namespace BudgetManagementApp.Entities.Models
         public DbSet<SubType> SubTypes { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<AccountingMovement> AccountingMovements { get; set; }
-        public DbSet<BalanceSheet> BalanceSheets { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

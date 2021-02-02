@@ -33,26 +33,26 @@ namespace BudgetManagementApp.Forms.Base
             this.BtnTypes = new System.Windows.Forms.Button();
             this.BtnCategories = new System.Windows.Forms.Button();
             this.BtnProjects = new System.Windows.Forms.Button();
-            this.BtnBudgetManagement = new System.Windows.Forms.Button();
             this.TclBudgetManagement = new System.Windows.Forms.TabControl();
-            this.TabBudgetManagement = new System.Windows.Forms.TabPage();
-            this.PnlInformation = new System.Windows.Forms.Panel();
-            this.BtnCancelGeneralInfo = new System.Windows.Forms.Button();
-            this.BtnModifyGeneralInfo = new System.Windows.Forms.Button();
-            this.BtnSaveGeneralInfo = new System.Windows.Forms.Button();
-            this.PnlGender = new System.Windows.Forms.Panel();
-            this.label12 = new System.Windows.Forms.Label();
-            this.RbtMale = new System.Windows.Forms.RadioButton();
-            this.RbtFemale = new System.Windows.Forms.RadioButton();
-            this.DtpAdmissionDate = new System.Windows.Forms.DateTimePicker();
-            this.DtpBirthDate = new System.Windows.Forms.DateTimePicker();
-            this.NudAge = new System.Windows.Forms.NumericUpDown();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.TxtName = new System.Windows.Forms.TextBox();
             this.TabProjects = new System.Windows.Forms.TabPage();
+            this.BtnBudgetManagement = new System.Windows.Forms.Button();
+            this.LblCost = new System.Windows.Forms.Label();
+            this.TxtCost = new System.Windows.Forms.TextBox();
+            this.LblConstruction = new System.Windows.Forms.Label();
+            this.TxtConstruction = new System.Windows.Forms.TextBox();
+            this.LblEndDate = new System.Windows.Forms.Label();
+            this.TxtEndDate = new System.Windows.Forms.TextBox();
+            this.LblStartDate = new System.Windows.Forms.Label();
+            this.TxtStartDate = new System.Windows.Forms.TextBox();
+            this.TxtProjectId = new System.Windows.Forms.TextBox();
+            this.LblProjectFilter = new System.Windows.Forms.Label();
+            this.BtnDeleteProject = new System.Windows.Forms.Button();
+            this.BtnModifyProject = new System.Windows.Forms.Button();
+            this.BtnNewProject = new System.Windows.Forms.Button();
+            this.TxtProjectFilter = new System.Windows.Forms.TextBox();
+            this.DgvProjects = new System.Windows.Forms.DataGridView();
+            this.LblProjectName = new System.Windows.Forms.Label();
+            this.TxtProjectName = new System.Windows.Forms.TextBox();
             this.TabCategories = new System.Windows.Forms.TabPage();
             this.TxtCategoryId = new System.Windows.Forms.TextBox();
             this.LblCategoryFilter = new System.Windows.Forms.Label();
@@ -64,15 +64,9 @@ namespace BudgetManagementApp.Forms.Base
             this.LblCategoryDescription = new System.Windows.Forms.Label();
             this.TxtCategoryDescription = new System.Windows.Forms.TextBox();
             this.TabTypes = new System.Windows.Forms.TabPage();
-            this.TabSubtypes = new System.Windows.Forms.TabPage();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.LblPatientNameInvoice = new System.Windows.Forms.Label();
-            this.MsMainMenu = new System.Windows.Forms.MenuStrip();
-            this.MiFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.MiClose = new System.Windows.Forms.ToolStripMenuItem();
-            this.MiLanguages = new System.Windows.Forms.ToolStripMenuItem();
-            this.MiSpanish = new System.Windows.Forms.ToolStripMenuItem();
-            this.MiEnglish = new System.Windows.Forms.ToolStripMenuItem();
+            this.TxtTypeCategoryId = new System.Windows.Forms.TextBox();
+            this.LblTypeDescription = new System.Windows.Forms.Label();
+            this.TxtTypeDescription = new System.Windows.Forms.TextBox();
             this.TxtTypeId = new System.Windows.Forms.TextBox();
             this.LblTypeFilter = new System.Windows.Forms.Label();
             this.BtnDeleteType = new System.Windows.Forms.Button();
@@ -82,27 +76,45 @@ namespace BudgetManagementApp.Forms.Base
             this.DgvTypes = new System.Windows.Forms.DataGridView();
             this.LblTypeCategory = new System.Windows.Forms.Label();
             this.TxtTypeCategory = new System.Windows.Forms.TextBox();
-            this.LblTypeDescription = new System.Windows.Forms.Label();
-            this.TxtTypeDescription = new System.Windows.Forms.TextBox();
-            this.TxtTypeCategoryId = new System.Windows.Forms.TextBox();
+            this.TabSubtypes = new System.Windows.Forms.TabPage();
+            this.TxtSubTypeTypeId = new System.Windows.Forms.TextBox();
+            this.LblSubTypeTypeDescription = new System.Windows.Forms.Label();
+            this.TxtSubTypeTypeDescription = new System.Windows.Forms.TextBox();
+            this.TxtSubTypeCategoryId = new System.Windows.Forms.TextBox();
+            this.LblSubTypeDescription = new System.Windows.Forms.Label();
+            this.TxtSubTypeDescription = new System.Windows.Forms.TextBox();
+            this.TxtSubTypeId = new System.Windows.Forms.TextBox();
+            this.LblSubTypeFilter = new System.Windows.Forms.Label();
+            this.BtnDeleteSubType = new System.Windows.Forms.Button();
+            this.BtnModifySubType = new System.Windows.Forms.Button();
+            this.BtnNewSubType = new System.Windows.Forms.Button();
+            this.TxtSubTypeFilter = new System.Windows.Forms.TextBox();
+            this.DgvSubTypes = new System.Windows.Forms.DataGridView();
+            this.LblSubTypeCategory = new System.Windows.Forms.Label();
+            this.TxtSubTypeCategory = new System.Windows.Forms.TextBox();
+            this.MsMainMenu = new System.Windows.Forms.MenuStrip();
+            this.MiFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.MiClose = new System.Windows.Forms.ToolStripMenuItem();
+            this.MiLanguages = new System.Windows.Forms.ToolStripMenuItem();
+            this.MiSpanish = new System.Windows.Forms.ToolStripMenuItem();
+            this.MiEnglish = new System.Windows.Forms.ToolStripMenuItem();
             this.TclBudgetManagement.SuspendLayout();
-            this.TabBudgetManagement.SuspendLayout();
-            this.PnlInformation.SuspendLayout();
-            this.PnlGender.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NudAge)).BeginInit();
+            this.TabProjects.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvProjects)).BeginInit();
             this.TabCategories.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvCategories)).BeginInit();
             this.TabTypes.SuspendLayout();
-            this.TabSubtypes.SuspendLayout();
-            this.MsMainMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvTypes)).BeginInit();
+            this.TabSubtypes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvSubTypes)).BeginInit();
+            this.MsMainMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // BtnSubtypes
             // 
             this.BtnSubtypes.BackColor = System.Drawing.SystemColors.ControlLight;
             this.BtnSubtypes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BtnSubtypes.Location = new System.Drawing.Point(0, 324);
+            this.BtnSubtypes.Location = new System.Drawing.Point(0, 250);
             this.BtnSubtypes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BtnSubtypes.Name = "BtnSubtypes";
             this.BtnSubtypes.Size = new System.Drawing.Size(253, 74);
@@ -115,7 +127,7 @@ namespace BudgetManagementApp.Forms.Base
             // 
             this.BtnTypes.BackColor = System.Drawing.SystemColors.ControlLight;
             this.BtnTypes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BtnTypes.Location = new System.Drawing.Point(0, 250);
+            this.BtnTypes.Location = new System.Drawing.Point(0, 176);
             this.BtnTypes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BtnTypes.Name = "BtnTypes";
             this.BtnTypes.Size = new System.Drawing.Size(253, 74);
@@ -128,7 +140,7 @@ namespace BudgetManagementApp.Forms.Base
             // 
             this.BtnCategories.BackColor = System.Drawing.SystemColors.ControlLight;
             this.BtnCategories.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BtnCategories.Location = new System.Drawing.Point(0, 176);
+            this.BtnCategories.Location = new System.Drawing.Point(0, 102);
             this.BtnCategories.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BtnCategories.Name = "BtnCategories";
             this.BtnCategories.Size = new System.Drawing.Size(253, 74);
@@ -139,9 +151,10 @@ namespace BudgetManagementApp.Forms.Base
             // 
             // BtnProjects
             // 
-            this.BtnProjects.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.BtnProjects.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.BtnProjects.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BtnProjects.Location = new System.Drawing.Point(0, 102);
+            this.BtnProjects.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnProjects.Location = new System.Drawing.Point(0, 28);
             this.BtnProjects.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BtnProjects.Name = "BtnProjects";
             this.BtnProjects.Size = new System.Drawing.Size(253, 74);
@@ -150,23 +163,8 @@ namespace BudgetManagementApp.Forms.Base
             this.BtnProjects.UseVisualStyleBackColor = false;
             this.BtnProjects.Click += new System.EventHandler(this.BtnProjects_Click);
             // 
-            // BtnBudgetManagement
-            // 
-            this.BtnBudgetManagement.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.BtnBudgetManagement.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BtnBudgetManagement.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnBudgetManagement.Location = new System.Drawing.Point(0, 28);
-            this.BtnBudgetManagement.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.BtnBudgetManagement.Name = "BtnBudgetManagement";
-            this.BtnBudgetManagement.Size = new System.Drawing.Size(253, 74);
-            this.BtnBudgetManagement.TabIndex = 7;
-            this.BtnBudgetManagement.Text = "Control de presupesto";
-            this.BtnBudgetManagement.UseVisualStyleBackColor = false;
-            this.BtnBudgetManagement.Click += new System.EventHandler(this.BtnBudgetManagement_Click);
-            // 
             // TclBudgetManagement
             // 
-            this.TclBudgetManagement.Controls.Add(this.TabBudgetManagement);
             this.TclBudgetManagement.Controls.Add(this.TabProjects);
             this.TclBudgetManagement.Controls.Add(this.TabCategories);
             this.TclBudgetManagement.Controls.Add(this.TabTypes);
@@ -180,224 +178,239 @@ namespace BudgetManagementApp.Forms.Base
             this.TclBudgetManagement.TabIndex = 13;
             this.TclBudgetManagement.Click += new System.EventHandler(this.TclBudgetManagement_Click);
             // 
-            // TabBudgetManagement
-            // 
-            this.TabBudgetManagement.BackColor = System.Drawing.SystemColors.Control;
-            this.TabBudgetManagement.Controls.Add(this.PnlInformation);
-            this.TabBudgetManagement.Location = new System.Drawing.Point(4, 28);
-            this.TabBudgetManagement.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.TabBudgetManagement.Name = "TabBudgetManagement";
-            this.TabBudgetManagement.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.TabBudgetManagement.Size = new System.Drawing.Size(1236, 844);
-            this.TabBudgetManagement.TabIndex = 0;
-            this.TabBudgetManagement.Text = "Control de presupuesto";
-            // 
-            // PnlInformation
-            // 
-            this.PnlInformation.Controls.Add(this.BtnCancelGeneralInfo);
-            this.PnlInformation.Controls.Add(this.BtnModifyGeneralInfo);
-            this.PnlInformation.Controls.Add(this.BtnSaveGeneralInfo);
-            this.PnlInformation.Controls.Add(this.PnlGender);
-            this.PnlInformation.Controls.Add(this.DtpAdmissionDate);
-            this.PnlInformation.Controls.Add(this.DtpBirthDate);
-            this.PnlInformation.Controls.Add(this.NudAge);
-            this.PnlInformation.Controls.Add(this.label9);
-            this.PnlInformation.Controls.Add(this.label8);
-            this.PnlInformation.Controls.Add(this.label3);
-            this.PnlInformation.Controls.Add(this.label1);
-            this.PnlInformation.Controls.Add(this.TxtName);
-            this.PnlInformation.Location = new System.Drawing.Point(8, 18);
-            this.PnlInformation.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.PnlInformation.Name = "PnlInformation";
-            this.PnlInformation.Size = new System.Drawing.Size(1365, 701);
-            this.PnlInformation.TabIndex = 31;
-            // 
-            // BtnCancelGeneralInfo
-            // 
-            this.BtnCancelGeneralInfo.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.BtnCancelGeneralInfo.Location = new System.Drawing.Point(1088, 83);
-            this.BtnCancelGeneralInfo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.BtnCancelGeneralInfo.Name = "BtnCancelGeneralInfo";
-            this.BtnCancelGeneralInfo.Size = new System.Drawing.Size(124, 62);
-            this.BtnCancelGeneralInfo.TabIndex = 38;
-            this.BtnCancelGeneralInfo.Text = "Cancelar";
-            this.BtnCancelGeneralInfo.UseVisualStyleBackColor = true;
-            // 
-            // BtnModifyGeneralInfo
-            // 
-            this.BtnModifyGeneralInfo.Location = new System.Drawing.Point(1088, 158);
-            this.BtnModifyGeneralInfo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.BtnModifyGeneralInfo.Name = "BtnModifyGeneralInfo";
-            this.BtnModifyGeneralInfo.Size = new System.Drawing.Size(124, 62);
-            this.BtnModifyGeneralInfo.TabIndex = 35;
-            this.BtnModifyGeneralInfo.Text = "Modificar";
-            this.BtnModifyGeneralInfo.UseVisualStyleBackColor = true;
-            // 
-            // BtnSaveGeneralInfo
-            // 
-            this.BtnSaveGeneralInfo.Location = new System.Drawing.Point(1088, 14);
-            this.BtnSaveGeneralInfo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.BtnSaveGeneralInfo.Name = "BtnSaveGeneralInfo";
-            this.BtnSaveGeneralInfo.Size = new System.Drawing.Size(124, 62);
-            this.BtnSaveGeneralInfo.TabIndex = 35;
-            this.BtnSaveGeneralInfo.Text = "Guardar";
-            this.BtnSaveGeneralInfo.UseVisualStyleBackColor = true;
-            this.BtnSaveGeneralInfo.Visible = false;
-            // 
-            // PnlGender
-            // 
-            this.PnlGender.Controls.Add(this.label12);
-            this.PnlGender.Controls.Add(this.RbtMale);
-            this.PnlGender.Controls.Add(this.RbtFemale);
-            this.PnlGender.Location = new System.Drawing.Point(4, 172);
-            this.PnlGender.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.PnlGender.Name = "PnlGender";
-            this.PnlGender.Size = new System.Drawing.Size(306, 81);
-            this.PnlGender.TabIndex = 19;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(4, 10);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(80, 24);
-            this.label12.TabIndex = 17;
-            this.label12.Text = "Género";
-            // 
-            // RbtMale
-            // 
-            this.RbtMale.AutoCheck = false;
-            this.RbtMale.AutoSize = true;
-            this.RbtMale.Checked = true;
-            this.RbtMale.Location = new System.Drawing.Point(9, 40);
-            this.RbtMale.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.RbtMale.Name = "RbtMale";
-            this.RbtMale.Size = new System.Drawing.Size(103, 23);
-            this.RbtMale.TabIndex = 0;
-            this.RbtMale.TabStop = true;
-            this.RbtMale.Text = "Masculino";
-            this.RbtMale.UseVisualStyleBackColor = true;
-            // 
-            // RbtFemale
-            // 
-            this.RbtFemale.AutoCheck = false;
-            this.RbtFemale.AutoSize = true;
-            this.RbtFemale.Location = new System.Drawing.Point(158, 40);
-            this.RbtFemale.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.RbtFemale.Name = "RbtFemale";
-            this.RbtFemale.Size = new System.Drawing.Size(102, 23);
-            this.RbtFemale.TabIndex = 1;
-            this.RbtFemale.Text = "Femenino";
-            this.RbtFemale.UseVisualStyleBackColor = true;
-            // 
-            // DtpAdmissionDate
-            // 
-            this.DtpAdmissionDate.CustomFormat = "dd/MM/yyyy";
-            this.DtpAdmissionDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DtpAdmissionDate.Location = new System.Drawing.Point(544, 50);
-            this.DtpAdmissionDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.DtpAdmissionDate.MaxDate = new System.DateTime(3000, 12, 31, 0, 0, 0, 0);
-            this.DtpAdmissionDate.Name = "DtpAdmissionDate";
-            this.DtpAdmissionDate.Size = new System.Drawing.Size(508, 27);
-            this.DtpAdmissionDate.TabIndex = 24;
-            this.DtpAdmissionDate.Visible = false;
-            // 
-            // DtpBirthDate
-            // 
-            this.DtpBirthDate.CustomFormat = "dd/MM/yyyy";
-            this.DtpBirthDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DtpBirthDate.Location = new System.Drawing.Point(6, 292);
-            this.DtpBirthDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.DtpBirthDate.MaxDate = new System.DateTime(3000, 12, 31, 0, 0, 0, 0);
-            this.DtpBirthDate.Name = "DtpBirthDate";
-            this.DtpBirthDate.Size = new System.Drawing.Size(508, 27);
-            this.DtpBirthDate.TabIndex = 20;
-            this.DtpBirthDate.Visible = false;
-            // 
-            // NudAge
-            // 
-            this.NudAge.Location = new System.Drawing.Point(6, 370);
-            this.NudAge.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.NudAge.Maximum = new decimal(new int[] {
-            200,
-            0,
-            0,
-            0});
-            this.NudAge.Name = "NudAge";
-            this.NudAge.Size = new System.Drawing.Size(508, 27);
-            this.NudAge.TabIndex = 21;
-            this.NudAge.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.NudAge.Visible = false;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(1, 338);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(58, 24);
-            this.label9.TabIndex = 39;
-            this.label9.Text = "Edad";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(4, 256);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(205, 24);
-            this.label8.TabIndex = 37;
-            this.label8.Text = "Fecha de nacimiento";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(540, 18);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(176, 24);
-            this.label3.TabIndex = 29;
-            this.label3.Text = "Fecha de registro";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(4, 18);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(84, 24);
-            this.label1.TabIndex = 25;
-            this.label1.Text = "Nombre";
-            // 
-            // TxtName
-            // 
-            this.TxtName.Location = new System.Drawing.Point(9, 50);
-            this.TxtName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.TxtName.MaxLength = 99;
-            this.TxtName.Name = "TxtName";
-            this.TxtName.Size = new System.Drawing.Size(511, 27);
-            this.TxtName.TabIndex = 17;
-            // 
             // TabProjects
             // 
             this.TabProjects.BackColor = System.Drawing.SystemColors.Control;
+            this.TabProjects.Controls.Add(this.BtnBudgetManagement);
+            this.TabProjects.Controls.Add(this.LblCost);
+            this.TabProjects.Controls.Add(this.TxtCost);
+            this.TabProjects.Controls.Add(this.LblConstruction);
+            this.TabProjects.Controls.Add(this.TxtConstruction);
+            this.TabProjects.Controls.Add(this.LblEndDate);
+            this.TabProjects.Controls.Add(this.TxtEndDate);
+            this.TabProjects.Controls.Add(this.LblStartDate);
+            this.TabProjects.Controls.Add(this.TxtStartDate);
+            this.TabProjects.Controls.Add(this.TxtProjectId);
+            this.TabProjects.Controls.Add(this.LblProjectFilter);
+            this.TabProjects.Controls.Add(this.BtnDeleteProject);
+            this.TabProjects.Controls.Add(this.BtnModifyProject);
+            this.TabProjects.Controls.Add(this.BtnNewProject);
+            this.TabProjects.Controls.Add(this.TxtProjectFilter);
+            this.TabProjects.Controls.Add(this.DgvProjects);
+            this.TabProjects.Controls.Add(this.LblProjectName);
+            this.TabProjects.Controls.Add(this.TxtProjectName);
             this.TabProjects.Location = new System.Drawing.Point(4, 28);
             this.TabProjects.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TabProjects.Name = "TabProjects";
             this.TabProjects.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.TabProjects.Size = new System.Drawing.Size(1236, 842);
+            this.TabProjects.Size = new System.Drawing.Size(1236, 844);
             this.TabProjects.TabIndex = 1;
             this.TabProjects.Text = "Proyectos";
+            // 
+            // BtnBudgetManagement
+            // 
+            this.BtnBudgetManagement.Enabled = false;
+            this.BtnBudgetManagement.Location = new System.Drawing.Point(365, 64);
+            this.BtnBudgetManagement.Margin = new System.Windows.Forms.Padding(1);
+            this.BtnBudgetManagement.Name = "BtnBudgetManagement";
+            this.BtnBudgetManagement.Size = new System.Drawing.Size(189, 44);
+            this.BtnBudgetManagement.TabIndex = 55;
+            this.BtnBudgetManagement.Text = "Manejar presupuesto";
+            this.BtnBudgetManagement.UseVisualStyleBackColor = true;
+            this.BtnBudgetManagement.Click += new System.EventHandler(this.BtnBudgetManagement_Click);
+            // 
+            // LblCost
+            // 
+            this.LblCost.AutoSize = true;
+            this.LblCost.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblCost.Location = new System.Drawing.Point(383, 264);
+            this.LblCost.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblCost.Name = "LblCost";
+            this.LblCost.Size = new System.Drawing.Size(66, 24);
+            this.LblCost.TabIndex = 54;
+            this.LblCost.Text = "Costo";
+            // 
+            // TxtCost
+            // 
+            this.TxtCost.Location = new System.Drawing.Point(387, 296);
+            this.TxtCost.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtCost.MaxLength = 99;
+            this.TxtCost.Name = "TxtCost";
+            this.TxtCost.ReadOnly = true;
+            this.TxtCost.Size = new System.Drawing.Size(290, 27);
+            this.TxtCost.TabIndex = 53;
+            // 
+            // LblConstruction
+            // 
+            this.LblConstruction.AutoSize = true;
+            this.LblConstruction.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblConstruction.Location = new System.Drawing.Point(9, 264);
+            this.LblConstruction.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblConstruction.Name = "LblConstruction";
+            this.LblConstruction.Size = new System.Drawing.Size(137, 24);
+            this.LblConstruction.TabIndex = 52;
+            this.LblConstruction.Text = "Construcción";
+            // 
+            // TxtConstruction
+            // 
+            this.TxtConstruction.Location = new System.Drawing.Point(13, 296);
+            this.TxtConstruction.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtConstruction.MaxLength = 99;
+            this.TxtConstruction.Name = "TxtConstruction";
+            this.TxtConstruction.ReadOnly = true;
+            this.TxtConstruction.Size = new System.Drawing.Size(290, 27);
+            this.TxtConstruction.TabIndex = 51;
+            // 
+            // LblEndDate
+            // 
+            this.LblEndDate.AutoSize = true;
+            this.LblEndDate.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblEndDate.Location = new System.Drawing.Point(383, 190);
+            this.LblEndDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblEndDate.Name = "LblEndDate";
+            this.LblEndDate.Size = new System.Drawing.Size(208, 24);
+            this.LblEndDate.TabIndex = 50;
+            this.LblEndDate.Text = "Fecha de finalización";
+            // 
+            // TxtEndDate
+            // 
+            this.TxtEndDate.Location = new System.Drawing.Point(387, 222);
+            this.TxtEndDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtEndDate.MaxLength = 99;
+            this.TxtEndDate.Name = "TxtEndDate";
+            this.TxtEndDate.ReadOnly = true;
+            this.TxtEndDate.Size = new System.Drawing.Size(290, 27);
+            this.TxtEndDate.TabIndex = 49;
+            // 
+            // LblStartDate
+            // 
+            this.LblStartDate.AutoSize = true;
+            this.LblStartDate.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblStartDate.Location = new System.Drawing.Point(8, 190);
+            this.LblStartDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblStartDate.Name = "LblStartDate";
+            this.LblStartDate.Size = new System.Drawing.Size(152, 24);
+            this.LblStartDate.TabIndex = 48;
+            this.LblStartDate.Text = "Fecha de inicio";
+            // 
+            // TxtStartDate
+            // 
+            this.TxtStartDate.Location = new System.Drawing.Point(13, 222);
+            this.TxtStartDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtStartDate.MaxLength = 99;
+            this.TxtStartDate.Name = "TxtStartDate";
+            this.TxtStartDate.ReadOnly = true;
+            this.TxtStartDate.Size = new System.Drawing.Size(290, 27);
+            this.TxtStartDate.TabIndex = 47;
+            // 
+            // TxtProjectId
+            // 
+            this.TxtProjectId.Location = new System.Drawing.Point(648, 113);
+            this.TxtProjectId.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.TxtProjectId.MaxLength = 99;
+            this.TxtProjectId.Name = "TxtProjectId";
+            this.TxtProjectId.ReadOnly = true;
+            this.TxtProjectId.Size = new System.Drawing.Size(30, 27);
+            this.TxtProjectId.TabIndex = 46;
+            this.TxtProjectId.Visible = false;
+            // 
+            // LblProjectFilter
+            // 
+            this.LblProjectFilter.AutoSize = true;
+            this.LblProjectFilter.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblProjectFilter.Location = new System.Drawing.Point(390, 25);
+            this.LblProjectFilter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblProjectFilter.Name = "LblProjectFilter";
+            this.LblProjectFilter.Size = new System.Drawing.Size(77, 24);
+            this.LblProjectFilter.TabIndex = 45;
+            this.LblProjectFilter.Text = "Buscar";
+            this.LblProjectFilter.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // BtnDeleteProject
+            // 
+            this.BtnDeleteProject.Enabled = false;
+            this.BtnDeleteProject.Location = new System.Drawing.Point(247, 64);
+            this.BtnDeleteProject.Margin = new System.Windows.Forms.Padding(1);
+            this.BtnDeleteProject.Name = "BtnDeleteProject";
+            this.BtnDeleteProject.Size = new System.Drawing.Size(116, 44);
+            this.BtnDeleteProject.TabIndex = 44;
+            this.BtnDeleteProject.Text = "Eliminar";
+            this.BtnDeleteProject.UseVisualStyleBackColor = true;
+            this.BtnDeleteProject.Click += new System.EventHandler(this.BtnDeleteProject_Click);
+            // 
+            // BtnModifyProject
+            // 
+            this.BtnModifyProject.Enabled = false;
+            this.BtnModifyProject.Location = new System.Drawing.Point(129, 64);
+            this.BtnModifyProject.Margin = new System.Windows.Forms.Padding(1);
+            this.BtnModifyProject.Name = "BtnModifyProject";
+            this.BtnModifyProject.Size = new System.Drawing.Size(116, 44);
+            this.BtnModifyProject.TabIndex = 43;
+            this.BtnModifyProject.Text = "Modificar";
+            this.BtnModifyProject.UseVisualStyleBackColor = true;
+            this.BtnModifyProject.Click += new System.EventHandler(this.BtnModifyProject_Click);
+            // 
+            // BtnNewProject
+            // 
+            this.BtnNewProject.Location = new System.Drawing.Point(11, 64);
+            this.BtnNewProject.Margin = new System.Windows.Forms.Padding(1);
+            this.BtnNewProject.Name = "BtnNewProject";
+            this.BtnNewProject.Size = new System.Drawing.Size(116, 44);
+            this.BtnNewProject.TabIndex = 42;
+            this.BtnNewProject.Text = "Nuevo";
+            this.BtnNewProject.UseVisualStyleBackColor = true;
+            this.BtnNewProject.Click += new System.EventHandler(this.BtnNewProject_Click);
+            // 
+            // TxtProjectFilter
+            // 
+            this.TxtProjectFilter.Location = new System.Drawing.Point(475, 22);
+            this.TxtProjectFilter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtProjectFilter.MaxLength = 99;
+            this.TxtProjectFilter.Name = "TxtProjectFilter";
+            this.TxtProjectFilter.Size = new System.Drawing.Size(201, 27);
+            this.TxtProjectFilter.TabIndex = 41;
+            this.TxtProjectFilter.TextChanged += new System.EventHandler(this.TxtProjectFilter_TextChanged);
+            // 
+            // DgvProjects
+            // 
+            this.DgvProjects.AllowUserToAddRows = false;
+            this.DgvProjects.AllowUserToDeleteRows = false;
+            this.DgvProjects.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DgvProjects.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.DgvProjects.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvProjects.Location = new System.Drawing.Point(11, 336);
+            this.DgvProjects.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.DgvProjects.MultiSelect = false;
+            this.DgvProjects.Name = "DgvProjects";
+            this.DgvProjects.ReadOnly = true;
+            this.DgvProjects.RowHeadersVisible = false;
+            this.DgvProjects.RowHeadersWidth = 51;
+            this.DgvProjects.RowTemplate.Height = 24;
+            this.DgvProjects.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DgvProjects.Size = new System.Drawing.Size(667, 356);
+            this.DgvProjects.TabIndex = 40;
+            this.DgvProjects.SelectionChanged += new System.EventHandler(this.DgvProjects_SelectionChanged);
+            // 
+            // LblProjectName
+            // 
+            this.LblProjectName.AutoSize = true;
+            this.LblProjectName.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblProjectName.Location = new System.Drawing.Point(7, 116);
+            this.LblProjectName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblProjectName.Name = "LblProjectName";
+            this.LblProjectName.Size = new System.Drawing.Size(63, 24);
+            this.LblProjectName.TabIndex = 39;
+            this.LblProjectName.Text = "Name";
+            // 
+            // TxtProjectName
+            // 
+            this.TxtProjectName.Location = new System.Drawing.Point(12, 148);
+            this.TxtProjectName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtProjectName.MaxLength = 99;
+            this.TxtProjectName.Name = "TxtProjectName";
+            this.TxtProjectName.ReadOnly = true;
+            this.TxtProjectName.Size = new System.Drawing.Size(666, 27);
+            this.TxtProjectName.TabIndex = 38;
             // 
             // TabCategories
             // 
@@ -549,86 +562,37 @@ namespace BudgetManagementApp.Forms.Base
             this.TabTypes.TabIndex = 3;
             this.TabTypes.Text = "Partidas";
             // 
-            // TabSubtypes
+            // TxtTypeCategoryId
             // 
-            this.TabSubtypes.BackColor = System.Drawing.SystemColors.Control;
-            this.TabSubtypes.Controls.Add(this.panel1);
-            this.TabSubtypes.Controls.Add(this.LblPatientNameInvoice);
-            this.TabSubtypes.Location = new System.Drawing.Point(4, 28);
-            this.TabSubtypes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.TabSubtypes.Name = "TabSubtypes";
-            this.TabSubtypes.Size = new System.Drawing.Size(1236, 842);
-            this.TabSubtypes.TabIndex = 4;
-            this.TabSubtypes.Text = "Sub-partidas";
+            this.TxtTypeCategoryId.Location = new System.Drawing.Point(281, 23);
+            this.TxtTypeCategoryId.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.TxtTypeCategoryId.MaxLength = 99;
+            this.TxtTypeCategoryId.Name = "TxtTypeCategoryId";
+            this.TxtTypeCategoryId.ReadOnly = true;
+            this.TxtTypeCategoryId.Size = new System.Drawing.Size(30, 27);
+            this.TxtTypeCategoryId.TabIndex = 49;
+            this.TxtTypeCategoryId.Visible = false;
             // 
-            // panel1
+            // LblTypeDescription
             // 
-            this.panel1.Location = new System.Drawing.Point(12, 36);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1222, 734);
-            this.panel1.TabIndex = 35;
+            this.LblTypeDescription.AutoSize = true;
+            this.LblTypeDescription.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblTypeDescription.Location = new System.Drawing.Point(16, 96);
+            this.LblTypeDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblTypeDescription.Name = "LblTypeDescription";
+            this.LblTypeDescription.Size = new System.Drawing.Size(122, 24);
+            this.LblTypeDescription.TabIndex = 48;
+            this.LblTypeDescription.Text = "Descripción";
             // 
-            // LblPatientNameInvoice
+            // TxtTypeDescription
             // 
-            this.LblPatientNameInvoice.AutoSize = true;
-            this.LblPatientNameInvoice.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblPatientNameInvoice.Location = new System.Drawing.Point(8, 7);
-            this.LblPatientNameInvoice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LblPatientNameInvoice.Name = "LblPatientNameInvoice";
-            this.LblPatientNameInvoice.Size = new System.Drawing.Size(204, 24);
-            this.LblPatientNameInvoice.TabIndex = 34;
-            this.LblPatientNameInvoice.Text = "Nombre del paciente";
-            // 
-            // MsMainMenu
-            // 
-            this.MsMainMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.MsMainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MiFile,
-            this.MiLanguages});
-            this.MsMainMenu.Location = new System.Drawing.Point(0, 0);
-            this.MsMainMenu.Name = "MsMainMenu";
-            this.MsMainMenu.Size = new System.Drawing.Size(1497, 28);
-            this.MsMainMenu.TabIndex = 15;
-            this.MsMainMenu.Text = "menuStrip1";
-            // 
-            // MiFile
-            // 
-            this.MiFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MiClose});
-            this.MiFile.Name = "MiFile";
-            this.MiFile.Size = new System.Drawing.Size(73, 24);
-            this.MiFile.Text = "Archivo";
-            // 
-            // MiClose
-            // 
-            this.MiClose.Name = "MiClose";
-            this.MiClose.Size = new System.Drawing.Size(121, 26);
-            this.MiClose.Text = "Salir";
-            this.MiClose.Click += new System.EventHandler(this.MiClose_Click);
-            // 
-            // MiLanguages
-            // 
-            this.MiLanguages.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MiSpanish,
-            this.MiEnglish});
-            this.MiLanguages.Name = "MiLanguages";
-            this.MiLanguages.Size = new System.Drawing.Size(76, 24);
-            this.MiLanguages.Text = "Idiomas";
-            // 
-            // MiSpanish
-            // 
-            this.MiSpanish.Name = "MiSpanish";
-            this.MiSpanish.Size = new System.Drawing.Size(144, 26);
-            this.MiSpanish.Text = "Español";
-            this.MiSpanish.Click += new System.EventHandler(this.MiSpanish_Click);
-            // 
-            // MiEnglish
-            // 
-            this.MiEnglish.Name = "MiEnglish";
-            this.MiEnglish.Size = new System.Drawing.Size(144, 26);
-            this.MiEnglish.Text = "Inglés";
-            this.MiEnglish.Click += new System.EventHandler(this.MiEnglish_Click);
+            this.TxtTypeDescription.Location = new System.Drawing.Point(21, 128);
+            this.TxtTypeDescription.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtTypeDescription.MaxLength = 99;
+            this.TxtTypeDescription.Name = "TxtTypeDescription";
+            this.TxtTypeDescription.ReadOnly = true;
+            this.TxtTypeDescription.Size = new System.Drawing.Size(290, 27);
+            this.TxtTypeDescription.TabIndex = 47;
             // 
             // TxtTypeId
             // 
@@ -739,37 +703,253 @@ namespace BudgetManagementApp.Forms.Base
             this.TxtTypeCategory.Size = new System.Drawing.Size(290, 27);
             this.TxtTypeCategory.TabIndex = 38;
             // 
-            // LblTypeDescription
+            // TabSubtypes
             // 
-            this.LblTypeDescription.AutoSize = true;
-            this.LblTypeDescription.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblTypeDescription.Location = new System.Drawing.Point(16, 96);
-            this.LblTypeDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LblTypeDescription.Name = "LblTypeDescription";
-            this.LblTypeDescription.Size = new System.Drawing.Size(122, 24);
-            this.LblTypeDescription.TabIndex = 48;
-            this.LblTypeDescription.Text = "Descripción";
+            this.TabSubtypes.BackColor = System.Drawing.SystemColors.Control;
+            this.TabSubtypes.Controls.Add(this.TxtSubTypeTypeId);
+            this.TabSubtypes.Controls.Add(this.LblSubTypeTypeDescription);
+            this.TabSubtypes.Controls.Add(this.TxtSubTypeTypeDescription);
+            this.TabSubtypes.Controls.Add(this.TxtSubTypeCategoryId);
+            this.TabSubtypes.Controls.Add(this.LblSubTypeDescription);
+            this.TabSubtypes.Controls.Add(this.TxtSubTypeDescription);
+            this.TabSubtypes.Controls.Add(this.TxtSubTypeId);
+            this.TabSubtypes.Controls.Add(this.LblSubTypeFilter);
+            this.TabSubtypes.Controls.Add(this.BtnDeleteSubType);
+            this.TabSubtypes.Controls.Add(this.BtnModifySubType);
+            this.TabSubtypes.Controls.Add(this.BtnNewSubType);
+            this.TabSubtypes.Controls.Add(this.TxtSubTypeFilter);
+            this.TabSubtypes.Controls.Add(this.DgvSubTypes);
+            this.TabSubtypes.Controls.Add(this.LblSubTypeCategory);
+            this.TabSubtypes.Controls.Add(this.TxtSubTypeCategory);
+            this.TabSubtypes.Location = new System.Drawing.Point(4, 28);
+            this.TabSubtypes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.TabSubtypes.Name = "TabSubtypes";
+            this.TabSubtypes.Size = new System.Drawing.Size(1236, 844);
+            this.TabSubtypes.TabIndex = 4;
+            this.TabSubtypes.Text = "Sub-partidas";
             // 
-            // TxtTypeDescription
+            // TxtSubTypeTypeId
             // 
-            this.TxtTypeDescription.Location = new System.Drawing.Point(21, 128);
-            this.TxtTypeDescription.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.TxtTypeDescription.MaxLength = 99;
-            this.TxtTypeDescription.Name = "TxtTypeDescription";
-            this.TxtTypeDescription.ReadOnly = true;
-            this.TxtTypeDescription.Size = new System.Drawing.Size(290, 27);
-            this.TxtTypeDescription.TabIndex = 47;
+            this.TxtSubTypeTypeId.Location = new System.Drawing.Point(286, 97);
+            this.TxtSubTypeTypeId.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.TxtSubTypeTypeId.MaxLength = 99;
+            this.TxtSubTypeTypeId.Name = "TxtSubTypeTypeId";
+            this.TxtSubTypeTypeId.ReadOnly = true;
+            this.TxtSubTypeTypeId.Size = new System.Drawing.Size(30, 27);
+            this.TxtSubTypeTypeId.TabIndex = 64;
+            this.TxtSubTypeTypeId.Visible = false;
             // 
-            // TxtTypeCategoryId
+            // LblSubTypeTypeDescription
             // 
-            this.TxtTypeCategoryId.Location = new System.Drawing.Point(281, 23);
-            this.TxtTypeCategoryId.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.TxtTypeCategoryId.MaxLength = 99;
-            this.TxtTypeCategoryId.Name = "TxtTypeCategoryId";
-            this.TxtTypeCategoryId.ReadOnly = true;
-            this.TxtTypeCategoryId.Size = new System.Drawing.Size(30, 27);
-            this.TxtTypeCategoryId.TabIndex = 49;
-            this.TxtTypeCategoryId.Visible = false;
+            this.LblSubTypeTypeDescription.AutoSize = true;
+            this.LblSubTypeTypeDescription.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblSubTypeTypeDescription.Location = new System.Drawing.Point(21, 96);
+            this.LblSubTypeTypeDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSubTypeTypeDescription.Name = "LblSubTypeTypeDescription";
+            this.LblSubTypeTypeDescription.Size = new System.Drawing.Size(77, 24);
+            this.LblSubTypeTypeDescription.TabIndex = 63;
+            this.LblSubTypeTypeDescription.Text = "Partida";
+            // 
+            // TxtSubTypeTypeDescription
+            // 
+            this.TxtSubTypeTypeDescription.Location = new System.Drawing.Point(26, 128);
+            this.TxtSubTypeTypeDescription.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtSubTypeTypeDescription.MaxLength = 99;
+            this.TxtSubTypeTypeDescription.Name = "TxtSubTypeTypeDescription";
+            this.TxtSubTypeTypeDescription.ReadOnly = true;
+            this.TxtSubTypeTypeDescription.Size = new System.Drawing.Size(290, 27);
+            this.TxtSubTypeTypeDescription.TabIndex = 62;
+            // 
+            // TxtSubTypeCategoryId
+            // 
+            this.TxtSubTypeCategoryId.Location = new System.Drawing.Point(286, 23);
+            this.TxtSubTypeCategoryId.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.TxtSubTypeCategoryId.MaxLength = 99;
+            this.TxtSubTypeCategoryId.Name = "TxtSubTypeCategoryId";
+            this.TxtSubTypeCategoryId.ReadOnly = true;
+            this.TxtSubTypeCategoryId.Size = new System.Drawing.Size(30, 27);
+            this.TxtSubTypeCategoryId.TabIndex = 61;
+            this.TxtSubTypeCategoryId.Visible = false;
+            // 
+            // LblSubTypeDescription
+            // 
+            this.LblSubTypeDescription.AutoSize = true;
+            this.LblSubTypeDescription.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblSubTypeDescription.Location = new System.Drawing.Point(21, 170);
+            this.LblSubTypeDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSubTypeDescription.Name = "LblSubTypeDescription";
+            this.LblSubTypeDescription.Size = new System.Drawing.Size(122, 24);
+            this.LblSubTypeDescription.TabIndex = 60;
+            this.LblSubTypeDescription.Text = "Descripción";
+            // 
+            // TxtSubTypeDescription
+            // 
+            this.TxtSubTypeDescription.Location = new System.Drawing.Point(26, 202);
+            this.TxtSubTypeDescription.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtSubTypeDescription.MaxLength = 99;
+            this.TxtSubTypeDescription.Name = "TxtSubTypeDescription";
+            this.TxtSubTypeDescription.ReadOnly = true;
+            this.TxtSubTypeDescription.Size = new System.Drawing.Size(290, 27);
+            this.TxtSubTypeDescription.TabIndex = 59;
+            // 
+            // TxtSubTypeId
+            // 
+            this.TxtSubTypeId.Location = new System.Drawing.Point(286, 171);
+            this.TxtSubTypeId.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.TxtSubTypeId.MaxLength = 99;
+            this.TxtSubTypeId.Name = "TxtSubTypeId";
+            this.TxtSubTypeId.ReadOnly = true;
+            this.TxtSubTypeId.Size = new System.Drawing.Size(30, 27);
+            this.TxtSubTypeId.TabIndex = 58;
+            this.TxtSubTypeId.Visible = false;
+            // 
+            // LblSubTypeFilter
+            // 
+            this.LblSubTypeFilter.AutoSize = true;
+            this.LblSubTypeFilter.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblSubTypeFilter.Location = new System.Drawing.Point(406, 207);
+            this.LblSubTypeFilter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSubTypeFilter.Name = "LblSubTypeFilter";
+            this.LblSubTypeFilter.Size = new System.Drawing.Size(77, 24);
+            this.LblSubTypeFilter.TabIndex = 57;
+            this.LblSubTypeFilter.Text = "Buscar";
+            this.LblSubTypeFilter.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // BtnDeleteSubType
+            // 
+            this.BtnDeleteSubType.Enabled = false;
+            this.BtnDeleteSubType.Location = new System.Drawing.Point(577, 37);
+            this.BtnDeleteSubType.Margin = new System.Windows.Forms.Padding(1);
+            this.BtnDeleteSubType.Name = "BtnDeleteSubType";
+            this.BtnDeleteSubType.Size = new System.Drawing.Size(116, 44);
+            this.BtnDeleteSubType.TabIndex = 56;
+            this.BtnDeleteSubType.Text = "Eliminar";
+            this.BtnDeleteSubType.UseVisualStyleBackColor = true;
+            this.BtnDeleteSubType.Click += new System.EventHandler(this.BtnDeleteSubType_Click);
+            // 
+            // BtnModifySubType
+            // 
+            this.BtnModifySubType.Enabled = false;
+            this.BtnModifySubType.Location = new System.Drawing.Point(459, 37);
+            this.BtnModifySubType.Margin = new System.Windows.Forms.Padding(1);
+            this.BtnModifySubType.Name = "BtnModifySubType";
+            this.BtnModifySubType.Size = new System.Drawing.Size(116, 44);
+            this.BtnModifySubType.TabIndex = 55;
+            this.BtnModifySubType.Text = "Modificar";
+            this.BtnModifySubType.UseVisualStyleBackColor = true;
+            this.BtnModifySubType.Click += new System.EventHandler(this.BtnModifySubType_Click);
+            // 
+            // BtnNewSubType
+            // 
+            this.BtnNewSubType.Location = new System.Drawing.Point(341, 37);
+            this.BtnNewSubType.Margin = new System.Windows.Forms.Padding(1);
+            this.BtnNewSubType.Name = "BtnNewSubType";
+            this.BtnNewSubType.Size = new System.Drawing.Size(116, 44);
+            this.BtnNewSubType.TabIndex = 54;
+            this.BtnNewSubType.Text = "Nuevo";
+            this.BtnNewSubType.UseVisualStyleBackColor = true;
+            this.BtnNewSubType.Click += new System.EventHandler(this.BtnNewSubType_Click);
+            // 
+            // TxtSubTypeFilter
+            // 
+            this.TxtSubTypeFilter.Location = new System.Drawing.Point(491, 204);
+            this.TxtSubTypeFilter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtSubTypeFilter.MaxLength = 99;
+            this.TxtSubTypeFilter.Name = "TxtSubTypeFilter";
+            this.TxtSubTypeFilter.Size = new System.Drawing.Size(201, 27);
+            this.TxtSubTypeFilter.TabIndex = 53;
+            this.TxtSubTypeFilter.TextChanged += new System.EventHandler(this.TxtSubTypeFilter_TextChanged);
+            // 
+            // DgvSubTypes
+            // 
+            this.DgvSubTypes.AllowUserToAddRows = false;
+            this.DgvSubTypes.AllowUserToDeleteRows = false;
+            this.DgvSubTypes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DgvSubTypes.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.DgvSubTypes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvSubTypes.Location = new System.Drawing.Point(26, 253);
+            this.DgvSubTypes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.DgvSubTypes.MultiSelect = false;
+            this.DgvSubTypes.Name = "DgvSubTypes";
+            this.DgvSubTypes.ReadOnly = true;
+            this.DgvSubTypes.RowHeadersVisible = false;
+            this.DgvSubTypes.RowHeadersWidth = 51;
+            this.DgvSubTypes.RowTemplate.Height = 24;
+            this.DgvSubTypes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DgvSubTypes.Size = new System.Drawing.Size(667, 356);
+            this.DgvSubTypes.TabIndex = 52;
+            this.DgvSubTypes.SelectionChanged += new System.EventHandler(this.DgvSubTypes_SelectionChanged);
+            // 
+            // LblSubTypeCategory
+            // 
+            this.LblSubTypeCategory.AutoSize = true;
+            this.LblSubTypeCategory.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblSubTypeCategory.Location = new System.Drawing.Point(21, 22);
+            this.LblSubTypeCategory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSubTypeCategory.Name = "LblSubTypeCategory";
+            this.LblSubTypeCategory.Size = new System.Drawing.Size(102, 24);
+            this.LblSubTypeCategory.TabIndex = 51;
+            this.LblSubTypeCategory.Text = "Categoría";
+            // 
+            // TxtSubTypeCategory
+            // 
+            this.TxtSubTypeCategory.Location = new System.Drawing.Point(26, 54);
+            this.TxtSubTypeCategory.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtSubTypeCategory.MaxLength = 99;
+            this.TxtSubTypeCategory.Name = "TxtSubTypeCategory";
+            this.TxtSubTypeCategory.ReadOnly = true;
+            this.TxtSubTypeCategory.Size = new System.Drawing.Size(290, 27);
+            this.TxtSubTypeCategory.TabIndex = 50;
+            // 
+            // MsMainMenu
+            // 
+            this.MsMainMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.MsMainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MiFile,
+            this.MiLanguages});
+            this.MsMainMenu.Location = new System.Drawing.Point(0, 0);
+            this.MsMainMenu.Name = "MsMainMenu";
+            this.MsMainMenu.Size = new System.Drawing.Size(1497, 28);
+            this.MsMainMenu.TabIndex = 15;
+            this.MsMainMenu.Text = "menuStrip1";
+            // 
+            // MiFile
+            // 
+            this.MiFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MiClose});
+            this.MiFile.Name = "MiFile";
+            this.MiFile.Size = new System.Drawing.Size(73, 26);
+            this.MiFile.Text = "Archivo";
+            // 
+            // MiClose
+            // 
+            this.MiClose.Name = "MiClose";
+            this.MiClose.Size = new System.Drawing.Size(121, 26);
+            this.MiClose.Text = "Salir";
+            this.MiClose.Click += new System.EventHandler(this.MiClose_Click);
+            // 
+            // MiLanguages
+            // 
+            this.MiLanguages.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MiSpanish,
+            this.MiEnglish});
+            this.MiLanguages.Name = "MiLanguages";
+            this.MiLanguages.Size = new System.Drawing.Size(76, 26);
+            this.MiLanguages.Text = "Idiomas";
+            // 
+            // MiSpanish
+            // 
+            this.MiSpanish.Name = "MiSpanish";
+            this.MiSpanish.Size = new System.Drawing.Size(144, 26);
+            this.MiSpanish.Text = "Español";
+            this.MiSpanish.Click += new System.EventHandler(this.MiSpanish_Click);
+            // 
+            // MiEnglish
+            // 
+            this.MiEnglish.Name = "MiEnglish";
+            this.MiEnglish.Size = new System.Drawing.Size(144, 26);
+            this.MiEnglish.Text = "Inglés";
+            this.MiEnglish.Click += new System.EventHandler(this.MiEnglish_Click);
             // 
             // FrmMain
             // 
@@ -780,32 +960,31 @@ namespace BudgetManagementApp.Forms.Base
             this.Controls.Add(this.BtnTypes);
             this.Controls.Add(this.BtnCategories);
             this.Controls.Add(this.BtnProjects);
-            this.Controls.Add(this.BtnBudgetManagement);
             this.Controls.Add(this.TclBudgetManagement);
             this.Controls.Add(this.MsMainMenu);
             this.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainMenuStrip = this.MsMainMenu;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FrmMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmMain";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.TclBudgetManagement.ResumeLayout(false);
-            this.TabBudgetManagement.ResumeLayout(false);
-            this.PnlInformation.ResumeLayout(false);
-            this.PnlInformation.PerformLayout();
-            this.PnlGender.ResumeLayout(false);
-            this.PnlGender.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NudAge)).EndInit();
+            this.TabProjects.ResumeLayout(false);
+            this.TabProjects.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvProjects)).EndInit();
             this.TabCategories.ResumeLayout(false);
             this.TabCategories.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvCategories)).EndInit();
             this.TabTypes.ResumeLayout(false);
             this.TabTypes.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvTypes)).EndInit();
             this.TabSubtypes.ResumeLayout(false);
             this.TabSubtypes.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvSubTypes)).EndInit();
             this.MsMainMenu.ResumeLayout(false);
             this.MsMainMenu.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DgvTypes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -816,31 +995,11 @@ namespace BudgetManagementApp.Forms.Base
         private System.Windows.Forms.Button BtnTypes;
         private System.Windows.Forms.Button BtnCategories;
         private System.Windows.Forms.Button BtnProjects;
-        private System.Windows.Forms.Button BtnBudgetManagement;
         private System.Windows.Forms.TabControl TclBudgetManagement;
-        private System.Windows.Forms.TabPage TabBudgetManagement;
-        private System.Windows.Forms.Panel PnlInformation;
-        private System.Windows.Forms.Button BtnCancelGeneralInfo;
-        private System.Windows.Forms.Button BtnModifyGeneralInfo;
-        private System.Windows.Forms.Button BtnSaveGeneralInfo;
-        private System.Windows.Forms.Panel PnlGender;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.RadioButton RbtMale;
-        private System.Windows.Forms.RadioButton RbtFemale;
-        private System.Windows.Forms.DateTimePicker DtpAdmissionDate;
-        private System.Windows.Forms.DateTimePicker DtpBirthDate;
-        private System.Windows.Forms.NumericUpDown NudAge;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox TxtName;
         private System.Windows.Forms.TabPage TabProjects;
         private System.Windows.Forms.TabPage TabCategories;
         private System.Windows.Forms.TabPage TabTypes;
         private System.Windows.Forms.TabPage TabSubtypes;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label LblPatientNameInvoice;
         private System.Windows.Forms.Label LblCategoryDescription;
         private System.Windows.Forms.TextBox TxtCategoryDescription;
         private System.Windows.Forms.DataGridView DgvCategories;
@@ -868,5 +1027,38 @@ namespace BudgetManagementApp.Forms.Base
         private System.Windows.Forms.Label LblTypeCategory;
         private System.Windows.Forms.TextBox TxtTypeCategory;
         public System.Windows.Forms.TextBox TxtTypeCategoryId;
+        public System.Windows.Forms.TextBox TxtSubTypeTypeId;
+        private System.Windows.Forms.Label LblSubTypeTypeDescription;
+        private System.Windows.Forms.TextBox TxtSubTypeTypeDescription;
+        public System.Windows.Forms.TextBox TxtSubTypeCategoryId;
+        private System.Windows.Forms.Label LblSubTypeDescription;
+        private System.Windows.Forms.TextBox TxtSubTypeDescription;
+        public System.Windows.Forms.TextBox TxtSubTypeId;
+        private System.Windows.Forms.Label LblSubTypeFilter;
+        private System.Windows.Forms.Button BtnDeleteSubType;
+        private System.Windows.Forms.Button BtnModifySubType;
+        private System.Windows.Forms.Button BtnNewSubType;
+        private System.Windows.Forms.TextBox TxtSubTypeFilter;
+        private System.Windows.Forms.DataGridView DgvSubTypes;
+        private System.Windows.Forms.Label LblSubTypeCategory;
+        private System.Windows.Forms.TextBox TxtSubTypeCategory;
+        public System.Windows.Forms.TextBox TxtProjectId;
+        private System.Windows.Forms.Label LblProjectFilter;
+        private System.Windows.Forms.Button BtnDeleteProject;
+        private System.Windows.Forms.Button BtnModifyProject;
+        private System.Windows.Forms.Button BtnNewProject;
+        private System.Windows.Forms.TextBox TxtProjectFilter;
+        private System.Windows.Forms.DataGridView DgvProjects;
+        private System.Windows.Forms.Label LblProjectName;
+        private System.Windows.Forms.TextBox TxtProjectName;
+        private System.Windows.Forms.Label LblCost;
+        private System.Windows.Forms.TextBox TxtCost;
+        private System.Windows.Forms.Label LblConstruction;
+        private System.Windows.Forms.TextBox TxtConstruction;
+        private System.Windows.Forms.Label LblEndDate;
+        private System.Windows.Forms.TextBox TxtEndDate;
+        private System.Windows.Forms.Label LblStartDate;
+        private System.Windows.Forms.TextBox TxtStartDate;
+        private System.Windows.Forms.Button BtnBudgetManagement;
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace BudgetManagementApp.Services.Extensions
+namespace BudgetManagementApp.Entities.Extensions
 {
     public static class DialogResultExtensions
     {

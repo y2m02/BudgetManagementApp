@@ -1,21 +1,25 @@
-﻿using System.Collections.Generic;
-using BudgetManagementApp.Entities.Extensions;
-using BudgetManagementApp.Entities.Helpers;
+﻿using BudgetManagementApp.Entities.Helpers;
 using BudgetManagementApp.Entities.ViewModels.Base;
 using BudgetManagementApp.Resources;
 using BudgetManagementApp.Resources.Properties;
+using System.Collections.Generic;
+using BudgetManagementApp.Entities.Extensions;
 
-namespace BudgetManagementApp.Entities.ViewModels.Types
+namespace BudgetManagementApp.Entities.ViewModels.SubTypes
 {
-    public class TypeViewModel : BaseViewModel
+    public class SubTypeViewModel : BaseViewModel
     {
         /// <summary>
         ///     This property's going to be set automatically.
         ///     Please use Id instead.
         /// </summary>
-        public int TypeId => Id;
+        public int SubTypeId => Id;
 
         public string Description { get; set; }
+
+        public int TypeId { get; set; }
+
+        public string TypeDescription { get; set; }
 
         public int CategoryId { get; set; }
 
@@ -28,6 +32,14 @@ namespace BudgetManagementApp.Entities.ViewModels.Types
                 yield return string.Format(
                     StringResources.FieldRequired,
                     StringResourcesHandler.GetString(FieldNames.Description)
+                );
+            }
+
+            if (TypeId < 1)
+            {
+                yield return string.Format(
+                    StringResources.FieldRequired,
+                    StringResourcesHandler.GetString(FieldNames.Type)
                 );
             }
 

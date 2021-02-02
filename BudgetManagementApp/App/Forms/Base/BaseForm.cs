@@ -1,15 +1,22 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
+using BudgetManagementApp.Entities.Extensions;
+using BudgetManagementApp.Entities.ViewModels.Base;
 using BudgetManagementApp.Resources;
 using BudgetManagementApp.Resources.Properties;
-using BudgetManagementApp.Services.Extensions;
 
 namespace BudgetManagementApp.Forms.Base
 {
     public class BaseForm : Form
     {
+        // TODO: make this method abstract.
+        protected virtual void SetLabels()
+        {
+        }
+
         protected DialogResult DisplayInformationMessage(string message)
         {
             return MessageBox.Show(
@@ -64,7 +71,7 @@ namespace BudgetManagementApp.Forms.Base
         {
             const int prefix = 3;
 
-            var controlsToSetLabels = new []
+            var controlsToSetLabels = new[]
             {
                 typeof(Label),
                 typeof(Button),
@@ -102,10 +109,35 @@ namespace BudgetManagementApp.Forms.Base
             SetLabels();
         }
 
-        // TODO: make this method abstract.
-        protected virtual void SetLabels()
-        {
 
+        protected void Upsert(
+            Func<BaseViewModel, BaseReturnViewModel> executor,
+            BaseViewModel model
+        )
+        {
+            var result = executor(model);
+
+            if (result.HasValidations())
+            {
+                var message = result.GetValidations().Join("\n");
+
+                DisplayExclamationMessage(message);
+
+                return;
+            }
+
+            if (result.IsSuccess())
+            {
+                DialogResult = DialogResult.OK;
+
+                Close();
+
+                return;
+            }
+
+            DialogResult = DialogResult.None;
+
+            DisplayErrorMessage(result.GetFailureError());
         }
     }
 }

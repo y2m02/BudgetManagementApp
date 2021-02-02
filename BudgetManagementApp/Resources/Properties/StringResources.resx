@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Add {0}</value>
+  </data>
   <data name="BudgetManagement" xml:space="preserve">
     <value>Budget Management</value>
   </data>
@@ -141,17 +144,38 @@
   <data name="Close" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="Construction" xml:space="preserve">
+    <value>Construction</value>
+  </data>
+  <data name="Cost" xml:space="preserve">
+    <value>Cost</value>
+  </data>
+  <data name="DateFormat" xml:space="preserve">
+    <value>MM/dd/yyyy</value>
+  </data>
+  <data name="DateGreaterThanValidation" xml:space="preserve">
+    <value>The {0} cannot be greater than the {1}.</value>
+  </data>
   <data name="DeleteCategory" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteProject" xml:space="preserve">
     <value>Delete</value>
   </data>
   <data name="DeleteQuestion" xml:space="preserve">
     <value>Do you want to delete this record?</value>
+  </data>
+  <data name="DeleteSubType" xml:space="preserve">
+    <value>Delete</value>
   </data>
   <data name="DeleteType" xml:space="preserve">
     <value>Delete</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>End date</value>
   </data>
   <data name="English" xml:space="preserve">
     <value>English</value>
@@ -171,13 +195,31 @@
   <data name="Languages" xml:space="preserve">
     <value>Languages</value>
   </data>
+  <data name="Modify" xml:space="preserve">
+    <value>Modify {0}</value>
+  </data>
   <data name="ModifyCategory" xml:space="preserve">
+    <value>Modify</value>
+  </data>
+  <data name="ModifyProject" xml:space="preserve">
+    <value>Modify</value>
+  </data>
+  <data name="ModifySubType" xml:space="preserve">
     <value>Modify</value>
   </data>
   <data name="ModifyType" xml:space="preserve">
     <value>Modify</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
   <data name="NewCategory" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="NewProject" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="NewSubType" xml:space="preserve">
     <value>New</value>
   </data>
   <data name="NewType" xml:space="preserve">
@@ -185,6 +227,15 @@
   </data>
   <data name="ProccessingError" xml:space="preserve">
     <value>There was an error while processing. Please contact suport: {0}</value>
+  </data>
+  <data name="ProjectFilter" xml:space="preserve">
+    <value>Search:</value>
+  </data>
+  <data name="ProjectMaintenance" xml:space="preserve">
+    <value>Project Maintenance</value>
+  </data>
+  <data name="ProjectName" xml:space="preserve">
+    <value>Name</value>
   </data>
   <data name="Projects" xml:space="preserve">
     <value>Projects</value>
@@ -201,8 +252,32 @@
   <data name="Spanish" xml:space="preserve">
     <value>Spanish</value>
   </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Start date</value>
+  </data>
+  <data name="SubType" xml:space="preserve">
+    <value>Sub-type</value>
+  </data>
+  <data name="SubTypeCategory" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="SubTypeDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="SubTypeFilter" xml:space="preserve">
+    <value>Search:</value>
+  </data>
+  <data name="SubTypeMaintenance" xml:space="preserve">
+    <value>Sub-type Maintenance</value>
+  </data>
   <data name="Subtypes" xml:space="preserve">
     <value>Sub-types</value>
+  </data>
+  <data name="SubTypeTypeDescription" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
   </data>
   <data name="TypeCategory" xml:space="preserve">
     <value>Category</value>

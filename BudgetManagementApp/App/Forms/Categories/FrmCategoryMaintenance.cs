@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Windows.Forms;
+using BudgetManagementApp.Entities.Extensions;
 using BudgetManagementApp.Entities.ViewModels.Categories;
 using BudgetManagementApp.Forms.Base;
-using BudgetManagementApp.Resources.Properties;
-using BudgetManagementApp.Services.Extensions;
 using BudgetManagementApp.Services.Services.Categories;
 
 namespace BudgetManagementApp.Forms.Categories
@@ -26,8 +24,6 @@ namespace BudgetManagementApp.Forms.Categories
 
         protected sealed override void SetLabels()
         {
-            Text = StringResources.CategoryMaintenance;
-
             LoopControlsToSetLabels(Controls);
         }
 
@@ -38,33 +34,11 @@ namespace BudgetManagementApp.Forms.Categories
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            var result = categoryService.Upsert(new CategoryViewModel
+            Upsert(categoryService.Upsert, new CategoryViewModel
             {
                 Id = TxtCategoryId.Text.ToIntOrDefault(),
                 Description = TxtDescription.Text,
             });
-
-            if (result.HasValidations())
-            {
-                var message = result.GetValidations().Join("\n");
-
-                DisplayExclamationMessage(message);
-
-                return;
-            }
-
-            if (result.IsSuccess())
-            {
-                DialogResult = DialogResult.OK;
-
-                Close();
-
-                return;
-            }
-
-            DialogResult = DialogResult.None;
-
-            DisplayErrorMessage(result.GetFailureError());
         }
     }
 }

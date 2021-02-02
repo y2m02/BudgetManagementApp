@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BudgetManagementApp.Entities.Helpers
+﻿namespace BudgetManagementApp.Entities.Helpers
 {
     public static class FieldNames
     {
@@ -17,6 +11,19 @@ namespace BudgetManagementApp.Entities.Helpers
         public static string TypeId => "TypeId";
         public static string Type => "Type";
         public static string TypeDescription => "TypeDescription";
+
+        // SubTypes
+        public static string SubTypeId => "SubTypeId";
+        public static string SubType => "SubType";
+
+        // Projects
+        public static string ProjectId => "ProjectId";
+        public static string Project => "Project";
+        public static string Name => "Name";
+        public static string StartDate => "StartDate";
+        public static string EndDate => "EndDate";
+        public static string Construction => "Construction";
+        public static string Cost => "Cost";
 
         // Others
         public static string Id => "Id";
