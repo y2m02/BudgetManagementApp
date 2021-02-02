@@ -150,6 +150,12 @@
   <data name="Cost" xml:space="preserve">
     <value>Cost</value>
   </data>
+  <data name="DateFormat" xml:space="preserve">
+    <value>MM/dd/yyyy</value>
+  </data>
+  <data name="DateGreaterThanValidation" xml:space="preserve">
+    <value>The {0} cannot be greater than the {1}.</value>
+  </data>
   <data name="DeleteCategory" xml:space="preserve">
     <value>Delete</value>
   </data>
@@ -227,6 +233,9 @@
   </data>
   <data name="ProjectMaintenance" xml:space="preserve">
     <value>Project Maintenance</value>
+  </data>
+  <data name="ProjectName" xml:space="preserve">
+    <value>Name</value>
   </data>
   <data name="Projects" xml:space="preserve">
     <value>Projects</value>

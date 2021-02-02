@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using BudgetManagementApp.Entities.Helpers;
 using BudgetManagementApp.Entities.ViewModels.Base;
 using BudgetManagementApp.Resources;
@@ -33,6 +35,18 @@ namespace BudgetManagementApp.Entities.ViewModels.Projects
                 yield return string.Format(
                     StringResources.FieldRequired,
                     StringResourcesHandler.GetString(FieldNames.Name)
+                );
+            }
+
+            if (StartDate.HasValue && 
+                EndDate.HasValue && 
+                StartDate.Value.Date > EndDate.Value.Date
+            )
+            {
+                yield return string.Format(
+                    StringResources.DateGreaterThanValidation,
+                    StringResourcesHandler.GetString(FieldNames.StartDate),
+                    StringResourcesHandler.GetString(FieldNames.EndDate)
                 );
             }
         }

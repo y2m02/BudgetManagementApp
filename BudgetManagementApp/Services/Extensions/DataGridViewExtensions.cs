@@ -131,5 +131,17 @@ namespace BudgetManagementApp.Services.Extensions
         {
             return (T)row.Cells[columnName].Value;
         }
+
+        public static void FormatColumn(
+            this DataGridView grid, 
+            string format, 
+            params string[] columns
+        )
+        {
+            foreach (var columnName in columns)
+            {
+                grid.Columns[columnName].DefaultCellStyle.Format = format;
+            }
+        }
     }
 }

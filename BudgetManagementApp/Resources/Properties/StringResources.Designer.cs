@@ -160,6 +160,24 @@ namespace BudgetManagementApp.Resources.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MM/dd/yyyy.
+        /// </summary>
+        public static string DateFormat {
+            get {
+                return ResourceManager.GetString("DateFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The {0} cannot be greater than the {1}..
+        /// </summary>
+        public static string DateGreaterThanValidation {
+            get {
+                return ResourceManager.GetString("DateGreaterThanValidation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string DeleteCategory {
@@ -390,6 +408,15 @@ namespace BudgetManagementApp.Resources.Properties {
         public static string ProjectMaintenance {
             get {
                 return ResourceManager.GetString("ProjectMaintenance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string ProjectName {
+            get {
+                return ResourceManager.GetString("ProjectName", resourceCulture);
             }
         }
         

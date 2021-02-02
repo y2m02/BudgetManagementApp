@@ -1,10 +1,13 @@
-﻿namespace BudgetManagementApp.Services.Extensions
+﻿using System.Globalization;
+using BudgetManagementApp.Entities.Helpers;
+
+namespace BudgetManagementApp.Services.Extensions
 {
     public static class StringExtensions
     {
         public static bool IsEmpty(this string str)
         {
-            return 
+            return
                 string.IsNullOrEmpty(str) ||
                 string.IsNullOrWhiteSpace(str);
         }
@@ -21,14 +24,26 @@
 
         public static int ToIntOrDefault(this string str)
         {
-            return int.TryParse(str, out var number) 
-                ? number 
+            return int.TryParse(str, out var number)
+                ? number
                 : 0;
         }
 
         public static string Format(this string str, params object[] values)
         {
             return string.Format(str, values);
+        }
+
+        public static decimal ToDecimal(this string str)
+        {
+            return decimal.Parse(str);
+        }
+
+        public static decimal ToDecimalOrDefault(this string str)
+        {
+            return decimal.TryParse(str, NumberStyles.Number, CultureData.GetEnglishCulture(), out var number)
+                ? number
+                : 0.00m;
         }
     }
 }
