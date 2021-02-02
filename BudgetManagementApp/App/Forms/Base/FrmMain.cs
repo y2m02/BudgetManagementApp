@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
-using System.Threading;
 using System.Windows.Forms;
 using BudgetManagementApp.Entities.Enums;
 using BudgetManagementApp.Entities.Helpers;
@@ -31,9 +30,10 @@ namespace BudgetManagementApp.Forms.Base
     {
         private readonly FrmCategoryMaintenance categoryMaintenance;
         private readonly ICategoryService categoryService;
+        private readonly FrmProjectMaintenance projectMaintenance;
+        private readonly FrmBudgetManagement budgetManagement;
         private readonly IProjectService projectService;
         private readonly FrmSubTypeMaintenance subTypeMaintenance;
-        private readonly FrmProjectMaintenance projectMaintenance;
         private readonly ISubTypeService subTypeService;
         private readonly FrmTypeMaintenance typeMaintenance;
         private readonly ITypeService typeService;
@@ -43,6 +43,7 @@ namespace BudgetManagementApp.Forms.Base
             FrmTypeMaintenance typeMaintenance,
             FrmSubTypeMaintenance subTypeMaintenance,
             FrmProjectMaintenance projectMaintenance,
+            FrmBudgetManagement budgetManagement,
             ICategoryService categoryService,
             ITypeService typeService,
             ISubTypeService subTypeService,
@@ -53,6 +54,7 @@ namespace BudgetManagementApp.Forms.Base
             this.typeMaintenance = typeMaintenance;
             this.subTypeMaintenance = subTypeMaintenance;
             this.projectMaintenance = projectMaintenance;
+            this.budgetManagement = budgetManagement;
             this.categoryService = categoryService;
             this.typeService = typeService;
             this.subTypeService = subTypeService;
@@ -270,9 +272,7 @@ namespace BudgetManagementApp.Forms.Base
             {
                 DisableColumns(grid, columnNames);
             }
-            catch
-            {
-            }
+            catch { }
         }
 
         private void Delete(
@@ -335,7 +335,7 @@ namespace BudgetManagementApp.Forms.Base
             SetAppLabels();
         }
 
-        private void BtnBudgetManagement_Click(object sender, EventArgs e)
+        private void BtnBudgetManagements_Click(object sender, EventArgs e)
         {
             TclBudgetManagement.SelectedIndex = 0;
             ChangeButtonSelectedStatus(BtnBudgetManagements);
@@ -418,7 +418,7 @@ namespace BudgetManagementApp.Forms.Base
                 DgvCategories,
                 GetFilteredData(text, Categories, c => c.Description.Contains(text)),
                 FormatGrid,
-                new List<string> { FieldNames.CategoryId }
+                new List<string> {FieldNames.CategoryId}
             );
         }
 
@@ -472,7 +472,7 @@ namespace BudgetManagementApp.Forms.Base
                 DgvCategories,
                 Categories,
                 FormatGrid,
-                new List<string> { FieldNames.CategoryId }
+                new List<string> {FieldNames.CategoryId}
             );
         }
 
@@ -856,6 +856,38 @@ namespace BudgetManagementApp.Forms.Base
             );
         }
 
+        private void BtnBudgetManagement_Click(object sender, EventArgs e)
+        {
+            budgetManagement.Text = StringResources.BudgetManagement;
+
+            var project = Projects.Single(w => w.Id == TxtProjectId.Text.ToInt());
+
+            budgetManagement.TxtProjectId.SetText(TxtProjectId.Text);
+            budgetManagement.TxtProjectName.SetText(project.Name);
+            budgetManagement.TxtStartDate.SetText(
+                project.StartDate
+                    .GetValueOrDefault()
+                    .ToShortDateString()
+            );
+            budgetManagement.TxtEndDate.SetText(
+                project.EndDate
+                    .GetValueOrDefault()
+                    .ToShortDateString()
+            );
+            budgetManagement.TxtConstruction.SetText(
+                project.Construction
+                    .GetValueOrDefault()
+                    .ToStringWithDecimals()
+            );
+            budgetManagement.TxtCost.SetText(
+                project.Cost
+                    .GetValueOrDefault()
+                    .ToStringWithDecimals()
+            );
+
+            budgetManagement.ShowDialog();
+        }
+
         private void TxtProjectFilter_TextChanged(object sender, EventArgs e)
         {
             var text = TxtProjectFilter.Text;
@@ -864,7 +896,7 @@ namespace BudgetManagementApp.Forms.Base
                 DgvProjects,
                 GetFilteredData(text, Projects, c => c.Name.Contains(text)),
                 FormatGrid,
-                new List<string> { FieldNames.ProjectId }
+                new List<string> {FieldNames.ProjectId}
             );
         }
 
@@ -898,7 +930,7 @@ namespace BudgetManagementApp.Forms.Base
                 DgvProjects,
                 Projects,
                 FormatGrid,
-                new List<string> { FieldNames.ProjectId }
+                new List<string> {FieldNames.ProjectId}
             );
         }
 
@@ -939,8 +971,16 @@ namespace BudgetManagementApp.Forms.Base
                     projectMaintenance.TxtProjectName.SetText(project.Name);
                     projectMaintenance.DtpStartDate.Value = project.StartDate.GetValueOrDefault();
                     projectMaintenance.DtpEndDate.Value = project.EndDate.GetValueOrDefault();
-                    projectMaintenance.TxtContruction.SetText(project.Construction.GetValueOrDefault().ToString(CultureData.GetEnglishCulture()));
-                    projectMaintenance.TxtCost.SetText(project.Cost.GetValueOrDefault().ToString(CultureData.GetEnglishCulture()));
+                    projectMaintenance.TxtContruction.SetText(
+                        project.Construction
+                            .GetValueOrDefault()
+                            .ToString(CultureData.GetEnglishCulture())
+                    );
+                    projectMaintenance.TxtCost.SetText(
+                        project.Cost
+                            .GetValueOrDefault()
+                            .ToString(CultureData.GetEnglishCulture())
+                    );
                     break;
             }
         }

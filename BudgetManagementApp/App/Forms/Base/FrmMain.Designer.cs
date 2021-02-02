@@ -53,6 +53,7 @@ namespace BudgetManagementApp.Forms.Base
             this.label1 = new System.Windows.Forms.Label();
             this.TxtName = new System.Windows.Forms.TextBox();
             this.TabProjects = new System.Windows.Forms.TabPage();
+            this.BtnBudgetManagement = new System.Windows.Forms.Button();
             this.LblCost = new System.Windows.Forms.Label();
             this.TxtCost = new System.Windows.Forms.TextBox();
             this.LblConstruction = new System.Windows.Forms.Label();
@@ -115,7 +116,6 @@ namespace BudgetManagementApp.Forms.Base
             this.MiLanguages = new System.Windows.Forms.ToolStripMenuItem();
             this.MiSpanish = new System.Windows.Forms.ToolStripMenuItem();
             this.MiEnglish = new System.Windows.Forms.ToolStripMenuItem();
-            this.BtnBudgetManagement = new System.Windows.Forms.Button();
             this.TclBudgetManagement.SuspendLayout();
             this.TabBudgetManagement.SuspendLayout();
             this.PnlInformation.SuspendLayout();
@@ -196,7 +196,7 @@ namespace BudgetManagementApp.Forms.Base
             this.BtnBudgetManagements.TabIndex = 7;
             this.BtnBudgetManagements.Text = "Control de presupesto";
             this.BtnBudgetManagements.UseVisualStyleBackColor = false;
-            this.BtnBudgetManagements.Click += new System.EventHandler(this.BtnBudgetManagement_Click);
+            this.BtnBudgetManagements.Click += new System.EventHandler(this.BtnBudgetManagements_Click);
             // 
             // TclBudgetManagement
             // 
@@ -450,6 +450,18 @@ namespace BudgetManagementApp.Forms.Base
             this.TabProjects.Size = new System.Drawing.Size(1236, 844);
             this.TabProjects.TabIndex = 1;
             this.TabProjects.Text = "Proyectos";
+            // 
+            // BtnBudgetManagement
+            // 
+            this.BtnBudgetManagement.Enabled = false;
+            this.BtnBudgetManagement.Location = new System.Drawing.Point(365, 64);
+            this.BtnBudgetManagement.Margin = new System.Windows.Forms.Padding(1);
+            this.BtnBudgetManagement.Name = "BtnBudgetManagement";
+            this.BtnBudgetManagement.Size = new System.Drawing.Size(189, 44);
+            this.BtnBudgetManagement.TabIndex = 55;
+            this.BtnBudgetManagement.Text = "Manejar presupuesto";
+            this.BtnBudgetManagement.UseVisualStyleBackColor = true;
+            this.BtnBudgetManagement.Click += new System.EventHandler(this.BtnBudgetManagement_Click);
             // 
             // LblCost
             // 
@@ -1183,17 +1195,6 @@ namespace BudgetManagementApp.Forms.Base
             this.MiEnglish.Text = "Inglés";
             this.MiEnglish.Click += new System.EventHandler(this.MiEnglish_Click);
             // 
-            // BtnBudgetManagement
-            // 
-            this.BtnBudgetManagement.Enabled = false;
-            this.BtnBudgetManagement.Location = new System.Drawing.Point(365, 64);
-            this.BtnBudgetManagement.Margin = new System.Windows.Forms.Padding(1);
-            this.BtnBudgetManagement.Name = "BtnBudgetManagement";
-            this.BtnBudgetManagement.Size = new System.Drawing.Size(189, 44);
-            this.BtnBudgetManagement.TabIndex = 55;
-            this.BtnBudgetManagement.Text = "Manejar presupuesto";
-            this.BtnBudgetManagement.UseVisualStyleBackColor = true;
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
@@ -1210,7 +1211,9 @@ namespace BudgetManagementApp.Forms.Base
             this.MainMenuStrip = this.MsMainMenu;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FrmMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmMain";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.TclBudgetManagement.ResumeLayout(false);
             this.TabBudgetManagement.ResumeLayout(false);
