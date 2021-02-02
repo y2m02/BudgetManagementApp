@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Globalization;
+using BudgetManagementApp.Entities.Extensions;
 using BudgetManagementApp.Entities.Helpers;
 using BudgetManagementApp.Entities.ViewModels.Base;
 using BudgetManagementApp.Resources;
@@ -29,8 +28,7 @@ namespace BudgetManagementApp.Entities.ViewModels.Projects
 
         public override IEnumerable<string> Validate()
         {
-            if (string.IsNullOrEmpty(Name) ||
-                string.IsNullOrWhiteSpace(Name))
+            if (Name.IsEmpty())
             {
                 yield return string.Format(
                     StringResources.FieldRequired,
@@ -38,9 +36,9 @@ namespace BudgetManagementApp.Entities.ViewModels.Projects
                 );
             }
 
-            if (StartDate.HasValue && 
-                EndDate.HasValue && 
-                StartDate.Value.Date > EndDate.Value.Date
+            if (StartDate.HasValue &&
+                EndDate.HasValue &&
+                StartDate.Value.Date.IsGreaterThan(EndDate.Value.Date) 
             )
             {
                 yield return string.Format(

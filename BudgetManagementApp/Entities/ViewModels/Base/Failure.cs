@@ -1,4 +1,5 @@
-﻿using BudgetManagementApp.Resources.Properties;
+﻿using BudgetManagementApp.Entities.Extensions;
+using BudgetManagementApp.Resources.Properties;
 
 namespace BudgetManagementApp.Entities.ViewModels.Base
 {
@@ -6,10 +7,7 @@ namespace BudgetManagementApp.Entities.ViewModels.Base
     {
         public Failure(string errorMessage)
         {
-            ErrorMessage = string.Format(
-                StringResources.ProccessingError,
-                errorMessage
-            );
+            ErrorMessage = StringResources.ProccessingError.Format(errorMessage);
         }
 
         public string ErrorMessage { get; }

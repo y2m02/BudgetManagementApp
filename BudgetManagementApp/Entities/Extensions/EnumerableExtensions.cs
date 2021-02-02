@@ -19,6 +19,16 @@ namespace BudgetManagementApp.Entities.Extensions
             }
         }
 
+        public static void Each<T>(this IEnumerable<T> enumerable, Action<T, int> executor)
+        {
+            var index = 0;
+
+            foreach (var item in enumerable)
+            {
+                executor(item, index++);
+            }
+        }
+
         public static List<R> EagerSelect<T, R>(this IEnumerable<T> list, Func<T, R> selector)
         {
             return list.Select(selector).ToList();
