@@ -335,33 +335,27 @@ namespace BudgetManagementApp.Forms.Base
             SetAppLabels();
         }
 
-        private void BtnBudgetManagements_Click(object sender, EventArgs e)
-        {
-            TclBudgetManagement.SelectedIndex = 0;
-            ChangeButtonSelectedStatus(BtnBudgetManagements);
-        }
-
         private void BtnProjects_Click(object sender, EventArgs e)
         {
-            TclBudgetManagement.SelectedIndex = 1;
+            TclBudgetManagement.SelectedIndex = 0;
             ChangeButtonSelectedStatus(BtnProjects);
         }
 
         private void BtnCategories_Click(object sender, EventArgs e)
         {
-            TclBudgetManagement.SelectedIndex = 2;
+            TclBudgetManagement.SelectedIndex = 1;
             ChangeButtonSelectedStatus(BtnCategories);
         }
 
         private void BtnTypes_Click(object sender, EventArgs e)
         {
-            TclBudgetManagement.SelectedIndex = 3;
+            TclBudgetManagement.SelectedIndex = 2;
             ChangeButtonSelectedStatus(BtnTypes);
         }
 
         private void BtnSubtypes_Click(object sender, EventArgs e)
         {
-            TclBudgetManagement.SelectedIndex = 4;
+            TclBudgetManagement.SelectedIndex = 3;
             ChangeButtonSelectedStatus(BtnSubtypes);
         }
 
@@ -370,22 +364,18 @@ namespace BudgetManagementApp.Forms.Base
             switch (TclBudgetManagement.SelectedIndex)
             {
                 case 0:
-                    ChangeButtonSelectedStatus(BtnBudgetManagements);
-                    break;
-
-                case 1:
                     ChangeButtonSelectedStatus(BtnProjects);
                     break;
 
-                case 2:
+                case 1:
                     ChangeButtonSelectedStatus(BtnCategories);
                     break;
 
-                case 3:
+                case 2:
                     ChangeButtonSelectedStatus(BtnTypes);
                     break;
 
-                case 4:
+                case 3:
                     ChangeButtonSelectedStatus(BtnSubtypes);
                     break;
             }
