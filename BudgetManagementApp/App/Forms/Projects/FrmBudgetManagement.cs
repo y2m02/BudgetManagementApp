@@ -3,9 +3,12 @@ using BudgetManagementApp.Entities.Extensions;
 using BudgetManagementApp.Entities.Helpers;
 using BudgetManagementApp.Entities.ViewModels.AccountingMovements;
 using BudgetManagementApp.Entities.ViewModels.Categories;
+using BudgetManagementApp.Entities.ViewModels.SubTypes;
 using BudgetManagementApp.Entities.ViewModels.Types;
+using BudgetManagementApp.Forms.AccountingMovements;
 using BudgetManagementApp.Forms.Base;
 using BudgetManagementApp.Resources;
+using BudgetManagementApp.Resources.Properties;
 using BudgetManagementApp.Services.Services.AccountingMovements;
 using System;
 using System.Collections.Generic;
@@ -17,26 +20,30 @@ namespace BudgetManagementApp.Forms.Projects
     public partial class FrmBudgetManagement : BaseForm
     {
         private readonly IAccountingMovementService accountingMovementService;
+        private readonly FrmAccountingMovementMaintenance accountMovementMaintenance;
 
-        public FrmBudgetManagement(IAccountingMovementService accountingMovementService)
+        public FrmBudgetManagement(
+            IAccountingMovementService accountingMovementService,
+            FrmAccountingMovementMaintenance accountMovementMaintenance
+        )
         {
             InitializeComponent();
 
             this.accountingMovementService = accountingMovementService;
+            this.accountMovementMaintenance = accountMovementMaintenance;
         }
 
         private List<AccountingMovementViewModel> Incomes { get; set; }
 
         private List<AccountingMovementViewModel> Expenses { get; set; }
 
+        public List<TypeViewModel> Types { get; set; }
+
+        public List<SubTypeViewModel> SubTypes { get; set; }
+
         public void SetupData(IEnumerable<AccountingMovementViewModel> model)
         {
             SetupIncomes(model);
-        }
-
-        protected override void SetLabels()
-        {
-            LoopControlsToSetLabels(Controls);
         }
 
         private void FrmBudgetManagement_Load(object sender, EventArgs e)
@@ -77,17 +84,12 @@ namespace BudgetManagementApp.Forms.Projects
             );
         }
 
-        //private void FillIncomeFields(DataGridViewRow row)
-        //{
-        //    TxtIncomeId.Text = row.Value<int>(FieldNames.AccountingMovementId).ToString();
-        //}
-
         private void HandleIncomeMaintenance(MaintenanceType type)
         {
-            InitializeCategoryMaintenanceControls(type);
+            InitializeMaintenanceControls(type, AccountingMovementType.Income);
 
-            //if (!categoryMaintenance.ShowDialog().IsOkResponse())
-            //    return;
+            if (!accountMovementMaintenance.ShowDialog().IsOkResponse())
+                return;
 
             TxtIncomeFilter.Clear();
 
@@ -95,39 +97,54 @@ namespace BudgetManagementApp.Forms.Projects
                 accountingMovementService.GetIncomes(),
                 SetupIncomes
             );
+
+            GlobalProperties.ProjectsNeedToBeUpdated = true;
         }
 
-        private void InitializeCategoryMaintenanceControls(MaintenanceType type)
+        private void InitializeMaintenanceControls(
+            MaintenanceType maintenanceType,
+            AccountingMovementType movementType
+        )
         {
-            //switch (type)
-            //{
-            //    case MaintenanceType.CreateNew:
-            //        categoryMaintenance.Text = StringResources.Add.Format(StringResources.Category);
-            //        categoryMaintenance.TxtCategoryId.Clear();
-            //        categoryMaintenance.TxtDescription.Clear();
-            //        break;
+            var isAnIncome = movementType == AccountingMovementType.Income;
 
-            //    case MaintenanceType.Modify:
-            //        categoryMaintenance.Text = StringResources.Modify.Format(StringResources.Category);
-            //        categoryMaintenance.TxtCategoryId.Text = TxtCategoryId.Text;
-            //        categoryMaintenance.TxtDescription.Text = TxtCategoryDescription.Text;
-            //        break;
-            //}
+            accountMovementMaintenance.IsAnIncome = isAnIncome;
+
+            switch (maintenanceType)
+            {
+                case MaintenanceType.CreateNew:
+                    accountMovementMaintenance.Text = StringResources.Add.Format(
+                        isAnIncome ? StringResources.Income : StringResources.Expense
+                    );
+                    //accountMovementMaintenance.TxtCategoryId.Clear();
+                    //accountMovementMaintenance.TxtDescription.Clear();
+                    break;
+
+                case MaintenanceType.Modify:
+                    accountMovementMaintenance.Text = StringResources.Modify.Format(
+                        isAnIncome ? StringResources.Income : StringResources.Expense
+                    );
+                    //accountMovementMaintenance.TxtCategoryId.Text = TxtCategoryId.Text;
+                    //accountMovementMaintenance.TxtDescription.Text = TxtCategoryDescription.Text;
+                    break;
+            }
         }
 
         private void BtnNewIncome_Click(object sender, EventArgs e)
         {
-
+            HandleIncomeMaintenance(MaintenanceType.CreateNew);
         }
 
         private void BtnModifyIncome_Click(object sender, EventArgs e)
         {
-
+            HandleIncomeMaintenance(MaintenanceType.Modify);
         }
 
         private void BtnDeleteIncome_Click(object sender, EventArgs e)
         {
 
+
+            GlobalProperties.ProjectsNeedToBeUpdated = true;
         }
 
         private void TxtIncomeFilter_TextChanged(object sender, EventArgs e)

@@ -698,6 +698,9 @@ namespace BudgetManagementApp.Forms.Base
                 project.Cost.ToStringWithDecimals()
             );
 
+            budgetManagement.Types = Types;
+            budgetManagement.SubTypes = SubTypes;
+
             budgetManagement.SetupData(AccountingMovements);
 
             budgetManagement.ShowDialog();

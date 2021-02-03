@@ -1,22 +1,25 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Windows.Forms;
-using BudgetManagementApp.Entities.Extensions;
+﻿using BudgetManagementApp.Entities.Extensions;
 using BudgetManagementApp.Entities.Helpers;
 using BudgetManagementApp.Entities.ViewModels.Base;
 using BudgetManagementApp.Resources;
 using BudgetManagementApp.Resources.Properties;
 using BudgetManagementApp.Services.Services.Base;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace BudgetManagementApp.Forms.Base
 {
     public class BaseForm : Form
     {
         // TODO: make this method abstract.
-        protected virtual void SetLabels() { }
+        protected virtual void SetLabels()
+        {
+            LoopControlsToSetLabels(Controls);
+        }
 
         protected DialogResult DisplayInformationMessage(string message)
         {

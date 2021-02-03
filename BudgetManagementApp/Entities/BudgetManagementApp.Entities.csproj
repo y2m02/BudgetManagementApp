@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\AccountingMovementType.cs" />
     <Compile Include="Enums\ActionType.cs" />
     <Compile Include="Enums\MaintenanceType.cs" />
     <Compile Include="Extensions\AccountingMovementExtensions.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Helpers\CultureData.cs" />
     <Compile Include="Helpers\DisplayNameFromResources.cs" />
     <Compile Include="Helpers\FieldNames.cs" />
+    <Compile Include="Helpers\GlobalProperties.cs" />
     <Compile Include="Mappings\ProfileMapper.cs" />
     <Compile Include="Migrations\202101281743394_Remove BalanceSheet.cs" />
     <Compile Include="Migrations\202101281743394_Remove BalanceSheet.designer.cs">
