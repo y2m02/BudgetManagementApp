@@ -175,6 +175,20 @@ namespace BudgetManagementApp.Forms.Base
             }
         }
 
+        protected List<T> HandleEntity<T>(BaseReturnViewModel result)
+        {
+            if (result.IsSuccess<IEnumerable<T>>())
+            {
+                return result.GetSuccessModel<IEnumerable<T>>().ToList();
+            }
+            else
+            {
+                DisplayErrorMessage(result.GetFailureError());
+
+                return new List<T>();
+            }
+        }
+
         protected static IEnumerable<T> GetFilteredData<T>(
             string textToSearch,
             IEnumerable<T> model,

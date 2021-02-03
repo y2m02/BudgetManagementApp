@@ -5,6 +5,7 @@ using BudgetManagementApp.Entities.ViewModels.AccountingMovements;
 using BudgetManagementApp.Entities.ViewModels.Categories;
 using BudgetManagementApp.Entities.ViewModels.Types;
 using BudgetManagementApp.Forms.Base;
+using BudgetManagementApp.Resources;
 using BudgetManagementApp.Services.Services.AccountingMovements;
 using System;
 using System.Collections.Generic;
@@ -28,9 +29,9 @@ namespace BudgetManagementApp.Forms.Projects
 
         private List<AccountingMovementViewModel> Expenses { get; set; }
 
-        private void FrmBudgetManagement_Load(object sender, EventArgs e)
+        public void SetupData(IEnumerable<AccountingMovementViewModel> model)
         {
-            SetLabels();
+            SetupIncomes(model);
         }
 
         protected override void SetLabels()
@@ -38,38 +39,22 @@ namespace BudgetManagementApp.Forms.Projects
             LoopControlsToSetLabels(Controls);
         }
 
+        private void FrmBudgetManagement_Load(object sender, EventArgs e)
+        {
+            SetLabels();
+
+            SetColumnNames(DgvIncomes, new Dictionary<string, string>
+            {
+                [FieldNames.CategoryDescription] = StringResourcesHandler.GetString(FieldNames.Category),
+                [FieldNames.TypeDescription] = StringResourcesHandler.GetString(FieldNames.Type),
+                [FieldNames.SubTypeDescription] = StringResourcesHandler.GetString(FieldNames.SubType),
+                [FieldNames.Date] = StringResourcesHandler.GetString(FieldNames.Date),
+                [FieldNames.Amount] = StringResourcesHandler.GetString(FieldNames.Amount),
+                [FieldNames.Comment] = StringResourcesHandler.GetString(FieldNames.Comment),
+            });
+        }
+
         #region Incomes
-        
-
-        private void BtnNewIncome_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BtnModifyIncome_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BtnDeleteIncome_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TxtIncomeFilter_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void DgvIncomes_SelectionChanged(object sender, EventArgs e)
-        {
-
-        }
-        
-        private void FillIncomeFields(DataGridViewRow row)
-        {
-            TxtIncomeId.Text = row.Value<int>(FieldNames.AccountingMovementId).ToString();
-        }
 
         private void SetupIncomes(IEnumerable<AccountingMovementViewModel> model)
         {
@@ -79,17 +64,23 @@ namespace BudgetManagementApp.Forms.Projects
                 DgvIncomes,
                 Incomes,
                 FormatGrid,
-                new List<string> 
+                new List<string>
                 {
                     FieldNames.AccountingMovementId,
                     FieldNames.CategoryId,
                     FieldNames.TypeId,
                     FieldNames.SubTypeId,
                     FieldNames.ProjectId,
+                    FieldNames.ProjectName,
                     FieldNames.IsAnIncome,
                 }
             );
         }
+
+        //private void FillIncomeFields(DataGridViewRow row)
+        //{
+        //    TxtIncomeId.Text = row.Value<int>(FieldNames.AccountingMovementId).ToString();
+        //}
 
         private void HandleIncomeMaintenance(MaintenanceType type)
         {
@@ -122,6 +113,36 @@ namespace BudgetManagementApp.Forms.Projects
             //        categoryMaintenance.TxtDescription.Text = TxtCategoryDescription.Text;
             //        break;
             //}
+        }
+
+        private void BtnNewIncome_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnModifyIncome_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnDeleteIncome_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtIncomeFilter_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DgvIncomes_SelectionChanged(object sender, EventArgs e)
+        {
+            SetDetailsData(
+                DgvIncomes,
+                BtnModifyIncome,
+                BtnDeleteIncome,
+                row => TxtIncomeId.Text = row.Value<int>(FieldNames.AccountingMovementId).ToString()
+            );
         }
 
         #endregion
