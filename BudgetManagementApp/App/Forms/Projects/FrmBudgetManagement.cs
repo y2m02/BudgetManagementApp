@@ -37,6 +37,8 @@ namespace BudgetManagementApp.Forms.Projects
 
         private List<AccountingMovementViewModel> Expenses { get; set; }
 
+        public List<CategoryViewModel> Categories { get; set; }
+
         public List<TypeViewModel> Types { get; set; }
 
         public List<SubTypeViewModel> SubTypes { get; set; }
@@ -106,6 +108,33 @@ namespace BudgetManagementApp.Forms.Projects
             AccountingMovementType movementType
         )
         {
+            accountMovementMaintenance.SubTypes = SubTypes;
+            accountMovementMaintenance.Types = Types;
+
+            var cbxSubType = accountMovementMaintenance.CbxSubType;
+
+            cbxSubType.SetData(
+                SubTypes,
+                FieldNames.SubTypeId,
+                FieldNames.Description
+            );
+
+            var cbxType = accountMovementMaintenance.CbxType;
+
+            cbxType.SetData(
+                Types,
+                FieldNames.TypeId,
+                FieldNames.Description
+            );
+
+            var cbxCategory = accountMovementMaintenance.CbxCategory;
+
+            cbxCategory.SetData(
+                Categories,
+                FieldNames.CategoryId,
+                FieldNames.Description
+            );
+
             var isAnIncome = movementType == AccountingMovementType.Income;
 
             accountMovementMaintenance.IsAnIncome = isAnIncome;

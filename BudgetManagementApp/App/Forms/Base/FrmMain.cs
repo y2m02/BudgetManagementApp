@@ -698,6 +698,7 @@ namespace BudgetManagementApp.Forms.Base
                 project.Cost.ToStringWithDecimals()
             );
 
+            budgetManagement.Categories = Categories;
             budgetManagement.Types = Types;
             budgetManagement.SubTypes = SubTypes;
 
