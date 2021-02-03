@@ -25,11 +25,21 @@
         public static string Construction => "Construction";
         public static string Cost => "Cost";
 
+        // Accounting Movements
+        public static string Income => "Income";
+        public static string Incomes => "Incomes";
+        public static string Expense => "Expense";
+        public static string Expenses => "Expenses";
+        public static string Date => "Date";
+        public static string Amount => "Amount";
+        public static string Comment => "Comment";
+
         // Others
         public static string Id => "Id";
         public static string Description => "Description";
         public static string InUse => "InUse";
         public static string DeletedOn => "DeletedOn";
         public static string Action => "Action";
+        public static string Today => "Today";
     }
 }

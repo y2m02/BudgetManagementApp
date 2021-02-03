@@ -120,6 +120,9 @@
   <data name="Add" xml:space="preserve">
     <value>Agregar {0}</value>
   </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Cantidad</value>
+  </data>
   <data name="BudgetManagement" xml:space="preserve">
     <value>Control de presupuesto</value>
   </data>
@@ -144,11 +147,17 @@
   <data name="Close" xml:space="preserve">
     <value>Salir</value>
   </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comentarios</value>
+  </data>
   <data name="Construction" xml:space="preserve">
     <value>Construcción</value>
   </data>
   <data name="Cost" xml:space="preserve">
     <value>Costo</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Fecha</value>
   </data>
   <data name="DateFormat" xml:space="preserve">
     <value>dd/MM/yyyy</value>
@@ -275,6 +284,9 @@
   </data>
   <data name="SubTypeTypeDescription" xml:space="preserve">
     <value>Partida</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Hoy</value>
   </data>
   <data name="Type" xml:space="preserve">
     <value>Partida</value>

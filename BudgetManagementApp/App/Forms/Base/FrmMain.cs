@@ -855,14 +855,10 @@ namespace BudgetManagementApp.Forms.Base
             budgetManagement.TxtProjectId.SetText(TxtProjectId.Text);
             budgetManagement.TxtProjectName.SetText(project.Name);
             budgetManagement.TxtStartDate.SetText(
-                project.StartDate
-                    .GetValueOrDefault()
-                    .ToShortDateString()
+                project.StartDate.ToShortDateString()
             );
             budgetManagement.TxtEndDate.SetText(
-                project.EndDate
-                    .GetValueOrDefault()
-                    .ToShortDateString()
+                project.EndDate.ToShortDateString()
             );
             budgetManagement.TxtConstruction.SetText(
                 project.Construction
@@ -959,8 +955,8 @@ namespace BudgetManagementApp.Forms.Base
                     projectMaintenance.Text = StringResources.Modify.Format(StringResources.Projects);
                     projectMaintenance.TxtProjectId.SetText(TxtProjectId.Text);
                     projectMaintenance.TxtProjectName.SetText(project.Name);
-                    projectMaintenance.DtpStartDate.Value = project.StartDate.GetValueOrDefault();
-                    projectMaintenance.DtpEndDate.Value = project.EndDate.GetValueOrDefault();
+                    projectMaintenance.DtpStartDate.Value = project.StartDate;
+                    projectMaintenance.DtpEndDate.Value = project.EndDate;
                     projectMaintenance.TxtContruction.SetText(
                         project.Construction
                             .GetValueOrDefault()
