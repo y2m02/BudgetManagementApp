@@ -26,6 +26,7 @@
         public static string Cost => "Cost";
 
         // Accounting Movements
+        public static string AccountingMovementId => "AccountingMovementId";
         public static string Income => "Income";
         public static string Incomes => "Incomes";
         public static string Expense => "Expense";
@@ -33,6 +34,7 @@
         public static string Date => "Date";
         public static string Amount => "Amount";
         public static string Comment => "Comment";
+        public static string IsAnIncome => "IsAnIncome";
 
         // Others
         public static string Id => "Id";

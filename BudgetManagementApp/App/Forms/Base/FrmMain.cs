@@ -466,6 +466,7 @@ namespace BudgetManagementApp.Forms.Base
 
             TxtTypeFilter.Clear();
 
+            var a = Categories;
             HandleEntity<CategoryViewModel>(
                 categoryService.GetAll(),
                 SetupCategories

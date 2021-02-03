@@ -220,7 +220,7 @@ namespace BudgetManagementApp.Forms.Base
 
         protected static void FormatGrid(
             DataGridView grid,
-            List<string> columnNames
+            List<string> columnNamesToHide
         )
         {
             if (!grid.HasDataSource())
@@ -228,7 +228,7 @@ namespace BudgetManagementApp.Forms.Base
 
             try
             {
-                DisableColumns(grid, columnNames);
+                DisableColumns(grid, columnNamesToHide);
             }
             catch { }
         }
@@ -267,10 +267,10 @@ namespace BudgetManagementApp.Forms.Base
         private static void DisableColumns(
             DataGridView grid,
             List<string> columnNames,
-            bool includeCommonFields = true
+            bool disableCommonFields = true
         )
         {
-            if (includeCommonFields)
+            if (disableCommonFields)
             {
                 columnNames.AddRange(new[]
                 {
