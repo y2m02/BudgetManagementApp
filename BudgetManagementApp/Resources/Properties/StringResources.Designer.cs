@@ -313,6 +313,15 @@ namespace BudgetManagementApp.Resources.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search:.
+        /// </summary>
+        public static string ExpenseFilter {
+            get {
+                return ResourceManager.GetString("ExpenseFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Expenses.
         /// </summary>
         public static string Expenses {
@@ -363,6 +372,15 @@ namespace BudgetManagementApp.Resources.Properties {
         public static string Income {
             get {
                 return ResourceManager.GetString("Income", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search:.
+        /// </summary>
+        public static string IncomeFilter {
+            get {
+                return ResourceManager.GetString("IncomeFilter", resourceCulture);
             }
         }
         
