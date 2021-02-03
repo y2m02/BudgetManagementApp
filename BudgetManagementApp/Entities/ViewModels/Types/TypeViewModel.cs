@@ -25,16 +25,14 @@ namespace BudgetManagementApp.Entities.ViewModels.Types
         {
             if (Description.IsEmpty())
             {
-                yield return string.Format(
-                    StringResources.FieldRequired,
+                yield return StringResources.FieldRequired.Format(
                     StringResourcesHandler.GetString(FieldNames.Description)
                 );
             }
 
             if (CategoryId < 1)
             {
-                yield return string.Format(
-                    StringResources.FieldRequired,
+                yield return StringResources.FieldRequired.Format(
                     StringResourcesHandler.GetString(FieldNames.Category)
                 );
             }

@@ -29,24 +29,21 @@ namespace BudgetManagementApp.Entities.ViewModels.SubTypes
         {
             if (Description.IsEmpty())
             {
-                yield return string.Format(
-                    StringResources.FieldRequired,
+                yield return StringResources.FieldRequired.Format(
                     StringResourcesHandler.GetString(FieldNames.Description)
                 );
             }
 
             if (TypeId < 1)
             {
-                yield return string.Format(
-                    StringResources.FieldRequired,
+                yield return StringResources.FieldRequired.Format(
                     StringResourcesHandler.GetString(FieldNames.Type)
                 );
             }
 
             if (CategoryId < 1)
             {
-                yield return string.Format(
-                    StringResources.FieldRequired,
+                yield return StringResources.FieldRequired.Format(
                     StringResourcesHandler.GetString(FieldNames.Category)
                 );
             }

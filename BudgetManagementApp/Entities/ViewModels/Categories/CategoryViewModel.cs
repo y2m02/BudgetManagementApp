@@ -21,8 +21,7 @@ namespace BudgetManagementApp.Entities.ViewModels.Categories
         {
             if (Description.IsEmpty())
             {
-                yield return string.Format(
-                    StringResources.FieldRequired,
+                yield return StringResources.FieldRequired.Format(
                     StringResourcesHandler.GetString(FieldNames.Description)
                 );
             }
