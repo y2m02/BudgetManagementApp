@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Enums\ActionType.cs" />
     <Compile Include="Enums\MaintenanceType.cs" />
+    <Compile Include="Extensions\AccountingMovementExtensions.cs" />
     <Compile Include="Extensions\ComboBoxExtensions.cs" />
     <Compile Include="Extensions\ControlExtensions.cs" />
     <Compile Include="Extensions\DataGridViewExtensions.cs" />
