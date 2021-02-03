@@ -216,6 +216,24 @@ namespace BudgetManagementApp.Resources.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
+        public static string DeleteExpense {
+            get {
+                return ResourceManager.GetString("DeleteExpense", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string DeleteIncome {
+            get {
+                return ResourceManager.GetString("DeleteIncome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
         public static string DeleteProject {
             get {
                 return ResourceManager.GetString("DeleteProject", resourceCulture);
@@ -286,6 +304,24 @@ namespace BudgetManagementApp.Resources.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Expense.
+        /// </summary>
+        public static string Expense {
+            get {
+                return ResourceManager.GetString("Expense", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expenses.
+        /// </summary>
+        public static string Expenses {
+            get {
+                return ResourceManager.GetString("Expenses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The field {0} is required..
         /// </summary>
         public static string FieldRequired {
@@ -300,6 +336,42 @@ namespace BudgetManagementApp.Resources.Properties {
         public static string File {
             get {
                 return ResourceManager.GetString("File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grouped by Categories.
+        /// </summary>
+        public static string GroupedByCategory {
+            get {
+                return ResourceManager.GetString("GroupedByCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grouped by Types.
+        /// </summary>
+        public static string GroupedByType {
+            get {
+                return ResourceManager.GetString("GroupedByType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Income.
+        /// </summary>
+        public static string Income {
+            get {
+                return ResourceManager.GetString("Income", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incomes.
+        /// </summary>
+        public static string Incomes {
+            get {
+                return ResourceManager.GetString("Incomes", resourceCulture);
             }
         }
         
@@ -336,6 +408,24 @@ namespace BudgetManagementApp.Resources.Properties {
         public static string ModifyCategory {
             get {
                 return ResourceManager.GetString("ModifyCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modify.
+        /// </summary>
+        public static string ModifyExpense {
+            get {
+                return ResourceManager.GetString("ModifyExpense", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modify.
+        /// </summary>
+        public static string ModifyIncome {
+            get {
+                return ResourceManager.GetString("ModifyIncome", resourceCulture);
             }
         }
         
@@ -381,6 +471,24 @@ namespace BudgetManagementApp.Resources.Properties {
         public static string NewCategory {
             get {
                 return ResourceManager.GetString("NewCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New.
+        /// </summary>
+        public static string NewExpense {
+            get {
+                return ResourceManager.GetString("NewExpense", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New.
+        /// </summary>
+        public static string NewIncome {
+            get {
+                return ResourceManager.GetString("NewIncome", resourceCulture);
             }
         }
         
@@ -570,6 +678,24 @@ namespace BudgetManagementApp.Resources.Properties {
         public static string Today {
             get {
                 return ResourceManager.GetString("Today", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total {0}: {1}.
+        /// </summary>
+        public static string Total {
+            get {
+                return ResourceManager.GetString("Total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total.
+        /// </summary>
+        public static string TotalAmount {
+            get {
+                return ResourceManager.GetString("TotalAmount", resourceCulture);
             }
         }
         
