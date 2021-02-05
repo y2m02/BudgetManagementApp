@@ -13,14 +13,13 @@ using BudgetManagementApp.Services.Services.AccountingMovements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms;
 
 namespace BudgetManagementApp.Forms.Projects
 {
     public partial class FrmBudgetManagement : BaseForm
     {
         private readonly IAccountingMovementService accountingMovementService;
-        private readonly FrmAccountingMovementMaintenance accountMovementMaintenance;
+        private readonly FrmAccountingMovementMaintenance accountingMovementMaintenance;
 
         public FrmBudgetManagement(
             IAccountingMovementService accountingMovementService,
@@ -30,7 +29,7 @@ namespace BudgetManagementApp.Forms.Projects
             InitializeComponent();
 
             this.accountingMovementService = accountingMovementService;
-            this.accountMovementMaintenance = accountMovementMaintenance;
+            accountingMovementMaintenance = accountMovementMaintenance;
         }
 
         private List<AccountingMovementViewModel> Incomes { get; set; }
@@ -90,7 +89,7 @@ namespace BudgetManagementApp.Forms.Projects
         {
             InitializeMaintenanceControls(type, AccountingMovementType.Income);
 
-            if (!accountMovementMaintenance.ShowDialog().IsOkResponse())
+            if (!accountingMovementMaintenance.ShowDialog().IsOkResponse())
                 return;
 
             TxtIncomeFilter.Clear();
@@ -108,55 +107,85 @@ namespace BudgetManagementApp.Forms.Projects
             AccountingMovementType movementType
         )
         {
-            accountMovementMaintenance.SubTypes = SubTypes;
-            accountMovementMaintenance.Types = Types;
+            accountingMovementMaintenance.SubTypes = SubTypes;
+            accountingMovementMaintenance.Types = Types;
 
-            var cbxSubType = accountMovementMaintenance.CbxSubType;
+            SetCbxData();
 
-            cbxSubType.SetData(
+            accountingMovementMaintenance.IsAnIncome = movementType == AccountingMovementType.Income;
+
+
+            switch (maintenanceType)
+            {
+                case MaintenanceType.CreateNew:
+                    SetFillsDataWhenCreate();
+                    break;
+
+                case MaintenanceType.Modify:
+                    var movement = accountingMovementMaintenance.IsAnIncome
+                        ? Incomes.Single(w => w.Id == TxtIncomeId.Text.ToInt())
+                        : Expenses.Single(w => w.Id == TxtExpenseId.Text.ToInt());
+                    
+                    SetFillsWhenModify(movement);
+                    break;
+            }
+        }
+
+        private void SetFillsDataWhenCreate()
+        {
+            accountingMovementMaintenance.Text = StringResources.Add.Format(
+                accountingMovementMaintenance.IsAnIncome
+                    ? StringResources.Income
+                    : StringResources.Expense
+            );
+            accountingMovementMaintenance.TxtAccountingMovementId.Clear();
+            accountingMovementMaintenance.DtpDate.Value = DateTime.Now;
+
+            SelectFirstCbxValue(accountingMovementMaintenance.CbxCategory);
+            SelectFirstCbxValue(accountingMovementMaintenance.CbxType);
+            SelectFirstCbxValue(accountingMovementMaintenance.CbxSubType);
+
+            accountingMovementMaintenance.TxtAmount.Clear();
+            accountingMovementMaintenance.TxtComment.Clear();
+        }
+
+        private void SetFillsWhenModify(AccountingMovementViewModel accountingMovement)
+        {
+            accountingMovementMaintenance.Text = StringResources.Modify.Format(
+                accountingMovementMaintenance.IsAnIncome
+                    ? StringResources.Income
+                    : StringResources.Expense
+            );
+
+            accountingMovementMaintenance.TxtAccountingMovementId.SetText(accountingMovement.Id.ToString());
+            accountingMovementMaintenance.DtpDate.Value = accountingMovement.Date;
+
+            accountingMovementMaintenance.CbxCategory.Text = accountingMovement.CategoryDescription;
+            accountingMovementMaintenance.CbxType.Text = accountingMovement.TypeDescription;
+            accountingMovementMaintenance.CbxSubType.Text = accountingMovement.SubTypeDescription;
+
+            accountingMovementMaintenance.TxtAmount.Text = accountingMovement.Amount.ToStringWithDecimals();
+            accountingMovementMaintenance.TxtComment.Text = accountingMovement.Comment;
+        }
+        private void SetCbxData()
+        {
+            accountingMovementMaintenance.CbxSubType.SetData(
                 SubTypes,
                 FieldNames.SubTypeId,
                 FieldNames.Description
             );
 
-            var cbxType = accountMovementMaintenance.CbxType;
-
-            cbxType.SetData(
+            accountingMovementMaintenance.CbxType.SetData(
                 Types,
                 FieldNames.TypeId,
                 FieldNames.Description
             );
 
-            var cbxCategory = accountMovementMaintenance.CbxCategory;
-
-            cbxCategory.SetData(
+            accountingMovementMaintenance.CbxCategory.SetData(
                 Categories,
                 FieldNames.CategoryId,
                 FieldNames.Description
             );
-
-            var isAnIncome = movementType == AccountingMovementType.Income;
-
-            accountMovementMaintenance.IsAnIncome = isAnIncome;
-
-            switch (maintenanceType)
-            {
-                case MaintenanceType.CreateNew:
-                    accountMovementMaintenance.Text = StringResources.Add.Format(
-                        isAnIncome ? StringResources.Income : StringResources.Expense
-                    );
-                    //accountMovementMaintenance.TxtCategoryId.Clear();
-                    //accountMovementMaintenance.TxtDescription.Clear();
-                    break;
-
-                case MaintenanceType.Modify:
-                    accountMovementMaintenance.Text = StringResources.Modify.Format(
-                        isAnIncome ? StringResources.Income : StringResources.Expense
-                    );
-                    //accountMovementMaintenance.TxtCategoryId.Text = TxtCategoryId.Text;
-                    //accountMovementMaintenance.TxtDescription.Text = TxtCategoryDescription.Text;
-                    break;
-            }
         }
 
         private void BtnNewIncome_Click(object sender, EventArgs e)
