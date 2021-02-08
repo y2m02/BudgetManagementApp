@@ -107,8 +107,8 @@ namespace BudgetManagementApp.Forms.Projects
             AccountingMovementType movementType
         )
         {
-            accountingMovementMaintenance.SubTypes = SubTypes;
             accountingMovementMaintenance.Types = Types;
+            accountingMovementMaintenance.SubTypes = SubTypes;
 
             SetCbxData();
 
@@ -118,7 +118,7 @@ namespace BudgetManagementApp.Forms.Projects
             switch (maintenanceType)
             {
                 case MaintenanceType.CreateNew:
-                    SetFillsDataWhenCreate();
+                    SetFielsDataWhenCreate();
                     break;
 
                 case MaintenanceType.Modify:
@@ -126,12 +126,12 @@ namespace BudgetManagementApp.Forms.Projects
                         ? Incomes.Single(w => w.Id == TxtIncomeId.Text.ToInt())
                         : Expenses.Single(w => w.Id == TxtExpenseId.Text.ToInt());
                     
-                    SetFillsWhenModify(movement);
+                    SetFielsWhenModify(movement);
                     break;
             }
         }
 
-        private void SetFillsDataWhenCreate()
+        private void SetFielsDataWhenCreate()
         {
             accountingMovementMaintenance.Text = StringResources.Add.Format(
                 accountingMovementMaintenance.IsAnIncome
@@ -140,16 +140,16 @@ namespace BudgetManagementApp.Forms.Projects
             );
             accountingMovementMaintenance.TxtAccountingMovementId.Clear();
             accountingMovementMaintenance.DtpDate.Value = DateTime.Now;
-
-            SelectFirstCbxValue(accountingMovementMaintenance.CbxCategory);
-            SelectFirstCbxValue(accountingMovementMaintenance.CbxType);
+            
             SelectFirstCbxValue(accountingMovementMaintenance.CbxSubType);
+            SelectFirstCbxValue(accountingMovementMaintenance.CbxType);
+            SelectFirstCbxValue(accountingMovementMaintenance.CbxCategory);
 
             accountingMovementMaintenance.TxtAmount.Clear();
             accountingMovementMaintenance.TxtComment.Clear();
         }
 
-        private void SetFillsWhenModify(AccountingMovementViewModel accountingMovement)
+        private void SetFielsWhenModify(AccountingMovementViewModel accountingMovement)
         {
             accountingMovementMaintenance.Text = StringResources.Modify.Format(
                 accountingMovementMaintenance.IsAnIncome
@@ -200,8 +200,6 @@ namespace BudgetManagementApp.Forms.Projects
 
         private void BtnDeleteIncome_Click(object sender, EventArgs e)
         {
-
-
             GlobalProperties.ProjectsNeedToBeUpdated = true;
         }
 

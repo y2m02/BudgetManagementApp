@@ -285,7 +285,7 @@ namespace BudgetManagementApp.Forms.Base
         {
             if (cbx.HasValue())
             {
-                cbx.SelectedIndex = 0;
+                cbx.SelectedIndex = -1;
             }
         }
 

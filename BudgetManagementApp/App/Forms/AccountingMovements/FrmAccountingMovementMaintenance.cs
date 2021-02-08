@@ -67,10 +67,17 @@ namespace BudgetManagementApp.Forms.AccountingMovements
             }
 
             CbxSubType.SetData(
-                Types.PrettyWhere(w => w.TypeId == typeId),
+                SubTypes.PrettyWhere(w => w.TypeId == typeId),
                 FieldNames.SubTypeId,
                 FieldNames.Description
             );
+        }
+
+        private void FrmAccountingMovementMaintenance_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+        {
+            CbxSubType.ClearDataSource();
+            CbxType.ClearDataSource();
+            CbxCategory.ClearDataSource();
         }
     }
 }

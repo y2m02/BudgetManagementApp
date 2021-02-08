@@ -241,6 +241,7 @@ namespace BudgetManagementApp.Forms.AccountingMovements
             this.Name = "FrmAccountingMovementMaintenance";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmAccountingMovementMaintenance";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmAccountingMovementMaintenance_FormClosing);
             this.Load += new System.EventHandler(this.FrmAccountingMovementMaintenance_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
