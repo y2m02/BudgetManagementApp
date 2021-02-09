@@ -17,9 +17,14 @@ namespace BudgetManagementApp.Forms.Categories
             InitializeComponent();
         }
 
+        public CategoryViewModel Category { get; set; }
+
         private void FrmCategoryMaintenance_Load(object sender, EventArgs e)
         {
             SetLabels();
+
+            TxtCategoryId.Text = Category.CategoryId.ToString();
+            TxtDescription.Text = Category.Description;
         }
 
         protected sealed override void SetLabels()

@@ -28,10 +28,10 @@ namespace BudgetManagementApp.Forms.Base
 {
     public partial class FrmMain : BaseForm
     {
+        private readonly FrmBudgetManagement budgetManagement;
         private readonly FrmCategoryMaintenance categoryMaintenance;
         private readonly ICategoryService categoryService;
         private readonly FrmProjectMaintenance projectMaintenance;
-        private readonly FrmBudgetManagement budgetManagement;
         private readonly IProjectService projectService;
         private readonly FrmSubTypeMaintenance subTypeMaintenance;
         private readonly ISubTypeService subTypeService;
@@ -272,7 +272,9 @@ namespace BudgetManagementApp.Forms.Base
             {
                 DisableColumns(grid, columnNames);
             }
-            catch { }
+            catch
+            {
+            }
         }
 
         private void Delete(
@@ -492,14 +494,18 @@ namespace BudgetManagementApp.Forms.Base
             {
                 case MaintenanceType.CreateNew:
                     categoryMaintenance.Text = StringResources.Add.Format(StringResources.Category);
-                    categoryMaintenance.TxtCategoryId.Clear();
-                    categoryMaintenance.TxtDescription.Clear();
+
+                    categoryMaintenance.Category = new CategoryViewModel();
                     break;
 
                 case MaintenanceType.Modify:
                     categoryMaintenance.Text = StringResources.Modify.Format(StringResources.Category);
-                    categoryMaintenance.TxtCategoryId.Text = TxtCategoryId.Text;
-                    categoryMaintenance.TxtDescription.Text = TxtCategoryDescription.Text;
+
+                    categoryMaintenance.Category = new CategoryViewModel
+                    {
+                        Id = TxtCategoryId.Text.ToIntOrDefault(),
+                        Description = TxtCategoryDescription.Text,
+                    };
                     break;
             }
         }
