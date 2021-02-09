@@ -3,6 +3,7 @@ using BudgetManagementApp.Entities.Extensions;
 using BudgetManagementApp.Entities.Helpers;
 using BudgetManagementApp.Entities.ViewModels.AccountingMovements;
 using BudgetManagementApp.Entities.ViewModels.Categories;
+using BudgetManagementApp.Entities.ViewModels.Projects;
 using BudgetManagementApp.Entities.ViewModels.SubTypes;
 using BudgetManagementApp.Entities.ViewModels.Types;
 using BudgetManagementApp.Forms.AccountingMovements;
@@ -32,15 +33,17 @@ namespace BudgetManagementApp.Forms.Projects
             accountingMovementMaintenance = accountMovementMaintenance;
         }
 
-        private List<AccountingMovementViewModel> Incomes { get; set; }
-
-        private List<AccountingMovementViewModel> Expenses { get; set; }
+        public ProjectViewModel Project { get; set; }
 
         public List<CategoryViewModel> Categories { get; set; }
 
         public List<TypeViewModel> Types { get; set; }
 
         public List<SubTypeViewModel> SubTypes { get; set; }
+
+        private List<AccountingMovementViewModel> Incomes { get; set; }
+
+        private List<AccountingMovementViewModel> Expenses { get; set; }
 
         public void SetupData(IEnumerable<AccountingMovementViewModel> model)
         {
@@ -50,6 +53,22 @@ namespace BudgetManagementApp.Forms.Projects
         private void FrmBudgetManagement_Load(object sender, EventArgs e)
         {
             SetLabels();
+
+            TxtProjectId.SetText(Project.ProjectId.ToString());
+
+            TxtProjectName.SetText(Project.Name);
+
+            TxtStartDate.SetText(Project.StartDate.ToShortDateString());
+
+            TxtEndDate.SetText(Project.EndDate.ToShortDateString());
+
+            TxtConstruction.SetText(
+                Project.Construction.ToStringWithDecimals()
+            );
+
+            TxtCost.SetText(
+                Project.Cost.ToStringWithDecimals()
+            );
 
             SetColumnNames(DgvIncomes, new Dictionary<string, string>
             {

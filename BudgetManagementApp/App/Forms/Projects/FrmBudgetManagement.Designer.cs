@@ -400,13 +400,7 @@ namespace BudgetManagementApp.Forms.Projects
         private System.Windows.Forms.Label LblConstruction;
         private System.Windows.Forms.Label LblEndDate;
         private System.Windows.Forms.Label LblStartDate;
-        public System.Windows.Forms.TextBox TxtProjectId;
         private System.Windows.Forms.Label LblProjectName;
-        public System.Windows.Forms.TextBox TxtCost;
-        public System.Windows.Forms.TextBox TxtConstruction;
-        public System.Windows.Forms.TextBox TxtEndDate;
-        public System.Windows.Forms.TextBox TxtStartDate;
-        public System.Windows.Forms.TextBox TxtProjectName;
         private System.Windows.Forms.Label LblIncomeFilter;
         private System.Windows.Forms.Button BtnDeleteIncome;
         private System.Windows.Forms.Button BtnModifyIncome;
@@ -421,5 +415,11 @@ namespace BudgetManagementApp.Forms.Projects
         private System.Windows.Forms.DataGridView DgvExpenses;
         public System.Windows.Forms.TextBox TxtIncomeId;
         public System.Windows.Forms.TextBox TxtExpenseId;
+        private System.Windows.Forms.TextBox TxtProjectId;
+        private System.Windows.Forms.TextBox TxtCost;
+        private System.Windows.Forms.TextBox TxtConstruction;
+        private System.Windows.Forms.TextBox TxtEndDate;
+        private System.Windows.Forms.TextBox TxtStartDate;
+        private System.Windows.Forms.TextBox TxtProjectName;
     }
 }

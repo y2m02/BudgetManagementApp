@@ -681,22 +681,7 @@ namespace BudgetManagementApp.Forms.Base
         {
             budgetManagement.Text = StringResources.BudgetManagement;
 
-            var project = Projects.Single(w => w.Id == TxtProjectId.Text.ToInt());
-
-            budgetManagement.TxtProjectId.SetText(TxtProjectId.Text);
-            budgetManagement.TxtProjectName.SetText(project.Name);
-            budgetManagement.TxtStartDate.SetText(
-                project.StartDate.ToShortDateString()
-            );
-            budgetManagement.TxtEndDate.SetText(
-                project.EndDate.ToShortDateString()
-            );
-            budgetManagement.TxtConstruction.SetText(
-                project.Construction.ToStringWithDecimals()
-            );
-            budgetManagement.TxtCost.SetText(
-                project.Cost.ToStringWithDecimals()
-            );
+            budgetManagement.Project = Projects.Single(w => w.Id == TxtProjectId.Text.ToInt());
 
             budgetManagement.Categories = Categories;
             budgetManagement.Types = Types;
