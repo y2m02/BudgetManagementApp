@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Globalization;
-using System.Linq;
-using System.Windows.Forms;
-using BudgetManagementApp.Entities.Enums;
+﻿using BudgetManagementApp.Entities.Enums;
 using BudgetManagementApp.Entities.Extensions;
 using BudgetManagementApp.Entities.Helpers;
 using BudgetManagementApp.Entities.ViewModels.Base;
@@ -23,6 +17,12 @@ using BudgetManagementApp.Services.Services.Categories;
 using BudgetManagementApp.Services.Services.Projects;
 using BudgetManagementApp.Services.Services.SubTypes;
 using BudgetManagementApp.Services.Services.Types;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Globalization;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace BudgetManagementApp.Forms.Base
 {
@@ -406,9 +406,12 @@ namespace BudgetManagementApp.Forms.Base
 
             PopulateGrid(
                 DgvCategories,
-                GetFilteredData(text, Categories, c => c.Description.Contains(text)),
+                GetFilteredData(
+                    text,
+                    Categories, c => c.Description.ToLower().Contains(text.ToLower())
+                ),
                 FormatGrid,
-                new List<string> {FieldNames.CategoryId}
+                new List<string> { FieldNames.CategoryId }
             );
         }
 
@@ -462,7 +465,7 @@ namespace BudgetManagementApp.Forms.Base
                 DgvCategories,
                 Categories,
                 FormatGrid,
-                new List<string> {FieldNames.CategoryId}
+                new List<string> { FieldNames.CategoryId }
             );
         }
 
@@ -492,14 +495,16 @@ namespace BudgetManagementApp.Forms.Base
             {
                 case MaintenanceType.CreateNew:
                     categoryMaintenance.Text = StringResources.Add.Format(StringResources.Category);
-                    categoryMaintenance.TxtCategoryId.Clear();
-                    categoryMaintenance.TxtDescription.Clear();
+
+                    categoryMaintenance.Category = new CategoryViewModel();
                     break;
 
                 case MaintenanceType.Modify:
                     categoryMaintenance.Text = StringResources.Modify.Format(StringResources.Category);
-                    categoryMaintenance.TxtCategoryId.Text = TxtCategoryId.Text;
-                    categoryMaintenance.TxtDescription.Text = TxtCategoryDescription.Text;
+
+                    categoryMaintenance.Category = Categories.Single(
+                        w => w.CategoryId == TxtCategoryId.Text.ToIntOrDefault()
+                    );
                     break;
             }
         }
@@ -621,33 +626,20 @@ namespace BudgetManagementApp.Forms.Base
 
         private void InitializeTypeMaintenanceControls(MaintenanceType type)
         {
-            var cbxCategory = typeMaintenance.CbxCategory;
-
-            cbxCategory.SetData(
-                Categories,
-                FieldNames.CategoryId,
-                FieldNames.Description
-            );
+            typeMaintenance.Categories = Categories;
 
             switch (type)
             {
                 case MaintenanceType.CreateNew:
                     typeMaintenance.Text = StringResources.Add.Format(StringResources.Type);
-                    typeMaintenance.TxtTypeId.Clear();
-                    typeMaintenance.TxtDescription.Clear();
 
-                    if (cbxCategory.HasValue())
-                    {
-                        cbxCategory.SelectedIndex = 0;
-                    }
-
+                    typeMaintenance.Type = new TypeViewModel();
                     break;
 
                 case MaintenanceType.Modify:
                     typeMaintenance.Text = StringResources.Modify.Format(StringResources.Type);
-                    typeMaintenance.TxtTypeId.Text = TxtTypeId.Text;
-                    typeMaintenance.TxtDescription.Text = TxtTypeDescription.Text;
-                    cbxCategory.Text = TxtTypeCategory.Text;
+
+                    typeMaintenance.Type = Types.Single(w => w.TypeId == TxtTypeId.Text.ToInt());
                     break;
             }
         }
@@ -696,9 +688,9 @@ namespace BudgetManagementApp.Forms.Base
                 GetFilteredData(
                     text,
                     SubTypes,
-                    s => s.Description.Contains(text) ||
-                         s.TypeDescription.Contains(text) ||
-                         s.CategoryDescription.Contains(text)
+                    s => s.Description.ToLower().Contains(text.ToLower()) ||
+                         s.TypeDescription.ToLower().Contains(text.ToLower()) ||
+                         s.CategoryDescription.ToLower().Contains(text.ToLower())
                 ),
                 FormatGrid,
                 new List<string>
@@ -769,49 +761,23 @@ namespace BudgetManagementApp.Forms.Base
 
         private void InitializeSubTypeMaintenanceControls(MaintenanceType type)
         {
+            subTypeMaintenance.Categories = Categories;
             subTypeMaintenance.Types = Types;
-
-            var cbxType = subTypeMaintenance.CbxType;
-
-            cbxType.SetData(
-                Types,
-                FieldNames.TypeId,
-                FieldNames.Description
-            );
-
-            var cbxCategory = subTypeMaintenance.CbxCategory;
-
-            cbxCategory.SetData(
-                Categories,
-                FieldNames.CategoryId,
-                FieldNames.Description
-            );
 
             switch (type)
             {
                 case MaintenanceType.CreateNew:
                     subTypeMaintenance.Text = StringResources.Add.Format(StringResources.SubType);
-                    subTypeMaintenance.TxtSubTypeId.Clear();
-                    subTypeMaintenance.TxtDescription.Clear();
 
-                    if (cbxCategory.HasValue())
-                    {
-                        cbxCategory.SelectedIndex = 0;
-                    }
-
-                    if (cbxType.HasValue())
-                    {
-                        cbxType.SelectedIndex = 0;
-                    }
-
+                    subTypeMaintenance.SubType = new SubTypeViewModel();
                     break;
 
                 case MaintenanceType.Modify:
                     subTypeMaintenance.Text = StringResources.Modify.Format(StringResources.SubType);
-                    subTypeMaintenance.TxtSubTypeId.Text = TxtSubTypeId.Text;
-                    subTypeMaintenance.TxtDescription.Text = TxtSubTypeDescription.Text;
-                    cbxCategory.Text = TxtSubTypeCategory.Text;
-                    cbxType.Text = TxtSubTypeTypeDescription.Text;
+
+                    subTypeMaintenance.SubType = SubTypes.Single(
+                        w => w.SubTypeId == TxtSubTypeId.Text.ToIntOrDefault()
+                    );
                     break;
             }
         }
@@ -861,14 +827,10 @@ namespace BudgetManagementApp.Forms.Base
                 project.EndDate.ToShortDateString()
             );
             budgetManagement.TxtConstruction.SetText(
-                project.Construction
-                    .GetValueOrDefault()
-                    .ToStringWithDecimals()
+                project.Construction.ToStringWithDecimals()
             );
             budgetManagement.TxtCost.SetText(
-                project.Cost
-                    .GetValueOrDefault()
-                    .ToStringWithDecimals()
+                project.Cost.ToStringWithDecimals()
             );
 
             budgetManagement.ShowDialog();
@@ -880,9 +842,9 @@ namespace BudgetManagementApp.Forms.Base
 
             PopulateGrid(
                 DgvProjects,
-                GetFilteredData(text, Projects, c => c.Name.Contains(text)),
+                GetFilteredData(text, Projects, c => c.Name.ToLower().Contains(text.ToLower())),
                 FormatGrid,
-                new List<string> {FieldNames.ProjectId}
+                new List<string> { FieldNames.ProjectId }
             );
         }
 
@@ -916,7 +878,7 @@ namespace BudgetManagementApp.Forms.Base
                 DgvProjects,
                 Projects,
                 FormatGrid,
-                new List<string> {FieldNames.ProjectId}
+                new List<string> { FieldNames.ProjectId }
             );
         }
 
@@ -941,32 +903,14 @@ namespace BudgetManagementApp.Forms.Base
             {
                 case MaintenanceType.CreateNew:
                     projectMaintenance.Text = StringResources.Add.Format(StringResources.Projects);
-                    projectMaintenance.TxtProjectId.Clear();
-                    projectMaintenance.TxtProjectName.Clear();
-                    projectMaintenance.DtpStartDate.Value = DateTime.Now;
-                    projectMaintenance.DtpEndDate.Value = DateTime.Now;
-                    projectMaintenance.TxtContruction.Clear();
-                    projectMaintenance.TxtCost.Clear();
+
+                    projectMaintenance.Project = new ProjectViewModel();
                     break;
 
                 case MaintenanceType.Modify:
-                    var project = Projects.Single(w => w.Id == TxtProjectId.Text.ToInt());
-
                     projectMaintenance.Text = StringResources.Modify.Format(StringResources.Projects);
-                    projectMaintenance.TxtProjectId.SetText(TxtProjectId.Text);
-                    projectMaintenance.TxtProjectName.SetText(project.Name);
-                    projectMaintenance.DtpStartDate.Value = project.StartDate;
-                    projectMaintenance.DtpEndDate.Value = project.EndDate;
-                    projectMaintenance.TxtContruction.SetText(
-                        project.Construction
-                            .GetValueOrDefault()
-                            .ToString(CultureData.GetEnglishCulture())
-                    );
-                    projectMaintenance.TxtCost.SetText(
-                        project.Cost
-                            .GetValueOrDefault()
-                            .ToString(CultureData.GetEnglishCulture())
-                    );
+
+                    projectMaintenance.Project = Projects.Single(w => w.Id == TxtProjectId.Text.ToInt());
                     break;
             }
         }
