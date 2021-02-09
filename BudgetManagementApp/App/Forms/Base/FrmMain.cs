@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Globalization;
-using System.Linq;
-using System.Windows.Forms;
-using BudgetManagementApp.Entities.Enums;
+﻿using BudgetManagementApp.Entities.Enums;
 using BudgetManagementApp.Entities.Extensions;
 using BudgetManagementApp.Entities.Helpers;
 using BudgetManagementApp.Entities.ViewModels.Base;
@@ -23,6 +17,12 @@ using BudgetManagementApp.Services.Services.Categories;
 using BudgetManagementApp.Services.Services.Projects;
 using BudgetManagementApp.Services.Services.SubTypes;
 using BudgetManagementApp.Services.Services.Types;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Globalization;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace BudgetManagementApp.Forms.Base
 {
@@ -406,9 +406,12 @@ namespace BudgetManagementApp.Forms.Base
 
             PopulateGrid(
                 DgvCategories,
-                GetFilteredData(text, Categories, c => c.Description.Contains(text)),
+                GetFilteredData(
+                    text, 
+                    Categories, c => c.Description.ToLower().Contains(text.ToLower())
+                ),
                 FormatGrid,
-                new List<string> {FieldNames.CategoryId}
+                new List<string> { FieldNames.CategoryId }
             );
         }
 
@@ -462,7 +465,7 @@ namespace BudgetManagementApp.Forms.Base
                 DgvCategories,
                 Categories,
                 FormatGrid,
-                new List<string> {FieldNames.CategoryId}
+                new List<string> { FieldNames.CategoryId }
             );
         }
 
@@ -492,14 +495,18 @@ namespace BudgetManagementApp.Forms.Base
             {
                 case MaintenanceType.CreateNew:
                     categoryMaintenance.Text = StringResources.Add.Format(StringResources.Category);
-                    categoryMaintenance.TxtCategoryId.Clear();
-                    categoryMaintenance.TxtDescription.Clear();
+
+                    categoryMaintenance.Category = new CategoryViewModel();
                     break;
 
                 case MaintenanceType.Modify:
                     categoryMaintenance.Text = StringResources.Modify.Format(StringResources.Category);
-                    categoryMaintenance.TxtCategoryId.Text = TxtCategoryId.Text;
-                    categoryMaintenance.TxtDescription.Text = TxtCategoryDescription.Text;
+
+                    categoryMaintenance.Category = new CategoryViewModel
+                    {
+                        Id = TxtCategoryId.Text.ToIntOrDefault(),
+                        Description = TxtCategoryDescription.Text,
+                    };
                     break;
             }
         }
@@ -882,7 +889,7 @@ namespace BudgetManagementApp.Forms.Base
                 DgvProjects,
                 GetFilteredData(text, Projects, c => c.Name.Contains(text)),
                 FormatGrid,
-                new List<string> {FieldNames.ProjectId}
+                new List<string> { FieldNames.ProjectId }
             );
         }
 
@@ -916,7 +923,7 @@ namespace BudgetManagementApp.Forms.Base
                 DgvProjects,
                 Projects,
                 FormatGrid,
-                new List<string> {FieldNames.ProjectId}
+                new List<string> { FieldNames.ProjectId }
             );
         }
 
