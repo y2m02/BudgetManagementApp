@@ -172,7 +172,20 @@ namespace BudgetManagementApp.Forms.Projects
 
         private void BtnDeleteIncome_Click(object sender, EventArgs e)
         {
-            GlobalProperties.ProjectsNeedToBeUpdated = true;
+            Delete(
+                accountingMovementService,
+                Incomes.Single(w => w.AccountingMovementId == TxtIncomeId.Text.ToInt()),
+                TxtIncomeFilter,
+                () =>
+                {
+                    GlobalProperties.ProjectsNeedToBeUpdated = true;
+
+                    HandleEntity<AccountingMovementViewModel>(
+                        accountingMovementService.GetIncomesByProjectId(Project.ProjectId),
+                        SetupIncomes
+                    );
+                }
+            );
         }
 
         private void TxtIncomeFilter_TextChanged(object sender, EventArgs e)
