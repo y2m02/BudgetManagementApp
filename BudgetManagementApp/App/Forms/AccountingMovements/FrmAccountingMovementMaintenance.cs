@@ -94,11 +94,7 @@ namespace BudgetManagementApp.Forms.AccountingMovements
 
             if (types.Any()) return;
 
-            CbxSubType.SetData(
-                new List<SubTypeViewModel>(),
-                FieldNames.SubTypeId,
-                FieldNames.Description
-            );
+            CbxSubType.ClearDataSource();
         }
 
         private void CbxType_SelectedIndexChanged(object sender, EventArgs e)
