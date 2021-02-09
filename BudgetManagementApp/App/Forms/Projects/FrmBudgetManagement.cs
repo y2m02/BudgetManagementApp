@@ -126,85 +126,34 @@ namespace BudgetManagementApp.Forms.Projects
             AccountingMovementType movementType
         )
         {
+            accountingMovementMaintenance.Categories = Categories;
             accountingMovementMaintenance.Types = Types;
             accountingMovementMaintenance.SubTypes = SubTypes;
 
-            SetCbxData();
 
-            accountingMovementMaintenance.IsAnIncome = movementType == AccountingMovementType.Income;
+            var isAnIncome = movementType == AccountingMovementType.Income;
 
 
             switch (maintenanceType)
             {
                 case MaintenanceType.CreateNew:
-                    SetFielsDataWhenCreate();
+                    accountingMovementMaintenance.Text = StringResources.Add.Format(
+                        isAnIncome ? StringResources.Income : StringResources.Expense
+                    );
+
+                    accountingMovementMaintenance.AccountingMovement = new();
                     break;
 
                 case MaintenanceType.Modify:
-                    var movement = accountingMovementMaintenance.IsAnIncome
+                    accountingMovementMaintenance.Text = StringResources.Modify.Format(
+                        isAnIncome ? StringResources.Income : StringResources.Expense
+                    );
+
+                    accountingMovementMaintenance.AccountingMovement = isAnIncome
                         ? Incomes.Single(w => w.Id == TxtIncomeId.Text.ToInt())
                         : Expenses.Single(w => w.Id == TxtExpenseId.Text.ToInt());
-                    
-                    SetFielsWhenModify(movement);
                     break;
             }
-        }
-
-        private void SetFielsDataWhenCreate()
-        {
-            accountingMovementMaintenance.Text = StringResources.Add.Format(
-                accountingMovementMaintenance.IsAnIncome
-                    ? StringResources.Income
-                    : StringResources.Expense
-            );
-            accountingMovementMaintenance.TxtAccountingMovementId.Clear();
-            accountingMovementMaintenance.DtpDate.Value = DateTime.Now;
-            
-            SelectFirstCbxValue(accountingMovementMaintenance.CbxSubType);
-            SelectFirstCbxValue(accountingMovementMaintenance.CbxType);
-            SelectFirstCbxValue(accountingMovementMaintenance.CbxCategory);
-
-            accountingMovementMaintenance.TxtAmount.Clear();
-            accountingMovementMaintenance.TxtComment.Clear();
-        }
-
-        private void SetFielsWhenModify(AccountingMovementViewModel accountingMovement)
-        {
-            accountingMovementMaintenance.Text = StringResources.Modify.Format(
-                accountingMovementMaintenance.IsAnIncome
-                    ? StringResources.Income
-                    : StringResources.Expense
-            );
-
-            accountingMovementMaintenance.TxtAccountingMovementId.SetText(accountingMovement.Id.ToString());
-            accountingMovementMaintenance.DtpDate.Value = accountingMovement.Date;
-
-            accountingMovementMaintenance.CbxCategory.Text = accountingMovement.CategoryDescription;
-            accountingMovementMaintenance.CbxType.Text = accountingMovement.TypeDescription;
-            accountingMovementMaintenance.CbxSubType.Text = accountingMovement.SubTypeDescription;
-
-            accountingMovementMaintenance.TxtAmount.Text = accountingMovement.Amount.ToStringWithDecimals();
-            accountingMovementMaintenance.TxtComment.Text = accountingMovement.Comment;
-        }
-        private void SetCbxData()
-        {
-            accountingMovementMaintenance.CbxSubType.SetData(
-                SubTypes,
-                FieldNames.SubTypeId,
-                FieldNames.Description
-            );
-
-            accountingMovementMaintenance.CbxType.SetData(
-                Types,
-                FieldNames.TypeId,
-                FieldNames.Description
-            );
-
-            accountingMovementMaintenance.CbxCategory.SetData(
-                Categories,
-                FieldNames.CategoryId,
-                FieldNames.Description
-            );
         }
 
         private void BtnNewIncome_Click(object sender, EventArgs e)

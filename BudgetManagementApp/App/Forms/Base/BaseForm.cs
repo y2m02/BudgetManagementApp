@@ -281,14 +281,6 @@ namespace BudgetManagementApp.Forms.Base
             DisplayErrorMessage(result.GetFailureError());
         }
 
-        protected void SelectFirstCbxValue(ComboBox cbx)
-        {
-            if (cbx.HasValue())
-            {
-                cbx.SelectedIndex = -1;
-            }
-        }
-
         private static void DisableColumns(
             DataGridView grid,
             List<string> columnNames,

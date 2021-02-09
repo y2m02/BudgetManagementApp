@@ -251,19 +251,19 @@ namespace BudgetManagementApp.Forms.AccountingMovements
         #endregion
 
         private System.Windows.Forms.Label LblType;
-        public System.Windows.Forms.ComboBox CbxType;
         private System.Windows.Forms.Label LblCategory;
-        public System.Windows.Forms.ComboBox CbxCategory;
         private System.Windows.Forms.Label LblAmount;
-        public System.Windows.Forms.TextBox TxtAccountingMovementId;
         private System.Windows.Forms.Button BtnCancel;
         private System.Windows.Forms.Button BtnSave;
-        public System.Windows.Forms.TextBox TxtAmount;
         private System.Windows.Forms.Label LblDate;
-        public System.Windows.Forms.DateTimePicker DtpDate;
         private System.Windows.Forms.Label LblSubType;
-        public System.Windows.Forms.ComboBox CbxSubType;
         private System.Windows.Forms.Label LblComment;
-        public System.Windows.Forms.TextBox TxtComment;
+        private System.Windows.Forms.ComboBox CbxType;
+        private System.Windows.Forms.ComboBox CbxCategory;
+        private System.Windows.Forms.TextBox TxtAccountingMovementId;
+        private System.Windows.Forms.TextBox TxtAmount;
+        private System.Windows.Forms.DateTimePicker DtpDate;
+        private System.Windows.Forms.ComboBox CbxSubType;
+        private System.Windows.Forms.TextBox TxtComment;
     }
 }
