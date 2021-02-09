@@ -22,15 +22,15 @@ namespace BudgetManagementApp.Entities.ViewModels.Projects
 
         public DateTime EndDate { get; set; }
 
-        public decimal? Construction { get; set; }
+        public decimal Construction { get; set; }
 
-        public decimal? Cost { get; set; }
+        public decimal Cost { get; set; }
 
         public override IEnumerable<string> Validate()
         {
             if (Name.IsEmpty())
             {
-                StringResources.FieldRequired.Format(
+                yield return StringResources.FieldRequired.Format(
                     StringResourcesHandler.GetString(FieldNames.Name)
                 );
             }

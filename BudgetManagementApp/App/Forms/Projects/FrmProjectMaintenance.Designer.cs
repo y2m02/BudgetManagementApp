@@ -216,17 +216,17 @@ namespace BudgetManagementApp.Forms.Projects
         #endregion
 
         private System.Windows.Forms.Label LblProjectName;
-        public System.Windows.Forms.TextBox TxtProjectId;
         private System.Windows.Forms.Button BtnCancel;
         private System.Windows.Forms.Button BtnSave;
-        public System.Windows.Forms.TextBox TxtProjectName;
         private System.Windows.Forms.Label LblStartDate;
         private System.Windows.Forms.Label LblEndDate;
         private System.Windows.Forms.Label LblConstruction;
-        public System.Windows.Forms.TextBox TxtContruction;
         private System.Windows.Forms.Label LblCost;
-        public System.Windows.Forms.TextBox TxtCost;
-        public System.Windows.Forms.DateTimePicker DtpStartDate;
-        public System.Windows.Forms.DateTimePicker DtpEndDate;
+        private System.Windows.Forms.TextBox TxtProjectId;
+        private System.Windows.Forms.TextBox TxtProjectName;
+        private System.Windows.Forms.TextBox TxtContruction;
+        private System.Windows.Forms.TextBox TxtCost;
+        private System.Windows.Forms.DateTimePicker DtpStartDate;
+        private System.Windows.Forms.DateTimePicker DtpEndDate;
     }
 }

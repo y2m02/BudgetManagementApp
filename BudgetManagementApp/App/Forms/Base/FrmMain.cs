@@ -827,14 +827,10 @@ namespace BudgetManagementApp.Forms.Base
                 project.EndDate.ToShortDateString()
             );
             budgetManagement.TxtConstruction.SetText(
-                project.Construction
-                    .GetValueOrDefault()
-                    .ToStringWithDecimals()
+                project.Construction.ToStringWithDecimals()
             );
             budgetManagement.TxtCost.SetText(
-                project.Cost
-                    .GetValueOrDefault()
-                    .ToStringWithDecimals()
+                project.Cost.ToStringWithDecimals()
             );
 
             budgetManagement.ShowDialog();
@@ -846,7 +842,7 @@ namespace BudgetManagementApp.Forms.Base
 
             PopulateGrid(
                 DgvProjects,
-                GetFilteredData(text, Projects, c => c.Name.Contains(text)),
+                GetFilteredData(text, Projects, c => c.Name.ToLower().Contains(text.ToLower())),
                 FormatGrid,
                 new List<string> { FieldNames.ProjectId }
             );
@@ -907,32 +903,14 @@ namespace BudgetManagementApp.Forms.Base
             {
                 case MaintenanceType.CreateNew:
                     projectMaintenance.Text = StringResources.Add.Format(StringResources.Projects);
-                    projectMaintenance.TxtProjectId.Clear();
-                    projectMaintenance.TxtProjectName.Clear();
-                    projectMaintenance.DtpStartDate.Value = DateTime.Now;
-                    projectMaintenance.DtpEndDate.Value = DateTime.Now;
-                    projectMaintenance.TxtContruction.Clear();
-                    projectMaintenance.TxtCost.Clear();
+
+                    projectMaintenance.Project = new ProjectViewModel();
                     break;
 
                 case MaintenanceType.Modify:
-                    var project = Projects.Single(w => w.Id == TxtProjectId.Text.ToInt());
-
                     projectMaintenance.Text = StringResources.Modify.Format(StringResources.Projects);
-                    projectMaintenance.TxtProjectId.SetText(TxtProjectId.Text);
-                    projectMaintenance.TxtProjectName.SetText(project.Name);
-                    projectMaintenance.DtpStartDate.Value = project.StartDate;
-                    projectMaintenance.DtpEndDate.Value = project.EndDate;
-                    projectMaintenance.TxtContruction.SetText(
-                        project.Construction
-                            .GetValueOrDefault()
-                            .ToString(CultureData.GetEnglishCulture())
-                    );
-                    projectMaintenance.TxtCost.SetText(
-                        project.Cost
-                            .GetValueOrDefault()
-                            .ToString(CultureData.GetEnglishCulture())
-                    );
+
+                    projectMaintenance.Project = Projects.Single(w => w.Id == TxtProjectId.Text.ToInt());
                     break;
             }
         }
