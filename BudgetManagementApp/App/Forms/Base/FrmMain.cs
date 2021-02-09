@@ -407,7 +407,7 @@ namespace BudgetManagementApp.Forms.Base
             PopulateGrid(
                 DgvCategories,
                 GetFilteredData(
-                    text, 
+                    text,
                     Categories, c => c.Description.ToLower().Contains(text.ToLower())
                 ),
                 FormatGrid,
@@ -628,33 +628,20 @@ namespace BudgetManagementApp.Forms.Base
 
         private void InitializeTypeMaintenanceControls(MaintenanceType type)
         {
-            var cbxCategory = typeMaintenance.CbxCategory;
-
-            cbxCategory.SetData(
-                Categories,
-                FieldNames.CategoryId,
-                FieldNames.Description
-            );
+            typeMaintenance.Categories = Categories;
 
             switch (type)
             {
                 case MaintenanceType.CreateNew:
                     typeMaintenance.Text = StringResources.Add.Format(StringResources.Type);
-                    typeMaintenance.TxtTypeId.Clear();
-                    typeMaintenance.TxtDescription.Clear();
 
-                    if (cbxCategory.HasValue())
-                    {
-                        cbxCategory.SelectedIndex = 0;
-                    }
-
+                    typeMaintenance.Type = new TypeViewModel();
                     break;
 
                 case MaintenanceType.Modify:
                     typeMaintenance.Text = StringResources.Modify.Format(StringResources.Type);
-                    typeMaintenance.TxtTypeId.Text = TxtTypeId.Text;
-                    typeMaintenance.TxtDescription.Text = TxtTypeDescription.Text;
-                    cbxCategory.Text = TxtTypeCategory.Text;
+
+                    typeMaintenance.Type = Types.Single(w => w.TypeId == TxtTypeId.Text.ToInt());
                     break;
             }
         }

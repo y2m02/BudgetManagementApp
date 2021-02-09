@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using BudgetManagementApp.Entities.Extensions;
+using BudgetManagementApp.Entities.Helpers;
+using BudgetManagementApp.Entities.ViewModels.Categories;
 using BudgetManagementApp.Entities.ViewModels.Types;
 using BudgetManagementApp.Forms.Base;
 using BudgetManagementApp.Services.Services.Types;
@@ -16,6 +19,10 @@ namespace BudgetManagementApp.Forms.Types
 
             InitializeComponent();
         }
+
+        public TypeViewModel Type { get; set; }
+
+        public List<CategoryViewModel> Categories { get; set; }
 
         private void BtnCancel_Click(object sender, EventArgs e)
         {
@@ -35,11 +42,28 @@ namespace BudgetManagementApp.Forms.Types
         private void FrmTypeMaintenance_Load(object sender, EventArgs e)
         {
             SetLabels();
+
+            TxtTypeId.SetText(Type.TypeId.ToString());
+
+            TxtDescription.SetText(Type.Description);
+            
+            CbxCategory.SetData(
+              Categories,
+              FieldNames.CategoryId,
+              FieldNames.Description
+            );
+
+            CbxCategory.SetSelectedValue(Type.CategoryId);
         }
 
         protected sealed override void SetLabels()
         {
             LoopControlsToSetLabels(Controls);
+        }
+
+        private void FrmTypeMaintenance_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+        {
+            CbxCategory.ClearDataSource();
         }
     }
 }
