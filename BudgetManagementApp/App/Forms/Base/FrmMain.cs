@@ -502,11 +502,9 @@ namespace BudgetManagementApp.Forms.Base
                 case MaintenanceType.Modify:
                     categoryMaintenance.Text = StringResources.Modify.Format(StringResources.Category);
 
-                    categoryMaintenance.Category = new CategoryViewModel
-                    {
-                        Id = TxtCategoryId.Text.ToIntOrDefault(),
-                        Description = TxtCategoryDescription.Text,
-                    };
+                    categoryMaintenance.Category = Categories.Single(
+                        w => w.CategoryId == TxtCategoryId.Text.ToIntOrDefault()
+                    );
                     break;
             }
         }
