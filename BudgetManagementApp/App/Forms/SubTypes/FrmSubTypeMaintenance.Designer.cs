@@ -162,6 +162,7 @@ namespace BudgetManagementApp.Forms.SubTypes
             this.Name = "FrmSubTypeMaintenance";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmSubTypeMaintenance";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmSubTypeMaintenance_FormClosing);
             this.Load += new System.EventHandler(this.FrmSubTypeMaintenance_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -171,13 +172,13 @@ namespace BudgetManagementApp.Forms.SubTypes
         #endregion
 
         private System.Windows.Forms.Label LblCategory;
-        public System.Windows.Forms.ComboBox CbxCategory;
         private System.Windows.Forms.Label LblDescription;
-        public System.Windows.Forms.TextBox TxtSubTypeId;
         private System.Windows.Forms.Button BtnCancel;
         private System.Windows.Forms.Button BtnSave;
-        public System.Windows.Forms.TextBox TxtDescription;
         private System.Windows.Forms.Label LblType;
-        public System.Windows.Forms.ComboBox CbxType;
+        private System.Windows.Forms.ComboBox CbxCategory;
+        private System.Windows.Forms.TextBox TxtSubTypeId;
+        private System.Windows.Forms.TextBox TxtDescription;
+        private System.Windows.Forms.ComboBox CbxType;
     }
 }

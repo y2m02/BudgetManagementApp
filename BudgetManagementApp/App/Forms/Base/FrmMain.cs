@@ -688,9 +688,9 @@ namespace BudgetManagementApp.Forms.Base
                 GetFilteredData(
                     text,
                     SubTypes,
-                    s => s.Description.Contains(text) ||
-                         s.TypeDescription.Contains(text) ||
-                         s.CategoryDescription.Contains(text)
+                    s => s.Description.ToLower().Contains(text.ToLower()) ||
+                         s.TypeDescription.ToLower().Contains(text.ToLower()) ||
+                         s.CategoryDescription.ToLower().Contains(text.ToLower())
                 ),
                 FormatGrid,
                 new List<string>
@@ -761,49 +761,23 @@ namespace BudgetManagementApp.Forms.Base
 
         private void InitializeSubTypeMaintenanceControls(MaintenanceType type)
         {
+            subTypeMaintenance.Categories = Categories;
             subTypeMaintenance.Types = Types;
-
-            var cbxType = subTypeMaintenance.CbxType;
-
-            cbxType.SetData(
-                Types,
-                FieldNames.TypeId,
-                FieldNames.Description
-            );
-
-            var cbxCategory = subTypeMaintenance.CbxCategory;
-
-            cbxCategory.SetData(
-                Categories,
-                FieldNames.CategoryId,
-                FieldNames.Description
-            );
 
             switch (type)
             {
                 case MaintenanceType.CreateNew:
                     subTypeMaintenance.Text = StringResources.Add.Format(StringResources.SubType);
-                    subTypeMaintenance.TxtSubTypeId.Clear();
-                    subTypeMaintenance.TxtDescription.Clear();
 
-                    if (cbxCategory.HasValue())
-                    {
-                        cbxCategory.SelectedIndex = 0;
-                    }
-
-                    if (cbxType.HasValue())
-                    {
-                        cbxType.SelectedIndex = 0;
-                    }
-
+                    subTypeMaintenance.SubType = new SubTypeViewModel();
                     break;
 
                 case MaintenanceType.Modify:
                     subTypeMaintenance.Text = StringResources.Modify.Format(StringResources.SubType);
-                    subTypeMaintenance.TxtSubTypeId.Text = TxtSubTypeId.Text;
-                    subTypeMaintenance.TxtDescription.Text = TxtSubTypeDescription.Text;
-                    cbxCategory.Text = TxtSubTypeCategory.Text;
-                    cbxType.Text = TxtSubTypeTypeDescription.Text;
+
+                    subTypeMaintenance.SubType = SubTypes.Single(
+                        w => w.SubTypeId == TxtSubTypeId.Text.ToIntOrDefault()
+                    );
                     break;
             }
         }
