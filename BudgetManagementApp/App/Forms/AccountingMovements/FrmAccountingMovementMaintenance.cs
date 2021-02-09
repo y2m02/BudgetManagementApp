@@ -45,27 +45,25 @@ namespace BudgetManagementApp.Forms.AccountingMovements
                 ? AccountingMovement.Date
                 : DateTime.Now;
 
-            CbxSubType.SetData(
-              SubTypes,
-              FieldNames.SubTypeId,
-              FieldNames.Description
-            );
-
-            CbxType.SetData(
-              Types,
-              FieldNames.TypeId,
-              FieldNames.Description
-            );
-            
             CbxCategory.SetData(
               Categories,
               FieldNames.CategoryId,
               FieldNames.Description
             );
 
-            CbxCategory.SetSelectedValue(AccountingMovement.CategoryId);
+            CbxType.SetData(
+              Types.PrettyWhere(w => w.CategoryId == AccountingMovement.CategoryId),
+              FieldNames.TypeId,
+              FieldNames.Description
+            );
 
             CbxType.SetSelectedValue(AccountingMovement.TypeId);
+
+            CbxSubType.SetData(
+              SubTypes.PrettyWhere(w => w.TypeId == AccountingMovement.TypeId),
+              FieldNames.SubTypeId,
+              FieldNames.Description
+            );
 
             CbxSubType.SetSelectedValue(AccountingMovement.SubTypeId);
 
@@ -111,14 +109,16 @@ namespace BudgetManagementApp.Forms.AccountingMovements
                 FieldNames.Description
             );
 
-            if (types.Any()) return;
+            if (types.Any())
+                return;
 
             CbxSubType.ClearDataSource();
         }
 
         private void CbxType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var cbxType = (ComboBox)sender;;
+            var cbxType = (ComboBox)sender;
+            ;
 
             var typeId = cbxType.SafeSelectedValue<int>();
 
@@ -131,9 +131,7 @@ namespace BudgetManagementApp.Forms.AccountingMovements
 
         private void FrmAccountingMovementMaintenance_FormClosing(object sender, FormClosingEventArgs e)
         {
-            CbxSubType.ClearDataSource();
-            CbxType.ClearDataSource();
-            CbxCategory.ClearDataSource();
+
         }
     }
 }

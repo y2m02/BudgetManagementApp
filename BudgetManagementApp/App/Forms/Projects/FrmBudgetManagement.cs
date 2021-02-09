@@ -114,7 +114,7 @@ namespace BudgetManagementApp.Forms.Projects
             TxtIncomeFilter.Clear();
 
             HandleEntity<AccountingMovementViewModel>(
-                accountingMovementService.GetIncomes(),
+                accountingMovementService.GetIncomesByProjectId(Project.ProjectId),
                 SetupIncomes
             );
 

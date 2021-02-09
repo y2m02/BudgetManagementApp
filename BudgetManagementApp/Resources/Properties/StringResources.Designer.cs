@@ -196,7 +196,7 @@ namespace BudgetManagementApp.Resources.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The {0} cannot be greater than the {1}..
+        ///   Looks up a localized string similar to {0} cannot be greater than {1}..
         /// </summary>
         public static string DateGreaterThanValidation {
             get {
@@ -349,7 +349,7 @@ namespace BudgetManagementApp.Resources.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The field {0} must be greater than {1}.
+        ///   Looks up a localized string similar to The field {0} must be greater than {1}..
         /// </summary>
         public static string GreaterThanValidation {
             get {

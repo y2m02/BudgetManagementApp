@@ -48,5 +48,29 @@ namespace BudgetManagementApp.Services.Services.AccountingMovements
                 );
             });
         }
+
+        public BaseReturnViewModel GetIncomesByProjectId(int projectId)
+        {
+            return HandleErrors(() =>
+            {
+                return Success(
+                    mapper.Map<IEnumerable<AccountingMovementViewModel>>(
+                        accountingMovementRepository.GetIncomesByProjectId(projectId)
+                    )
+                );
+            });
+        }
+
+        public BaseReturnViewModel GetExpensesByProjectId(int projectId)
+        {
+            return HandleErrors(() =>
+            {
+                return Success(
+                    mapper.Map<IEnumerable<AccountingMovementViewModel>>(
+                        accountingMovementRepository.GetExpensesByProjectId(projectId)
+                    )
+                );
+            });
+        }
     }
 }

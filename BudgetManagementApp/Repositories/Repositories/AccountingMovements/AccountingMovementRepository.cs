@@ -66,5 +66,31 @@ namespace BudgetManagementApp.Repositories.Repositories.AccountingMovements
                 .OrderByDescending(w => w.AccountingMovementId)
                 .AsNoTracking();
         }
+
+        public IEnumerable<AccountingMovement> GetIncomesByProjectId(int projectId)
+        {
+            return Context.AccountingMovements
+                .Where(w => w.IsAnIncome && w.ProjectId == projectId)
+                .Include(w => w.SubType)
+                .Include(w => w.SubType.Type)
+                .Include(w => w.SubType.Type.Category)
+                .Include(w => w.Project)
+                .Where(w => !w.DeletedOn.HasValue)
+                .OrderByDescending(w => w.AccountingMovementId)
+                .AsNoTracking();
+        }
+
+        public IEnumerable<AccountingMovement> GetExpensesByProjectId(int projectId)
+        {
+            return Context.AccountingMovements
+                .Where(w => !w.IsAnIncome && w.ProjectId == projectId)
+                .Include(w => w.SubType)
+                .Include(w => w.SubType.Type)
+                .Include(w => w.SubType.Type.Category)
+                .Include(w => w.Project)
+                .Where(w => !w.DeletedOn.HasValue)
+                .OrderByDescending(w => w.AccountingMovementId)
+                .AsNoTracking();
+        }
     }
 }
