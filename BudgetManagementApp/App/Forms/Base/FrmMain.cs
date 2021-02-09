@@ -681,15 +681,33 @@ namespace BudgetManagementApp.Forms.Base
         {
             budgetManagement.Text = StringResources.BudgetManagement;
 
-            budgetManagement.Project = Projects.Single(w => w.Id == TxtProjectId.Text.ToInt());
+            var project = Projects.Single(w => w.Id == TxtProjectId.Text.ToInt());
+
+            budgetManagement.Project = project;
 
             budgetManagement.Categories = Categories;
             budgetManagement.Types = Types;
             budgetManagement.SubTypes = SubTypes;
 
-            budgetManagement.SetupData(AccountingMovements);
+            budgetManagement.SetupData(
+                AccountingMovements.PrettyWhere(w => w.ProjectId == project.ProjectId)
+            );
 
             budgetManagement.ShowDialog();
+
+            if (GlobalProperties.ProjectsNeedToBeUpdated)
+            {
+                GlobalProperties.ProjectsNeedToBeUpdated = false;
+
+                HandleEntity<ProjectViewModel>(
+                    projectService.GetAll(),
+                    SetupProjects
+                );
+
+                AccountingMovements = HandleEntity<AccountingMovementViewModel>(
+                    accountingMovementService.GetAll()
+                );
+            }
         }
 
         private void TxtProjectFilter_TextChanged(object sender, EventArgs e)

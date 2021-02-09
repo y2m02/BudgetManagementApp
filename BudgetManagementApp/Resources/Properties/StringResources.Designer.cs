@@ -349,6 +349,15 @@ namespace BudgetManagementApp.Resources.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The field {0} must be greater than {1}.
+        /// </summary>
+        public static string GreaterThanValidation {
+            get {
+                return ResourceManager.GetString("GreaterThanValidation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Grouped by Categories.
         /// </summary>
         public static string GroupedByCategory {

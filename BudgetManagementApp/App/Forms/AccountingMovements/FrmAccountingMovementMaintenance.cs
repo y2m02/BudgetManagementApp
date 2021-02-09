@@ -5,6 +5,7 @@ using BudgetManagementApp.Entities.ViewModels.Categories;
 using BudgetManagementApp.Entities.ViewModels.SubTypes;
 using BudgetManagementApp.Entities.ViewModels.Types;
 using BudgetManagementApp.Forms.Base;
+using BudgetManagementApp.Services.Services.AccountingMovements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,14 @@ namespace BudgetManagementApp.Forms.AccountingMovements
 {
     public partial class FrmAccountingMovementMaintenance : BaseForm
     {
-        public FrmAccountingMovementMaintenance()
+        private readonly IAccountingMovementService accountingMovementService;
+
+        public FrmAccountingMovementMaintenance(
+            IAccountingMovementService accountingMovementService
+        )
         {
             InitializeComponent();
+            this.accountingMovementService = accountingMovementService;
         }
 
         public AccountingMovementViewModel AccountingMovement { get; set; }
@@ -70,7 +76,20 @@ namespace BudgetManagementApp.Forms.AccountingMovements
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
+            Upsert(accountingMovementService.Upsert, new AccountingMovementViewModel
+            {
+                Id = TxtAccountingMovementId.Text.ToIntOrDefault(),
+                Date = DtpDate.Value.Date,
+                Amount = TxtAmount.Text.ToDecimalOrDefault(),
+                Comment = TxtComment.Text,
+                IsAnIncome = AccountingMovement.IsAnIncome,
+                ProjectId = AccountingMovement.ProjectId,
+                CategoryId = CbxCategory.SafeSelectedValue<int>(),
+                TypeId = CbxType.SafeSelectedValue<int>(),
+                SubTypeId = CbxSubType.SafeSelectedValue<int>(),
+            });
 
+            GlobalProperties.ProjectsNeedToBeUpdated = true;
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)

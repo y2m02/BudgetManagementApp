@@ -213,6 +213,9 @@
   <data name="File" xml:space="preserve">
     <value>Archivo</value>
   </data>
+  <data name="GreaterThanValidation" xml:space="preserve">
+    <value>El campo {0} debe ser mayor que {1}</value>
+  </data>
   <data name="GroupedByCategory" xml:space="preserve">
     <value>Agrupados por Categorías</value>
   </data>

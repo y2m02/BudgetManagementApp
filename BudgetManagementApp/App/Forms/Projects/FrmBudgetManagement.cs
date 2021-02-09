@@ -141,7 +141,11 @@ namespace BudgetManagementApp.Forms.Projects
                         isAnIncome ? StringResources.Income : StringResources.Expense
                     );
 
-                    accountingMovementMaintenance.AccountingMovement = new();
+                    accountingMovementMaintenance.AccountingMovement = new()
+                    {
+                        ProjectId = TxtProjectId.Text.ToInt(),
+                        IsAnIncome = isAnIncome
+                    };
                     break;
 
                 case MaintenanceType.Modify:
