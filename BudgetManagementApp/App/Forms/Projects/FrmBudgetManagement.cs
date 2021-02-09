@@ -190,7 +190,30 @@ namespace BudgetManagementApp.Forms.Projects
 
         private void TxtIncomeFilter_TextChanged(object sender, EventArgs e)
         {
+            var text = TxtIncomeFilter.Text;
 
+            PopulateGrid(
+                DgvIncomes,
+                GetFilteredData(
+                    text, 
+                    Incomes, 
+                    c => c.CategoryDescription.ToLower().Contains(text.ToLower()) ||
+                         c.TypeDescription.ToLower().Contains(text.ToLower()) ||
+                         c.SubTypeDescription.ToLower().Contains(text.ToLower()) ||
+                         c.Comment.ToLower().Contains(text.ToLower())
+                ),
+                FormatGrid,
+                new List<string>
+                {
+                    FieldNames.AccountingMovementId,
+                    FieldNames.CategoryId,
+                    FieldNames.TypeId,
+                    FieldNames.SubTypeId,
+                    FieldNames.ProjectId,
+                    FieldNames.ProjectName,
+                    FieldNames.IsAnIncome,
+                }
+            );
         }
 
         private void DgvIncomes_SelectionChanged(object sender, EventArgs e)

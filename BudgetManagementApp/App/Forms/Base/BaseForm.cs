@@ -147,12 +147,12 @@ namespace BudgetManagementApp.Forms.Base
             DataGridView grid,
             IEnumerable<TDataModel> data,
             Action<DataGridView, List<string>> formatGrid,
-            List<string> columnNames
+            List<string> columnNamesToHide
         )
         {
             grid.DataSource = data.ToList();
 
-            formatGrid(grid, columnNames);
+            formatGrid(grid, columnNamesToHide);
         }
 
         protected static void SetColumnNames(DataGridView grid, Dictionary<string, string> columnNames)
