@@ -41,18 +41,20 @@ namespace BudgetManagementApp.Forms.Projects
 
         public List<SubTypeViewModel> SubTypes { get; set; }
 
-        private List<AccountingMovementViewModel> Incomes { get; set; }
+        public List<AccountingMovementViewModel> Incomes { get; set; }
 
-        private List<AccountingMovementViewModel> Expenses { get; set; }
+        public List<AccountingMovementViewModel> Expenses { get; set; }
 
         public void SetupData(IEnumerable<AccountingMovementViewModel> model)
         {
-            SetupIncomes(model);
+            //SetupIncomes(model);
         }
 
         private void FrmBudgetManagement_Load(object sender, EventArgs e)
         {
             SetLabels();
+
+            SetupIncomes(Incomes);
 
             TxtProjectId.SetText(Project.ProjectId.ToString());
 
@@ -85,7 +87,7 @@ namespace BudgetManagementApp.Forms.Projects
 
         private void SetupIncomes(IEnumerable<AccountingMovementViewModel> model)
         {
-            Incomes = model.GetIncomes();
+            Incomes = model.ToList();
 
             PopulateGrid(
                 DgvIncomes,
@@ -101,6 +103,13 @@ namespace BudgetManagementApp.Forms.Projects
                     FieldNames.ProjectName,
                     FieldNames.IsAnIncome,
                 }
+            );
+
+            LblTotalIncomes.SetText(
+                StringResources.Total.Format(
+                    StringResourcesHandler.GetString(FieldNames.Incomes), 
+                    Incomes.Sum(w => w.Amount).ToStringWithDecimals()
+                )
             );
         }
 
@@ -195,8 +204,8 @@ namespace BudgetManagementApp.Forms.Projects
             PopulateGrid(
                 DgvIncomes,
                 GetFilteredData(
-                    text, 
-                    Incomes, 
+                    text,
+                    Incomes,
                     c => c.CategoryDescription.ToLower().Contains(text.ToLower()) ||
                          c.TypeDescription.ToLower().Contains(text.ToLower()) ||
                          c.SubTypeDescription.ToLower().Contains(text.ToLower()) ||

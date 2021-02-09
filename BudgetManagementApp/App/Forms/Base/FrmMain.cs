@@ -685,13 +685,23 @@ namespace BudgetManagementApp.Forms.Base
 
             budgetManagement.Project = project;
 
+            budgetManagement.Incomes =
+                AccountingMovements
+                    .PrettyWhere(w => w.ProjectId == project.ProjectId)
+                    .GetIncomes();
+
+            budgetManagement.Expenses =
+                AccountingMovements
+                    .PrettyWhere(w => w.ProjectId == project.ProjectId)
+                    .GetExpenses();
+
             budgetManagement.Categories = Categories;
             budgetManagement.Types = Types;
             budgetManagement.SubTypes = SubTypes;
 
-            budgetManagement.SetupData(
-                AccountingMovements.PrettyWhere(w => w.ProjectId == project.ProjectId)
-            );
+            //budgetManagement.SetupData(
+            //    AccountingMovements.PrettyWhere(w => w.ProjectId == project.ProjectId)
+            //);
 
             budgetManagement.ShowDialog();
 

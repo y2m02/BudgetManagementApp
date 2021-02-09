@@ -54,6 +54,8 @@ namespace BudgetManagementApp.Forms.Projects
             this.DgvExpenses = new System.Windows.Forms.DataGridView();
             this.TxtIncomeId = new System.Windows.Forms.TextBox();
             this.TxtExpenseId = new System.Windows.Forms.TextBox();
+            this.LblTotalIncomes = new System.Windows.Forms.Label();
+            this.LblTotalExpenses = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DgvIncomes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvExpenses)).BeginInit();
             this.SuspendLayout();
@@ -350,11 +352,37 @@ namespace BudgetManagementApp.Forms.Projects
             this.TxtExpenseId.TabIndex = 79;
             this.TxtExpenseId.Visible = false;
             // 
+            // LblTotalIncomes
+            // 
+            this.LblTotalIncomes.AutoSize = true;
+            this.LblTotalIncomes.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblTotalIncomes.Location = new System.Drawing.Point(515, 728);
+            this.LblTotalIncomes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblTotalIncomes.Name = "LblTotalIncomes";
+            this.LblTotalIncomes.Size = new System.Drawing.Size(145, 24);
+            this.LblTotalIncomes.TabIndex = 80;
+            this.LblTotalIncomes.Text = "Total Ingresos";
+            this.LblTotalIncomes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // LblTotalExpenses
+            // 
+            this.LblTotalExpenses.AutoSize = true;
+            this.LblTotalExpenses.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblTotalExpenses.Location = new System.Drawing.Point(1283, 728);
+            this.LblTotalExpenses.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblTotalExpenses.Name = "LblTotalExpenses";
+            this.LblTotalExpenses.Size = new System.Drawing.Size(141, 24);
+            this.LblTotalExpenses.TabIndex = 81;
+            this.LblTotalExpenses.Text = "Total Egresos";
+            this.LblTotalExpenses.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // FrmBudgetManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1449, 771);
+            this.ClientSize = new System.Drawing.Size(1449, 789);
+            this.Controls.Add(this.LblTotalExpenses);
+            this.Controls.Add(this.LblTotalIncomes);
             this.Controls.Add(this.TxtExpenseId);
             this.Controls.Add(this.TxtIncomeId);
             this.Controls.Add(this.LblExpenseFilter);
@@ -421,5 +449,7 @@ namespace BudgetManagementApp.Forms.Projects
         private System.Windows.Forms.TextBox TxtEndDate;
         private System.Windows.Forms.TextBox TxtStartDate;
         private System.Windows.Forms.TextBox TxtProjectName;
+        private System.Windows.Forms.Label LblTotalIncomes;
+        private System.Windows.Forms.Label LblTotalExpenses;
     }
 }
