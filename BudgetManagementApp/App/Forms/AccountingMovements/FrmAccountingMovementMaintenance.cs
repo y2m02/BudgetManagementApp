@@ -51,6 +51,8 @@ namespace BudgetManagementApp.Forms.AccountingMovements
               FieldNames.Description
             );
 
+            CbxCategory.SetSelectedValue(AccountingMovement.CategoryId);
+
             CbxType.SetData(
               Types.PrettyWhere(w => w.CategoryId == AccountingMovement.CategoryId),
               FieldNames.TypeId,
@@ -118,7 +120,6 @@ namespace BudgetManagementApp.Forms.AccountingMovements
         private void CbxType_SelectedIndexChanged(object sender, EventArgs e)
         {
             var cbxType = (ComboBox)sender;
-            ;
 
             var typeId = cbxType.SafeSelectedValue<int>();
 
@@ -131,7 +132,9 @@ namespace BudgetManagementApp.Forms.AccountingMovements
 
         private void FrmAccountingMovementMaintenance_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            CbxCategory.ClearDataSource();
+            CbxType.ClearDataSource();
+            CbxSubType.ClearDataSource();
         }
     }
 }
