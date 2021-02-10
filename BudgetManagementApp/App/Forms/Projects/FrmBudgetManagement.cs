@@ -78,6 +78,18 @@ namespace BudgetManagementApp.Forms.Projects
                 [FieldNames.Comment] = StringResourcesHandler.GetString(FieldNames.Comment),
             });
 
+            SetColumnNames(DgvIncomesByTypes, new Dictionary<string, string>
+            {
+                [FieldNames.TypeDescription] = StringResourcesHandler.GetString(FieldNames.Type),
+                [FieldNames.Amount] = StringResourcesHandler.GetString(FieldNames.Amount),
+            });
+
+            SetColumnNames(DgvIncomesByCategories, new Dictionary<string, string>
+            {
+                [FieldNames.CategoryDescription] = StringResourcesHandler.GetString(FieldNames.Category),
+                [FieldNames.Amount] = StringResourcesHandler.GetString(FieldNames.Amount),
+            });
+
             SetColumnNames(DgvExpenses, new Dictionary<string, string>
             {
                 [FieldNames.CategoryDescription] = StringResourcesHandler.GetString(FieldNames.Category),
@@ -155,6 +167,69 @@ namespace BudgetManagementApp.Forms.Projects
                     StringResourcesHandler.GetString(FieldNames.Incomes),
                     Incomes.Sum(w => w.Amount).ToStringWithDecimals()
                 )
+            );
+
+            SetupIncomesByTypes();
+            SetupIncomesByCategories();
+        }
+
+        private void SetupIncomesByTypes()
+        {
+            var incomesGroupedByTypes = Incomes.GroupBy(w => w.TypeId)
+                .EagerSelect(group => new AccountingMovementViewModel
+                {
+                    TypeDescription = group.FirstOrDefault()?.TypeDescription,
+                    Amount = group.Sum(w => w.Amount),
+                });
+
+            PopulateGrid(
+                DgvIncomesByTypes,
+                incomesGroupedByTypes,
+                FormatGrid,
+                new List<string>
+                {
+                    FieldNames.AccountingMovementId,
+                    FieldNames.CategoryId,
+                    FieldNames.CategoryDescription,
+                    FieldNames.TypeId,
+                    FieldNames.SubTypeId,
+                    FieldNames.SubTypeDescription,
+                    FieldNames.ProjectId,
+                    FieldNames.ProjectName,
+                    FieldNames.IsAnIncome,
+                    FieldNames.Comment,
+                    FieldNames.Date,
+                }
+            );
+        }
+
+        private void SetupIncomesByCategories()
+        {
+            var incomesGroupedByCategories = Incomes.GroupBy(w => w.CategoryId)
+                .EagerSelect(group => new AccountingMovementViewModel
+                {
+                    CategoryDescription = group.FirstOrDefault()?.CategoryDescription,
+                    Amount = group.Sum(w => w.Amount),
+                });
+
+            PopulateGrid(
+                DgvIncomesByCategories,
+                incomesGroupedByCategories,
+                FormatGrid,
+                new List<string>
+                {
+                    FieldNames.AccountingMovementId,
+                    FieldNames.CategoryId,
+                    FieldNames.TypeId,
+                    FieldNames.TypeDescription,
+                    FieldNames.SubTypeId,
+                    FieldNames.SubTypeDescription,
+                    FieldNames.ProjectId,
+                    FieldNames.ProjectName,
+                    FieldNames.IsAnIncome,
+                    FieldNames.Comment,
+                    FieldNames.Date,
+                }
             );
         }
 
