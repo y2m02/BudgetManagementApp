@@ -56,8 +56,10 @@ namespace BudgetManagementApp.Forms.Projects
             this.TxtExpenseId = new System.Windows.Forms.TextBox();
             this.LblTotalIncomes = new System.Windows.Forms.Label();
             this.LblTotalExpenses = new System.Windows.Forms.Label();
+            this.PnlBySubTypes = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.DgvIncomes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvExpenses)).BeginInit();
+            this.PnlBySubTypes.SuspendLayout();
             this.SuspendLayout();
             // 
             // LblCost
@@ -180,7 +182,7 @@ namespace BudgetManagementApp.Forms.Projects
             // 
             this.LblIncomeFilter.AutoSize = true;
             this.LblIncomeFilter.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblIncomeFilter.Location = new System.Drawing.Point(403, 326);
+            this.LblIncomeFilter.Location = new System.Drawing.Point(401, 56);
             this.LblIncomeFilter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblIncomeFilter.Name = "LblIncomeFilter";
             this.LblIncomeFilter.Size = new System.Drawing.Size(77, 24);
@@ -191,7 +193,7 @@ namespace BudgetManagementApp.Forms.Projects
             // BtnDeleteIncome
             // 
             this.BtnDeleteIncome.Enabled = false;
-            this.BtnDeleteIncome.Location = new System.Drawing.Point(255, 317);
+            this.BtnDeleteIncome.Location = new System.Drawing.Point(253, 47);
             this.BtnDeleteIncome.Margin = new System.Windows.Forms.Padding(1);
             this.BtnDeleteIncome.Name = "BtnDeleteIncome";
             this.BtnDeleteIncome.Size = new System.Drawing.Size(116, 44);
@@ -203,7 +205,7 @@ namespace BudgetManagementApp.Forms.Projects
             // BtnModifyIncome
             // 
             this.BtnModifyIncome.Enabled = false;
-            this.BtnModifyIncome.Location = new System.Drawing.Point(137, 317);
+            this.BtnModifyIncome.Location = new System.Drawing.Point(135, 47);
             this.BtnModifyIncome.Margin = new System.Windows.Forms.Padding(1);
             this.BtnModifyIncome.Name = "BtnModifyIncome";
             this.BtnModifyIncome.Size = new System.Drawing.Size(116, 44);
@@ -214,7 +216,7 @@ namespace BudgetManagementApp.Forms.Projects
             // 
             // BtnNewIncome
             // 
-            this.BtnNewIncome.Location = new System.Drawing.Point(19, 317);
+            this.BtnNewIncome.Location = new System.Drawing.Point(17, 47);
             this.BtnNewIncome.Margin = new System.Windows.Forms.Padding(1);
             this.BtnNewIncome.Name = "BtnNewIncome";
             this.BtnNewIncome.Size = new System.Drawing.Size(116, 44);
@@ -225,7 +227,7 @@ namespace BudgetManagementApp.Forms.Projects
             // 
             // TxtIncomeFilter
             // 
-            this.TxtIncomeFilter.Location = new System.Drawing.Point(488, 323);
+            this.TxtIncomeFilter.Location = new System.Drawing.Point(486, 53);
             this.TxtIncomeFilter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TxtIncomeFilter.MaxLength = 99;
             this.TxtIncomeFilter.Name = "TxtIncomeFilter";
@@ -240,7 +242,7 @@ namespace BudgetManagementApp.Forms.Projects
             this.DgvIncomes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DgvIncomes.BackgroundColor = System.Drawing.SystemColors.Control;
             this.DgvIncomes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvIncomes.Location = new System.Drawing.Point(19, 367);
+            this.DgvIncomes.Location = new System.Drawing.Point(17, 97);
             this.DgvIncomes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.DgvIncomes.MultiSelect = false;
             this.DgvIncomes.Name = "DgvIncomes";
@@ -257,7 +259,7 @@ namespace BudgetManagementApp.Forms.Projects
             // 
             this.LblExpenseFilter.AutoSize = true;
             this.LblExpenseFilter.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblExpenseFilter.Location = new System.Drawing.Point(1141, 326);
+            this.LblExpenseFilter.Location = new System.Drawing.Point(1094, 56);
             this.LblExpenseFilter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblExpenseFilter.Name = "LblExpenseFilter";
             this.LblExpenseFilter.Size = new System.Drawing.Size(77, 24);
@@ -268,7 +270,7 @@ namespace BudgetManagementApp.Forms.Projects
             // BtnDeleteExpense
             // 
             this.BtnDeleteExpense.Enabled = false;
-            this.BtnDeleteExpense.Location = new System.Drawing.Point(993, 317);
+            this.BtnDeleteExpense.Location = new System.Drawing.Point(946, 47);
             this.BtnDeleteExpense.Margin = new System.Windows.Forms.Padding(1);
             this.BtnDeleteExpense.Name = "BtnDeleteExpense";
             this.BtnDeleteExpense.Size = new System.Drawing.Size(116, 44);
@@ -280,7 +282,7 @@ namespace BudgetManagementApp.Forms.Projects
             // BtnModifyExpense
             // 
             this.BtnModifyExpense.Enabled = false;
-            this.BtnModifyExpense.Location = new System.Drawing.Point(875, 317);
+            this.BtnModifyExpense.Location = new System.Drawing.Point(828, 47);
             this.BtnModifyExpense.Margin = new System.Windows.Forms.Padding(1);
             this.BtnModifyExpense.Name = "BtnModifyExpense";
             this.BtnModifyExpense.Size = new System.Drawing.Size(116, 44);
@@ -291,7 +293,7 @@ namespace BudgetManagementApp.Forms.Projects
             // 
             // BtnNewExpense
             // 
-            this.BtnNewExpense.Location = new System.Drawing.Point(757, 317);
+            this.BtnNewExpense.Location = new System.Drawing.Point(710, 47);
             this.BtnNewExpense.Margin = new System.Windows.Forms.Padding(1);
             this.BtnNewExpense.Name = "BtnNewExpense";
             this.BtnNewExpense.Size = new System.Drawing.Size(116, 44);
@@ -302,7 +304,7 @@ namespace BudgetManagementApp.Forms.Projects
             // 
             // TxtExpenseFilter
             // 
-            this.TxtExpenseFilter.Location = new System.Drawing.Point(1226, 323);
+            this.TxtExpenseFilter.Location = new System.Drawing.Point(1179, 53);
             this.TxtExpenseFilter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TxtExpenseFilter.MaxLength = 99;
             this.TxtExpenseFilter.Name = "TxtExpenseFilter";
@@ -317,7 +319,7 @@ namespace BudgetManagementApp.Forms.Projects
             this.DgvExpenses.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DgvExpenses.BackgroundColor = System.Drawing.SystemColors.Control;
             this.DgvExpenses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvExpenses.Location = new System.Drawing.Point(757, 367);
+            this.DgvExpenses.Location = new System.Drawing.Point(710, 97);
             this.DgvExpenses.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.DgvExpenses.MultiSelect = false;
             this.DgvExpenses.Name = "DgvExpenses";
@@ -332,7 +334,7 @@ namespace BudgetManagementApp.Forms.Projects
             // 
             // TxtIncomeId
             // 
-            this.TxtIncomeId.Location = new System.Drawing.Point(18, 283);
+            this.TxtIncomeId.Location = new System.Drawing.Point(16, 13);
             this.TxtIncomeId.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.TxtIncomeId.MaxLength = 99;
             this.TxtIncomeId.Name = "TxtIncomeId";
@@ -343,7 +345,7 @@ namespace BudgetManagementApp.Forms.Projects
             // 
             // TxtExpenseId
             // 
-            this.TxtExpenseId.Location = new System.Drawing.Point(757, 283);
+            this.TxtExpenseId.Location = new System.Drawing.Point(710, 13);
             this.TxtExpenseId.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.TxtExpenseId.MaxLength = 99;
             this.TxtExpenseId.Name = "TxtExpenseId";
@@ -354,49 +356,58 @@ namespace BudgetManagementApp.Forms.Projects
             // 
             // LblTotalIncomes
             // 
-            this.LblTotalIncomes.AutoSize = true;
+            this.LblTotalIncomes.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.LblTotalIncomes.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblTotalIncomes.Location = new System.Drawing.Point(515, 728);
+            this.LblTotalIncomes.Location = new System.Drawing.Point(299, 458);
             this.LblTotalIncomes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblTotalIncomes.Name = "LblTotalIncomes";
-            this.LblTotalIncomes.Size = new System.Drawing.Size(145, 24);
+            this.LblTotalIncomes.Size = new System.Drawing.Size(385, 24);
             this.LblTotalIncomes.TabIndex = 80;
             this.LblTotalIncomes.Text = "Total Ingresos";
-            this.LblTotalIncomes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.LblTotalIncomes.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // LblTotalExpenses
             // 
-            this.LblTotalExpenses.AutoSize = true;
+            this.LblTotalExpenses.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.LblTotalExpenses.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblTotalExpenses.Location = new System.Drawing.Point(1283, 728);
+            this.LblTotalExpenses.Location = new System.Drawing.Point(891, 467);
             this.LblTotalExpenses.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblTotalExpenses.Name = "LblTotalExpenses";
-            this.LblTotalExpenses.Size = new System.Drawing.Size(141, 24);
+            this.LblTotalExpenses.Size = new System.Drawing.Size(486, 24);
             this.LblTotalExpenses.TabIndex = 81;
             this.LblTotalExpenses.Text = "Total Egresos";
             this.LblTotalExpenses.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // PnlBySubTypes
+            // 
+            this.PnlBySubTypes.Controls.Add(this.TxtIncomeId);
+            this.PnlBySubTypes.Controls.Add(this.LblTotalExpenses);
+            this.PnlBySubTypes.Controls.Add(this.DgvIncomes);
+            this.PnlBySubTypes.Controls.Add(this.TxtExpenseId);
+            this.PnlBySubTypes.Controls.Add(this.LblTotalIncomes);
+            this.PnlBySubTypes.Controls.Add(this.LblExpenseFilter);
+            this.PnlBySubTypes.Controls.Add(this.TxtIncomeFilter);
+            this.PnlBySubTypes.Controls.Add(this.BtnDeleteExpense);
+            this.PnlBySubTypes.Controls.Add(this.BtnNewIncome);
+            this.PnlBySubTypes.Controls.Add(this.BtnModifyExpense);
+            this.PnlBySubTypes.Controls.Add(this.BtnModifyIncome);
+            this.PnlBySubTypes.Controls.Add(this.BtnNewExpense);
+            this.PnlBySubTypes.Controls.Add(this.TxtExpenseFilter);
+            this.PnlBySubTypes.Controls.Add(this.BtnDeleteIncome);
+            this.PnlBySubTypes.Controls.Add(this.DgvExpenses);
+            this.PnlBySubTypes.Controls.Add(this.LblIncomeFilter);
+            this.PnlBySubTypes.Location = new System.Drawing.Point(19, 248);
+            this.PnlBySubTypes.Name = "PnlBySubTypes";
+            this.PnlBySubTypes.Size = new System.Drawing.Size(1418, 509);
+            this.PnlBySubTypes.TabIndex = 82;
             // 
             // FrmBudgetManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1449, 789);
-            this.Controls.Add(this.LblTotalExpenses);
-            this.Controls.Add(this.LblTotalIncomes);
-            this.Controls.Add(this.TxtExpenseId);
-            this.Controls.Add(this.TxtIncomeId);
-            this.Controls.Add(this.LblExpenseFilter);
-            this.Controls.Add(this.BtnDeleteExpense);
-            this.Controls.Add(this.BtnModifyExpense);
-            this.Controls.Add(this.BtnNewExpense);
-            this.Controls.Add(this.TxtExpenseFilter);
-            this.Controls.Add(this.DgvExpenses);
-            this.Controls.Add(this.LblIncomeFilter);
-            this.Controls.Add(this.BtnDeleteIncome);
-            this.Controls.Add(this.BtnModifyIncome);
-            this.Controls.Add(this.BtnNewIncome);
-            this.Controls.Add(this.TxtIncomeFilter);
-            this.Controls.Add(this.DgvIncomes);
+            this.Controls.Add(this.PnlBySubTypes);
             this.Controls.Add(this.LblCost);
             this.Controls.Add(this.TxtCost);
             this.Controls.Add(this.LblConstruction);
@@ -417,6 +428,8 @@ namespace BudgetManagementApp.Forms.Projects
             this.Load += new System.EventHandler(this.FrmBudgetManagement_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DgvIncomes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvExpenses)).EndInit();
+            this.PnlBySubTypes.ResumeLayout(false);
+            this.PnlBySubTypes.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -451,5 +464,6 @@ namespace BudgetManagementApp.Forms.Projects
         private System.Windows.Forms.TextBox TxtProjectName;
         private System.Windows.Forms.Label LblTotalIncomes;
         private System.Windows.Forms.Label LblTotalExpenses;
+        private System.Windows.Forms.Panel PnlBySubTypes;
     }
 }

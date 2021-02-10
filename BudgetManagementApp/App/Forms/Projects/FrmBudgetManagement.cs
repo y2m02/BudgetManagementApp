@@ -89,6 +89,13 @@ namespace BudgetManagementApp.Forms.Projects
             });
         }
 
+        protected override void SetLabels()
+        {
+            LoopControlsToSetLabels(PnlBySubTypes.Controls);
+
+            base.SetLabels();
+        }
+
         private void InitializeMaintenanceControls(
             MaintenanceType maintenanceType,
             AccountingMovementType movementType
