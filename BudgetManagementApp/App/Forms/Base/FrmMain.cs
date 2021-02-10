@@ -699,10 +699,6 @@ namespace BudgetManagementApp.Forms.Base
             budgetManagement.Types = Types;
             budgetManagement.SubTypes = SubTypes;
 
-            //budgetManagement.SetupData(
-            //    AccountingMovements.PrettyWhere(w => w.ProjectId == project.ProjectId)
-            //);
-
             budgetManagement.ShowDialog();
 
             if (GlobalProperties.ProjectsNeedToBeUpdated)

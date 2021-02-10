@@ -1,4 +1,7 @@
-﻿using BudgetManagementApp.Entities.Enums;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using BudgetManagementApp.Entities.Enums;
 using BudgetManagementApp.Entities.Extensions;
 using BudgetManagementApp.Entities.Helpers;
 using BudgetManagementApp.Entities.ViewModels.AccountingMovements;
@@ -11,26 +14,23 @@ using BudgetManagementApp.Forms.Base;
 using BudgetManagementApp.Resources;
 using BudgetManagementApp.Resources.Properties;
 using BudgetManagementApp.Services.Services.AccountingMovements;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace BudgetManagementApp.Forms.Projects
 {
     public partial class FrmBudgetManagement : BaseForm
     {
-        private readonly IAccountingMovementService accountingMovementService;
         private readonly FrmAccountingMovementMaintenance accountingMovementMaintenance;
+        private readonly IAccountingMovementService accountingMovementService;
 
         public FrmBudgetManagement(
             IAccountingMovementService accountingMovementService,
-            FrmAccountingMovementMaintenance accountMovementMaintenance
+            FrmAccountingMovementMaintenance accountingMovementMaintenance
         )
         {
             InitializeComponent();
 
             this.accountingMovementService = accountingMovementService;
-            accountingMovementMaintenance = accountMovementMaintenance;
+            this.accountingMovementMaintenance = accountingMovementMaintenance;
         }
 
         public ProjectViewModel Project { get; set; }
@@ -45,16 +45,12 @@ namespace BudgetManagementApp.Forms.Projects
 
         public List<AccountingMovementViewModel> Expenses { get; set; }
 
-        public void SetupData(IEnumerable<AccountingMovementViewModel> model)
-        {
-            //SetupIncomes(model);
-        }
-
         private void FrmBudgetManagement_Load(object sender, EventArgs e)
         {
             SetLabels();
 
             SetupIncomes(Incomes);
+            SetupExpenses(Expenses);
 
             TxtProjectId.SetText(Project.ProjectId.ToString());
 
@@ -81,6 +77,55 @@ namespace BudgetManagementApp.Forms.Projects
                 [FieldNames.Amount] = StringResourcesHandler.GetString(FieldNames.Amount),
                 [FieldNames.Comment] = StringResourcesHandler.GetString(FieldNames.Comment),
             });
+
+            SetColumnNames(DgvExpenses, new Dictionary<string, string>
+            {
+                [FieldNames.CategoryDescription] = StringResourcesHandler.GetString(FieldNames.Category),
+                [FieldNames.TypeDescription] = StringResourcesHandler.GetString(FieldNames.Type),
+                [FieldNames.SubTypeDescription] = StringResourcesHandler.GetString(FieldNames.SubType),
+                [FieldNames.Date] = StringResourcesHandler.GetString(FieldNames.Date),
+                [FieldNames.Amount] = StringResourcesHandler.GetString(FieldNames.Amount),
+                [FieldNames.Comment] = StringResourcesHandler.GetString(FieldNames.Comment),
+            });
+        }
+
+        private void InitializeMaintenanceControls(
+            MaintenanceType maintenanceType,
+            AccountingMovementType movementType
+        )
+        {
+            accountingMovementMaintenance.Categories = Categories;
+            accountingMovementMaintenance.Types = Types;
+            accountingMovementMaintenance.SubTypes = SubTypes;
+
+
+            var isAnIncome = movementType == AccountingMovementType.Income;
+
+
+            switch (maintenanceType)
+            {
+                case MaintenanceType.CreateNew:
+                    accountingMovementMaintenance.Text = StringResources.Add.Format(
+                        isAnIncome ? StringResources.Income : StringResources.Expense
+                    );
+
+                    accountingMovementMaintenance.AccountingMovement = new()
+                    {
+                        ProjectId = TxtProjectId.Text.ToInt(),
+                        IsAnIncome = isAnIncome,
+                    };
+                    break;
+
+                case MaintenanceType.Modify:
+                    accountingMovementMaintenance.Text = StringResources.Modify.Format(
+                        isAnIncome ? StringResources.Income : StringResources.Expense
+                    );
+
+                    accountingMovementMaintenance.AccountingMovement = isAnIncome
+                        ? Incomes.Single(w => w.Id == TxtIncomeId.Text.ToInt())
+                        : Expenses.Single(w => w.Id == TxtExpenseId.Text.ToInt());
+                    break;
+            }
         }
 
         #region Incomes
@@ -107,7 +152,7 @@ namespace BudgetManagementApp.Forms.Projects
 
             LblTotalIncomes.SetText(
                 StringResources.Total.Format(
-                    StringResourcesHandler.GetString(FieldNames.Incomes), 
+                    StringResourcesHandler.GetString(FieldNames.Incomes),
                     Incomes.Sum(w => w.Amount).ToStringWithDecimals()
                 )
             );
@@ -128,45 +173,6 @@ namespace BudgetManagementApp.Forms.Projects
             );
 
             GlobalProperties.ProjectsNeedToBeUpdated = true;
-        }
-
-        private void InitializeMaintenanceControls(
-            MaintenanceType maintenanceType,
-            AccountingMovementType movementType
-        )
-        {
-            accountingMovementMaintenance.Categories = Categories;
-            accountingMovementMaintenance.Types = Types;
-            accountingMovementMaintenance.SubTypes = SubTypes;
-
-
-            var isAnIncome = movementType == AccountingMovementType.Income;
-
-
-            switch (maintenanceType)
-            {
-                case MaintenanceType.CreateNew:
-                    accountingMovementMaintenance.Text = StringResources.Add.Format(
-                        isAnIncome ? StringResources.Income : StringResources.Expense
-                    );
-
-                    accountingMovementMaintenance.AccountingMovement = new()
-                    {
-                        ProjectId = TxtProjectId.Text.ToInt(),
-                        IsAnIncome = isAnIncome
-                    };
-                    break;
-
-                case MaintenanceType.Modify:
-                    accountingMovementMaintenance.Text = StringResources.Modify.Format(
-                        isAnIncome ? StringResources.Income : StringResources.Expense
-                    );
-
-                    accountingMovementMaintenance.AccountingMovement = isAnIncome
-                        ? Incomes.Single(w => w.Id == TxtIncomeId.Text.ToInt())
-                        : Expenses.Single(w => w.Id == TxtExpenseId.Text.ToInt());
-                    break;
-            }
         }
 
         private void BtnNewIncome_Click(object sender, EventArgs e)
@@ -231,7 +237,7 @@ namespace BudgetManagementApp.Forms.Projects
                 DgvIncomes,
                 BtnModifyIncome,
                 BtnDeleteIncome,
-                row => TxtIncomeId.Text = row.Value<int>(FieldNames.AccountingMovementId).ToString()
+                row => TxtIncomeId.SetText(row.Value<int>(FieldNames.AccountingMovementId).ToString())
             );
         }
 
@@ -239,29 +245,115 @@ namespace BudgetManagementApp.Forms.Projects
 
         #region Expenses
 
+        private void SetupExpenses(IEnumerable<AccountingMovementViewModel> model)
+        {
+            Expenses = model.ToList();
+
+            PopulateGrid(
+                DgvExpenses,
+                Expenses,
+                FormatGrid,
+                new List<string>
+                {
+                    FieldNames.AccountingMovementId,
+                    FieldNames.CategoryId,
+                    FieldNames.TypeId,
+                    FieldNames.SubTypeId,
+                    FieldNames.ProjectId,
+                    FieldNames.ProjectName,
+                    FieldNames.IsAnIncome,
+                }
+            );
+
+            LblTotalExpenses.SetText(
+                StringResources.Total.Format(
+                    StringResourcesHandler.GetString(FieldNames.Expenses),
+                    Expenses.Sum(w => w.Amount).ToStringWithDecimals()
+                )
+            );
+        }
+
+        private void HandleExpenseMaintenance(MaintenanceType type)
+        {
+            InitializeMaintenanceControls(type, AccountingMovementType.Expense);
+
+            if (!accountingMovementMaintenance.ShowDialog().IsOkResponse())
+                return;
+
+            TxtExpenseFilter.Clear();
+
+            HandleEntity<AccountingMovementViewModel>(
+                accountingMovementService.GetExpensesByProjectId(Project.ProjectId),
+                SetupExpenses
+            );
+
+            GlobalProperties.ProjectsNeedToBeUpdated = true;
+        }
+
         private void BtnNewExpense_Click(object sender, EventArgs e)
         {
-
+            HandleExpenseMaintenance(MaintenanceType.CreateNew);
         }
 
         private void BtnModifyExpense_Click(object sender, EventArgs e)
         {
-
+            HandleExpenseMaintenance(MaintenanceType.Modify);
         }
 
         private void BtnDeleteExpense_Click(object sender, EventArgs e)
         {
+            Delete(
+                accountingMovementService,
+                Expenses.Single(w => w.AccountingMovementId == TxtExpenseId.Text.ToInt()),
+                TxtExpenseFilter,
+                () =>
+                {
+                    GlobalProperties.ProjectsNeedToBeUpdated = true;
 
+                    HandleEntity<AccountingMovementViewModel>(
+                        accountingMovementService.GetExpensesByProjectId(Project.ProjectId),
+                        SetupExpenses
+                    );
+                }
+            );
         }
 
         private void TxtExpenseFilter_TextChanged(object sender, EventArgs e)
         {
+            var text = TxtExpenseFilter.Text;
 
+            PopulateGrid(
+                DgvExpenses,
+                GetFilteredData(
+                    text,
+                    Expenses,
+                    c => c.CategoryDescription.ToLower().Contains(text.ToLower()) ||
+                         c.TypeDescription.ToLower().Contains(text.ToLower()) ||
+                         c.SubTypeDescription.ToLower().Contains(text.ToLower()) ||
+                         c.Comment.ToLower().Contains(text.ToLower())
+                ),
+                FormatGrid,
+                new List<string>
+                {
+                    FieldNames.AccountingMovementId,
+                    FieldNames.CategoryId,
+                    FieldNames.TypeId,
+                    FieldNames.SubTypeId,
+                    FieldNames.ProjectId,
+                    FieldNames.ProjectName,
+                    FieldNames.IsAnIncome,
+                }
+            );
         }
 
         private void DgvExpenses_SelectionChanged(object sender, EventArgs e)
         {
-
+            SetDetailsData(
+                DgvExpenses,
+                BtnModifyExpense,
+                BtnDeleteExpense,
+                row => TxtExpenseId.SetText(row.Value<int>(FieldNames.AccountingMovementId).ToString())
+            );
         }
 
         #endregion
