@@ -57,9 +57,23 @@ namespace BudgetManagementApp.Forms.Projects
             this.LblTotalIncomes = new System.Windows.Forms.Label();
             this.LblTotalExpenses = new System.Windows.Forms.Label();
             this.PnlBySubTypes = new System.Windows.Forms.Panel();
+            this.PnlByTypes = new System.Windows.Forms.Panel();
+            this.DgvIncomesByTypes = new System.Windows.Forms.DataGridView();
+            this.DgvExpensesByTypes = new System.Windows.Forms.DataGridView();
+            this.LblGroupedByType = new System.Windows.Forms.Label();
+            this.PnlByCategories = new System.Windows.Forms.Panel();
+            this.LblGroupedByCategory = new System.Windows.Forms.Label();
+            this.DgvIncomesByCategories = new System.Windows.Forms.DataGridView();
+            this.DgvExpensesByCategories = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.DgvIncomes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvExpenses)).BeginInit();
             this.PnlBySubTypes.SuspendLayout();
+            this.PnlByTypes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvIncomesByTypes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvExpensesByTypes)).BeginInit();
+            this.PnlByCategories.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvIncomesByCategories)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvExpensesByCategories)).BeginInit();
             this.SuspendLayout();
             // 
             // LblCost
@@ -358,7 +372,7 @@ namespace BudgetManagementApp.Forms.Projects
             // 
             this.LblTotalIncomes.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.LblTotalIncomes.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblTotalIncomes.Location = new System.Drawing.Point(299, 458);
+            this.LblTotalIncomes.Location = new System.Drawing.Point(299, 456);
             this.LblTotalIncomes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblTotalIncomes.Name = "LblTotalIncomes";
             this.LblTotalIncomes.Size = new System.Drawing.Size(385, 24);
@@ -370,7 +384,7 @@ namespace BudgetManagementApp.Forms.Projects
             // 
             this.LblTotalExpenses.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.LblTotalExpenses.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblTotalExpenses.Location = new System.Drawing.Point(891, 467);
+            this.LblTotalExpenses.Location = new System.Drawing.Point(891, 455);
             this.LblTotalExpenses.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblTotalExpenses.Name = "LblTotalExpenses";
             this.LblTotalExpenses.Size = new System.Drawing.Size(486, 24);
@@ -398,8 +412,128 @@ namespace BudgetManagementApp.Forms.Projects
             this.PnlBySubTypes.Controls.Add(this.LblIncomeFilter);
             this.PnlBySubTypes.Location = new System.Drawing.Point(19, 248);
             this.PnlBySubTypes.Name = "PnlBySubTypes";
-            this.PnlBySubTypes.Size = new System.Drawing.Size(1418, 509);
+            this.PnlBySubTypes.Size = new System.Drawing.Size(1397, 485);
             this.PnlBySubTypes.TabIndex = 82;
+            // 
+            // PnlByTypes
+            // 
+            this.PnlByTypes.Controls.Add(this.LblGroupedByType);
+            this.PnlByTypes.Controls.Add(this.DgvIncomesByTypes);
+            this.PnlByTypes.Controls.Add(this.DgvExpensesByTypes);
+            this.PnlByTypes.Location = new System.Drawing.Point(19, 739);
+            this.PnlByTypes.Name = "PnlByTypes";
+            this.PnlByTypes.Size = new System.Drawing.Size(1388, 407);
+            this.PnlByTypes.TabIndex = 83;
+            // 
+            // DgvIncomesByTypes
+            // 
+            this.DgvIncomesByTypes.AllowUserToAddRows = false;
+            this.DgvIncomesByTypes.AllowUserToDeleteRows = false;
+            this.DgvIncomesByTypes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DgvIncomesByTypes.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.DgvIncomesByTypes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvIncomesByTypes.Location = new System.Drawing.Point(17, 37);
+            this.DgvIncomesByTypes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.DgvIncomesByTypes.MultiSelect = false;
+            this.DgvIncomesByTypes.Name = "DgvIncomesByTypes";
+            this.DgvIncomesByTypes.ReadOnly = true;
+            this.DgvIncomesByTypes.RowHeadersVisible = false;
+            this.DgvIncomesByTypes.RowHeadersWidth = 51;
+            this.DgvIncomesByTypes.RowTemplate.Height = 24;
+            this.DgvIncomesByTypes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DgvIncomesByTypes.Size = new System.Drawing.Size(667, 356);
+            this.DgvIncomesByTypes.TabIndex = 66;
+            // 
+            // DgvExpensesByTypes
+            // 
+            this.DgvExpensesByTypes.AllowUserToAddRows = false;
+            this.DgvExpensesByTypes.AllowUserToDeleteRows = false;
+            this.DgvExpensesByTypes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DgvExpensesByTypes.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.DgvExpensesByTypes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvExpensesByTypes.Location = new System.Drawing.Point(710, 37);
+            this.DgvExpensesByTypes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.DgvExpensesByTypes.MultiSelect = false;
+            this.DgvExpensesByTypes.Name = "DgvExpensesByTypes";
+            this.DgvExpensesByTypes.ReadOnly = true;
+            this.DgvExpensesByTypes.RowHeadersVisible = false;
+            this.DgvExpensesByTypes.RowHeadersWidth = 51;
+            this.DgvExpensesByTypes.RowTemplate.Height = 24;
+            this.DgvExpensesByTypes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DgvExpensesByTypes.Size = new System.Drawing.Size(667, 356);
+            this.DgvExpensesByTypes.TabIndex = 72;
+            // 
+            // LblGroupedByType
+            // 
+            this.LblGroupedByType.AutoSize = true;
+            this.LblGroupedByType.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblGroupedByType.Location = new System.Drawing.Point(579, 6);
+            this.LblGroupedByType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblGroupedByType.Name = "LblGroupedByType";
+            this.LblGroupedByType.Size = new System.Drawing.Size(234, 24);
+            this.LblGroupedByType.TabIndex = 82;
+            this.LblGroupedByType.Text = "Agrupados por partidas";
+            this.LblGroupedByType.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // PnlByCategories
+            // 
+            this.PnlByCategories.Controls.Add(this.LblGroupedByCategory);
+            this.PnlByCategories.Controls.Add(this.DgvIncomesByCategories);
+            this.PnlByCategories.Controls.Add(this.DgvExpensesByCategories);
+            this.PnlByCategories.Location = new System.Drawing.Point(19, 1152);
+            this.PnlByCategories.Name = "PnlByCategories";
+            this.PnlByCategories.Size = new System.Drawing.Size(1388, 407);
+            this.PnlByCategories.TabIndex = 84;
+            // 
+            // LblGroupedByCategory
+            // 
+            this.LblGroupedByCategory.AutoSize = true;
+            this.LblGroupedByCategory.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblGroupedByCategory.Location = new System.Drawing.Point(579, 6);
+            this.LblGroupedByCategory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblGroupedByCategory.Name = "LblGroupedByCategory";
+            this.LblGroupedByCategory.Size = new System.Drawing.Size(234, 24);
+            this.LblGroupedByCategory.TabIndex = 82;
+            this.LblGroupedByCategory.Text = "Agrupados por partidas";
+            this.LblGroupedByCategory.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // DgvIncomesByCategories
+            // 
+            this.DgvIncomesByCategories.AllowUserToAddRows = false;
+            this.DgvIncomesByCategories.AllowUserToDeleteRows = false;
+            this.DgvIncomesByCategories.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DgvIncomesByCategories.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.DgvIncomesByCategories.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvIncomesByCategories.Location = new System.Drawing.Point(17, 37);
+            this.DgvIncomesByCategories.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.DgvIncomesByCategories.MultiSelect = false;
+            this.DgvIncomesByCategories.Name = "DgvIncomesByCategories";
+            this.DgvIncomesByCategories.ReadOnly = true;
+            this.DgvIncomesByCategories.RowHeadersVisible = false;
+            this.DgvIncomesByCategories.RowHeadersWidth = 51;
+            this.DgvIncomesByCategories.RowTemplate.Height = 24;
+            this.DgvIncomesByCategories.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DgvIncomesByCategories.Size = new System.Drawing.Size(667, 356);
+            this.DgvIncomesByCategories.TabIndex = 66;
+            // 
+            // DgvExpensesByCategories
+            // 
+            this.DgvExpensesByCategories.AllowUserToAddRows = false;
+            this.DgvExpensesByCategories.AllowUserToDeleteRows = false;
+            this.DgvExpensesByCategories.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DgvExpensesByCategories.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.DgvExpensesByCategories.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvExpensesByCategories.Location = new System.Drawing.Point(710, 37);
+            this.DgvExpensesByCategories.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.DgvExpensesByCategories.MultiSelect = false;
+            this.DgvExpensesByCategories.Name = "DgvExpensesByCategories";
+            this.DgvExpensesByCategories.ReadOnly = true;
+            this.DgvExpensesByCategories.RowHeadersVisible = false;
+            this.DgvExpensesByCategories.RowHeadersWidth = 51;
+            this.DgvExpensesByCategories.RowTemplate.Height = 24;
+            this.DgvExpensesByCategories.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DgvExpensesByCategories.Size = new System.Drawing.Size(667, 356);
+            this.DgvExpensesByCategories.TabIndex = 72;
             // 
             // FrmBudgetManagement
             // 
@@ -407,6 +541,8 @@ namespace BudgetManagementApp.Forms.Projects
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1449, 789);
+            this.Controls.Add(this.PnlByCategories);
+            this.Controls.Add(this.PnlByTypes);
             this.Controls.Add(this.PnlBySubTypes);
             this.Controls.Add(this.LblCost);
             this.Controls.Add(this.TxtCost);
@@ -430,6 +566,14 @@ namespace BudgetManagementApp.Forms.Projects
             ((System.ComponentModel.ISupportInitialize)(this.DgvExpenses)).EndInit();
             this.PnlBySubTypes.ResumeLayout(false);
             this.PnlBySubTypes.PerformLayout();
+            this.PnlByTypes.ResumeLayout(false);
+            this.PnlByTypes.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvIncomesByTypes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvExpensesByTypes)).EndInit();
+            this.PnlByCategories.ResumeLayout(false);
+            this.PnlByCategories.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvIncomesByCategories)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvExpensesByCategories)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -465,5 +609,13 @@ namespace BudgetManagementApp.Forms.Projects
         private System.Windows.Forms.Label LblTotalIncomes;
         private System.Windows.Forms.Label LblTotalExpenses;
         private System.Windows.Forms.Panel PnlBySubTypes;
+        private System.Windows.Forms.Panel PnlByTypes;
+        private System.Windows.Forms.Label LblGroupedByType;
+        private System.Windows.Forms.DataGridView DgvIncomesByTypes;
+        private System.Windows.Forms.DataGridView DgvExpensesByTypes;
+        private System.Windows.Forms.Panel PnlByCategories;
+        private System.Windows.Forms.Label LblGroupedByCategory;
+        private System.Windows.Forms.DataGridView DgvIncomesByCategories;
+        private System.Windows.Forms.DataGridView DgvExpensesByCategories;
     }
 }

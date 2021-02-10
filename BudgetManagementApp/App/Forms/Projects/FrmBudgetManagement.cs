@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using BudgetManagementApp.Entities.Enums;
+﻿using BudgetManagementApp.Entities.Enums;
 using BudgetManagementApp.Entities.Extensions;
 using BudgetManagementApp.Entities.Helpers;
 using BudgetManagementApp.Entities.ViewModels.AccountingMovements;
@@ -14,6 +11,9 @@ using BudgetManagementApp.Forms.Base;
 using BudgetManagementApp.Resources;
 using BudgetManagementApp.Resources.Properties;
 using BudgetManagementApp.Services.Services.AccountingMovements;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BudgetManagementApp.Forms.Projects
 {
@@ -78,6 +78,19 @@ namespace BudgetManagementApp.Forms.Projects
                 [FieldNames.Comment] = StringResourcesHandler.GetString(FieldNames.Comment),
             });
 
+            SetColumnNames(DgvIncomesByTypes, new Dictionary<string, string>
+            {
+                [FieldNames.CategoryDescription] = StringResourcesHandler.GetString(FieldNames.Category),
+                [FieldNames.TypeDescription] = StringResourcesHandler.GetString(FieldNames.Type),
+                [FieldNames.Amount] = StringResourcesHandler.GetString(FieldNames.Amount),
+            });
+
+            SetColumnNames(DgvIncomesByCategories, new Dictionary<string, string>
+            {
+                [FieldNames.CategoryDescription] = StringResourcesHandler.GetString(FieldNames.Category),
+                [FieldNames.Amount] = StringResourcesHandler.GetString(FieldNames.Amount),
+            });
+
             SetColumnNames(DgvExpenses, new Dictionary<string, string>
             {
                 [FieldNames.CategoryDescription] = StringResourcesHandler.GetString(FieldNames.Category),
@@ -92,6 +105,8 @@ namespace BudgetManagementApp.Forms.Projects
         protected override void SetLabels()
         {
             LoopControlsToSetLabels(PnlBySubTypes.Controls);
+            LoopControlsToSetLabels(PnlByTypes.Controls);
+            LoopControlsToSetLabels(PnlByCategories.Controls);
 
             base.SetLabels();
         }
@@ -160,6 +175,73 @@ namespace BudgetManagementApp.Forms.Projects
                     StringResourcesHandler.GetString(FieldNames.Incomes),
                     Incomes.Sum(w => w.Amount).ToStringWithDecimals()
                 )
+            );
+
+            SetupIncomesByTypes();
+            SetupIncomesByCategories();
+        }
+        private void SetupIncomesByTypes()
+        {
+            var incomesGroupedByTypes = Incomes.GroupBy(w => w.TypeId)
+                .EagerSelect(group =>
+                {
+                    var movement = group.FirstOrDefault();
+
+                    return new AccountingMovementViewModel
+                    {
+                        CategoryDescription = movement?.CategoryDescription,
+                        TypeDescription = movement?.TypeDescription,
+                        Amount = group.Sum(w => w.Amount),
+                    };
+                });
+
+            PopulateGrid(
+                DgvIncomesByTypes,
+                incomesGroupedByTypes,
+                FormatGrid,
+                new List<string>
+                {
+                    FieldNames.AccountingMovementId,
+                    FieldNames.CategoryId,
+                    FieldNames.TypeId,
+                    FieldNames.SubTypeId,
+                    FieldNames.SubTypeDescription,
+                    FieldNames.ProjectId,
+                    FieldNames.ProjectName,
+                    FieldNames.IsAnIncome,
+                    FieldNames.Comment,
+                    FieldNames.Date,
+                }
+            );
+        }
+
+        private void SetupIncomesByCategories()
+        {
+            var incomesGroupedByCategories = Incomes.GroupBy(w => w.CategoryId)
+                .EagerSelect(group => new AccountingMovementViewModel
+                {
+                    CategoryDescription = group.FirstOrDefault()?.CategoryDescription,
+                    Amount = group.Sum(w => w.Amount),
+                });
+
+            PopulateGrid(
+                DgvIncomesByCategories,
+                incomesGroupedByCategories,
+                FormatGrid,
+                new List<string>
+                {
+                    FieldNames.AccountingMovementId,
+                    FieldNames.CategoryId,
+                    FieldNames.TypeId,
+                    FieldNames.TypeDescription,
+                    FieldNames.SubTypeId,
+                    FieldNames.SubTypeDescription,
+                    FieldNames.ProjectId,
+                    FieldNames.ProjectName,
+                    FieldNames.IsAnIncome,
+                    FieldNames.Comment,
+                    FieldNames.Date,
+                }
             );
         }
 
