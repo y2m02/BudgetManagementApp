@@ -550,5 +550,10 @@ namespace BudgetManagementApp.Forms.Projects
         }
 
         #endregion
+
+        private void FrmBudgetManagement_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+        {
+            VerticalScroll.Value = 0;
+        }
     }
 }

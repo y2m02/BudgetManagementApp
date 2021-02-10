@@ -58,9 +58,9 @@ namespace BudgetManagementApp.Forms.Projects
             this.LblTotalExpenses = new System.Windows.Forms.Label();
             this.PnlBySubTypes = new System.Windows.Forms.Panel();
             this.PnlByTypes = new System.Windows.Forms.Panel();
+            this.LblGroupedByType = new System.Windows.Forms.Label();
             this.DgvIncomesByTypes = new System.Windows.Forms.DataGridView();
             this.DgvExpensesByTypes = new System.Windows.Forms.DataGridView();
-            this.LblGroupedByType = new System.Windows.Forms.Label();
             this.PnlByCategories = new System.Windows.Forms.Panel();
             this.LblGroupedByCategory = new System.Windows.Forms.Label();
             this.DgvIncomesByCategories = new System.Windows.Forms.DataGridView();
@@ -438,6 +438,17 @@ namespace BudgetManagementApp.Forms.Projects
             this.PnlByTypes.TabIndex = 1;
             this.PnlByTypes.TabStop = true;
             // 
+            // LblGroupedByType
+            // 
+            this.LblGroupedByType.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblGroupedByType.Location = new System.Drawing.Point(524, 8);
+            this.LblGroupedByType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblGroupedByType.Name = "LblGroupedByType";
+            this.LblGroupedByType.Size = new System.Drawing.Size(330, 24);
+            this.LblGroupedByType.TabIndex = 0;
+            this.LblGroupedByType.Text = "Agrupados por partidas";
+            this.LblGroupedByType.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // DgvIncomesByTypes
             // 
             this.DgvIncomesByTypes.AllowUserToAddRows = false;
@@ -477,17 +488,6 @@ namespace BudgetManagementApp.Forms.Projects
             this.DgvExpensesByTypes.Size = new System.Drawing.Size(667, 356);
             this.DgvExpensesByTypes.TabIndex = 2;
             this.DgvExpensesByTypes.TabStop = false;
-            // 
-            // LblGroupedByType
-            // 
-            this.LblGroupedByType.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblGroupedByType.Location = new System.Drawing.Point(524, 8);
-            this.LblGroupedByType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LblGroupedByType.Name = "LblGroupedByType";
-            this.LblGroupedByType.Size = new System.Drawing.Size(330, 24);
-            this.LblGroupedByType.TabIndex = 0;
-            this.LblGroupedByType.Text = "Agrupados por partidas";
-            this.LblGroupedByType.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // PnlByCategories
             // 
@@ -578,7 +578,7 @@ namespace BudgetManagementApp.Forms.Projects
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1449, 789);
+            this.ClientSize = new System.Drawing.Size(1470, 789);
             this.Controls.Add(this.PnlTotals);
             this.Controls.Add(this.PnlByCategories);
             this.Controls.Add(this.PnlByTypes);
@@ -600,6 +600,7 @@ namespace BudgetManagementApp.Forms.Projects
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmBudgetManagement";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmBudgetManagement_FormClosing);
             this.Load += new System.EventHandler(this.FrmBudgetManagement_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DgvIncomes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvExpenses)).EndInit();
