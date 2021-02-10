@@ -727,6 +727,15 @@ namespace BudgetManagementApp.Resources.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total Left: {0}.
+        /// </summary>
+        public static string TotalLeft {
+            get {
+                return ResourceManager.GetString("TotalLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Type.
         /// </summary>
         public static string Type {

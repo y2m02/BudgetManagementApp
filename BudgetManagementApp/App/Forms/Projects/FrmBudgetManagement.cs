@@ -13,6 +13,7 @@ using BudgetManagementApp.Resources.Properties;
 using BudgetManagementApp.Services.Services.AccountingMovements;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 
 namespace BudgetManagementApp.Forms.Projects
@@ -117,6 +118,7 @@ namespace BudgetManagementApp.Forms.Projects
 
         protected override void SetLabels()
         {
+            LoopControlsToSetLabels(PnlTotals.Controls);
             LoopControlsToSetLabels(PnlBySubTypes.Controls);
             LoopControlsToSetLabels(PnlByTypes.Controls);
             LoopControlsToSetLabels(PnlByCategories.Controls);
@@ -161,6 +163,24 @@ namespace BudgetManagementApp.Forms.Projects
             }
         }
 
+        private void SetTotal()
+        {
+            var total = Incomes.Sum(w => w.Amount) - Expenses.Sum(w => w.Amount);
+
+            LblTotalLeft.SetText(
+                StringResources.TotalLeft.Format(
+                    total.ToStringWithDecimals()
+                )
+            );
+
+            LblTotalLeft.ForeColor = total switch
+            {
+                > 0 => Color.Green,
+                < 0 => Color.Red,
+                _ => Color.Black
+            };
+        }
+
         #region Incomes
 
         private void SetupIncomes(IEnumerable<AccountingMovementViewModel> model)
@@ -189,6 +209,8 @@ namespace BudgetManagementApp.Forms.Projects
                     Incomes.Sum(w => w.Amount).ToStringWithDecimals()
                 )
             );
+
+            SetTotal();
 
             SetupIncomesByTypes();
             SetupIncomesByCategories();
@@ -372,6 +394,8 @@ namespace BudgetManagementApp.Forms.Projects
                     Expenses.Sum(w => w.Amount).ToStringWithDecimals()
                 )
             );
+
+            SetTotal();
 
             SetupExpensesByTypes();
             SetupExpensesByCategories();

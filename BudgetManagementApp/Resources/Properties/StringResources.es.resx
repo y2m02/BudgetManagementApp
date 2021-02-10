@@ -339,6 +339,9 @@
   <data name="TotalAmount" xml:space="preserve">
     <value>Total</value>
   </data>
+  <data name="TotalLeft" xml:space="preserve">
+    <value>Total Restante: {0}</value>
+  </data>
   <data name="Type" xml:space="preserve">
     <value>Partida</value>
   </data>

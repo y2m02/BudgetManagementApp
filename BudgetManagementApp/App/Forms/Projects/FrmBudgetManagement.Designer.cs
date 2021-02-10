@@ -65,6 +65,8 @@ namespace BudgetManagementApp.Forms.Projects
             this.LblGroupedByCategory = new System.Windows.Forms.Label();
             this.DgvIncomesByCategories = new System.Windows.Forms.DataGridView();
             this.DgvExpensesByCategories = new System.Windows.Forms.DataGridView();
+            this.PnlTotals = new System.Windows.Forms.Panel();
+            this.LblTotalLeft = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DgvIncomes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvExpenses)).BeginInit();
             this.PnlBySubTypes.SuspendLayout();
@@ -74,6 +76,7 @@ namespace BudgetManagementApp.Forms.Projects
             this.PnlByCategories.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvIncomesByCategories)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvExpensesByCategories)).BeginInit();
+            this.PnlTotals.SuspendLayout();
             this.SuspendLayout();
             // 
             // LblCost
@@ -84,7 +87,7 @@ namespace BudgetManagementApp.Forms.Projects
             this.LblCost.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblCost.Name = "LblCost";
             this.LblCost.Size = new System.Drawing.Size(66, 24);
-            this.LblCost.TabIndex = 65;
+            this.LblCost.TabIndex = 14;
             this.LblCost.Text = "Costo";
             // 
             // TxtCost
@@ -96,6 +99,7 @@ namespace BudgetManagementApp.Forms.Projects
             this.TxtCost.ReadOnly = true;
             this.TxtCost.Size = new System.Drawing.Size(290, 27);
             this.TxtCost.TabIndex = 64;
+            this.TxtCost.TabStop = false;
             // 
             // LblConstruction
             // 
@@ -105,7 +109,7 @@ namespace BudgetManagementApp.Forms.Projects
             this.LblConstruction.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblConstruction.Name = "LblConstruction";
             this.LblConstruction.Size = new System.Drawing.Size(137, 24);
-            this.LblConstruction.TabIndex = 63;
+            this.LblConstruction.TabIndex = 13;
             this.LblConstruction.Text = "Construcción";
             // 
             // TxtConstruction
@@ -117,6 +121,7 @@ namespace BudgetManagementApp.Forms.Projects
             this.TxtConstruction.ReadOnly = true;
             this.TxtConstruction.Size = new System.Drawing.Size(290, 27);
             this.TxtConstruction.TabIndex = 62;
+            this.TxtConstruction.TabStop = false;
             // 
             // LblEndDate
             // 
@@ -126,7 +131,7 @@ namespace BudgetManagementApp.Forms.Projects
             this.LblEndDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblEndDate.Name = "LblEndDate";
             this.LblEndDate.Size = new System.Drawing.Size(208, 24);
-            this.LblEndDate.TabIndex = 61;
+            this.LblEndDate.TabIndex = 12;
             this.LblEndDate.Text = "Fecha de finalización";
             // 
             // TxtEndDate
@@ -138,6 +143,7 @@ namespace BudgetManagementApp.Forms.Projects
             this.TxtEndDate.ReadOnly = true;
             this.TxtEndDate.Size = new System.Drawing.Size(290, 27);
             this.TxtEndDate.TabIndex = 60;
+            this.TxtEndDate.TabStop = false;
             // 
             // LblStartDate
             // 
@@ -147,7 +153,7 @@ namespace BudgetManagementApp.Forms.Projects
             this.LblStartDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblStartDate.Name = "LblStartDate";
             this.LblStartDate.Size = new System.Drawing.Size(152, 24);
-            this.LblStartDate.TabIndex = 59;
+            this.LblStartDate.TabIndex = 11;
             this.LblStartDate.Text = "Fecha de inicio";
             // 
             // TxtStartDate
@@ -159,6 +165,7 @@ namespace BudgetManagementApp.Forms.Projects
             this.TxtStartDate.ReadOnly = true;
             this.TxtStartDate.Size = new System.Drawing.Size(290, 27);
             this.TxtStartDate.TabIndex = 58;
+            this.TxtStartDate.TabStop = false;
             // 
             // TxtProjectId
             // 
@@ -169,6 +176,7 @@ namespace BudgetManagementApp.Forms.Projects
             this.TxtProjectId.ReadOnly = true;
             this.TxtProjectId.Size = new System.Drawing.Size(30, 27);
             this.TxtProjectId.TabIndex = 57;
+            this.TxtProjectId.TabStop = false;
             this.TxtProjectId.Visible = false;
             // 
             // LblProjectName
@@ -179,7 +187,7 @@ namespace BudgetManagementApp.Forms.Projects
             this.LblProjectName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblProjectName.Name = "LblProjectName";
             this.LblProjectName.Size = new System.Drawing.Size(63, 24);
-            this.LblProjectName.TabIndex = 56;
+            this.LblProjectName.TabIndex = 10;
             this.LblProjectName.Text = "Name";
             // 
             // TxtProjectName
@@ -191,6 +199,7 @@ namespace BudgetManagementApp.Forms.Projects
             this.TxtProjectName.ReadOnly = true;
             this.TxtProjectName.Size = new System.Drawing.Size(666, 27);
             this.TxtProjectName.TabIndex = 55;
+            this.TxtProjectName.TabStop = false;
             // 
             // LblIncomeFilter
             // 
@@ -200,7 +209,7 @@ namespace BudgetManagementApp.Forms.Projects
             this.LblIncomeFilter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblIncomeFilter.Name = "LblIncomeFilter";
             this.LblIncomeFilter.Size = new System.Drawing.Size(77, 24);
-            this.LblIncomeFilter.TabIndex = 71;
+            this.LblIncomeFilter.TabIndex = 8;
             this.LblIncomeFilter.Text = "Buscar";
             this.LblIncomeFilter.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -211,7 +220,7 @@ namespace BudgetManagementApp.Forms.Projects
             this.BtnDeleteIncome.Margin = new System.Windows.Forms.Padding(1);
             this.BtnDeleteIncome.Name = "BtnDeleteIncome";
             this.BtnDeleteIncome.Size = new System.Drawing.Size(116, 44);
-            this.BtnDeleteIncome.TabIndex = 70;
+            this.BtnDeleteIncome.TabIndex = 2;
             this.BtnDeleteIncome.Text = "Eliminar";
             this.BtnDeleteIncome.UseVisualStyleBackColor = true;
             this.BtnDeleteIncome.Click += new System.EventHandler(this.BtnDeleteIncome_Click);
@@ -223,7 +232,7 @@ namespace BudgetManagementApp.Forms.Projects
             this.BtnModifyIncome.Margin = new System.Windows.Forms.Padding(1);
             this.BtnModifyIncome.Name = "BtnModifyIncome";
             this.BtnModifyIncome.Size = new System.Drawing.Size(116, 44);
-            this.BtnModifyIncome.TabIndex = 69;
+            this.BtnModifyIncome.TabIndex = 1;
             this.BtnModifyIncome.Text = "Modificar";
             this.BtnModifyIncome.UseVisualStyleBackColor = true;
             this.BtnModifyIncome.Click += new System.EventHandler(this.BtnModifyIncome_Click);
@@ -234,7 +243,7 @@ namespace BudgetManagementApp.Forms.Projects
             this.BtnNewIncome.Margin = new System.Windows.Forms.Padding(1);
             this.BtnNewIncome.Name = "BtnNewIncome";
             this.BtnNewIncome.Size = new System.Drawing.Size(116, 44);
-            this.BtnNewIncome.TabIndex = 68;
+            this.BtnNewIncome.TabIndex = 0;
             this.BtnNewIncome.Text = "Nuevo";
             this.BtnNewIncome.UseVisualStyleBackColor = true;
             this.BtnNewIncome.Click += new System.EventHandler(this.BtnNewIncome_Click);
@@ -246,7 +255,7 @@ namespace BudgetManagementApp.Forms.Projects
             this.TxtIncomeFilter.MaxLength = 99;
             this.TxtIncomeFilter.Name = "TxtIncomeFilter";
             this.TxtIncomeFilter.Size = new System.Drawing.Size(201, 27);
-            this.TxtIncomeFilter.TabIndex = 67;
+            this.TxtIncomeFilter.TabIndex = 3;
             this.TxtIncomeFilter.TextChanged += new System.EventHandler(this.TxtIncomeFilter_TextChanged);
             // 
             // DgvIncomes
@@ -266,7 +275,8 @@ namespace BudgetManagementApp.Forms.Projects
             this.DgvIncomes.RowTemplate.Height = 24;
             this.DgvIncomes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvIncomes.Size = new System.Drawing.Size(667, 356);
-            this.DgvIncomes.TabIndex = 66;
+            this.DgvIncomes.TabIndex = 10;
+            this.DgvIncomes.TabStop = false;
             this.DgvIncomes.SelectionChanged += new System.EventHandler(this.DgvIncomes_SelectionChanged);
             // 
             // LblExpenseFilter
@@ -277,7 +287,7 @@ namespace BudgetManagementApp.Forms.Projects
             this.LblExpenseFilter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblExpenseFilter.Name = "LblExpenseFilter";
             this.LblExpenseFilter.Size = new System.Drawing.Size(77, 24);
-            this.LblExpenseFilter.TabIndex = 77;
+            this.LblExpenseFilter.TabIndex = 9;
             this.LblExpenseFilter.Text = "Buscar";
             this.LblExpenseFilter.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -288,7 +298,7 @@ namespace BudgetManagementApp.Forms.Projects
             this.BtnDeleteExpense.Margin = new System.Windows.Forms.Padding(1);
             this.BtnDeleteExpense.Name = "BtnDeleteExpense";
             this.BtnDeleteExpense.Size = new System.Drawing.Size(116, 44);
-            this.BtnDeleteExpense.TabIndex = 76;
+            this.BtnDeleteExpense.TabIndex = 6;
             this.BtnDeleteExpense.Text = "Eliminar";
             this.BtnDeleteExpense.UseVisualStyleBackColor = true;
             this.BtnDeleteExpense.Click += new System.EventHandler(this.BtnDeleteExpense_Click);
@@ -300,7 +310,7 @@ namespace BudgetManagementApp.Forms.Projects
             this.BtnModifyExpense.Margin = new System.Windows.Forms.Padding(1);
             this.BtnModifyExpense.Name = "BtnModifyExpense";
             this.BtnModifyExpense.Size = new System.Drawing.Size(116, 44);
-            this.BtnModifyExpense.TabIndex = 75;
+            this.BtnModifyExpense.TabIndex = 5;
             this.BtnModifyExpense.Text = "Modificar";
             this.BtnModifyExpense.UseVisualStyleBackColor = true;
             this.BtnModifyExpense.Click += new System.EventHandler(this.BtnModifyExpense_Click);
@@ -311,7 +321,7 @@ namespace BudgetManagementApp.Forms.Projects
             this.BtnNewExpense.Margin = new System.Windows.Forms.Padding(1);
             this.BtnNewExpense.Name = "BtnNewExpense";
             this.BtnNewExpense.Size = new System.Drawing.Size(116, 44);
-            this.BtnNewExpense.TabIndex = 74;
+            this.BtnNewExpense.TabIndex = 4;
             this.BtnNewExpense.Text = "Nuevo";
             this.BtnNewExpense.UseVisualStyleBackColor = true;
             this.BtnNewExpense.Click += new System.EventHandler(this.BtnNewExpense_Click);
@@ -323,7 +333,7 @@ namespace BudgetManagementApp.Forms.Projects
             this.TxtExpenseFilter.MaxLength = 99;
             this.TxtExpenseFilter.Name = "TxtExpenseFilter";
             this.TxtExpenseFilter.Size = new System.Drawing.Size(201, 27);
-            this.TxtExpenseFilter.TabIndex = 73;
+            this.TxtExpenseFilter.TabIndex = 7;
             this.TxtExpenseFilter.TextChanged += new System.EventHandler(this.TxtExpenseFilter_TextChanged);
             // 
             // DgvExpenses
@@ -343,7 +353,8 @@ namespace BudgetManagementApp.Forms.Projects
             this.DgvExpenses.RowTemplate.Height = 24;
             this.DgvExpenses.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvExpenses.Size = new System.Drawing.Size(667, 356);
-            this.DgvExpenses.TabIndex = 72;
+            this.DgvExpenses.TabIndex = 11;
+            this.DgvExpenses.TabStop = false;
             this.DgvExpenses.SelectionChanged += new System.EventHandler(this.DgvExpenses_SelectionChanged);
             // 
             // TxtIncomeId
@@ -355,6 +366,7 @@ namespace BudgetManagementApp.Forms.Projects
             this.TxtIncomeId.ReadOnly = true;
             this.TxtIncomeId.Size = new System.Drawing.Size(30, 27);
             this.TxtIncomeId.TabIndex = 78;
+            this.TxtIncomeId.TabStop = false;
             this.TxtIncomeId.Visible = false;
             // 
             // TxtExpenseId
@@ -366,39 +378,38 @@ namespace BudgetManagementApp.Forms.Projects
             this.TxtExpenseId.ReadOnly = true;
             this.TxtExpenseId.Size = new System.Drawing.Size(30, 27);
             this.TxtExpenseId.TabIndex = 79;
+            this.TxtExpenseId.TabStop = false;
             this.TxtExpenseId.Visible = false;
             // 
             // LblTotalIncomes
             // 
-            this.LblTotalIncomes.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.LblTotalIncomes.AutoSize = true;
             this.LblTotalIncomes.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblTotalIncomes.Location = new System.Drawing.Point(299, 456);
+            this.LblTotalIncomes.Location = new System.Drawing.Point(14, 17);
             this.LblTotalIncomes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblTotalIncomes.Name = "LblTotalIncomes";
-            this.LblTotalIncomes.Size = new System.Drawing.Size(385, 24);
-            this.LblTotalIncomes.TabIndex = 80;
+            this.LblTotalIncomes.Size = new System.Drawing.Size(145, 24);
+            this.LblTotalIncomes.TabIndex = 0;
             this.LblTotalIncomes.Text = "Total Ingresos";
-            this.LblTotalIncomes.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.LblTotalIncomes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // LblTotalExpenses
             // 
-            this.LblTotalExpenses.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.LblTotalExpenses.AutoSize = true;
             this.LblTotalExpenses.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblTotalExpenses.Location = new System.Drawing.Point(891, 455);
+            this.LblTotalExpenses.Location = new System.Drawing.Point(14, 62);
             this.LblTotalExpenses.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblTotalExpenses.Name = "LblTotalExpenses";
-            this.LblTotalExpenses.Size = new System.Drawing.Size(486, 24);
-            this.LblTotalExpenses.TabIndex = 81;
+            this.LblTotalExpenses.Size = new System.Drawing.Size(141, 24);
+            this.LblTotalExpenses.TabIndex = 1;
             this.LblTotalExpenses.Text = "Total Egresos";
-            this.LblTotalExpenses.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.LblTotalExpenses.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // PnlBySubTypes
             // 
             this.PnlBySubTypes.Controls.Add(this.TxtIncomeId);
-            this.PnlBySubTypes.Controls.Add(this.LblTotalExpenses);
             this.PnlBySubTypes.Controls.Add(this.DgvIncomes);
             this.PnlBySubTypes.Controls.Add(this.TxtExpenseId);
-            this.PnlBySubTypes.Controls.Add(this.LblTotalIncomes);
             this.PnlBySubTypes.Controls.Add(this.LblExpenseFilter);
             this.PnlBySubTypes.Controls.Add(this.TxtIncomeFilter);
             this.PnlBySubTypes.Controls.Add(this.BtnDeleteExpense);
@@ -413,7 +424,8 @@ namespace BudgetManagementApp.Forms.Projects
             this.PnlBySubTypes.Location = new System.Drawing.Point(19, 248);
             this.PnlBySubTypes.Name = "PnlBySubTypes";
             this.PnlBySubTypes.Size = new System.Drawing.Size(1397, 485);
-            this.PnlBySubTypes.TabIndex = 82;
+            this.PnlBySubTypes.TabIndex = 0;
+            this.PnlBySubTypes.TabStop = true;
             // 
             // PnlByTypes
             // 
@@ -423,7 +435,8 @@ namespace BudgetManagementApp.Forms.Projects
             this.PnlByTypes.Location = new System.Drawing.Point(19, 739);
             this.PnlByTypes.Name = "PnlByTypes";
             this.PnlByTypes.Size = new System.Drawing.Size(1388, 407);
-            this.PnlByTypes.TabIndex = 83;
+            this.PnlByTypes.TabIndex = 1;
+            this.PnlByTypes.TabStop = true;
             // 
             // DgvIncomesByTypes
             // 
@@ -442,7 +455,8 @@ namespace BudgetManagementApp.Forms.Projects
             this.DgvIncomesByTypes.RowTemplate.Height = 24;
             this.DgvIncomesByTypes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvIncomesByTypes.Size = new System.Drawing.Size(667, 356);
-            this.DgvIncomesByTypes.TabIndex = 66;
+            this.DgvIncomesByTypes.TabIndex = 1;
+            this.DgvIncomesByTypes.TabStop = false;
             // 
             // DgvExpensesByTypes
             // 
@@ -461,17 +475,17 @@ namespace BudgetManagementApp.Forms.Projects
             this.DgvExpensesByTypes.RowTemplate.Height = 24;
             this.DgvExpensesByTypes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvExpensesByTypes.Size = new System.Drawing.Size(667, 356);
-            this.DgvExpensesByTypes.TabIndex = 72;
+            this.DgvExpensesByTypes.TabIndex = 2;
+            this.DgvExpensesByTypes.TabStop = false;
             // 
             // LblGroupedByType
             // 
-            this.LblGroupedByType.AutoSize = true;
             this.LblGroupedByType.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblGroupedByType.Location = new System.Drawing.Point(579, 6);
+            this.LblGroupedByType.Location = new System.Drawing.Point(524, 8);
             this.LblGroupedByType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblGroupedByType.Name = "LblGroupedByType";
-            this.LblGroupedByType.Size = new System.Drawing.Size(234, 24);
-            this.LblGroupedByType.TabIndex = 82;
+            this.LblGroupedByType.Size = new System.Drawing.Size(330, 24);
+            this.LblGroupedByType.TabIndex = 0;
             this.LblGroupedByType.Text = "Agrupados por partidas";
             this.LblGroupedByType.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -483,18 +497,18 @@ namespace BudgetManagementApp.Forms.Projects
             this.PnlByCategories.Location = new System.Drawing.Point(19, 1152);
             this.PnlByCategories.Name = "PnlByCategories";
             this.PnlByCategories.Size = new System.Drawing.Size(1388, 407);
-            this.PnlByCategories.TabIndex = 84;
+            this.PnlByCategories.TabIndex = 2;
+            this.PnlByCategories.TabStop = true;
             // 
             // LblGroupedByCategory
             // 
-            this.LblGroupedByCategory.AutoSize = true;
             this.LblGroupedByCategory.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblGroupedByCategory.Location = new System.Drawing.Point(579, 6);
+            this.LblGroupedByCategory.Location = new System.Drawing.Point(524, 8);
             this.LblGroupedByCategory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblGroupedByCategory.Name = "LblGroupedByCategory";
-            this.LblGroupedByCategory.Size = new System.Drawing.Size(234, 24);
-            this.LblGroupedByCategory.TabIndex = 82;
-            this.LblGroupedByCategory.Text = "Agrupados por partidas";
+            this.LblGroupedByCategory.Size = new System.Drawing.Size(335, 24);
+            this.LblGroupedByCategory.TabIndex = 0;
+            this.LblGroupedByCategory.Text = "Agrupados por categorías";
             this.LblGroupedByCategory.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // DgvIncomesByCategories
@@ -514,7 +528,8 @@ namespace BudgetManagementApp.Forms.Projects
             this.DgvIncomesByCategories.RowTemplate.Height = 24;
             this.DgvIncomesByCategories.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvIncomesByCategories.Size = new System.Drawing.Size(667, 356);
-            this.DgvIncomesByCategories.TabIndex = 66;
+            this.DgvIncomesByCategories.TabIndex = 1;
+            this.DgvIncomesByCategories.TabStop = false;
             // 
             // DgvExpensesByCategories
             // 
@@ -533,7 +548,30 @@ namespace BudgetManagementApp.Forms.Projects
             this.DgvExpensesByCategories.RowTemplate.Height = 24;
             this.DgvExpensesByCategories.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvExpensesByCategories.Size = new System.Drawing.Size(667, 356);
-            this.DgvExpensesByCategories.TabIndex = 72;
+            this.DgvExpensesByCategories.TabIndex = 2;
+            this.DgvExpensesByCategories.TabStop = false;
+            // 
+            // PnlTotals
+            // 
+            this.PnlTotals.Controls.Add(this.LblTotalLeft);
+            this.PnlTotals.Controls.Add(this.LblTotalExpenses);
+            this.PnlTotals.Controls.Add(this.LblTotalIncomes);
+            this.PnlTotals.Location = new System.Drawing.Point(729, 51);
+            this.PnlTotals.Name = "PnlTotals";
+            this.PnlTotals.Size = new System.Drawing.Size(336, 140);
+            this.PnlTotals.TabIndex = 83;
+            // 
+            // LblTotalLeft
+            // 
+            this.LblTotalLeft.AutoSize = true;
+            this.LblTotalLeft.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblTotalLeft.Location = new System.Drawing.Point(14, 106);
+            this.LblTotalLeft.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblTotalLeft.Name = "LblTotalLeft";
+            this.LblTotalLeft.Size = new System.Drawing.Size(147, 24);
+            this.LblTotalLeft.TabIndex = 2;
+            this.LblTotalLeft.Text = "Total Restante";
+            this.LblTotalLeft.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // FrmBudgetManagement
             // 
@@ -541,6 +579,7 @@ namespace BudgetManagementApp.Forms.Projects
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1449, 789);
+            this.Controls.Add(this.PnlTotals);
             this.Controls.Add(this.PnlByCategories);
             this.Controls.Add(this.PnlByTypes);
             this.Controls.Add(this.PnlBySubTypes);
@@ -567,13 +606,13 @@ namespace BudgetManagementApp.Forms.Projects
             this.PnlBySubTypes.ResumeLayout(false);
             this.PnlBySubTypes.PerformLayout();
             this.PnlByTypes.ResumeLayout(false);
-            this.PnlByTypes.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvIncomesByTypes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvExpensesByTypes)).EndInit();
             this.PnlByCategories.ResumeLayout(false);
-            this.PnlByCategories.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvIncomesByCategories)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvExpensesByCategories)).EndInit();
+            this.PnlTotals.ResumeLayout(false);
+            this.PnlTotals.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -617,5 +656,7 @@ namespace BudgetManagementApp.Forms.Projects
         private System.Windows.Forms.Label LblGroupedByCategory;
         private System.Windows.Forms.DataGridView DgvIncomesByCategories;
         private System.Windows.Forms.DataGridView DgvExpensesByCategories;
+        private System.Windows.Forms.Panel PnlTotals;
+        private System.Windows.Forms.Label LblTotalLeft;
     }
 }
