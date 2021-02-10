@@ -105,9 +105,7 @@ namespace BudgetManagementApp.Forms.Projects
             accountingMovementMaintenance.Types = Types;
             accountingMovementMaintenance.SubTypes = SubTypes;
 
-
             var isAnIncome = movementType == AccountingMovementType.Income;
-
 
             switch (maintenanceType)
             {
