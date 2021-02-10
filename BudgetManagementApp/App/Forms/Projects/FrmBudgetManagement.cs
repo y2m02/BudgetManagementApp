@@ -100,6 +100,19 @@ namespace BudgetManagementApp.Forms.Projects
                 [FieldNames.Amount] = StringResourcesHandler.GetString(FieldNames.Amount),
                 [FieldNames.Comment] = StringResourcesHandler.GetString(FieldNames.Comment),
             });
+
+            SetColumnNames(DgvExpensesByTypes, new Dictionary<string, string>
+            {
+                [FieldNames.CategoryDescription] = StringResourcesHandler.GetString(FieldNames.Category),
+                [FieldNames.TypeDescription] = StringResourcesHandler.GetString(FieldNames.Type),
+                [FieldNames.Amount] = StringResourcesHandler.GetString(FieldNames.Amount),
+            });
+
+            SetColumnNames(DgvExpensesByCategories, new Dictionary<string, string>
+            {
+                [FieldNames.CategoryDescription] = StringResourcesHandler.GetString(FieldNames.Category),
+                [FieldNames.Amount] = StringResourcesHandler.GetString(FieldNames.Amount),
+            });
         }
 
         protected override void SetLabels()
@@ -180,6 +193,7 @@ namespace BudgetManagementApp.Forms.Projects
             SetupIncomesByTypes();
             SetupIncomesByCategories();
         }
+
         private void SetupIncomesByTypes()
         {
             var incomesGroupedByTypes = Incomes.GroupBy(w => w.TypeId)
@@ -357,6 +371,74 @@ namespace BudgetManagementApp.Forms.Projects
                     StringResourcesHandler.GetString(FieldNames.Expenses),
                     Expenses.Sum(w => w.Amount).ToStringWithDecimals()
                 )
+            );
+
+            SetupExpensesByTypes();
+            SetupExpensesByCategories();
+        }
+
+        private void SetupExpensesByTypes()
+        {
+            var expensesGroupedByTypes = Expenses.GroupBy(w => w.TypeId)
+                .EagerSelect(group =>
+                {
+                    var movement = group.FirstOrDefault();
+
+                    return new AccountingMovementViewModel
+                    {
+                        CategoryDescription = movement?.CategoryDescription,
+                        TypeDescription = movement?.TypeDescription,
+                        Amount = group.Sum(w => w.Amount),
+                    };
+                });
+
+            PopulateGrid(
+                DgvExpensesByTypes,
+                expensesGroupedByTypes,
+                FormatGrid,
+                new List<string>
+                {
+                    FieldNames.AccountingMovementId,
+                    FieldNames.CategoryId,
+                    FieldNames.TypeId,
+                    FieldNames.SubTypeId,
+                    FieldNames.SubTypeDescription,
+                    FieldNames.ProjectId,
+                    FieldNames.ProjectName,
+                    FieldNames.IsAnIncome,
+                    FieldNames.Comment,
+                    FieldNames.Date,
+                }
+            );
+        }
+
+        private void SetupExpensesByCategories()
+        {
+            var expensesGroupedByCategories = Expenses.GroupBy(w => w.CategoryId)
+                .EagerSelect(group => new AccountingMovementViewModel
+                {
+                    CategoryDescription = group.FirstOrDefault()?.CategoryDescription,
+                    Amount = group.Sum(w => w.Amount),
+                });
+
+            PopulateGrid(
+                DgvExpensesByCategories,
+                expensesGroupedByCategories,
+                FormatGrid,
+                new List<string>
+                {
+                    FieldNames.AccountingMovementId,
+                    FieldNames.CategoryId,
+                    FieldNames.TypeId,
+                    FieldNames.TypeDescription,
+                    FieldNames.SubTypeId,
+                    FieldNames.SubTypeDescription,
+                    FieldNames.ProjectId,
+                    FieldNames.ProjectName,
+                    FieldNames.IsAnIncome,
+                    FieldNames.Comment,
+                    FieldNames.Date,
+                }
             );
         }
 
