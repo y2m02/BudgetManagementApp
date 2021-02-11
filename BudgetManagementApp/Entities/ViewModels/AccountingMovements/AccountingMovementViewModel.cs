@@ -42,21 +42,21 @@ namespace BudgetManagementApp.Entities.ViewModels.AccountingMovements
 
         public override IEnumerable<string> Validate()
         {
-            if (CategoryDescription.IsEmpty())
+            if (CategoryId < 1)
             {
                 yield return StringResources.FieldRequired.Format(
                     StringResourcesHandler.GetString(FieldNames.Category)
                 );
             }
 
-            if (TypeDescription.IsEmpty())
+            if (TypeId < 1)
             {
                 yield return StringResources.FieldRequired.Format(
                     StringResourcesHandler.GetString(FieldNames.Type)
                 );
             }
 
-            if (SubTypeDescription.IsEmpty())
+            if (SubTypeId < 1)
             {
                 yield return StringResources.FieldRequired.Format(
                     StringResourcesHandler.GetString(FieldNames.SubType)
@@ -73,8 +73,8 @@ namespace BudgetManagementApp.Entities.ViewModels.AccountingMovements
 
             if (Amount <= 0)
             {
-                yield return StringResources.FieldRequired.Format(
-                    StringResourcesHandler.GetString(FieldNames.Amount)
+                yield return StringResources.GreaterThanValidation.Format(
+                    StringResourcesHandler.GetString(FieldNames.Amount), 0
                 );
             }
         }

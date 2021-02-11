@@ -1,6 +1,7 @@
 ﻿using BudgetManagementApp.Entities.Enums;
 using BudgetManagementApp.Entities.Extensions;
 using BudgetManagementApp.Entities.Helpers;
+using BudgetManagementApp.Entities.ViewModels.AccountingMovements;
 using BudgetManagementApp.Entities.ViewModels.Base;
 using BudgetManagementApp.Entities.ViewModels.Categories;
 using BudgetManagementApp.Entities.ViewModels.Projects;
@@ -12,6 +13,7 @@ using BudgetManagementApp.Forms.SubTypes;
 using BudgetManagementApp.Forms.Types;
 using BudgetManagementApp.Resources;
 using BudgetManagementApp.Resources.Properties;
+using BudgetManagementApp.Services.Services.AccountingMovements;
 using BudgetManagementApp.Services.Services.Base;
 using BudgetManagementApp.Services.Services.Categories;
 using BudgetManagementApp.Services.Services.Projects;
@@ -29,14 +31,16 @@ namespace BudgetManagementApp.Forms.Base
     public partial class FrmMain : BaseForm
     {
         private readonly FrmCategoryMaintenance categoryMaintenance;
-        private readonly ICategoryService categoryService;
+        private readonly FrmTypeMaintenance typeMaintenance;
+        private readonly FrmSubTypeMaintenance subTypeMaintenance;
         private readonly FrmProjectMaintenance projectMaintenance;
         private readonly FrmBudgetManagement budgetManagement;
-        private readonly IProjectService projectService;
-        private readonly FrmSubTypeMaintenance subTypeMaintenance;
-        private readonly ISubTypeService subTypeService;
-        private readonly FrmTypeMaintenance typeMaintenance;
+
+        private readonly ICategoryService categoryService;
         private readonly ITypeService typeService;
+        private readonly ISubTypeService subTypeService;
+        private readonly IProjectService projectService;
+        private readonly IAccountingMovementService accountingMovementService;
 
         public FrmMain(
             FrmCategoryMaintenance categoryMaintenance,
@@ -47,7 +51,8 @@ namespace BudgetManagementApp.Forms.Base
             ICategoryService categoryService,
             ITypeService typeService,
             ISubTypeService subTypeService,
-            IProjectService projectService
+            IProjectService projectService,
+            IAccountingMovementService accountingMovementService
         )
         {
             this.categoryMaintenance = categoryMaintenance;
@@ -59,6 +64,7 @@ namespace BudgetManagementApp.Forms.Base
             this.typeService = typeService;
             this.subTypeService = subTypeService;
             this.projectService = projectService;
+            this.accountingMovementService = accountingMovementService;
 
             InitializeComponent();
         }
@@ -70,6 +76,8 @@ namespace BudgetManagementApp.Forms.Base
         private List<SubTypeViewModel> SubTypes { get; set; }
 
         private List<ProjectViewModel> Projects { get; set; }
+
+        private List<AccountingMovementViewModel> AccountingMovements { get; set; }
 
         protected sealed override void SetLabels()
         {
@@ -132,41 +140,6 @@ namespace BudgetManagementApp.Forms.Base
 
         #region Private Methods
 
-        private static void PopulateGrid<TDataModel>(
-            DataGridView grid,
-            IEnumerable<TDataModel> data,
-            Action<DataGridView, List<string>> formatGrid,
-            List<string> columnNames
-        )
-        {
-            grid.DataSource = data.ToList();
-
-            formatGrid(grid, columnNames);
-        }
-
-        private static void DisableColumns(
-            DataGridView grid,
-            List<string> columnNames,
-            bool includeCommonFields = true
-        )
-        {
-            if (includeCommonFields)
-            {
-                columnNames.AddRange(new[]
-                {
-                    FieldNames.Id,
-                    FieldNames.Action,
-                    FieldNames.DeletedOn,
-                    FieldNames.InUse,
-                });
-            }
-
-            foreach (var columnName in columnNames)
-            {
-                grid.Columns[columnName].Visible = false;
-            }
-        }
-
         private void ChangeButtonSelectedStatus(Control button)
         {
             button.Font = button.Font = new Font(button.Font, FontStyle.Bold);
@@ -194,118 +167,6 @@ namespace BudgetManagementApp.Forms.Base
             SetAppLabels();
         }
 
-        private static void SetColumnNames(DataGridView grid, Dictionary<string, string> columnNames)
-        {
-            if (!grid.HasDataSource())
-                return;
-
-            foreach (var columnName in columnNames)
-            {
-                grid.Columns[columnName.Key].HeaderText = columnName.Value;
-            }
-        }
-
-        private void HandleEntity<T>(BaseReturnViewModel result, Action<IEnumerable<T>> executor)
-        {
-            if (result.IsSuccess<IEnumerable<T>>())
-            {
-                executor(result.GetSuccessModel<IEnumerable<T>>());
-            }
-            else
-            {
-                DisplayErrorMessage(result.GetFailureError());
-            }
-        }
-
-        private static IEnumerable<T> GetFilteredData<T>(
-            string textToSearch,
-            IEnumerable<T> model,
-            Func<T, bool> filter
-        )
-            where T : BaseViewModel
-        {
-            var data = new List<T>(model);
-
-            return textToSearch.HasValue()
-                ? data.PrettyWhere(filter)
-                : data;
-        }
-
-        private void SetDetailsData(
-            DataGridView grid,
-            Button btnModify,
-            Button btnDelete,
-            Action<DataGridViewRow> fillFields
-        )
-        {
-            if (grid.HasRowsSelected())
-            {
-                fillFields(grid.GetSelectedRow());
-
-                SetControlsStatus(
-                    !grid.GetSelectedRowValue<bool>(FieldNames.InUse),
-                    btnDelete
-                );
-
-                SetControlsStatus(true, btnModify);
-
-                return;
-            }
-
-            if (grid.HasValue())
-            {
-                fillFields(grid.FirstRow());
-            }
-
-            SetControlsStatus(false, btnModify, btnDelete);
-        }
-
-        private static void FormatGrid(
-            DataGridView grid,
-            List<string> columnNames
-        )
-        {
-            if (!grid.HasDataSource())
-                return;
-
-            try
-            {
-                DisableColumns(grid, columnNames);
-            }
-            catch { }
-        }
-
-        private void Delete(
-            IBaseService service,
-            BaseViewModel model,
-            TextBox filter,
-            Action executeWhenSuccess,
-            string customDeleteMessage = null
-        )
-        {
-            var deleteQuestion = customDeleteMessage.HasValue()
-                ? customDeleteMessage
-                : StringResources.DeleteQuestion;
-
-            if (!DisplayQuestionMessage(deleteQuestion).IsYesResponse())
-                return;
-
-            var result = service.Delete(model);
-
-            if (result.IsSuccess())
-            {
-                DisplayInformationMessage(StringResources.RecordDeleted);
-
-                filter.Clear();
-
-                executeWhenSuccess();
-
-                return;
-            }
-
-            DisplayErrorMessage(result.GetFailureError());
-        }
-
         #endregion
 
         #region Control Methods
@@ -330,6 +191,10 @@ namespace BudgetManagementApp.Forms.Base
             HandleEntity<ProjectViewModel>(
                 projectService.GetAll(),
                 SetupProjects
+            );
+
+            AccountingMovements = HandleEntity<AccountingMovementViewModel>(
+                accountingMovementService.GetAll()
             );
 
             SetAppLabels();
@@ -818,22 +683,37 @@ namespace BudgetManagementApp.Forms.Base
 
             var project = Projects.Single(w => w.Id == TxtProjectId.Text.ToInt());
 
-            budgetManagement.TxtProjectId.SetText(TxtProjectId.Text);
-            budgetManagement.TxtProjectName.SetText(project.Name);
-            budgetManagement.TxtStartDate.SetText(
-                project.StartDate.ToShortDateString()
-            );
-            budgetManagement.TxtEndDate.SetText(
-                project.EndDate.ToShortDateString()
-            );
-            budgetManagement.TxtConstruction.SetText(
-                project.Construction.ToStringWithDecimals()
-            );
-            budgetManagement.TxtCost.SetText(
-                project.Cost.ToStringWithDecimals()
-            );
+            budgetManagement.Project = project;
+
+            budgetManagement.Incomes =
+                AccountingMovements
+                    .PrettyWhere(w => w.ProjectId == project.ProjectId)
+                    .GetIncomes();
+
+            budgetManagement.Expenses =
+                AccountingMovements
+                    .PrettyWhere(w => w.ProjectId == project.ProjectId)
+                    .GetExpenses();
+
+            budgetManagement.Categories = Categories;
+            budgetManagement.Types = Types;
+            budgetManagement.SubTypes = SubTypes;
 
             budgetManagement.ShowDialog();
+
+            if (GlobalProperties.ProjectsNeedToBeUpdated)
+            {
+                GlobalProperties.ProjectsNeedToBeUpdated = false;
+
+                HandleEntity<ProjectViewModel>(
+                    projectService.GetAll(),
+                    SetupProjects
+                );
+
+                AccountingMovements = HandleEntity<AccountingMovementViewModel>(
+                    accountingMovementService.GetAll()
+                );
+            }
         }
 
         private void TxtProjectFilter_TextChanged(object sender, EventArgs e)

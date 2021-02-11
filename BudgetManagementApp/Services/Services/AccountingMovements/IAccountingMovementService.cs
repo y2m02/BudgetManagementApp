@@ -7,5 +7,7 @@ namespace BudgetManagementApp.Services.Services.AccountingMovements
     {
         BaseReturnViewModel GetIncomes();
         BaseReturnViewModel GetExpenses();
+        BaseReturnViewModel GetIncomesByProjectId(int projectId);
+        BaseReturnViewModel GetExpensesByProjectId(int projectId);
     }
 }

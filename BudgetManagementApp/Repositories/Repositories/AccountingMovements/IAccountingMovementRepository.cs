@@ -8,5 +8,7 @@ namespace BudgetManagementApp.Repositories.Repositories.AccountingMovements
     {
         IEnumerable<AccountingMovement> GetIncomes();
         IEnumerable<AccountingMovement> GetExpenses();
+        IEnumerable<AccountingMovement> GetIncomesByProjectId(int projectId);
+        IEnumerable<AccountingMovement> GetExpensesByProjectId(int projectId);
     }
 }

@@ -163,9 +163,15 @@
     <value>MM/dd/yyyy</value>
   </data>
   <data name="DateGreaterThanValidation" xml:space="preserve">
-    <value>The {0} cannot be greater than the {1}.</value>
+    <value>{0} cannot be greater than {1}.</value>
   </data>
   <data name="DeleteCategory" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteExpense" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteIncome" xml:space="preserve">
     <value>Delete</value>
   </data>
   <data name="DeleteProject" xml:space="preserve">
@@ -192,11 +198,38 @@
   <data name="Error" xml:space="preserve">
     <value>Error</value>
   </data>
+  <data name="Expense" xml:space="preserve">
+    <value>Expense</value>
+  </data>
+  <data name="ExpenseFilter" xml:space="preserve">
+    <value>Search:</value>
+  </data>
+  <data name="Expenses" xml:space="preserve">
+    <value>Expenses</value>
+  </data>
   <data name="FieldRequired" xml:space="preserve">
     <value>The field {0} is required.</value>
   </data>
   <data name="File" xml:space="preserve">
     <value>File</value>
+  </data>
+  <data name="GreaterThanValidation" xml:space="preserve">
+    <value>The field {0} must be greater than {1}.</value>
+  </data>
+  <data name="GroupedByCategory" xml:space="preserve">
+    <value>Grouped by Categories</value>
+  </data>
+  <data name="GroupedByType" xml:space="preserve">
+    <value>Grouped by Types</value>
+  </data>
+  <data name="Income" xml:space="preserve">
+    <value>Income</value>
+  </data>
+  <data name="IncomeFilter" xml:space="preserve">
+    <value>Search:</value>
+  </data>
+  <data name="Incomes" xml:space="preserve">
+    <value>Incomes</value>
   </data>
   <data name="Information" xml:space="preserve">
     <value>Information</value>
@@ -208,6 +241,12 @@
     <value>Modify {0}</value>
   </data>
   <data name="ModifyCategory" xml:space="preserve">
+    <value>Modify</value>
+  </data>
+  <data name="ModifyExpense" xml:space="preserve">
+    <value>Modify</value>
+  </data>
+  <data name="ModifyIncome" xml:space="preserve">
     <value>Modify</value>
   </data>
   <data name="ModifyProject" xml:space="preserve">
@@ -223,6 +262,12 @@
     <value>Name</value>
   </data>
   <data name="NewCategory" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="NewExpense" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="NewIncome" xml:space="preserve">
     <value>New</value>
   </data>
   <data name="NewProject" xml:space="preserve">
@@ -287,6 +332,15 @@
   </data>
   <data name="Today" xml:space="preserve">
     <value>Today</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total {0}: {1}</value>
+  </data>
+  <data name="TotalAmount" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="TotalLeft" xml:space="preserve">
+    <value>Total Left: {0}</value>
   </data>
   <data name="Type" xml:space="preserve">
     <value>Type</value>
