@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetManagementApp", "App\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetManagementApp.Resources", "Resources\BudgetManagementApp.Resources.csproj", "{EEEEA753-5F2C-4EAD-9E97-37EB2E9238F8}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{878648D0-A33F-4A2D-AA17-8924914509AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,8 @@ Global
 		{EEEEA753-5F2C-4EAD-9E97-37EB2E9238F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEEEA753-5F2C-4EAD-9E97-37EB2E9238F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEEEA753-5F2C-4EAD-9E97-37EB2E9238F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{878648D0-A33F-4A2D-AA17-8924914509AD}.Debug|Any CPU.ActiveCfg = Debug
+		{878648D0-A33F-4A2D-AA17-8924914509AD}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
