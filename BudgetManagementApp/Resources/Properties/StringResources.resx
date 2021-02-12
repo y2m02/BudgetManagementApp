@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Add {0}</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
   <data name="BudgetManagement" xml:space="preserve">
     <value>Budget Management</value>
   </data>
@@ -141,11 +147,41 @@
   <data name="Close" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="Construction" xml:space="preserve">
+    <value>Construction</value>
+  </data>
+  <data name="Cost" xml:space="preserve">
+    <value>Cost</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="DateFormat" xml:space="preserve">
+    <value>MM/dd/yyyy</value>
+  </data>
+  <data name="DateGreaterThanValidation" xml:space="preserve">
+    <value>{0} cannot be greater than {1}.</value>
+  </data>
   <data name="DeleteCategory" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteExpense" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteIncome" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteProject" xml:space="preserve">
     <value>Delete</value>
   </data>
   <data name="DeleteQuestion" xml:space="preserve">
     <value>Do you want to delete this record?</value>
+  </data>
+  <data name="DeleteSubType" xml:space="preserve">
+    <value>Delete</value>
   </data>
   <data name="DeleteType" xml:space="preserve">
     <value>Delete</value>
@@ -153,11 +189,23 @@
   <data name="Description" xml:space="preserve">
     <value>Description</value>
   </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>End date</value>
+  </data>
   <data name="English" xml:space="preserve">
     <value>English</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
+  </data>
+  <data name="Expense" xml:space="preserve">
+    <value>Expense</value>
+  </data>
+  <data name="ExpenseFilter" xml:space="preserve">
+    <value>Search:</value>
+  </data>
+  <data name="Expenses" xml:space="preserve">
+    <value>Expenses</value>
   </data>
   <data name="FieldRequired" xml:space="preserve">
     <value>The field {0} is required.</value>
@@ -165,19 +213,67 @@
   <data name="File" xml:space="preserve">
     <value>File</value>
   </data>
+  <data name="GreaterThanValidation" xml:space="preserve">
+    <value>The field {0} must be greater than {1}.</value>
+  </data>
+  <data name="GroupedByCategory" xml:space="preserve">
+    <value>Grouped by Categories</value>
+  </data>
+  <data name="GroupedByType" xml:space="preserve">
+    <value>Grouped by Types</value>
+  </data>
+  <data name="Income" xml:space="preserve">
+    <value>Income</value>
+  </data>
+  <data name="IncomeFilter" xml:space="preserve">
+    <value>Search:</value>
+  </data>
+  <data name="Incomes" xml:space="preserve">
+    <value>Incomes</value>
+  </data>
   <data name="Information" xml:space="preserve">
     <value>Information</value>
   </data>
   <data name="Languages" xml:space="preserve">
     <value>Languages</value>
   </data>
+  <data name="Modify" xml:space="preserve">
+    <value>Modify {0}</value>
+  </data>
   <data name="ModifyCategory" xml:space="preserve">
+    <value>Modify</value>
+  </data>
+  <data name="ModifyExpense" xml:space="preserve">
+    <value>Modify</value>
+  </data>
+  <data name="ModifyIncome" xml:space="preserve">
+    <value>Modify</value>
+  </data>
+  <data name="ModifyProject" xml:space="preserve">
+    <value>Modify</value>
+  </data>
+  <data name="ModifySubType" xml:space="preserve">
     <value>Modify</value>
   </data>
   <data name="ModifyType" xml:space="preserve">
     <value>Modify</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
   <data name="NewCategory" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="NewExpense" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="NewIncome" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="NewProject" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="NewSubType" xml:space="preserve">
     <value>New</value>
   </data>
   <data name="NewType" xml:space="preserve">
@@ -185,6 +281,15 @@
   </data>
   <data name="ProccessingError" xml:space="preserve">
     <value>There was an error while processing. Please contact suport: {0}</value>
+  </data>
+  <data name="ProjectFilter" xml:space="preserve">
+    <value>Search:</value>
+  </data>
+  <data name="ProjectMaintenance" xml:space="preserve">
+    <value>Project Maintenance</value>
+  </data>
+  <data name="ProjectName" xml:space="preserve">
+    <value>Name</value>
   </data>
   <data name="Projects" xml:space="preserve">
     <value>Projects</value>
@@ -201,8 +306,44 @@
   <data name="Spanish" xml:space="preserve">
     <value>Spanish</value>
   </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Start date</value>
+  </data>
+  <data name="SubType" xml:space="preserve">
+    <value>Sub-type</value>
+  </data>
+  <data name="SubTypeCategory" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="SubTypeDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="SubTypeFilter" xml:space="preserve">
+    <value>Search:</value>
+  </data>
+  <data name="SubTypeMaintenance" xml:space="preserve">
+    <value>Sub-type Maintenance</value>
+  </data>
   <data name="Subtypes" xml:space="preserve">
     <value>Sub-types</value>
+  </data>
+  <data name="SubTypeTypeDescription" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total {0}: {1}</value>
+  </data>
+  <data name="TotalAmount" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="TotalLeft" xml:space="preserve">
+    <value>Total Left: {0}</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
   </data>
   <data name="TypeCategory" xml:space="preserve">
     <value>Category</value>

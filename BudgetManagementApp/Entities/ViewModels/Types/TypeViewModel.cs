@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using BudgetManagementApp.Entities.Extensions;
 using BudgetManagementApp.Entities.Helpers;
 using BudgetManagementApp.Entities.ViewModels.Base;
 using BudgetManagementApp.Resources;
@@ -22,19 +23,16 @@ namespace BudgetManagementApp.Entities.ViewModels.Types
 
         public override IEnumerable<string> Validate()
         {
-            if (string.IsNullOrEmpty(Description) ||
-                string.IsNullOrWhiteSpace(Description))
+            if (Description.IsEmpty())
             {
-                yield return string.Format(
-                    StringResources.FieldRequired,
+                yield return StringResources.FieldRequired.Format(
                     StringResourcesHandler.GetString(FieldNames.Description)
                 );
             }
 
             if (CategoryId < 1)
             {
-                yield return string.Format(
-                    StringResources.FieldRequired,
+                yield return StringResources.FieldRequired.Format(
                     StringResourcesHandler.GetString(FieldNames.Category)
                 );
             }

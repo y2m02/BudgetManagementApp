@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Agregar {0}</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Cantidad</value>
+  </data>
   <data name="BudgetManagement" xml:space="preserve">
     <value>Control de presupuesto</value>
   </data>
@@ -141,11 +147,41 @@
   <data name="Close" xml:space="preserve">
     <value>Salir</value>
   </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comentarios</value>
+  </data>
+  <data name="Construction" xml:space="preserve">
+    <value>Construcción</value>
+  </data>
+  <data name="Cost" xml:space="preserve">
+    <value>Costo</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="DateFormat" xml:space="preserve">
+    <value>dd/MM/yyyy</value>
+  </data>
+  <data name="DateGreaterThanValidation" xml:space="preserve">
+    <value>{0} no puede ser mayor a {1}.</value>
+  </data>
   <data name="DeleteCategory" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="DeleteExpense" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="DeleteIncome" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="DeleteProject" xml:space="preserve">
     <value>Eliminar</value>
   </data>
   <data name="DeleteQuestion" xml:space="preserve">
     <value>¿Desea eliminar este registro?</value>
+  </data>
+  <data name="DeleteSubType" xml:space="preserve">
+    <value>Eliminar</value>
   </data>
   <data name="DeleteType" xml:space="preserve">
     <value>Eliminar</value>
@@ -153,11 +189,23 @@
   <data name="Description" xml:space="preserve">
     <value>Descripción</value>
   </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>Fecha de finalización</value>
+  </data>
   <data name="English" xml:space="preserve">
     <value>Inglés</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
+  </data>
+  <data name="Expense" xml:space="preserve">
+    <value>Egreso</value>
+  </data>
+  <data name="ExpenseFilter" xml:space="preserve">
+    <value>Buscar:</value>
+  </data>
+  <data name="Expenses" xml:space="preserve">
+    <value>Egresos</value>
   </data>
   <data name="FieldRequired" xml:space="preserve">
     <value>El campo {0} es requerido.</value>
@@ -165,19 +213,67 @@
   <data name="File" xml:space="preserve">
     <value>Archivo</value>
   </data>
+  <data name="GreaterThanValidation" xml:space="preserve">
+    <value>El campo {0} debe ser mayor que {1}.</value>
+  </data>
+  <data name="GroupedByCategory" xml:space="preserve">
+    <value>Agrupados por Categorías</value>
+  </data>
+  <data name="GroupedByType" xml:space="preserve">
+    <value>Agrupados por Partidas</value>
+  </data>
+  <data name="Income" xml:space="preserve">
+    <value>Ingreso</value>
+  </data>
+  <data name="IncomeFilter" xml:space="preserve">
+    <value>Buscar:</value>
+  </data>
+  <data name="Incomes" xml:space="preserve">
+    <value>Ingresos</value>
+  </data>
   <data name="Information" xml:space="preserve">
     <value>Información</value>
   </data>
   <data name="Languages" xml:space="preserve">
     <value>Idiomas</value>
   </data>
+  <data name="Modify" xml:space="preserve">
+    <value>Modificar {0}</value>
+  </data>
   <data name="ModifyCategory" xml:space="preserve">
+    <value>Modificar</value>
+  </data>
+  <data name="ModifyExpense" xml:space="preserve">
+    <value>Modificar</value>
+  </data>
+  <data name="ModifyIncome" xml:space="preserve">
+    <value>Modificar</value>
+  </data>
+  <data name="ModifyProject" xml:space="preserve">
+    <value>Modificar</value>
+  </data>
+  <data name="ModifySubType" xml:space="preserve">
     <value>Modificar</value>
   </data>
   <data name="ModifyType" xml:space="preserve">
     <value>Modificar</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
   <data name="NewCategory" xml:space="preserve">
+    <value>Nueva</value>
+  </data>
+  <data name="NewExpense" xml:space="preserve">
+    <value>Nuevo</value>
+  </data>
+  <data name="NewIncome" xml:space="preserve">
+    <value>Nuevo</value>
+  </data>
+  <data name="NewProject" xml:space="preserve">
+    <value>Nuevo</value>
+  </data>
+  <data name="NewSubType" xml:space="preserve">
     <value>Nueva</value>
   </data>
   <data name="NewType" xml:space="preserve">
@@ -185,6 +281,15 @@
   </data>
   <data name="ProccessingError" xml:space="preserve">
     <value>Hubo un error durante el proceso. Por favor, contacte a soporte: {0}</value>
+  </data>
+  <data name="ProjectFilter" xml:space="preserve">
+    <value>Buscar:</value>
+  </data>
+  <data name="ProjectMaintenance" xml:space="preserve">
+    <value>Mantenimiento de proyectos</value>
+  </data>
+  <data name="ProjectName" xml:space="preserve">
+    <value>Nombre</value>
   </data>
   <data name="Projects" xml:space="preserve">
     <value>Proyectos</value>
@@ -201,8 +306,44 @@
   <data name="Spanish" xml:space="preserve">
     <value>Español</value>
   </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Fecha de inicio</value>
+  </data>
+  <data name="SubType" xml:space="preserve">
+    <value>Sub-partida</value>
+  </data>
+  <data name="SubTypeCategory" xml:space="preserve">
+    <value>Categoría</value>
+  </data>
+  <data name="SubTypeDescription" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="SubTypeFilter" xml:space="preserve">
+    <value>Buscar:</value>
+  </data>
+  <data name="SubTypeMaintenance" xml:space="preserve">
+    <value>Mantenimiento de sub-partidas</value>
+  </data>
   <data name="Subtypes" xml:space="preserve">
     <value>Sub-partidas</value>
+  </data>
+  <data name="SubTypeTypeDescription" xml:space="preserve">
+    <value>Partida</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Hoy</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total {0}: {1}</value>
+  </data>
+  <data name="TotalAmount" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="TotalLeft" xml:space="preserve">
+    <value>Total Restante: {0}</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Partida</value>
   </data>
   <data name="TypeCategory" xml:space="preserve">
     <value>Categoría</value>
