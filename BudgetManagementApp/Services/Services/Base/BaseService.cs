@@ -10,7 +10,7 @@ namespace BudgetManagementApp.Services.Services.Base
 {
     public abstract class BaseService<TModel, TViewModel>
     {
-        private readonly IMapper mapper;
+        protected readonly IMapper mapper;
 
         protected BaseService(IMapper mapper)
         {

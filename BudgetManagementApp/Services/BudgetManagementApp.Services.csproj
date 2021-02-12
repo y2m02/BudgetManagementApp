@@ -58,6 +58,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AccountingMovements\AccountingMovementService.cs" />
+    <Compile Include="Services\AccountingMovements\IAccountingMovementService.cs" />
     <Compile Include="Services\Base\BaseService.cs" />
     <Compile Include="Services\Categories\CategoryService.cs" />
     <Compile Include="Services\Categories\ICategoryService.cs" />

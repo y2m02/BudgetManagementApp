@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using BudgetManagementApp.Entities.Extensions;
 using BudgetManagementApp.Entities.Helpers;
 using BudgetManagementApp.Entities.ViewModels.Categories;
@@ -20,7 +21,11 @@ namespace BudgetManagementApp.Forms.SubTypes
             InitializeComponent();
         }
 
+        public SubTypeViewModel SubType { get; set; }
+
         public List<TypeViewModel> Types { get; set; }
+        
+        public List<CategoryViewModel> Categories { get; set; }
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
@@ -32,23 +37,38 @@ namespace BudgetManagementApp.Forms.SubTypes
                 CategoryId = CbxCategory.SafeSelectedValue<int>()
             });
 
-            if (!DialogResult.IsOkResponse()) return;
-
-            CbxType.ClearDataSource();
-            CbxCategory.ClearDataSource();
+            if (!DialogResult.IsOkResponse())
+                return;
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)
         {
-            CbxType.ClearDataSource();
-            CbxCategory.ClearDataSource();
-
             Close();
         }
 
         private void FrmSubTypeMaintenance_Load(object sender, EventArgs e)
         {
             SetLabels();
+
+            TxtSubTypeId.SetText(SubType.SubTypeId.ToString());
+
+            TxtDescription.SetText(SubType.Description);
+
+            CbxType.SetData(
+              Types,
+              FieldNames.TypeId,
+              FieldNames.Description
+            );
+            
+            CbxCategory.SetData(
+              Categories,
+              FieldNames.CategoryId,
+              FieldNames.Description
+            );
+
+            CbxCategory.SetSelectedValue(SubType.CategoryId);
+
+            CbxType.SetSelectedValue(SubType.TypeId);
         }
 
         protected sealed override void SetLabels()
@@ -58,18 +78,21 @@ namespace BudgetManagementApp.Forms.SubTypes
 
         private void CbxCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var categoryId = CbxCategory.SafeSelectedValue<int>();
+            var cbxCategory = (ComboBox)sender;
 
-            if (CbxCategory.HasDataSource() && categoryId == 0)
-            {
-                categoryId = CbxCategory.SafeSelectedValue<CategoryViewModel>().CategoryId;
-            }
+            var categoryId = cbxCategory.SafeSelectedValue<int>();
 
             CbxType.SetData(
                 Types.PrettyWhere(w => w.CategoryId == categoryId),
                 FieldNames.TypeId,
                 FieldNames.Description
             );
+        }
+
+        private void FrmSubTypeMaintenance_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+        {
+            CbxType.ClearDataSource();
+            CbxCategory.ClearDataSource();
         }
     }
 }

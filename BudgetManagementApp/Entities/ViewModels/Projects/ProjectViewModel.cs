@@ -18,31 +18,26 @@ namespace BudgetManagementApp.Entities.ViewModels.Projects
 
         public string Name { get; set; }
 
-        public DateTime? StartDate { get; set; }
+        public DateTime StartDate { get; set; }
 
-        public DateTime? EndDate { get; set; }
+        public DateTime EndDate { get; set; }
 
-        public decimal? Construction { get; set; }
+        public decimal Construction { get; set; }
 
-        public decimal? Cost { get; set; }
+        public decimal Cost { get; set; }
 
         public override IEnumerable<string> Validate()
         {
             if (Name.IsEmpty())
             {
-                yield return string.Format(
-                    StringResources.FieldRequired,
+                yield return StringResources.FieldRequired.Format(
                     StringResourcesHandler.GetString(FieldNames.Name)
                 );
             }
 
-            if (StartDate.HasValue &&
-                EndDate.HasValue &&
-                StartDate.Value.Date.IsGreaterThan(EndDate.Value.Date) 
-            )
+            if (StartDate.IsGreaterThan(EndDate.Date))
             {
-                yield return string.Format(
-                    StringResources.DateGreaterThanValidation,
+                yield return StringResources.DateGreaterThanValidation.Format(
                     StringResourcesHandler.GetString(FieldNames.StartDate),
                     StringResourcesHandler.GetString(FieldNames.EndDate)
                 );

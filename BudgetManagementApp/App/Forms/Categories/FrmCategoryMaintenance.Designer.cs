@@ -116,8 +116,8 @@ namespace BudgetManagementApp.Forms.Categories
 
         private System.Windows.Forms.Button BtnCancel;
         private System.Windows.Forms.Button BtnSave;
-        public System.Windows.Forms.TextBox TxtCategoryId;
-        public System.Windows.Forms.TextBox TxtDescription;
         private System.Windows.Forms.Label LblCategoryDescription;
+        private System.Windows.Forms.TextBox TxtCategoryId;
+        private System.Windows.Forms.TextBox TxtDescription;
     }
 }

@@ -133,6 +133,7 @@ namespace BudgetManagementApp.Forms.Types
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FrmTypeMaintenance";
             this.Text = "FrmTypeMaintenance";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmTypeMaintenance_FormClosing);
             this.Load += new System.EventHandler(this.FrmTypeMaintenance_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -142,11 +143,11 @@ namespace BudgetManagementApp.Forms.Types
         #endregion
 
         private System.Windows.Forms.Label LblTypeDescription;
-        public System.Windows.Forms.TextBox TxtTypeId;
         private System.Windows.Forms.Button BtnCancel;
         private System.Windows.Forms.Button BtnSave;
-        public System.Windows.Forms.TextBox TxtDescription;
         private System.Windows.Forms.Label LblCategory;
-        public System.Windows.Forms.ComboBox CbxCategory;
+        private System.Windows.Forms.TextBox TxtTypeId;
+        private System.Windows.Forms.TextBox TxtDescription;
+        private System.Windows.Forms.ComboBox CbxCategory;
     }
 }

@@ -1,9 +1,10 @@
-﻿using System;
-using BudgetManagementApp.Entities.Extensions;
+﻿using BudgetManagementApp.Entities.Extensions;
+using BudgetManagementApp.Entities.Helpers;
 using BudgetManagementApp.Entities.ViewModels.Projects;
 using BudgetManagementApp.Forms.Base;
 using BudgetManagementApp.Resources.Properties;
 using BudgetManagementApp.Services.Services.Projects;
+using System;
 
 namespace BudgetManagementApp.Forms.Projects
 {
@@ -17,9 +18,31 @@ namespace BudgetManagementApp.Forms.Projects
             InitializeComponent();
         }
 
+        public ProjectViewModel Project { get; set; }
+
         private void FrmProjectMaintenance_Load(object sender, EventArgs e)
         {
             SetLabels();
+
+            TxtProjectId.SetText(Project.ProjectId.ToString());
+
+            TxtProjectName.SetText(Project.Name);
+
+            DtpStartDate.Value = Project.StartDate > DateTime.MinValue
+                ? Project.StartDate
+                : DateTime.Now;
+
+            DtpEndDate.Value = Project.EndDate > DateTime.MinValue
+                ? Project.EndDate
+                : DateTime.Now;
+
+            TxtContruction.SetText(
+                Project.Construction.ToString(CultureData.GetEnglishCulture())
+            );
+
+            TxtCost.SetText(
+                Project.Cost.ToString(CultureData.GetEnglishCulture())
+            );
         }
 
         protected override void SetLabels()

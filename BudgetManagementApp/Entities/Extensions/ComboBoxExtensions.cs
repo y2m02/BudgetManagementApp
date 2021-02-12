@@ -19,7 +19,7 @@ namespace BudgetManagementApp.Entities.Extensions
         {
             return
                 cbx.DataSource == null ||
-                ((IList) cbx.DataSource).Count == 0;
+                ((IList)cbx.DataSource).Count == 0;
         }
 
         public static bool HasValue(this ComboBox cbx)
@@ -43,16 +43,21 @@ namespace BudgetManagementApp.Entities.Extensions
         {
             var value = default(T);
 
-            if (cbx.HasValue())
+            if (cbx.HasValue() && cbx.SelectedValue is not null)
             {
                 try
                 {
-                    value = (T) cbx.SelectedValue;
+                    value = (T)cbx.SelectedValue;
                 }
                 catch { }
             }
 
             return value;
+        }
+
+        public static void SetSelectedValue(this ComboBox cbx, object value)
+        {
+            cbx.SelectedValue = value;
         }
     }
 }
