@@ -749,9 +749,27 @@ namespace BudgetManagementApp.Forms.Base
             PopulateGrid(
                 DgvProjects,
                 Projects,
-                FormatGrid,
+                FormatProjectGrid,
                 new List<string> { FieldNames.ProjectId }
             );
+        }
+
+        protected void FormatProjectGrid(
+            DataGridView grid,
+            List<string> columnNamesToHide
+        )
+        {
+            if (!grid.HasDataSource())
+                return;
+
+            try
+            {
+                DisableColumns(grid, columnNamesToHide);
+
+                grid.Columns[FieldNames.Cost].DefaultCellStyle.Format = "C2";
+                grid.Columns[FieldNames.Construction].DefaultCellStyle.Format = "C2";
+            }
+            catch { }
         }
 
         private void HandleProjectMaintenance(MaintenanceType type)
