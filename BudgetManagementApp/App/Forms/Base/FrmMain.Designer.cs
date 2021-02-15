@@ -918,7 +918,7 @@ namespace BudgetManagementApp.Forms.Base
             this.MiFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MiClose});
             this.MiFile.Name = "MiFile";
-            this.MiFile.Size = new System.Drawing.Size(73, 26);
+            this.MiFile.Size = new System.Drawing.Size(73, 24);
             this.MiFile.Text = "Archivo";
             // 
             // MiClose
@@ -934,7 +934,7 @@ namespace BudgetManagementApp.Forms.Base
             this.MiSpanish,
             this.MiEnglish});
             this.MiLanguages.Name = "MiLanguages";
-            this.MiLanguages.Size = new System.Drawing.Size(76, 26);
+            this.MiLanguages.Size = new System.Drawing.Size(76, 24);
             this.MiLanguages.Text = "Idiomas";
             // 
             // MiSpanish
@@ -955,6 +955,7 @@ namespace BudgetManagementApp.Forms.Base
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1497, 904);
             this.Controls.Add(this.BtnSubtypes);
             this.Controls.Add(this.BtnTypes);
