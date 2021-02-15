@@ -138,5 +138,10 @@ namespace BudgetManagementApp.Forms.AccountingMovements
             CbxType.ClearDataSource();
             CbxSubType.ClearDataSource();
         }
+
+        private void TxtAmount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TxtOnlyDecimals_KeyPress(sender, e);
+        }
     }
 }
