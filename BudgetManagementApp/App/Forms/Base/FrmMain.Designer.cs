@@ -180,6 +180,7 @@ namespace BudgetManagementApp.Forms.Base
             // 
             // TabProjects
             // 
+            this.TabProjects.AutoScroll = true;
             this.TabProjects.BackColor = System.Drawing.SystemColors.Control;
             this.TabProjects.Controls.Add(this.BtnBudgetManagement);
             this.TabProjects.Controls.Add(this.LblCost);
