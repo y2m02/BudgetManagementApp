@@ -2,7 +2,6 @@
 using BudgetManagementApp.Entities.Extensions;
 using BudgetManagementApp.Entities.Helpers;
 using BudgetManagementApp.Entities.ViewModels.AccountingMovements;
-using BudgetManagementApp.Entities.ViewModels.Base;
 using BudgetManagementApp.Entities.ViewModels.Categories;
 using BudgetManagementApp.Entities.ViewModels.Projects;
 using BudgetManagementApp.Entities.ViewModels.SubTypes;
@@ -14,7 +13,6 @@ using BudgetManagementApp.Forms.Types;
 using BudgetManagementApp.Resources;
 using BudgetManagementApp.Resources.Properties;
 using BudgetManagementApp.Services.Services.AccountingMovements;
-using BudgetManagementApp.Services.Services.Base;
 using BudgetManagementApp.Services.Services.Categories;
 using BudgetManagementApp.Services.Services.Projects;
 using BudgetManagementApp.Services.Services.SubTypes;
@@ -757,9 +755,27 @@ namespace BudgetManagementApp.Forms.Base
             PopulateGrid(
                 DgvProjects,
                 Projects,
-                FormatGrid,
+                FormatProjectGrid,
                 new List<string> { FieldNames.ProjectId }
             );
+        }
+
+        protected void FormatProjectGrid(
+            DataGridView grid,
+            List<string> columnNamesToHide
+        )
+        {
+            if (!grid.HasDataSource())
+                return;
+
+            try
+            {
+                DisableColumns(grid, columnNamesToHide);
+
+                grid.Columns[FieldNames.Cost].DefaultCellStyle.Format = "C2";
+                grid.Columns[FieldNames.Construction].DefaultCellStyle.Format = "C2";
+            }
+            catch { }
         }
 
         private void HandleProjectMaintenance(MaintenanceType type)

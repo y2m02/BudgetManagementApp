@@ -619,7 +619,7 @@ namespace BudgetManagementApp.Resources.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Spanish.
+        ///   Looks up a localized string similar to Español.
         /// </summary>
         public static string Spanish {
             get {

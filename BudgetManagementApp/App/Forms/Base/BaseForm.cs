@@ -235,7 +235,7 @@ namespace BudgetManagementApp.Forms.Base
             SetControlsStatus(false, btnModify, btnDelete);
         }
 
-        protected static void FormatGrid(
+        protected virtual void FormatGrid(
             DataGridView grid,
             List<string> columnNamesToHide
         )
@@ -281,7 +281,7 @@ namespace BudgetManagementApp.Forms.Base
             DisplayErrorMessage(result.GetFailureError());
         }
 
-        private static void DisableColumns(
+        protected static void DisableColumns(
             DataGridView grid,
             List<string> columnNames,
             bool disableCommonFields = true
