@@ -773,7 +773,7 @@ namespace BudgetManagementApp.Forms.Base
                 DisableColumns(grid, columnNamesToHide);
 
                 grid.Columns[FieldNames.Cost].DefaultCellStyle.Format = "C2";
-                grid.Columns[FieldNames.Construction].DefaultCellStyle.Format = "C2";
+                grid.Columns[FieldNames.Construction].DefaultCellStyle.Format = "N2";
             }
             catch { }
         }

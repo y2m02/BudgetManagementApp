@@ -303,5 +303,24 @@ namespace BudgetManagementApp.Forms.Base
                 grid.Columns[columnName].Visible = false;
             }
         }
+
+        protected void TxtOnlyDecimals_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidateOnlyDecimals((TextBox)sender, e);
+        }
+
+        private void ValidateOnlyDecimals(TextBox txt, KeyPressEventArgs e)
+        {
+            if (char.IsNumber(e.KeyChar) ||
+                e.KeyChar == (char)Keys.Back ||
+                e.KeyChar == (char)Keys.Enter ||
+                (e.KeyChar == 46 && !txt.Text.Contains(".")) // Period (.)
+            )
+            {
+                return;
+            }
+
+            e.Handled = true;
+        }
     }
 }
