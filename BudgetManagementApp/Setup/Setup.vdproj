@@ -1441,7 +1441,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Budget Management App"
         "ProductCode" = "8:{6BE26FB5-63A2-421D-8045-B4630D17B360}"
-        "PackageCode" = "8:{4C69015C-8A9C-4EC6-957B-C56D53712706}"
+        "PackageCode" = "8:{14728E1D-5ACD-4EFC-84C2-34DB31105FF9}"
         "UpgradeCode" = "8:{11B30972-36DD-4F43-9A48-6D399F06D696}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1561,6 +1561,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_87C81B9942EB4E188641C01E5C044F44"
+            {
+            "Name" = "8:Budget Management App"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_89BC08F608B3417A983C8ADD467586B6"
+            "Folder" = "8:_2065D8C0D57D4C91B5E02409ECA9C611"
+            "WorkingFolder" = "8:_107D7F77E8024F74A4E9DE5D7635111B"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
         }
         "UserInterface"
         {
