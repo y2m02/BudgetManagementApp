@@ -428,7 +428,7 @@ namespace BudgetManagementApp.Forms.Base
             this.TabCategories.Location = new System.Drawing.Point(4, 28);
             this.TabCategories.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TabCategories.Name = "TabCategories";
-            this.TabCategories.Size = new System.Drawing.Size(1236, 844);
+            this.TabCategories.Size = new System.Drawing.Size(1236, 842);
             this.TabCategories.TabIndex = 2;
             this.TabCategories.Text = "Categorías";
             // 
@@ -559,7 +559,7 @@ namespace BudgetManagementApp.Forms.Base
             this.TabTypes.Location = new System.Drawing.Point(4, 28);
             this.TabTypes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TabTypes.Name = "TabTypes";
-            this.TabTypes.Size = new System.Drawing.Size(1236, 844);
+            this.TabTypes.Size = new System.Drawing.Size(1236, 842);
             this.TabTypes.TabIndex = 3;
             this.TabTypes.Text = "Partidas";
             // 
@@ -725,7 +725,7 @@ namespace BudgetManagementApp.Forms.Base
             this.TabSubtypes.Location = new System.Drawing.Point(4, 28);
             this.TabSubtypes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TabSubtypes.Name = "TabSubtypes";
-            this.TabSubtypes.Size = new System.Drawing.Size(1236, 844);
+            this.TabSubtypes.Size = new System.Drawing.Size(1236, 842);
             this.TabSubtypes.TabIndex = 4;
             this.TabSubtypes.Text = "Sub-partidas";
             // 
@@ -954,6 +954,7 @@ namespace BudgetManagementApp.Forms.Base
             // 
             // FrmMain
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
