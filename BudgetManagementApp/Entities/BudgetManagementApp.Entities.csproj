@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataViewModel.cs" />
     <Compile Include="Enums\AccountingMovementType.cs" />
     <Compile Include="Enums\ActionType.cs" />
     <Compile Include="Enums\MaintenanceType.cs" />
