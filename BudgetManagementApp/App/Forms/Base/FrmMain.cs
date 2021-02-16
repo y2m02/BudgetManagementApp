@@ -1,8 +1,8 @@
-﻿using BudgetManagementApp.Entities.Enums;
+﻿using BudgetManagementApp.Entities;
+using BudgetManagementApp.Entities.Enums;
 using BudgetManagementApp.Entities.Extensions;
 using BudgetManagementApp.Entities.Helpers;
 using BudgetManagementApp.Entities.ViewModels.AccountingMovements;
-using BudgetManagementApp.Entities.ViewModels.Base;
 using BudgetManagementApp.Entities.ViewModels.Categories;
 using BudgetManagementApp.Entities.ViewModels.Projects;
 using BudgetManagementApp.Entities.ViewModels.SubTypes;
@@ -13,8 +13,8 @@ using BudgetManagementApp.Forms.SubTypes;
 using BudgetManagementApp.Forms.Types;
 using BudgetManagementApp.Resources;
 using BudgetManagementApp.Resources.Properties;
+using BudgetManagementApp.Services.Services;
 using BudgetManagementApp.Services.Services.AccountingMovements;
-using BudgetManagementApp.Services.Services.Base;
 using BudgetManagementApp.Services.Services.Categories;
 using BudgetManagementApp.Services.Services.Projects;
 using BudgetManagementApp.Services.Services.SubTypes;
@@ -35,7 +35,7 @@ namespace BudgetManagementApp.Forms.Base
         private readonly FrmSubTypeMaintenance subTypeMaintenance;
         private readonly FrmProjectMaintenance projectMaintenance;
         private readonly FrmBudgetManagement budgetManagement;
-
+        private readonly IDataService dataService;
         private readonly ICategoryService categoryService;
         private readonly ITypeService typeService;
         private readonly ISubTypeService subTypeService;
@@ -48,6 +48,7 @@ namespace BudgetManagementApp.Forms.Base
             FrmSubTypeMaintenance subTypeMaintenance,
             FrmProjectMaintenance projectMaintenance,
             FrmBudgetManagement budgetManagement,
+            IDataService dataService,
             ICategoryService categoryService,
             ITypeService typeService,
             ISubTypeService subTypeService,
@@ -60,6 +61,7 @@ namespace BudgetManagementApp.Forms.Base
             this.subTypeMaintenance = subTypeMaintenance;
             this.projectMaintenance = projectMaintenance;
             this.budgetManagement = budgetManagement;
+            this.dataService = dataService;
             this.categoryService = categoryService;
             this.typeService = typeService;
             this.subTypeService = subTypeService;
@@ -173,29 +175,17 @@ namespace BudgetManagementApp.Forms.Base
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            HandleEntity<CategoryViewModel>(
-                categoryService.GetAll(),
-                SetupCategories
-            );
+            var data = HandleEntity<DataViewModel>(dataService.GetData());
 
-            HandleEntity<TypeViewModel>(
-                typeService.GetAll(),
-                SetupTypes
-            );
+            SetupCategories(data.Categories);
 
-            HandleEntity<SubTypeViewModel>(
-                subTypeService.GetAll(),
-                SetupSubTypes
-            );
+            SetupTypes(data.Types);
 
-            HandleEntity<ProjectViewModel>(
-                projectService.GetAll(),
-                SetupProjects
-            );
+            SetupSubTypes(data.SubTypes);
 
-            AccountingMovements = HandleEntity<AccountingMovementViewModel>(
-                accountingMovementService.GetAll()
-            );
+            SetupProjects(data.Projects);
+
+            AccountingMovements = data.AccountingMovements.ToList();
 
             SetAppLabels();
         }
@@ -710,9 +700,11 @@ namespace BudgetManagementApp.Forms.Base
                     SetupProjects
                 );
 
-                AccountingMovements = HandleEntity<AccountingMovementViewModel>(
-                    accountingMovementService.GetAll()
-                );
+                AccountingMovements = 
+                    HandleEntity<IEnumerable<AccountingMovementViewModel>>(
+                        accountingMovementService.GetAll()
+                    )
+                    .ToList();
             }
         }
 

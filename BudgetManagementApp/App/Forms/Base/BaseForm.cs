@@ -178,17 +178,17 @@ namespace BudgetManagementApp.Forms.Base
             }
         }
 
-        protected List<T> HandleEntity<T>(BaseReturnViewModel result)
+        protected T HandleEntity<T>(BaseReturnViewModel result)
         {
-            if (result.IsSuccess<IEnumerable<T>>())
+            if (result.IsSuccess<T>())
             {
-                return result.GetSuccessModel<IEnumerable<T>>().ToList();
+                return result.GetSuccessModel<T>();
             }
             else
             {
                 DisplayErrorMessage(result.GetFailureError());
 
-                return new List<T>();
+                return default;
             }
         }
 

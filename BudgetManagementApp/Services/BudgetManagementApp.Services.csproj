@@ -64,6 +64,7 @@
     <Compile Include="Services\Categories\CategoryService.cs" />
     <Compile Include="Services\Categories\ICategoryService.cs" />
     <Compile Include="Services\Base\IBaseService.cs" />
+    <Compile Include="Services\DataService.cs" />
     <Compile Include="Services\Projects\IProjectService.cs" />
     <Compile Include="Services\Projects\ProjectService.cs" />
     <Compile Include="Services\SubTypes\ISubTypeService.cs" />
