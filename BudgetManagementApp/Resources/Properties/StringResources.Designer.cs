@@ -61,6 +61,15 @@ namespace BudgetManagementApp.Resources.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to access is denied.
+        /// </summary>
+        public static string AccessDenied {
+            get {
+                return ResourceManager.GetString("AccessDenied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add {0}.
         /// </summary>
         public static string Add {

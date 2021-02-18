@@ -114,7 +114,7 @@ namespace BudgetManagementApp.Forms.Base
             // 
             this.BtnSubtypes.BackColor = System.Drawing.SystemColors.ControlLight;
             this.BtnSubtypes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BtnSubtypes.Location = new System.Drawing.Point(0, 250);
+            this.BtnSubtypes.Location = new System.Drawing.Point(0, 252);
             this.BtnSubtypes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BtnSubtypes.Name = "BtnSubtypes";
             this.BtnSubtypes.Size = new System.Drawing.Size(253, 74);
@@ -127,7 +127,7 @@ namespace BudgetManagementApp.Forms.Base
             // 
             this.BtnTypes.BackColor = System.Drawing.SystemColors.ControlLight;
             this.BtnTypes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BtnTypes.Location = new System.Drawing.Point(0, 176);
+            this.BtnTypes.Location = new System.Drawing.Point(0, 178);
             this.BtnTypes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BtnTypes.Name = "BtnTypes";
             this.BtnTypes.Size = new System.Drawing.Size(253, 74);
@@ -140,7 +140,7 @@ namespace BudgetManagementApp.Forms.Base
             // 
             this.BtnCategories.BackColor = System.Drawing.SystemColors.ControlLight;
             this.BtnCategories.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BtnCategories.Location = new System.Drawing.Point(0, 102);
+            this.BtnCategories.Location = new System.Drawing.Point(0, 104);
             this.BtnCategories.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BtnCategories.Name = "BtnCategories";
             this.BtnCategories.Size = new System.Drawing.Size(253, 74);
@@ -154,7 +154,7 @@ namespace BudgetManagementApp.Forms.Base
             this.BtnProjects.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.BtnProjects.Dock = System.Windows.Forms.DockStyle.Top;
             this.BtnProjects.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnProjects.Location = new System.Drawing.Point(0, 28);
+            this.BtnProjects.Location = new System.Drawing.Point(0, 30);
             this.BtnProjects.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BtnProjects.Name = "BtnProjects";
             this.BtnProjects.Size = new System.Drawing.Size(253, 74);
@@ -170,11 +170,11 @@ namespace BudgetManagementApp.Forms.Base
             this.TclBudgetManagement.Controls.Add(this.TabTypes);
             this.TclBudgetManagement.Controls.Add(this.TabSubtypes);
             this.TclBudgetManagement.Dock = System.Windows.Forms.DockStyle.Right;
-            this.TclBudgetManagement.Location = new System.Drawing.Point(253, 28);
+            this.TclBudgetManagement.Location = new System.Drawing.Point(253, 30);
             this.TclBudgetManagement.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TclBudgetManagement.Name = "TclBudgetManagement";
             this.TclBudgetManagement.SelectedIndex = 0;
-            this.TclBudgetManagement.Size = new System.Drawing.Size(1244, 876);
+            this.TclBudgetManagement.Size = new System.Drawing.Size(1244, 874);
             this.TclBudgetManagement.TabIndex = 13;
             this.TclBudgetManagement.Click += new System.EventHandler(this.TclBudgetManagement_Click);
             // 
@@ -204,7 +204,7 @@ namespace BudgetManagementApp.Forms.Base
             this.TabProjects.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TabProjects.Name = "TabProjects";
             this.TabProjects.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.TabProjects.Size = new System.Drawing.Size(1236, 844);
+            this.TabProjects.Size = new System.Drawing.Size(1236, 842);
             this.TabProjects.TabIndex = 1;
             this.TabProjects.Text = "Proyectos";
             // 
@@ -428,7 +428,7 @@ namespace BudgetManagementApp.Forms.Base
             this.TabCategories.Location = new System.Drawing.Point(4, 28);
             this.TabCategories.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TabCategories.Name = "TabCategories";
-            this.TabCategories.Size = new System.Drawing.Size(1236, 842);
+            this.TabCategories.Size = new System.Drawing.Size(1236, 844);
             this.TabCategories.TabIndex = 2;
             this.TabCategories.Text = "Categorías";
             // 
@@ -559,7 +559,7 @@ namespace BudgetManagementApp.Forms.Base
             this.TabTypes.Location = new System.Drawing.Point(4, 28);
             this.TabTypes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TabTypes.Name = "TabTypes";
-            this.TabTypes.Size = new System.Drawing.Size(1236, 842);
+            this.TabTypes.Size = new System.Drawing.Size(1236, 844);
             this.TabTypes.TabIndex = 3;
             this.TabTypes.Text = "Partidas";
             // 
@@ -725,7 +725,7 @@ namespace BudgetManagementApp.Forms.Base
             this.TabSubtypes.Location = new System.Drawing.Point(4, 28);
             this.TabSubtypes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TabSubtypes.Name = "TabSubtypes";
-            this.TabSubtypes.Size = new System.Drawing.Size(1236, 842);
+            this.TabSubtypes.Size = new System.Drawing.Size(1236, 844);
             this.TabSubtypes.TabIndex = 4;
             this.TabSubtypes.Text = "Sub-partidas";
             // 
@@ -910,7 +910,7 @@ namespace BudgetManagementApp.Forms.Base
             this.MiLanguages});
             this.MsMainMenu.Location = new System.Drawing.Point(0, 0);
             this.MsMainMenu.Name = "MsMainMenu";
-            this.MsMainMenu.Size = new System.Drawing.Size(1497, 28);
+            this.MsMainMenu.Size = new System.Drawing.Size(1497, 30);
             this.MsMainMenu.TabIndex = 15;
             this.MsMainMenu.Text = "menuStrip1";
             // 
@@ -919,7 +919,7 @@ namespace BudgetManagementApp.Forms.Base
             this.MiFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MiClose});
             this.MiFile.Name = "MiFile";
-            this.MiFile.Size = new System.Drawing.Size(73, 24);
+            this.MiFile.Size = new System.Drawing.Size(73, 26);
             this.MiFile.Text = "Archivo";
             // 
             // MiClose
@@ -935,7 +935,7 @@ namespace BudgetManagementApp.Forms.Base
             this.MiSpanish,
             this.MiEnglish});
             this.MiLanguages.Name = "MiLanguages";
-            this.MiLanguages.Size = new System.Drawing.Size(76, 24);
+            this.MiLanguages.Size = new System.Drawing.Size(76, 26);
             this.MiLanguages.Text = "Idiomas";
             // 
             // MiSpanish

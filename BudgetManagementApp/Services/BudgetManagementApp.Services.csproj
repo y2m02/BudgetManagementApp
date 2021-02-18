@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccessGranterService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccountingMovements\AccountingMovementService.cs" />
     <Compile Include="Services\AccountingMovements\IAccountingMovementService.cs" />
@@ -84,6 +85,10 @@
     <ProjectReference Include="..\Repositories\BudgetManagementApp.Repositories.csproj">
       <Project>{cdc746e5-ea0e-466e-93f9-15375ad82e18}</Project>
       <Name>BudgetManagementApp.Repositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Resources\BudgetManagementApp.Resources.csproj">
+      <Project>{eeeea753-5f2c-4ead-9e97-37eb2e9238f8}</Project>
+      <Name>BudgetManagementApp.Resources</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
