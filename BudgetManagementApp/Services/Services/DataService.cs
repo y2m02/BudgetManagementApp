@@ -11,8 +11,11 @@ using BudgetManagementApp.Repositories.Repositories.Categories;
 using BudgetManagementApp.Repositories.Repositories.Projects;
 using BudgetManagementApp.Repositories.Repositories.SubTypes;
 using BudgetManagementApp.Repositories.Repositories.Types;
+using BudgetManagementApp.Resources.Properties;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Security.AccessControl;
 
 namespace BudgetManagementApp.Services.Services
 {
@@ -29,6 +32,7 @@ namespace BudgetManagementApp.Services.Services
         private readonly IProjectRepository projectRepository;
         private readonly IAccountingMovementRepository accountingMovementRepository;
         private readonly IMapper mapper;
+        private readonly IAccessGranterService accessGranterService;
 
         public DataService(
             ICategoryRepository categoryRepository,
@@ -36,7 +40,8 @@ namespace BudgetManagementApp.Services.Services
             ISubTypeRepository subTypeRepository,
             IProjectRepository projectRepository,
             IAccountingMovementRepository accountingMovementRepository,
-            IMapper mapper
+            IMapper mapper,
+            IAccessGranterService accessGranterService
         )
         {
             this.categoryRepository = categoryRepository;
@@ -45,6 +50,7 @@ namespace BudgetManagementApp.Services.Services
             this.projectRepository = projectRepository;
             this.accountingMovementRepository = accountingMovementRepository;
             this.mapper = mapper;
+            this.accessGranterService = accessGranterService;
         }
 
 
@@ -75,11 +81,27 @@ namespace BudgetManagementApp.Services.Services
             });
         }
 
-        private static BaseReturnViewModel HandleErrors(Func<BaseReturnViewModel> executor)
+        private BaseReturnViewModel HandleErrors(Func<BaseReturnViewModel> executor)
         {
             try
             {
                 return executor();
+            }
+            catch (SqlException ex)
+            {
+                var message = ex.Message;
+
+                if (message.ToLower().Contains(StringResources.AccessDenied))
+                {
+                    accessGranterService.GrantAccess(
+                        AppDomain.CurrentDomain.BaseDirectory,
+                        FileSystemRights.FullControl
+                    );
+
+                    return executor();
+                }
+
+                return new Failure(message);
             }
             catch (Exception ex)
             {
