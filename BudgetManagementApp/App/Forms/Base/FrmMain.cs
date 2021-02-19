@@ -13,7 +13,6 @@ using BudgetManagementApp.Forms.SubTypes;
 using BudgetManagementApp.Forms.Types;
 using BudgetManagementApp.Resources;
 using BudgetManagementApp.Resources.Properties;
-using BudgetManagementApp.Services;
 using BudgetManagementApp.Services.Services;
 using BudgetManagementApp.Services.Services.AccountingMovements;
 using BudgetManagementApp.Services.Services.Categories;
@@ -217,24 +216,14 @@ namespace BudgetManagementApp.Forms.Base
 
         private void TclBudgetManagement_Click(object sender, EventArgs e)
         {
-            switch (TclBudgetManagement.SelectedIndex)
+            ChangeButtonSelectedStatus(TclBudgetManagement.SelectedIndex switch
             {
-                case 0:
-                    ChangeButtonSelectedStatus(BtnProjects);
-                    break;
-
-                case 1:
-                    ChangeButtonSelectedStatus(BtnCategories);
-                    break;
-
-                case 2:
-                    ChangeButtonSelectedStatus(BtnTypes);
-                    break;
-
-                case 3:
-                    ChangeButtonSelectedStatus(BtnSubtypes);
-                    break;
-            }
+                0 => BtnProjects,
+                1 => BtnCategories,
+                2 => BtnTypes,
+                3 => BtnSubtypes,
+                _ => throw new NotImplementedException(),
+            });
         }
 
         private void MiSpanish_Click(object sender, EventArgs e)

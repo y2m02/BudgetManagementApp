@@ -141,7 +141,7 @@ namespace BudgetManagementApp.Forms.AccountingMovements
 
         private void TxtAmount_KeyPress(object sender, KeyPressEventArgs e)
         {
-            TxtOnlyDecimals_KeyPress(sender, e);
+            TxtOnlyDecimals_KeyPress(sender, e, allowDecimals: false);
         }
     }
 }
