@@ -147,6 +147,7 @@ namespace BudgetManagementApp.Forms.AccountingMovements
             this.TxtAmount.Name = "TxtAmount";
             this.TxtAmount.Size = new System.Drawing.Size(318, 27);
             this.TxtAmount.TabIndex = 54;
+            this.TxtAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtAmount_KeyPress);
             // 
             // LblDate
             // 

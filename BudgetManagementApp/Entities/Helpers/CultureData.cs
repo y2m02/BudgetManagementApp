@@ -6,7 +6,7 @@ namespace BudgetManagementApp.Entities.Helpers
     {
         public const string EnglishCultureName = "en-US";
 
-        public const string SpanishCultureName = "es-ES";
+        public const string SpanishCultureName = "es-DO";
 
         private static CultureInfo englishCulture = new(EnglishCultureName);
 

@@ -69,7 +69,9 @@ namespace BudgetManagementApp.Forms.AccountingMovements
 
             CbxSubType.SetSelectedValue(AccountingMovement.SubTypeId);
 
-            TxtAmount.SetText(AccountingMovement.Amount.ToStringWithDecimals());
+            TxtAmount.SetText(
+                AccountingMovement.Amount.ToString(CultureData.GetEnglishCulture())
+            );
 
             TxtComment.SetText(AccountingMovement.Comment);
         }
@@ -135,6 +137,11 @@ namespace BudgetManagementApp.Forms.AccountingMovements
             CbxCategory.ClearDataSource();
             CbxType.ClearDataSource();
             CbxSubType.ClearDataSource();
+        }
+
+        private void TxtAmount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TxtOnlyDecimals_KeyPress(sender, e);
         }
     }
 }

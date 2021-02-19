@@ -1,6 +1,7 @@
 ﻿using BudgetManagementApp.Entities.Migrations;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.IO;
 
 namespace BudgetManagementApp.Entities.Models
 {

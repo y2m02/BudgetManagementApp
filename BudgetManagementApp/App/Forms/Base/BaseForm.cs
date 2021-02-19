@@ -235,7 +235,7 @@ namespace BudgetManagementApp.Forms.Base
             SetControlsStatus(false, btnModify, btnDelete);
         }
 
-        protected static void FormatGrid(
+        protected virtual void FormatGrid(
             DataGridView grid,
             List<string> columnNamesToHide
         )
@@ -281,7 +281,7 @@ namespace BudgetManagementApp.Forms.Base
             DisplayErrorMessage(result.GetFailureError());
         }
 
-        private static void DisableColumns(
+        protected static void DisableColumns(
             DataGridView grid,
             List<string> columnNames,
             bool disableCommonFields = true
@@ -302,6 +302,25 @@ namespace BudgetManagementApp.Forms.Base
             {
                 grid.Columns[columnName].Visible = false;
             }
+        }
+
+        protected void TxtOnlyDecimals_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidateOnlyDecimals((TextBox)sender, e);
+        }
+
+        private void ValidateOnlyDecimals(TextBox txt, KeyPressEventArgs e)
+        {
+            if (char.IsNumber(e.KeyChar) ||
+                e.KeyChar == (char)Keys.Back ||
+                e.KeyChar == (char)Keys.Enter ||
+                (e.KeyChar == 46 && !txt.Text.Contains(".")) // Period (.)
+            )
+            {
+                return;
+            }
+
+            e.Handled = true;
         }
     }
 }
