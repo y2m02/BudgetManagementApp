@@ -13,6 +13,7 @@ using BudgetManagementApp.Forms.SubTypes;
 using BudgetManagementApp.Forms.Types;
 using BudgetManagementApp.Resources;
 using BudgetManagementApp.Resources.Properties;
+using BudgetManagementApp.Services;
 using BudgetManagementApp.Services.Services;
 using BudgetManagementApp.Services.Services.AccountingMovements;
 using BudgetManagementApp.Services.Services.Categories;
@@ -41,6 +42,7 @@ namespace BudgetManagementApp.Forms.Base
         private readonly ISubTypeService subTypeService;
         private readonly IProjectService projectService;
         private readonly IAccountingMovementService accountingMovementService;
+        private readonly IAccessGranterService accessGranterService;
 
         public FrmMain(
             FrmCategoryMaintenance categoryMaintenance,
@@ -53,7 +55,8 @@ namespace BudgetManagementApp.Forms.Base
             ITypeService typeService,
             ISubTypeService subTypeService,
             IProjectService projectService,
-            IAccountingMovementService accountingMovementService
+            IAccountingMovementService accountingMovementService,
+            IAccessGranterService accessGranterService
         )
         {
             this.categoryMaintenance = categoryMaintenance;
@@ -67,7 +70,7 @@ namespace BudgetManagementApp.Forms.Base
             this.subTypeService = subTypeService;
             this.projectService = projectService;
             this.accountingMovementService = accountingMovementService;
-
+            this.accessGranterService = accessGranterService;
             InitializeComponent();
         }
 
@@ -175,6 +178,8 @@ namespace BudgetManagementApp.Forms.Base
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
+            accessGranterService.CreateDatabaseDirectory(@"c:\BudgetManagementAppData");
+
             var data = HandleEntity<DataViewModel>(dataService.GetData());
 
             SetupCategories(data.Categories);
@@ -700,7 +705,7 @@ namespace BudgetManagementApp.Forms.Base
                     SetupProjects
                 );
 
-                AccountingMovements = 
+                AccountingMovements =
                     HandleEntity<IEnumerable<AccountingMovementViewModel>>(
                         accountingMovementService.GetAll()
                     )

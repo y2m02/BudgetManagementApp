@@ -15,6 +15,7 @@ using BudgetManagementApp.Resources.Properties;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Security.AccessControl;
 
 namespace BudgetManagementApp.Services.Services
@@ -94,7 +95,7 @@ namespace BudgetManagementApp.Services.Services
                 if (message.ToLower().Contains(StringResources.AccessDenied))
                 {
                     accessGranterService.GrantAccess(
-                        AppDomain.CurrentDomain.BaseDirectory,
+                        @"c:\BudgetManagementAppData",
                         FileSystemRights.FullControl
                     );
 

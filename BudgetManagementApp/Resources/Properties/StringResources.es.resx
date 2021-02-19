@@ -192,6 +192,15 @@
   <data name="Description" xml:space="preserve">
     <value>Descripción</value>
   </data>
+  <data name="DoNotDeleteFolder" xml:space="preserve">
+    <value>¡NO ELIMINE ESTA CARPETA NI NADA DE SU CONTENIDO!</value>
+  </data>
+  <data name="DoNotDeleteInfoMessage" xml:space="preserve">
+    <value>En esta carpeta se almacena la información generada por la aplicación.</value>
+  </data>
+  <data name="DoNotDeleteWarning" xml:space="preserve">
+    <value>Perderá toda su información si la elimina.</value>
+  </data>
   <data name="EndDate" xml:space="preserve">
     <value>Fecha de finalización</value>
   </data>
@@ -303,11 +312,17 @@
   <data name="RecordDeleted" xml:space="preserve">
     <value>Registro eliminado exitosamente.</value>
   </data>
+  <data name="Reload" xml:space="preserve">
+    <value>Recargar</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Guardar</value>
   </data>
   <data name="Spanish" xml:space="preserve">
     <value>Español</value>
+  </data>
+  <data name="SpecifiedFile" xml:space="preserve">
+    <value>archivo especificado</value>
   </data>
   <data name="StartDate" xml:space="preserve">
     <value>Fecha de inicio</value>

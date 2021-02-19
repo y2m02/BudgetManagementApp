@@ -1,7 +1,7 @@
 ﻿using BudgetManagementApp.Entities.Migrations;
-using System;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.IO;
 
 namespace BudgetManagementApp.Entities.Models
 {
@@ -9,13 +9,6 @@ namespace BudgetManagementApp.Entities.Models
     {
         public BudgetManagementAppContext() : base("name=BudgetManagementApp")
         {
-            var connection = Database
-                .Connection
-                .ConnectionString
-                .Replace("[DataDirectory]", AppDomain.CurrentDomain.BaseDirectory);
-
-            Database.Connection.ConnectionString = connection;
-
             Database.SetInitializer(
                 new MigrateDatabaseToLatestVersion<BudgetManagementAppContext, Configuration>()
             );
