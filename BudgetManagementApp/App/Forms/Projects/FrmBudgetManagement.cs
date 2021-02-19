@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace BudgetManagementApp.Forms.Projects
 {
@@ -114,6 +115,23 @@ namespace BudgetManagementApp.Forms.Projects
                 [FieldNames.CategoryDescription] = StringResourcesHandler.GetString(FieldNames.Category),
                 [FieldNames.Amount] = StringResourcesHandler.GetString(FieldNames.Amount),
             });
+        }
+
+        protected override void FormatGrid(
+            DataGridView grid,
+            List<string> columnNamesToHide
+        )
+        {
+            if (!grid.HasDataSource())
+                return;
+
+            try
+            {
+                DisableColumns(grid, columnNamesToHide);
+
+                grid.Columns[FieldNames.Amount].DefaultCellStyle.Format = "C2";
+            }
+            catch { }
         }
 
         protected override void SetLabels()

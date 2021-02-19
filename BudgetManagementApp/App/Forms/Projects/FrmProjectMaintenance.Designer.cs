@@ -161,6 +161,7 @@ namespace BudgetManagementApp.Forms.Projects
             this.TxtContruction.Name = "TxtContruction";
             this.TxtContruction.Size = new System.Drawing.Size(379, 27);
             this.TxtContruction.TabIndex = 49;
+            this.TxtContruction.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnlyDecimals_KeyPress);
             // 
             // LblCost
             // 
@@ -181,6 +182,7 @@ namespace BudgetManagementApp.Forms.Projects
             this.TxtCost.Name = "TxtCost";
             this.TxtCost.Size = new System.Drawing.Size(379, 27);
             this.TxtCost.TabIndex = 51;
+            this.TxtCost.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnlyDecimals_KeyPress);
             // 
             // FrmProjectMaintenance
             // 
