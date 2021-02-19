@@ -88,22 +88,6 @@ namespace BudgetManagementApp.Services.Services
             {
                 return executor();
             }
-            catch (SqlException ex)
-            {
-                var message = ex.Message;
-
-                if (message.ToLower().Contains(StringResources.AccessDenied))
-                {
-                    accessGranterService.GrantAccess(
-                        @"c:\BudgetManagementAppData",
-                        FileSystemRights.FullControl
-                    );
-
-                    return executor();
-                }
-
-                return new Failure(message);
-            }
             catch (Exception ex)
             {
                 return new Failure(ex.Message);
