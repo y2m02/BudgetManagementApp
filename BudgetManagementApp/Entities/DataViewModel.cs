@@ -10,10 +10,10 @@ namespace BudgetManagementApp.Entities
 {
     public class DataViewModel : BaseReturnViewModel
     {
-        public IEnumerable<CategoryViewModel> Categories { get; set; }
-        public IEnumerable<TypeViewModel> Types { get; set; }
-        public IEnumerable<SubTypeViewModel> SubTypes { get; set; }
-        public IEnumerable<ProjectViewModel> Projects { get; set; }
-        public IEnumerable<AccountingMovementViewModel> AccountingMovements { get; set; }
+        public List<CategoryViewModel> Categories { get; set; } = new();
+        public List<TypeViewModel> Types { get; set; } = new();
+        public List<SubTypeViewModel> SubTypes { get; set; } = new();
+        public List<ProjectViewModel> Projects { get; set; } = new();
+        public List<AccountingMovementViewModel> AccountingMovements { get; set; } = new();
     }
 }

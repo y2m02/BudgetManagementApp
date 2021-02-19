@@ -13,7 +13,6 @@ using BudgetManagementApp.Forms.SubTypes;
 using BudgetManagementApp.Forms.Types;
 using BudgetManagementApp.Resources;
 using BudgetManagementApp.Resources.Properties;
-using BudgetManagementApp.Services;
 using BudgetManagementApp.Services.Services;
 using BudgetManagementApp.Services.Services.AccountingMovements;
 using BudgetManagementApp.Services.Services.Categories;
@@ -42,7 +41,6 @@ namespace BudgetManagementApp.Forms.Base
         private readonly ISubTypeService subTypeService;
         private readonly IProjectService projectService;
         private readonly IAccountingMovementService accountingMovementService;
-        private readonly IAccessGranterService accessGranterService;
 
         public FrmMain(
             FrmCategoryMaintenance categoryMaintenance,
@@ -55,8 +53,7 @@ namespace BudgetManagementApp.Forms.Base
             ITypeService typeService,
             ISubTypeService subTypeService,
             IProjectService projectService,
-            IAccountingMovementService accountingMovementService,
-            IAccessGranterService accessGranterService
+            IAccountingMovementService accountingMovementService
         )
         {
             this.categoryMaintenance = categoryMaintenance;
@@ -70,7 +67,7 @@ namespace BudgetManagementApp.Forms.Base
             this.subTypeService = subTypeService;
             this.projectService = projectService;
             this.accountingMovementService = accountingMovementService;
-            this.accessGranterService = accessGranterService;
+
             InitializeComponent();
         }
 
@@ -178,8 +175,6 @@ namespace BudgetManagementApp.Forms.Base
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            accessGranterService.CreateDatabaseDirectory(@"c:\BudgetManagementAppData");
-
             var data = HandleEntity<DataViewModel>(dataService.GetData());
 
             SetupCategories(data.Categories);
@@ -221,24 +216,14 @@ namespace BudgetManagementApp.Forms.Base
 
         private void TclBudgetManagement_Click(object sender, EventArgs e)
         {
-            switch (TclBudgetManagement.SelectedIndex)
+            ChangeButtonSelectedStatus(TclBudgetManagement.SelectedIndex switch
             {
-                case 0:
-                    ChangeButtonSelectedStatus(BtnProjects);
-                    break;
-
-                case 1:
-                    ChangeButtonSelectedStatus(BtnCategories);
-                    break;
-
-                case 2:
-                    ChangeButtonSelectedStatus(BtnTypes);
-                    break;
-
-                case 3:
-                    ChangeButtonSelectedStatus(BtnSubtypes);
-                    break;
-            }
+                0 => BtnProjects,
+                1 => BtnCategories,
+                2 => BtnTypes,
+                3 => BtnSubtypes,
+                _ => throw new NotImplementedException(),
+            });
         }
 
         private void MiSpanish_Click(object sender, EventArgs e)

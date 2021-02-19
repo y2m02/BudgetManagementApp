@@ -304,17 +304,17 @@ namespace BudgetManagementApp.Forms.Base
             }
         }
 
-        protected void TxtOnlyDecimals_KeyPress(object sender, KeyPressEventArgs e)
+        protected void TxtOnlyDecimals_KeyPress(object sender, KeyPressEventArgs e, bool allowDecimals = true)
         {
-            ValidateOnlyDecimals((TextBox)sender, e);
+            ValidateOnlyNumbers((TextBox)sender, e, allowDecimals);
         }
 
-        private void ValidateOnlyDecimals(TextBox txt, KeyPressEventArgs e)
+        private void ValidateOnlyNumbers(TextBox txt, KeyPressEventArgs e, bool allowDecimals)
         {
             if (char.IsNumber(e.KeyChar) ||
                 e.KeyChar == (char)Keys.Back ||
                 e.KeyChar == (char)Keys.Enter ||
-                (e.KeyChar == 46 && !txt.Text.Contains(".")) // Period (.)
+                (allowDecimals && e.KeyChar == 46 && !txt.Text.Contains(".")) // Period (.)
             )
             {
                 return;
