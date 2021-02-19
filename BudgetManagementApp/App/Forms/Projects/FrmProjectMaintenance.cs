@@ -70,5 +70,10 @@ namespace BudgetManagementApp.Forms.Projects
         {
             Close();
         }
+
+        private void OnlyDecimals_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        {
+            TxtOnlyDecimals_KeyPress(sender, e);
+        }
     }
 }
