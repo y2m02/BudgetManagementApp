@@ -62,19 +62,19 @@ namespace BudgetManagementApp.Services.Services
                 return Success(
                     new DataViewModel
                     {
-                        Categories = mapper.Map<IEnumerable<CategoryViewModel>>(
+                        Categories = mapper.Map<List<CategoryViewModel>>(
                             categoryRepository.GetAll()
                         ),
-                        Types = mapper.Map<IEnumerable<TypeViewModel>>(
+                        Types = mapper.Map<List<TypeViewModel>>(
                             typeRepository.GetAll()
                         ),
-                        SubTypes = mapper.Map<IEnumerable<SubTypeViewModel>>(
+                        SubTypes = mapper.Map<List<SubTypeViewModel>>(
                             subTypeRepository.GetAll()
                         ),
-                        Projects = mapper.Map<IEnumerable<ProjectViewModel>>(
+                        Projects = mapper.Map<List<ProjectViewModel>>(
                             projectRepository.GetAll()
                         ),
-                        AccountingMovements = mapper.Map<IEnumerable<AccountingMovementViewModel>>(
+                        AccountingMovements = mapper.Map<List<AccountingMovementViewModel>>(
                             accountingMovementRepository.GetAll()
                         ),
                     }
@@ -87,22 +87,6 @@ namespace BudgetManagementApp.Services.Services
             try
             {
                 return executor();
-            }
-            catch (SqlException ex)
-            {
-                var message = ex.Message;
-
-                if (message.ToLower().Contains(StringResources.AccessDenied))
-                {
-                    accessGranterService.GrantAccess(
-                        @"c:\BudgetManagementAppData",
-                        FileSystemRights.FullControl
-                    );
-
-                    return executor();
-                }
-
-                return new Failure(message);
             }
             catch (Exception ex)
             {

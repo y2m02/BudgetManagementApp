@@ -118,7 +118,9 @@ namespace BudgetManagementApp.Forms.Base
             BaseViewModel model
         )
         {
-            var result = executor(model);
+            BaseReturnViewModel result = null;
+
+            AddLoadingPointer(() => result = executor(model));
 
             if (result.HasValidations())
             {
@@ -265,7 +267,9 @@ namespace BudgetManagementApp.Forms.Base
             if (!DisplayQuestionMessage(deleteQuestion).IsYesResponse())
                 return;
 
-            var result = service.Delete(model);
+            BaseReturnViewModel result = null;
+
+            AddLoadingPointer(() => result = service.Delete(model));
 
             if (result.IsSuccess())
             {
@@ -304,17 +308,26 @@ namespace BudgetManagementApp.Forms.Base
             }
         }
 
-        protected void TxtOnlyDecimals_KeyPress(object sender, KeyPressEventArgs e)
+        protected void TxtOnlyDecimals_KeyPress(object sender, KeyPressEventArgs e, bool allowDecimals = true)
         {
-            ValidateOnlyDecimals((TextBox)sender, e);
+            ValidateOnlyNumbers((TextBox)sender, e, allowDecimals);
         }
 
-        private void ValidateOnlyDecimals(TextBox txt, KeyPressEventArgs e)
+        protected void AddLoadingPointer(Action executor)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+
+            executor();
+
+            Cursor.Current = Cursors.Default;
+        }
+
+        private void ValidateOnlyNumbers(TextBox txt, KeyPressEventArgs e, bool allowDecimals)
         {
             if (char.IsNumber(e.KeyChar) ||
                 e.KeyChar == (char)Keys.Back ||
                 e.KeyChar == (char)Keys.Enter ||
-                (e.KeyChar == 46 && !txt.Text.Contains(".")) // Period (.)
+                (allowDecimals && e.KeyChar == 46 && !txt.Text.Contains(".")) // Period (.)
             )
             {
                 return;

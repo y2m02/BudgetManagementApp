@@ -22,27 +22,30 @@ namespace BudgetManagementApp.Forms.Projects
 
         private void FrmProjectMaintenance_Load(object sender, EventArgs e)
         {
-            SetLabels();
+            AddLoadingPointer(() =>
+            {
+                SetLabels();
 
-            TxtProjectId.SetText(Project.ProjectId.ToString());
+                TxtProjectId.SetText(Project.ProjectId.ToString());
 
-            TxtProjectName.SetText(Project.Name);
+                TxtProjectName.SetText(Project.Name);
 
-            DtpStartDate.Value = Project.StartDate > DateTime.MinValue
-                ? Project.StartDate
-                : DateTime.Now;
+                DtpStartDate.Value = Project.StartDate > DateTime.MinValue
+                    ? Project.StartDate
+                    : DateTime.Now;
 
-            DtpEndDate.Value = Project.EndDate > DateTime.MinValue
-                ? Project.EndDate
-                : DateTime.Now;
+                DtpEndDate.Value = Project.EndDate > DateTime.MinValue
+                    ? Project.EndDate
+                    : DateTime.Now;
 
-            TxtContruction.SetText(
-                Project.Construction.ToString(CultureData.GetEnglishCulture())
-            );
+                TxtContruction.SetText(
+                    Project.Construction.ToString(CultureData.GetEnglishCulture())
+                );
 
-            TxtCost.SetText(
-                Project.Cost.ToString(CultureData.GetEnglishCulture())
-            );
+                TxtCost.SetText(
+                    Project.Cost.ToString(CultureData.GetEnglishCulture())
+                );
+            });
         }
 
         protected override void SetLabels()

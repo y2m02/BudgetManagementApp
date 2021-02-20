@@ -49,71 +49,74 @@ namespace BudgetManagementApp.Forms.Projects
 
         private void FrmBudgetManagement_Load(object sender, EventArgs e)
         {
-            SetLabels();
-
-            SetupIncomes(Incomes);
-            SetupExpenses(Expenses);
-
-            TxtProjectId.SetText(Project.ProjectId.ToString());
-
-            TxtProjectName.SetText(Project.Name);
-
-            TxtStartDate.SetText(Project.StartDate.ToShortDateString());
-
-            TxtEndDate.SetText(Project.EndDate.ToShortDateString());
-
-            TxtConstruction.SetText(
-                Project.Construction.ToStringWithDecimals()
-            );
-
-            TxtCost.SetText(
-                Project.Cost.ToStringWithDecimals()
-            );
-
-            SetColumnNames(DgvIncomes, new Dictionary<string, string>
+            AddLoadingPointer(() =>
             {
-                [FieldNames.CategoryDescription] = StringResourcesHandler.GetString(FieldNames.Category),
-                [FieldNames.TypeDescription] = StringResourcesHandler.GetString(FieldNames.Type),
-                [FieldNames.SubTypeDescription] = StringResourcesHandler.GetString(FieldNames.SubType),
-                [FieldNames.Date] = StringResourcesHandler.GetString(FieldNames.Date),
-                [FieldNames.Amount] = StringResourcesHandler.GetString(FieldNames.Amount),
-                [FieldNames.Comment] = StringResourcesHandler.GetString(FieldNames.Comment),
-            });
+                SetLabels();
 
-            SetColumnNames(DgvIncomesByTypes, new Dictionary<string, string>
-            {
-                [FieldNames.CategoryDescription] = StringResourcesHandler.GetString(FieldNames.Category),
-                [FieldNames.TypeDescription] = StringResourcesHandler.GetString(FieldNames.Type),
-                [FieldNames.Amount] = StringResourcesHandler.GetString(FieldNames.Amount),
-            });
+                SetupIncomes(Incomes);
+                SetupExpenses(Expenses);
 
-            SetColumnNames(DgvIncomesByCategories, new Dictionary<string, string>
-            {
-                [FieldNames.CategoryDescription] = StringResourcesHandler.GetString(FieldNames.Category),
-                [FieldNames.Amount] = StringResourcesHandler.GetString(FieldNames.Amount),
-            });
+                TxtProjectId.SetText(Project.ProjectId.ToString());
 
-            SetColumnNames(DgvExpenses, new Dictionary<string, string>
-            {
-                [FieldNames.CategoryDescription] = StringResourcesHandler.GetString(FieldNames.Category),
-                [FieldNames.TypeDescription] = StringResourcesHandler.GetString(FieldNames.Type),
-                [FieldNames.SubTypeDescription] = StringResourcesHandler.GetString(FieldNames.SubType),
-                [FieldNames.Date] = StringResourcesHandler.GetString(FieldNames.Date),
-                [FieldNames.Amount] = StringResourcesHandler.GetString(FieldNames.Amount),
-                [FieldNames.Comment] = StringResourcesHandler.GetString(FieldNames.Comment),
-            });
+                TxtProjectName.SetText(Project.Name);
 
-            SetColumnNames(DgvExpensesByTypes, new Dictionary<string, string>
-            {
-                [FieldNames.CategoryDescription] = StringResourcesHandler.GetString(FieldNames.Category),
-                [FieldNames.TypeDescription] = StringResourcesHandler.GetString(FieldNames.Type),
-                [FieldNames.Amount] = StringResourcesHandler.GetString(FieldNames.Amount),
-            });
+                TxtStartDate.SetText(Project.StartDate.ToShortDateString());
 
-            SetColumnNames(DgvExpensesByCategories, new Dictionary<string, string>
-            {
-                [FieldNames.CategoryDescription] = StringResourcesHandler.GetString(FieldNames.Category),
-                [FieldNames.Amount] = StringResourcesHandler.GetString(FieldNames.Amount),
+                TxtEndDate.SetText(Project.EndDate.ToShortDateString());
+
+                TxtConstruction.SetText(
+                    Project.Construction.ToStringWithDecimals()
+                );
+
+                TxtCost.SetText(
+                    Project.Cost.ToStringWithDecimals()
+                );
+
+                SetColumnNames(DgvIncomes, new Dictionary<string, string>
+                {
+                    [FieldNames.CategoryDescription] = StringResourcesHandler.GetString(FieldNames.Category),
+                    [FieldNames.TypeDescription] = StringResourcesHandler.GetString(FieldNames.Type),
+                    [FieldNames.SubTypeDescription] = StringResourcesHandler.GetString(FieldNames.SubType),
+                    [FieldNames.Date] = StringResourcesHandler.GetString(FieldNames.Date),
+                    [FieldNames.Amount] = StringResourcesHandler.GetString(FieldNames.Amount),
+                    [FieldNames.Comment] = StringResourcesHandler.GetString(FieldNames.Comment),
+                });
+
+                SetColumnNames(DgvIncomesByTypes, new Dictionary<string, string>
+                {
+                    [FieldNames.CategoryDescription] = StringResourcesHandler.GetString(FieldNames.Category),
+                    [FieldNames.TypeDescription] = StringResourcesHandler.GetString(FieldNames.Type),
+                    [FieldNames.Amount] = StringResourcesHandler.GetString(FieldNames.Amount),
+                });
+
+                SetColumnNames(DgvIncomesByCategories, new Dictionary<string, string>
+                {
+                    [FieldNames.CategoryDescription] = StringResourcesHandler.GetString(FieldNames.Category),
+                    [FieldNames.Amount] = StringResourcesHandler.GetString(FieldNames.Amount),
+                });
+
+                SetColumnNames(DgvExpenses, new Dictionary<string, string>
+                {
+                    [FieldNames.CategoryDescription] = StringResourcesHandler.GetString(FieldNames.Category),
+                    [FieldNames.TypeDescription] = StringResourcesHandler.GetString(FieldNames.Type),
+                    [FieldNames.SubTypeDescription] = StringResourcesHandler.GetString(FieldNames.SubType),
+                    [FieldNames.Date] = StringResourcesHandler.GetString(FieldNames.Date),
+                    [FieldNames.Amount] = StringResourcesHandler.GetString(FieldNames.Amount),
+                    [FieldNames.Comment] = StringResourcesHandler.GetString(FieldNames.Comment),
+                });
+
+                SetColumnNames(DgvExpensesByTypes, new Dictionary<string, string>
+                {
+                    [FieldNames.CategoryDescription] = StringResourcesHandler.GetString(FieldNames.Category),
+                    [FieldNames.TypeDescription] = StringResourcesHandler.GetString(FieldNames.Type),
+                    [FieldNames.Amount] = StringResourcesHandler.GetString(FieldNames.Amount),
+                });
+
+                SetColumnNames(DgvExpensesByCategories, new Dictionary<string, string>
+                {
+                    [FieldNames.CategoryDescription] = StringResourcesHandler.GetString(FieldNames.Category),
+                    [FieldNames.Amount] = StringResourcesHandler.GetString(FieldNames.Amount),
+                });
             });
         }
 
@@ -306,12 +309,15 @@ namespace BudgetManagementApp.Forms.Projects
             if (!accountingMovementMaintenance.ShowDialog().IsOkResponse())
                 return;
 
-            TxtIncomeFilter.Clear();
+            AddLoadingPointer(() =>
+            {
+                TxtIncomeFilter.Clear();
 
-            HandleEntity<AccountingMovementViewModel>(
-                accountingMovementService.GetIncomesByProjectId(Project.ProjectId),
-                SetupIncomes
-            );
+                HandleEntity<AccountingMovementViewModel>(
+                    accountingMovementService.GetIncomesByProjectId(Project.ProjectId),
+                    SetupIncomes
+                );
+            });
 
             GlobalProperties.ProjectsNeedToBeUpdated = true;
         }
@@ -491,12 +497,15 @@ namespace BudgetManagementApp.Forms.Projects
             if (!accountingMovementMaintenance.ShowDialog().IsOkResponse())
                 return;
 
-            TxtExpenseFilter.Clear();
+            AddLoadingPointer(() =>
+            {
+                TxtExpenseFilter.Clear();
 
-            HandleEntity<AccountingMovementViewModel>(
-                accountingMovementService.GetExpensesByProjectId(Project.ProjectId),
-                SetupExpenses
-            );
+                HandleEntity<AccountingMovementViewModel>(
+                    accountingMovementService.GetExpensesByProjectId(Project.ProjectId),
+                    SetupExpenses
+                );
+            });
 
             GlobalProperties.ProjectsNeedToBeUpdated = true;
         }
