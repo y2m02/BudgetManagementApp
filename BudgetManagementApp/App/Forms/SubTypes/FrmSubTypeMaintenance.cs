@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using BudgetManagementApp.Entities.Extensions;
+﻿using BudgetManagementApp.Entities.Extensions;
 using BudgetManagementApp.Entities.Helpers;
 using BudgetManagementApp.Entities.ViewModels.Categories;
 using BudgetManagementApp.Entities.ViewModels.SubTypes;
 using BudgetManagementApp.Entities.ViewModels.Types;
 using BudgetManagementApp.Forms.Base;
 using BudgetManagementApp.Services.Services.SubTypes;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace BudgetManagementApp.Forms.SubTypes
 {
@@ -24,7 +24,7 @@ namespace BudgetManagementApp.Forms.SubTypes
         public SubTypeViewModel SubType { get; set; }
 
         public List<TypeViewModel> Types { get; set; }
-        
+
         public List<CategoryViewModel> Categories { get; set; }
 
         private void BtnSave_Click(object sender, EventArgs e)
@@ -48,27 +48,30 @@ namespace BudgetManagementApp.Forms.SubTypes
 
         private void FrmSubTypeMaintenance_Load(object sender, EventArgs e)
         {
-            SetLabels();
+            AddLoadingPointer(() =>
+            {
+                SetLabels();
 
-            TxtSubTypeId.SetText(SubType.SubTypeId.ToString());
+                TxtSubTypeId.SetText(SubType.SubTypeId.ToString());
 
-            TxtDescription.SetText(SubType.Description);
+                TxtDescription.SetText(SubType.Description);
 
-            CbxType.SetData(
-              Types,
-              FieldNames.TypeId,
-              FieldNames.Description
-            );
-            
-            CbxCategory.SetData(
-              Categories,
-              FieldNames.CategoryId,
-              FieldNames.Description
-            );
+                CbxType.SetData(
+                  Types,
+                  FieldNames.TypeId,
+                  FieldNames.Description
+                );
 
-            CbxCategory.SetSelectedValue(SubType.CategoryId);
+                CbxCategory.SetData(
+                  Categories,
+                  FieldNames.CategoryId,
+                  FieldNames.Description
+                );
 
-            CbxType.SetSelectedValue(SubType.TypeId);
+                CbxCategory.SetSelectedValue(SubType.CategoryId);
+
+                CbxType.SetSelectedValue(SubType.TypeId);
+            });
         }
 
         protected sealed override void SetLabels()

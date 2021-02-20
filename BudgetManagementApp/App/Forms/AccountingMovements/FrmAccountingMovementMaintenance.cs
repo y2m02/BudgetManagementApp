@@ -35,45 +35,48 @@ namespace BudgetManagementApp.Forms.AccountingMovements
 
         private void FrmAccountingMovementMaintenance_Load(object sender, EventArgs e)
         {
-            SetLabels();
+            AddLoadingPointer(() =>
+            {
+                SetLabels();
 
-            TxtAccountingMovementId.SetText(
-                AccountingMovement.AccountingMovementId.ToString()
-            );
+                TxtAccountingMovementId.SetText(
+                    AccountingMovement.AccountingMovementId.ToString()
+                );
 
-            DtpDate.Value = AccountingMovement.Date > DateTime.MinValue
-                ? AccountingMovement.Date
-                : DateTime.Now;
+                DtpDate.Value = AccountingMovement.Date > DateTime.MinValue
+                    ? AccountingMovement.Date
+                    : DateTime.Now;
 
-            CbxCategory.SetData(
-              Categories,
-              FieldNames.CategoryId,
-              FieldNames.Description
-            );
+                CbxCategory.SetData(
+                  Categories,
+                  FieldNames.CategoryId,
+                  FieldNames.Description
+                );
 
-            CbxCategory.SetSelectedValue(AccountingMovement.CategoryId);
+                CbxCategory.SetSelectedValue(AccountingMovement.CategoryId);
 
-            CbxType.SetData(
-              Types.PrettyWhere(w => w.CategoryId == AccountingMovement.CategoryId),
-              FieldNames.TypeId,
-              FieldNames.Description
-            );
+                CbxType.SetData(
+                  Types.PrettyWhere(w => w.CategoryId == AccountingMovement.CategoryId),
+                  FieldNames.TypeId,
+                  FieldNames.Description
+                );
 
-            CbxType.SetSelectedValue(AccountingMovement.TypeId);
+                CbxType.SetSelectedValue(AccountingMovement.TypeId);
 
-            CbxSubType.SetData(
-              SubTypes.PrettyWhere(w => w.TypeId == AccountingMovement.TypeId),
-              FieldNames.SubTypeId,
-              FieldNames.Description
-            );
+                CbxSubType.SetData(
+                  SubTypes.PrettyWhere(w => w.TypeId == AccountingMovement.TypeId),
+                  FieldNames.SubTypeId,
+                  FieldNames.Description
+                );
 
-            CbxSubType.SetSelectedValue(AccountingMovement.SubTypeId);
+                CbxSubType.SetSelectedValue(AccountingMovement.SubTypeId);
 
-            TxtAmount.SetText(
-                AccountingMovement.Amount.ToString(CultureData.GetEnglishCulture())
-            );
+                TxtAmount.SetText(
+                    AccountingMovement.Amount.ToString(CultureData.GetEnglishCulture())
+                );
 
-            TxtComment.SetText(AccountingMovement.Comment);
+                TxtComment.SetText(AccountingMovement.Comment);
+            });
         }
 
         private void BtnSave_Click(object sender, EventArgs e)

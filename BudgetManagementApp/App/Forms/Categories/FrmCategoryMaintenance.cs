@@ -1,8 +1,8 @@
-﻿using System;
-using BudgetManagementApp.Entities.Extensions;
+﻿using BudgetManagementApp.Entities.Extensions;
 using BudgetManagementApp.Entities.ViewModels.Categories;
 using BudgetManagementApp.Forms.Base;
 using BudgetManagementApp.Services.Services.Categories;
+using System;
 
 namespace BudgetManagementApp.Forms.Categories
 {
@@ -21,10 +21,13 @@ namespace BudgetManagementApp.Forms.Categories
 
         private void FrmCategoryMaintenance_Load(object sender, EventArgs e)
         {
-            SetLabels();
+            AddLoadingPointer(() =>
+            {
+                SetLabels();
 
-            TxtCategoryId.SetText(Category.CategoryId.ToString());
-            TxtDescription.SetText(Category.Description);
+                TxtCategoryId.SetText(Category.CategoryId.ToString());
+                TxtDescription.SetText(Category.Description);
+            });
         }
 
         protected sealed override void SetLabels()
