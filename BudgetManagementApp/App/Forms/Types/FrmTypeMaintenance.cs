@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using BudgetManagementApp.Entities.Extensions;
+﻿using BudgetManagementApp.Entities.Extensions;
 using BudgetManagementApp.Entities.Helpers;
 using BudgetManagementApp.Entities.ViewModels.Categories;
 using BudgetManagementApp.Entities.ViewModels.Types;
 using BudgetManagementApp.Forms.Base;
 using BudgetManagementApp.Services.Services.Types;
+using System;
+using System.Collections.Generic;
 
 namespace BudgetManagementApp.Forms.Types
 {
@@ -41,19 +41,22 @@ namespace BudgetManagementApp.Forms.Types
 
         private void FrmTypeMaintenance_Load(object sender, EventArgs e)
         {
-            SetLabels();
+            AddLoadingPointer(() =>
+            {
+                SetLabels();
 
-            TxtTypeId.SetText(Type.TypeId.ToString());
+                TxtTypeId.SetText(Type.TypeId.ToString());
 
-            TxtDescription.SetText(Type.Description);
-            
-            CbxCategory.SetData(
-              Categories,
-              FieldNames.CategoryId,
-              FieldNames.Description
-            );
+                TxtDescription.SetText(Type.Description);
 
-            CbxCategory.SetSelectedValue(Type.CategoryId);
+                CbxCategory.SetData(
+                    Categories,
+                    FieldNames.CategoryId,
+                    FieldNames.Description
+                );
+
+                CbxCategory.SetSelectedValue(Type.CategoryId);
+            });
         }
 
         protected sealed override void SetLabels()
