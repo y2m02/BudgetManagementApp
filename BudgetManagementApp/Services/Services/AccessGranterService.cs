@@ -1,9 +1,9 @@
-﻿using BudgetManagementApp.Resources.Properties;
-using System.IO;
+﻿using System.IO;
 using System.Security.AccessControl;
 using System.Security.Principal;
+using BudgetManagementApp.Resources.Properties;
 
-namespace BudgetManagementApp.Services
+namespace BudgetManagementApp.Services.Services
 {
     public interface IAccessGranterService
     {
