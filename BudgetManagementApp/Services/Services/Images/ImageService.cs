@@ -22,14 +22,14 @@ namespace BudgetManagementApp.Services.Services.Images
             {
                 Directory.CreateDirectory(directory);
             }
-            
-            var newFileName = Guid.NewGuid();
 
-            var newFilePath = Path.Combine(directory, $"{newFileName}.xlsx");
+            var newFileName = $"{Guid.NewGuid()}.{Path.GetExtension(oldFileDirectory)}";
+
+            var newFilePath = Path.Combine(directory, newFileName);
 
             File.Copy(oldFileDirectory, newFilePath);
 
-            return newFileName.ToString();
+            return newFileName;
         }
     }
 }
