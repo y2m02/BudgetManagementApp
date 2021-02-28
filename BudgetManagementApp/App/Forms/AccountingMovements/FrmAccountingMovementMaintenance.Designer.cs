@@ -44,6 +44,13 @@ namespace BudgetManagementApp.Forms.AccountingMovements
             this.CbxSubType = new System.Windows.Forms.ComboBox();
             this.LblComment = new System.Windows.Forms.Label();
             this.TxtComment = new System.Windows.Forms.TextBox();
+            this.LblInvoice = new System.Windows.Forms.Label();
+            this.TxtInvoice = new System.Windows.Forms.TextBox();
+            this.BtnViewInvoice = new System.Windows.Forms.Button();
+            this.BtnDeleteInvoice = new System.Windows.Forms.Button();
+            this.BtnLoadInvoice = new System.Windows.Forms.Button();
+            this.PnlInvoice = new System.Windows.Forms.Panel();
+            this.PnlInvoice.SuspendLayout();
             this.SuspendLayout();
             // 
             // LblType
@@ -119,7 +126,7 @@ namespace BudgetManagementApp.Forms.AccountingMovements
             // BtnCancel
             // 
             this.BtnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.BtnCancel.Location = new System.Drawing.Point(363, 356);
+            this.BtnCancel.Location = new System.Drawing.Point(364, 445);
             this.BtnCancel.Margin = new System.Windows.Forms.Padding(1);
             this.BtnCancel.Name = "BtnCancel";
             this.BtnCancel.Size = new System.Drawing.Size(146, 62);
@@ -130,7 +137,7 @@ namespace BudgetManagementApp.Forms.AccountingMovements
             // 
             // BtnSave
             // 
-            this.BtnSave.Location = new System.Drawing.Point(214, 356);
+            this.BtnSave.Location = new System.Drawing.Point(215, 445);
             this.BtnSave.Margin = new System.Windows.Forms.Padding(1);
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(146, 62);
@@ -215,13 +222,82 @@ namespace BudgetManagementApp.Forms.AccountingMovements
             this.TxtComment.Size = new System.Drawing.Size(318, 188);
             this.TxtComment.TabIndex = 67;
             // 
+            // LblInvoice
+            // 
+            this.LblInvoice.AutoSize = true;
+            this.LblInvoice.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblInvoice.Location = new System.Drawing.Point(4, 16);
+            this.LblInvoice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblInvoice.Name = "LblInvoice";
+            this.LblInvoice.Size = new System.Drawing.Size(82, 24);
+            this.LblInvoice.TabIndex = 70;
+            this.LblInvoice.Text = "Factura";
+            // 
+            // TxtInvoice
+            // 
+            this.TxtInvoice.Location = new System.Drawing.Point(8, 58);
+            this.TxtInvoice.Margin = new System.Windows.Forms.Padding(4, 7, 4, 7);
+            this.TxtInvoice.MaxLength = 99;
+            this.TxtInvoice.Name = "TxtInvoice";
+            this.TxtInvoice.Size = new System.Drawing.Size(315, 27);
+            this.TxtInvoice.TabIndex = 69;
+            // 
+            // BtnViewInvoice
+            // 
+            this.BtnViewInvoice.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.BtnViewInvoice.Location = new System.Drawing.Point(433, 56);
+            this.BtnViewInvoice.Margin = new System.Windows.Forms.Padding(1);
+            this.BtnViewInvoice.Name = "BtnViewInvoice";
+            this.BtnViewInvoice.Size = new System.Drawing.Size(102, 31);
+            this.BtnViewInvoice.TabIndex = 71;
+            this.BtnViewInvoice.Text = "Ver";
+            this.BtnViewInvoice.UseVisualStyleBackColor = true;
+            this.BtnViewInvoice.Click += new System.EventHandler(this.BtnViewInvoice_Click);
+            // 
+            // BtnDeleteInvoice
+            // 
+            this.BtnDeleteInvoice.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.BtnDeleteInvoice.Location = new System.Drawing.Point(537, 56);
+            this.BtnDeleteInvoice.Margin = new System.Windows.Forms.Padding(1);
+            this.BtnDeleteInvoice.Name = "BtnDeleteInvoice";
+            this.BtnDeleteInvoice.Size = new System.Drawing.Size(102, 31);
+            this.BtnDeleteInvoice.TabIndex = 72;
+            this.BtnDeleteInvoice.Text = "Borrar";
+            this.BtnDeleteInvoice.UseVisualStyleBackColor = true;
+            this.BtnDeleteInvoice.Click += new System.EventHandler(this.BtnDeleteInvoice_Click);
+            // 
+            // BtnLoadInvoice
+            // 
+            this.BtnLoadInvoice.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.BtnLoadInvoice.Location = new System.Drawing.Point(328, 56);
+            this.BtnLoadInvoice.Margin = new System.Windows.Forms.Padding(1);
+            this.BtnLoadInvoice.Name = "BtnLoadInvoice";
+            this.BtnLoadInvoice.Size = new System.Drawing.Size(102, 31);
+            this.BtnLoadInvoice.TabIndex = 73;
+            this.BtnLoadInvoice.Text = "Cargar";
+            this.BtnLoadInvoice.UseVisualStyleBackColor = true;
+            this.BtnLoadInvoice.Click += new System.EventHandler(this.BtnLoadInvoice_Click);
+            // 
+            // PnlInvoice
+            // 
+            this.PnlInvoice.Controls.Add(this.LblInvoice);
+            this.PnlInvoice.Controls.Add(this.BtnLoadInvoice);
+            this.PnlInvoice.Controls.Add(this.TxtInvoice);
+            this.PnlInvoice.Controls.Add(this.BtnDeleteInvoice);
+            this.PnlInvoice.Controls.Add(this.BtnViewInvoice);
+            this.PnlInvoice.Location = new System.Drawing.Point(18, 344);
+            this.PnlInvoice.Name = "PnlInvoice";
+            this.PnlInvoice.Size = new System.Drawing.Size(647, 99);
+            this.PnlInvoice.TabIndex = 74;
+            // 
             // FrmAccountingMovementMaintenance
             // 
             this.AcceptButton = this.BtnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.BtnCancel;
-            this.ClientSize = new System.Drawing.Size(719, 426);
+            this.ClientSize = new System.Drawing.Size(710, 517);
+            this.Controls.Add(this.PnlInvoice);
             this.Controls.Add(this.LblComment);
             this.Controls.Add(this.TxtComment);
             this.Controls.Add(this.LblSubType);
@@ -244,6 +320,8 @@ namespace BudgetManagementApp.Forms.AccountingMovements
             this.Text = "FrmAccountingMovementMaintenance";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmAccountingMovementMaintenance_FormClosing);
             this.Load += new System.EventHandler(this.FrmAccountingMovementMaintenance_Load);
+            this.PnlInvoice.ResumeLayout(false);
+            this.PnlInvoice.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -266,5 +344,11 @@ namespace BudgetManagementApp.Forms.AccountingMovements
         private System.Windows.Forms.DateTimePicker DtpDate;
         private System.Windows.Forms.ComboBox CbxSubType;
         private System.Windows.Forms.TextBox TxtComment;
+        private System.Windows.Forms.Label LblInvoice;
+        private System.Windows.Forms.TextBox TxtInvoice;
+        private System.Windows.Forms.Button BtnViewInvoice;
+        private System.Windows.Forms.Button BtnDeleteInvoice;
+        private System.Windows.Forms.Button BtnLoadInvoice;
+        private System.Windows.Forms.Panel PnlInvoice;
     }
 }

@@ -241,6 +241,15 @@ namespace BudgetManagementApp.Resources.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove.
+        /// </summary>
+        public static string DeleteInvoice {
+            get {
+                return ResourceManager.GetString("DeleteInvoice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string DeleteProject {
@@ -448,11 +457,29 @@ namespace BudgetManagementApp.Resources.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invoice.
+        /// </summary>
+        public static string Invoice {
+            get {
+                return ResourceManager.GetString("Invoice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Languages.
         /// </summary>
         public static string Languages {
             get {
                 return ResourceManager.GetString("Languages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load.
+        /// </summary>
+        public static string LoadInvoice {
+            get {
+                return ResourceManager.GetString("LoadInvoice", resourceCulture);
             }
         }
         
@@ -840,6 +867,15 @@ namespace BudgetManagementApp.Resources.Properties {
         public static string Types {
             get {
                 return ResourceManager.GetString("Types", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View.
+        /// </summary>
+        public static string ViewInvoice {
+            get {
+                return ResourceManager.GetString("ViewInvoice", resourceCulture);
             }
         }
         

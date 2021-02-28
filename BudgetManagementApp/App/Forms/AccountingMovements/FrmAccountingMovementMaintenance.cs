@@ -33,6 +33,12 @@ namespace BudgetManagementApp.Forms.AccountingMovements
 
         public List<SubTypeViewModel> SubTypes { get; set; }
 
+        protected override void SetLabels()
+        {
+            LoopControlsToSetLabels(PnlInvoice.Controls);
+            LoopControlsToSetLabels(Controls);
+        }
+
         private void FrmAccountingMovementMaintenance_Load(object sender, EventArgs e)
         {
             AddLoadingPointer(() =>
@@ -76,6 +82,8 @@ namespace BudgetManagementApp.Forms.AccountingMovements
                 );
 
                 TxtComment.SetText(AccountingMovement.Comment);
+
+                PnlInvoice.Visible = !AccountingMovement.IsAnIncome;
             });
         }
 
@@ -145,6 +153,21 @@ namespace BudgetManagementApp.Forms.AccountingMovements
         private void TxtAmount_KeyPress(object sender, KeyPressEventArgs e)
         {
             TxtOnlyDecimals_KeyPress(sender, e, allowDecimals: false);
+        }
+
+        private void BtnLoadInvoice_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnViewInvoice_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnDeleteInvoice_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

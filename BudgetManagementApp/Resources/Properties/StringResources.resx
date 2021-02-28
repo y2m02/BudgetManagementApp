@@ -177,6 +177,9 @@
   <data name="DeleteIncome" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="DeleteInvoice" xml:space="preserve">
+    <value>Remove</value>
+  </data>
   <data name="DeleteProject" xml:space="preserve">
     <value>Delete</value>
   </data>
@@ -246,8 +249,14 @@
   <data name="Information" xml:space="preserve">
     <value>Information</value>
   </data>
+  <data name="Invoice" xml:space="preserve">
+    <value>Invoice</value>
+  </data>
   <data name="Languages" xml:space="preserve">
     <value>Languages</value>
+  </data>
+  <data name="LoadInvoice" xml:space="preserve">
+    <value>Load</value>
   </data>
   <data name="Modify" xml:space="preserve">
     <value>Modify {0}</value>
@@ -377,6 +386,9 @@
   </data>
   <data name="Types" xml:space="preserve">
     <value>Types</value>
+  </data>
+  <data name="ViewInvoice" xml:space="preserve">
+    <value>View</value>
   </data>
   <data name="Warning" xml:space="preserve">
     <value>Warning</value>
